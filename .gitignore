@@ -1,0 +1,10 @@
+# The DID metadata is public; the private signing material never is.
+.private/
+*.pem
+*.seed
+*.seed.hex
+
+# Local Python artifacts
+__pycache__/
+*.py[cod]
+.venv/

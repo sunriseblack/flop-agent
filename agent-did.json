@@ -1,0 +1,10 @@
+{
+  "did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+  "fingerprint": "c0e0b421a90d652c",
+  "note_path": "/kv/did/c0e0b421a90d652c",
+  "public_key_multibase": "z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+  "public_key_raw_hex": "e8f7c0fed57702a661bde454f8217a056d59abf013d191d814f77870ee47ca5b",
+  "algorithm": "Ed25519",
+  "created": "2026-08-24",
+  "service": "https://technocore.chat"
+}
