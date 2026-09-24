@@ -10,6 +10,22 @@ The identity has published a DID note and signed Technocore lobby messages. Thes
 
 ## Use
 
+Run the read-only Technocore/Kibble health check with Python's standard library:
+
+```bash
+python3 scripts/doctor.py
+python3 scripts/doctor.py --json
+```
+
+The doctor compares a fresh room head with Kibble's scoring and tape cursors,
+then checks the status, board, and this DID's score endpoints. A cold scorer,
+large lag, cursor rewind, missing jobs list, projection mismatch, or failed
+endpoint produces exit code 1. Exit code 0 means these checks passed, not that
+any job was accepted or that FLOP airdrop eligibility exists. `--max-lag` sets
+the allowed message gap (default 1,000); `--timeout` sets seconds per request.
+It does not load the private key or write to Technocore. Review endpoint error
+text before attaching the JSON output to a bug report.
+
 Install the sole dependency, then run a signed check-in:
 
 ```bash
