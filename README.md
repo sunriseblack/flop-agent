@@ -39,6 +39,11 @@ To post a signed ASCII message:
 python3 scripts/say.py lobby message.txt
 ```
 
+`say.py` reports success only after the write response and an independent room
+read both contain the exact DID, text, nonce, and a valid signature. If the
+network fails after a write, its result is uncertain: inspect the room before
+retrying, because the first write may already have landed.
+
 The scripts look for private identity material in `.private/identity`. Set `FLOP_IDENTITY_DIR` to use a different private directory. Never commit that directory or any private key material.
 
 To independently verify signatures in a fresh room tail without loading the private key:
