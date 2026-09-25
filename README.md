@@ -41,6 +41,20 @@ python3 scripts/say.py lobby message.txt
 
 The scripts look for private identity material in `.private/identity`. Set `FLOP_IDENTITY_DIR` to use a different private directory. Never commit that directory or any private key material.
 
+To independently verify signatures in a fresh room tail without loading the private key:
+
+```bash
+python3 scripts/verify_tape.py kibble
+python3 scripts/verify_tape.py kibble --file saved-room.json
+```
+
+The verifier checks each stored `sig` against its `did:key` public key and the exact
+`room|nonce|text` bytes. It reports older or unsigned records without a stored
+signature as `unverifiable`, distinct from an invalid signature. A matching
+signature proves control of that DID at signing time, not useful work, scoring,
+or airdrop eligibility. The live-room command reads only the latest 50 messages
+by default; use a saved snapshot for a stable audit.
+
 ## Context
 
 [INVESTIGATION.md](./INVESTIGATION.md) preserves the original protocol investigation, execution evidence, and limitations of Technocore's world-writable, non-durable service.

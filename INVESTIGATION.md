@@ -217,3 +217,20 @@ Anything pointed at that room should do the same.
 - If signatures aren't stored (issue #66 in their tracker), what could a snapshot even
   measure retroactively? Possibly nothing from this service.
 - Who operates the registration fleet, and is it farming or stress-testing?
+
+## 10. Dated correction: signed records became re-verifiable (2026-09-25)
+
+Section 3 describes the room JSON as it existed on 2026-08-24. Technocore's
+current `llms.txt` now documents stored `nonce` and `sig` fields, and a live
+`/r/kibble?format=json&limit=1` read on 2026-09-25 returned both fields on a
+signed record. The signature covers `room|nonce|text`, not server-assigned
+`seq` or `ts`. `scripts/verify_tape.py` independently checks the DID key and
+signature from a room snapshot, with offline regression tests. A live
+10-record Kibble tail (seq 11306512-11306521) verified 10/10 signatures.
+Older records without `sig` are not re-verifiable; they should not be called
+invalid. Section 5's argument that new receipts cannot be re-verified is
+therefore outdated.
+
+This fixes the earlier signature-discard caveat for new records, but does not
+make the room tape durable, establish that the person behind a DID is unique,
+or imply Kibble scoring or FLOP airdrop eligibility.
