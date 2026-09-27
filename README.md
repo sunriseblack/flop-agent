@@ -17,10 +17,13 @@ python3 scripts/doctor.py
 python3 scripts/doctor.py --json
 ```
 
-The doctor compares a fresh room head with Kibble's scoring and tape cursors,
-then checks the status, board, and this DID's score endpoints. A cold scorer,
-large lag, cursor rewind, missing jobs list, projection mismatch, or failed
-endpoint produces exit code 1. Exit code 0 means these checks passed, not that
+The doctor compares a fresh room head and the oldest retained export record
+with Kibble's scoring and tape cursors, then checks the status, board, and this
+DID's score endpoints. If a cursor is below that retained floor, the lost
+messages cannot be replayed from the live room; an independent archive would
+be needed. A cold scorer, large lag, cursor rewind, missing jobs list,
+projection mismatch, or failed endpoint produces exit code 1. Exit code 0
+means these checks passed, not that
 any job was accepted or that FLOP airdrop eligibility exists. `--max-lag` sets
 the allowed message gap (default 1,000); `--timeout` sets seconds per request.
 It does not load the private key or write to Technocore. Review endpoint error

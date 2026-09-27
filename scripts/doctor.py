@@ -22,6 +22,19 @@ def fetch(url, timeout):
         return None, f"{type(exc).__name__}: {exc}"
 
 
+def fetch_floor(url, timeout):
+    """Read the oldest retained export record without downloading the whole ring."""
+    request = urllib.request.Request(url, headers={"Accept": "application/jsonl", "User-Agent": "flop-agent-doctor/2"})
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            line = response.readline(65536)
+        if not line:
+            return None, "empty export"
+        return json.loads(line), None
+    except (OSError, ValueError) as exc:
+        return None, f"{type(exc).__name__}: {exc}"
+
+
 def number(value):
     return value if isinstance(value, int) and not isinstance(value, bool) else None
 
@@ -74,6 +87,23 @@ def assess(responses, max_lag):
             elif gap > max_lag:
                 problems.append(f"{label}: {gap} messages behind room head (limit {max_lag})")
 
+    if "floor" in responses:
+        floor_record, error = responses["floor"]
+        floor = number(floor_record.get("seq")) if isinstance(floor_record, dict) else None
+        observations["room_retained_floor_seq"] = floor
+        observations["room_retained_floor_ts"] = floor_record.get("ts") if isinstance(floor_record, dict) else None
+        if error:
+            problems.append(f"floor: {error}")
+        elif floor is None:
+            problems.append("floor: oldest export record lacks integer seq")
+        else:
+            if head is not None and floor > head:
+                problems.append(f"floor: retained floor {floor} is ahead of room head {head}")
+            for label, cursor in (("scoring engine", engine), ("stats tape", tape)):
+                if cursor is not None and cursor < floor - 1:
+                    missing = floor - 1 - cursor
+                    problems.append(f"{label}: {missing} messages have fallen before retained floor {floor}; live room cannot replay them")
+
     board = payloads.get("board", {})
     if "board" in payloads:
         if board.get("ok", True) is not True or not isinstance(board.get("jobs"), list):
@@ -116,11 +146,12 @@ def main(argv=None):
         "stats": base + "/api/stats",
         "board": base + "/api/board?limit=1",
         "score": base + "/api/score?" + urllib.parse.urlencode({"did": args.did}),
-        # Read the independent head last. On a busy room, reading it first can
-        # make a later scorer cursor look falsely ahead of the sampled head.
-        "room": args.room_url.rstrip("/") + "?format=json&limit=1",
     }
     responses = {name: fetch(url, args.timeout) for name, url in urls.items()}
+    responses["floor"] = fetch_floor(args.room_url.rstrip("/") + "/export", args.timeout)
+    # Read the independent head last. On a busy room, reading it first can
+    # make a later scorer cursor look falsely ahead of the sampled head.
+    responses["room"] = fetch(args.room_url.rstrip("/") + "?format=json&limit=1", args.timeout)
     result = assess(responses, args.max_lag)
     result["endpoints"] = {name: {"ok": error is None, "error": error} for name, (_, error) in responses.items()}
     if args.json:

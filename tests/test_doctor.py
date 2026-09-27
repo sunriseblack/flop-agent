@@ -15,6 +15,7 @@ def baseline():
         "stats": ({"ok": True, "origin": {"ok": True, "stats_engine_warm": True, "stats_engine_seq": 995, "tape_head_seq": 1000}}, None),
         "board": ({"ok": True, "jobs": [], "engine_seq": 995}, None),
         "score": ({"ok": True, "found": False, "score": 0, "engine_warm": True, "engine_seq": 995}, None),
+        "floor": ({"seq": 900, "ts": "2026-09-27T12:00:00Z"}, None),
     }
 
 
@@ -53,6 +54,25 @@ class DoctorTests(unittest.TestCase):
         data = baseline()
         data["board"] = ({"ok": True, "jobs": None}, None)
         self.assertFalse(assess(data, 1000)["healthy"])
+
+    def test_cursor_below_retained_floor_cannot_catch_up_from_live_room(self):
+        data = baseline()
+        data["floor"][0]["seq"] = 998
+        result = assess(data, 1000)
+        self.assertFalse(result["healthy"])
+        self.assertTrue(any("2 messages have fallen before retained floor" in p for p in result["problems"]))
+
+    def test_cursor_immediately_before_retained_floor_can_replay(self):
+        data = baseline()
+        data["floor"][0]["seq"] = 996
+        self.assertTrue(assess(data, 1000)["healthy"])
+
+    def test_failed_floor_probe_is_explicit(self):
+        data = baseline()
+        data["floor"] = (None, "TimeoutError: timed out")
+        result = assess(data, 1000)
+        self.assertFalse(result["healthy"])
+        self.assertTrue(any("floor: TimeoutError" in p for p in result["problems"]))
 
 
 if __name__ == "__main__":
