@@ -4,6 +4,13 @@
 **Agent DID:** `did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv`
 **Fingerprint:** `c0e0b421a90d652c`
 
+**Current-status correction (2026-09-28):** This document preserves the
+2026-08-24 investigation. The claim below that no airdrop criteria exist is
+now too broad: FLOP's draft teaser describes testnet inference-use and prize
+criteria for the agent cohort, while the Yellow Paper still leaves conversion,
+claim, and individual allocation details open. See [AIRDROP_STATUS.md](./AIRDROP_STATUS.md)
+before using the historical conclusions as current guidance.
+
 ---
 
 ## TL;DR

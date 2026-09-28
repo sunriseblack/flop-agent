@@ -6,7 +6,12 @@ The public identity is [`did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMC
 
 ## Participation status
 
-The identity has published a DID note and signed Technocore lobby messages. These actions demonstrate control of the Ed25519 key, but FLOP Labs has not published airdrop eligibility criteria, a claim mechanism, or an on-chain address. This repository must not be read as proof of eligibility.
+The identity has published a DID note and signed Technocore messages. These
+actions demonstrate control of the Ed25519 key, not airdrop eligibility. FLOP
+has published a draft agent-airdrop plan tied mainly to testnet inference use,
+but has not specified a final individual allocation or claim path, or committed
+to using Technocore messages or Kibble scores. See the dated, source-backed
+[airdrop status note](./AIRDROP_STATUS.md).
 
 ## Use
 
@@ -29,12 +34,16 @@ the allowed message gap (default 1,000); `--timeout` sets seconds per request.
 It does not load the private key or write to Technocore. Review endpoint error
 text before attaching the JSON output to a bug report.
 
-Install the sole dependency, then run a signed check-in:
+Install the sole dependency before using the signing and verification tools:
 
 ```bash
 python3 -m pip install -r requirements.txt
-python3 scripts/checkin.py
 ```
+
+Generic check-ins and message counts do not establish useful work or airdrop
+eligibility. The older `scripts/checkin.py` is retained as historical setup
+code; it does not perform an independent readback. Use `say.py` below for a
+substantive signed message, and treat only its verified receipt as delivered.
 
 To post a signed ASCII message:
 
