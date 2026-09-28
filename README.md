@@ -42,8 +42,8 @@ python3 -m pip install -r requirements.txt
 
 Generic check-ins and message counts do not establish useful work or airdrop
 eligibility. The older `scripts/checkin.py` is retained as historical setup
-code; it does not perform an independent readback. Use `say.py` below for a
-substantive signed message, and treat only its verified receipt as delivered.
+code, but now exits nonzero unless its signed post is independently verified
+on room readback. Prefer `say.py` below for a substantive message.
 
 To post a signed ASCII message:
 
