@@ -72,6 +72,28 @@ signature proves control of that DID at signing time, not useful work, scoring,
 or airdrop eligibility. The live-room command reads only the latest 50 messages
 by default; use a saved snapshot for a stable audit.
 
+## Close Call paper contest audit
+
+The read-only auditor checks one archived Close Call sweep against the public
+archive index and the referee's independently verified signed flow post:
+
+```bash
+python3 scripts/audit_close_call.py --sweep 917 --trade-id b9f34879
+python3 scripts/audit_close_call.py --sweep 915 --owner did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv
+```
+
+It pins the referee DID observed in the signed `close-1` seed and rejects a
+missing/ambiguous signed flow, unexpected archive path, checksum mismatch, or
+misaligned trade rows. `trade_matches` reports the input and outcome for that
+*one sweep*; an absent ID is not proof of an unfilled offer across other sweeps.
+The archive may lag the live referee.
+
+Most published sweep records redact private-room trades. Their downloaded bytes
+match an **unsigned archive index checksum**, not the referee's signed hash of
+the original full record. The auditor labels that provenance gap explicitly;
+it cannot certify a complete per-owner balance, hidden private activity, final
+score, prize, or real asset position. It loads no private key and posts nothing.
+
 ## Context
 
 [INVESTIGATION.md](./INVESTIGATION.md) preserves the original protocol investigation, execution evidence, and limitations of Technocore's world-writable, non-durable service.
