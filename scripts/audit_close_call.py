@@ -48,11 +48,12 @@ def find_entry(index, sweep):
         raise ValueError(f"sweep {sweep} is not uniquely indexed (latest: {latest})")
     entry = matches[0]
     digest = entry.get("file")
-    checksum = entry.get("sha256")
     status = entry.get("status")
+    checksum = entry.get("sha256") if status == "redacted" else entry.get("sha256", digest)
     directory = {"full": "sweeps", "redacted": "redacted"}.get(status)
     if (not isinstance(digest, str) or not HASH.fullmatch(digest) or
             not isinstance(checksum, str) or not HASH.fullmatch(checksum) or
+            (status == "full" and checksum != digest) or
             directory is None or entry.get("path") != f"{directory}/{digest}.json" or
             type(entry.get("bytes")) is not int or not 0 < entry["bytes"] <= MAX_RECORD_BYTES):
         raise ValueError(f"sweep {sweep} has unsafe or malformed archive metadata")
@@ -60,10 +61,9 @@ def find_entry(index, sweep):
 
 
 def verify_archive_record(entry, raw):
-    if len(raw) != entry["bytes"] or hashlib.sha256(raw).hexdigest() != entry["sha256"]:
+    checksum = entry.get("sha256", entry["file"])
+    if len(raw) != entry["bytes"] or hashlib.sha256(raw).hexdigest() != checksum:
         raise ValueError(f"sweep {entry['n']} archive bytes do not match index")
-    if entry["status"] == "full" and entry["sha256"] != entry["file"]:
-        raise ValueError(f"sweep {entry['n']} full-record hash differs from signed file hash")
     record = json.loads(raw)
     if (not isinstance(record, dict) or not isinstance(record.get("input"), dict) or
             not isinstance(record.get("output"), dict) or
@@ -130,15 +130,17 @@ def audit(sweep, trade_id=None, owner=None, timeout=15):
         "referee_did": REFEREE_DID,
         "signed_full_file_hash": entry["file"],
         "archive_path": ARCHIVE + entry["path"],
-        "archive_sha256_verified": entry["sha256"],
+        "archive_sha256_verified": entry.get("sha256", entry["file"]),
         "provenance": ("full_record_matches_signed_hash" if entry["status"] == "full" else
                        "redacted_record_matches_unsigned_archive_index_only"),
         "trade_id": trade_id,
         "trade_matches": trades,
         "owner": owner,
         "owner_result": owner_result,
-        "caution": ("An absent trade ID proves only absence from this published sweep; private "
-                    "trade redaction and other sweeps can conceal activity."),
+        "caution": (("An absent trade ID proves only absence from this published sweep; "
+                     "private trade redaction and other sweeps can conceal activity.") if trade_id else
+                    ("An absent mint here does not prove this owner was never minted; "
+                     "check earlier sweeps or obtain a signed owner statement.")),
     }
 
 

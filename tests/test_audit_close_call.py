@@ -62,12 +62,17 @@ class CloseCallAuditTests(unittest.TestCase):
             audit.find_entry({"sweeps": [self.entry, self.entry]}, self.sweep)
 
     def test_full_record_requires_signed_hash(self):
-        full = {**self.entry, "status": "full", "path": f"sweeps/{self.full_hash}.json"}
-        with self.assertRaisesRegex(ValueError, "full-record hash differs"):
+        full = {key: value for key, value in self.entry.items() if key != "sha256"}
+        full.update({"status": "full", "path": f"sweeps/{self.full_hash}.json"})
+        audit.find_entry({"sweeps": [full]}, self.sweep)
+        with self.assertRaisesRegex(ValueError, "do not match index"):
             audit.verify_archive_record(full, self.raw)
         full["file"] = hashlib.sha256(self.raw).hexdigest()
         full["path"] = f"sweeps/{full['file']}.json"
+        audit.find_entry({"sweeps": [full]}, self.sweep)
         self.assertEqual(audit.verify_archive_record(full, self.raw), self.record)
+        with self.assertRaisesRegex(ValueError, "unsafe or malformed"):
+            audit.find_entry({"sweeps": [{**full, "sha256": self.full_hash}]}, self.sweep)
 
     def test_signed_flow_binds_expected_referee_and_file(self):
         self.assertEqual(audit.verify_flow(self.export, self.sweep, self.full_hash, self.did),
