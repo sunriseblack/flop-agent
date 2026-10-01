@@ -107,6 +107,20 @@ the original full record. The auditor labels that provenance gap explicitly;
 it cannot certify a complete per-owner balance, hidden private activity, final
 score, prize, or real asset position. It loads no private key and posts nothing.
 
+For an explicitly chosen paper maker offer, run
+`python3 scripts/close_call_offer.py --help` for the required ID, side, quantity,
+price, expiry sweep, and
+conservative cash floor. It is **dry-run only** unless `--post` is supplied.
+The tool verifies the latest signed price/limits and the existing owner's mint
+evidence, bounds expiry to two sweeps before lock, checks a conservative
+collateral reserve against the *caller-supplied* cash floor, and signs the
+canonical terms with the existing DID. Before a post, it requires that the
+signed price has not advanced; afterward, it verifies exact room readback.
+The cash floor and outstanding exposure cannot currently be proved from the
+redacted, lagging archive, so an operator must establish them independently.
+An offer is negotiation only: it is **not** a referee-settled `t:trade`, score,
+or prize. See the [official Close Call rules](https://github.com/flop-labs/technocore-close-call-challenge/blob/close-1/close-call-game.md).
+
 ## Context
 
 [INVESTIGATION.md](./INVESTIGATION.md) preserves the original protocol investigation, execution evidence, and limitations of Technocore's world-writable, non-durable service.
