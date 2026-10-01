@@ -88,6 +88,23 @@ misaligned trade rows. `trade_matches` reports the input and outcome for that
 *one sweep*; an absent ID is not proof of an unfilled offer across other sweeps.
 The archive may lag the live referee.
 
+For a bounded multi-sweep lookup after an archive backfill, fetch the index and
+signed flow only once and check each indexed record in the range:
+
+```bash
+python3 scripts/close_call_reconcile.py --first 1759 --last 1764 \
+  --trade-id fa-c1-20261001-short-01 \
+  --trade-id fa-c1-20261001-buy-conditional-01
+```
+
+The reconciler retains every published outcome for each ID (a settled trade
+can have later duplicate-ID voids). Exit status 1 and `missing_sweeps` mean
+the requested range is not fully archived; never treat `not_observed` as an
+expiry or a void. Even a fully indexed range can redact private-room trades or
+exclude a settlement outside that range. A redacted copy has only an
+organizer-index checksum, not a direct signed hash of its contents. This is
+trade-outcome evidence, not a cash, position, or prize attestation.
+
 To measure that lag without guessing from the compact flow's truncated trade
 lists, run:
 
