@@ -143,7 +143,11 @@ def main(argv=None):
     funding.add_argument("--scenario", action="append", metavar="CASH_FLOOR:POSITION",
                          help="repeat for every unresolved-fill state; signed position, POLF cash floor")
     parser.add_argument("--post", action="store_true", help="post one signed offer, then verify exact readback")
+    parser.add_argument("--watch-seconds", type=int, default=0,
+                        help="after --post, watch this public room for a verified countersignature (0-600)")
     args = parser.parse_args(argv)
+    if not 0 <= args.watch_seconds <= 600 or (args.watch_seconds and not args.post):
+        parser.error("--watch-seconds requires --post and a duration of 0-600 seconds")
     try:
         meta = json.loads((PROJECT_ROOT / "agent-did.json").read_text())
         did = meta["did"]
@@ -177,6 +181,18 @@ def main(argv=None):
             message = signed_offer(terms, private_key)
             receipt = post_and_verify("close1", message, did, meta["public_key_raw_hex"], private_key)
             result.update({"mode": "posted", "receipt": receipt})
+            if args.watch_seconds:
+                # The busy room may discard an offer before a separate process
+                # can fetch it again. The exact posting receipt above already
+                # authenticated this text and sequence, so watch from there.
+                from close_call_watch_offer import offer_from_text, watch_cursor
+                try:
+                    watched = offer_from_text(message, did, receipt["seq"])
+                    result["watch"] = watch_cursor("close1", receipt["seq"],
+                                                  args.watch_seconds, watched)
+                except (OSError, ValueError, KeyError, TypeError) as exc:
+                    result["watch"] = {"status": "unavailable", "error": str(exc),
+                                       "caution": "Offer was posted; do not retry the write. Counterparty and referee outcomes remain unknown."}
         print(json.dumps(result, indent=2, sort_keys=True))
     except (OSError, KeyError, TypeError, ValueError, RuntimeError) as exc:
         print(f"close-call offer unavailable: {exc}; do not retry an uncertain post", file=sys.stderr)

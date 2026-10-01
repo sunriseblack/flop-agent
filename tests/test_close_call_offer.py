@@ -2,8 +2,10 @@
 
 import base64
 import datetime as dt
+import io
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -13,6 +15,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import close_call_offer as offer  # noqa: E402
+import close_call_watch_offer as watcher  # noqa: E402
 from verify_tape import ALPHABET  # noqa: E402
 
 
@@ -124,6 +127,42 @@ class CloseCallOfferTests(unittest.TestCase):
             offer.validate_offer("conditional-buy", "buy", "40", "230.50",
                                  1756, "9700", self.did, price,
                                  scenarios=scenarios)
+
+    def test_post_starts_watch_from_verified_receipt_without_refetching_offer(self):
+        fresh_stamp = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
+        snapshot = self.snapshot(stamp=fresh_stamp)
+        public = self.private.public_key().public_bytes(
+            serialization.Encoding.Raw, serialization.PublicFormat.Raw)
+        pem = self.private.private_bytes(serialization.Encoding.PEM,
+                                         serialization.PrivateFormat.PKCS8,
+                                         serialization.NoEncryption())
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            identity = root / ".private" / "identity"
+            identity.mkdir(parents=True)
+            (identity / "agent-ed25519.pem").write_bytes(pem)
+            (root / "agent-did.json").write_text(json.dumps({
+                "did": self.did, "public_key_raw_hex": public.hex()}))
+            output = io.StringIO()
+            with patch.object(offer, "PROJECT_ROOT", root), \
+                    patch.object(offer, "REFEREE_DID", self.did), \
+                    patch.object(offer, "fetch_json", return_value=snapshot), \
+                    patch.object(offer, "audit", return_value={
+                        "owner_result": {"in_input": True, "minted_this_sweep": True},
+                        "provenance": "test_full_record"}), \
+                    patch.object(offer, "post_and_verify", return_value={
+                        "room": "close1", "seq": 100, "from": self.did, "verified": True}), \
+                    patch.object(watcher, "watch_cursor", return_value={
+                        "status": "no_signed_public_trade_observed", "through_seq": 120}) as watching, \
+                    patch("sys.stdout", output):
+                code = offer.main(["--id", "test-watch", "--side", "buy", "--qty", "1",
+                                   "--px", "230.50", "--until", "1755",
+                                   "--cash-floor", "9700", "--post", "--watch-seconds", "1"])
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(output.getvalue())["watch"]["through_seq"], 120)
+        args = watching.call_args.args
+        self.assertEqual(args[:3], ("close1", 100, 1))
+        self.assertEqual(args[3]["terms"]["id"], "test-watch")
 
 
 if __name__ == "__main__":

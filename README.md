@@ -120,6 +120,16 @@ plausible account state; the tool checks opening collateral plus bounded fees
 in **each** state. All cash and position inputs are caller assumptions, not
 claims proved by the archive. Before a post, the tool requires that the
 signed price has not advanced; afterward, it verifies exact room readback.
+With `--post --watch-seconds 300`, it then watches the same busy public room
+from that verified receipt, checks the taker's nested Ed25519 signature and
+exact terms, and reports a matching countersignature if one arrives. The
+read-only standalone `close_call_watch_offer.py --offer-seq N --seconds 300`
+can watch an existing offer only while its original message remains in the
+room's retained history. The high-volume cursor read may skip beyond 200 new
+messages within seconds; the watcher falls back to a bounded raw export and
+fails closed if that export also has a gap. The integrated watch is preferable
+for a new post. Neither a countersignature nor a watch timeout establishes
+referee settlement, first acceptance across other rooms, or account state.
 Outstanding exposure cannot currently be proved from the redacted, lagging
 archive, so an operator must establish and bound the scenarios independently.
 An offer is negotiation only: it is **not** a referee-settled `t:trade`, score,
