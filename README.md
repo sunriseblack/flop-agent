@@ -101,6 +101,20 @@ signature, and reports the unarchived sweep count. Exit status is 0 when caught
 up, 1 when lagging, or 2 when verification is unavailable. It does not infer
 any participant's trade outcome or account balance from an unarchived gap.
 
+For a read-only view of the signed price, PnL, and position tails together:
+
+```bash
+python3 scripts/close_call_scout.py
+```
+
+The scout checks signatures, aligned sweep hashes, and freshness before showing
+the current visible leaders, their signed top-long listings, recent exits from
+that truncated list, and *observed* score/mark sensitivity. Sensitivity is not
+a certified position: trades and fees can change it, and absence from the
+top-long list does not prove a short. The live PnL mark is the paper-trade VWAP,
+not Hyperliquid's reference or final settlement price. Its recent price range
+and round-trip base-fee hurdle are diagnostics, not a trade signal or forecast.
+
 Most published sweep records redact private-room trades. Their downloaded bytes
 match an **unsigned archive index checksum**, not the referee's signed hash of
 the original full record. The auditor labels that provenance gap explicitly;
