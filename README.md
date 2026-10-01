@@ -88,6 +88,19 @@ misaligned trade rows. `trade_matches` reports the input and outcome for that
 *one sweep*; an absent ID is not proof of an unfilled offer across other sweeps.
 The archive may lag the live referee.
 
+To measure that lag without guessing from the compact flow's truncated trade
+lists, run:
+
+```bash
+python3 scripts/close_call_coverage.py
+```
+
+This read-only check verifies the latest indexed sweep's downloaded bytes,
+matches its full-file hash to the signed referee flow, verifies the latest flow
+signature, and reports the unarchived sweep count. Exit status is 0 when caught
+up, 1 when lagging, or 2 when verification is unavailable. It does not infer
+any participant's trade outcome or account balance from an unarchived gap.
+
 Most published sweep records redact private-room trades. Their downloaded bytes
 match an **unsigned archive index checksum**, not the referee's signed hash of
 the original full record. The auditor labels that provenance gap explicitly;
