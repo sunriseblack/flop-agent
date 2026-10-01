@@ -42,7 +42,8 @@ class CloseCallScoutTests(unittest.TestCase):
             for n in range(1, 6):
                 body = {"t": room.removeprefix("d-close1-"), "n": n, "file": f"{n:064x}"}
                 if room == "d-close1-price":
-                    body.update({"ref": {"px": marks[n - 1]}, "global": marks[n - 1]})
+                    body.update({"ref": {"px": marks[n - 1]}, "global": marks[n - 1],
+                                 "age_s": (1, 2, 301, 600, 4)[n - 1]})
                 elif room == "d-close1-pnl":
                     body.update({"mark": marks[n - 1], "top": [
                         [self.did, leader_scores[n - 1]],
@@ -71,6 +72,10 @@ class CloseCallScoutTests(unittest.TestCase):
         self.assertIn("does not by itself prove a short", report["recent_top_long_exits"][0]["caution"])
         self.assertEqual(report["round_trip_base_fee_per_contract_at_ref"], "2.00")
         self.assertEqual(report["observed_ref_range"], "2.00")
+        self.assertEqual(report["signed_reference_age_seconds_at_sweep"], 4)
+        self.assertFalse(report["reference_at_least_5min_stale_at_sweep"])
+        self.assertEqual(report["observed_stale_reference_sweep_count"], 2)
+        self.assertEqual(report["last_observed_stale_reference_sweep"], 4)
         self.assertTrue(report["owner_in_top_25"])
         self.assertEqual(report["visible_board_count"], 3)
         self.assertEqual(report["visible_board_floor_score"], "50")
@@ -113,6 +118,19 @@ class CloseCallScoutTests(unittest.TestCase):
         self.snapshots[room]["last_seq"] = True
         with self.assertRaisesRegex(ValueError, "malformed or empty snapshot"):
             self.parsed()
+
+    def test_reference_age_is_signed_nonnegative_integer(self):
+        room = "d-close1-price"
+        message = self.snapshots[room]["messages"][-1]
+        for invalid in (-1, True, "300"):
+            body = json.loads(message["text"])
+            body["age_s"] = invalid
+            message["text"] = json.dumps(body, separators=(",", ":"))
+            signature = self.private.sign(
+                f"{room}|{message['nonce']}|{message['text']}".encode())
+            message["sig"] = base64.urlsafe_b64encode(signature).decode().rstrip("=")
+            with self.assertRaisesRegex(ValueError, "nonnegative signed reference age"):
+                self.parsed()
 
 
 if __name__ == "__main__":

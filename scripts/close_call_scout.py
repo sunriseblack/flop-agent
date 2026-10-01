@@ -70,6 +70,8 @@ def parse_snapshot(room, snapshot, referee_did=REFEREE_DID, now=None):
                 raise ValueError("price record lacks reference")
             if amount(body["ref"].get("px")) <= 0 or amount(body.get("global")) <= 0:
                 raise ValueError("price record contains a nonpositive price")
+            if type(body.get("age_s")) is not int or body["age_s"] < 0:
+                raise ValueError("price record lacks a nonnegative signed reference age")
         else:
             top = body.get("top")
             if (not isinstance(top, list) or
@@ -161,9 +163,14 @@ def assess(price, pnl, positions, owner_did=OWNER_DID):
                                     "caution": "Leaving the top-long list does not by itself prove a short."})
     refs = [amount(row["price"]["ref"]["px"]) for row in rows]
     latest_ref = refs[-1]
+    stale_sweeps = [row["n"] for row in rows if row["price"]["age_s"] >= 300]
     return {"status": "signed_live_scout", "sweep": last["n"],
             "observed_window_sweeps": [rows[0]["n"], last["n"]],
             "reference": str(latest_ref), "paper_vwap_mark": last["pnl"]["mark"],
+            "signed_reference_age_seconds_at_sweep": last["price"]["age_s"],
+            "reference_at_least_5min_stale_at_sweep": last["price"]["age_s"] >= 300,
+            "observed_stale_reference_sweep_count": len(stale_sweeps),
+            "last_observed_stale_reference_sweep": stale_sweeps[-1] if stale_sweeps else None,
             "owner_in_top_25": any(did == owner_did for did, _ in leaders),
             "owner_visible_score": next((score for did, score in leaders if did == owner_did), None),
             "visible_board_count": len(leaders),

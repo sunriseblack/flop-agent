@@ -131,6 +131,11 @@ a certified position: trades and fees can change it, and absence from the
 top-long list does not prove a short. The live PnL mark is the paper-trade VWAP,
 not Hyperliquid's reference or final settlement price. Its recent price range
 and round-trip base-fee hurdle are diagnostics, not a trade signal or forecast.
+It also reports the referee-signed reference age at the latest sweep and how
+many observed sweeps had an age of at least five minutes. This is age *at the
+sweep close*, not the time elapsed since the delayed room post or a direct
+comparison with a fresh Hyperliquid trade; investigate a stale flag before
+using it in a trade decision.
 
 Most published sweep records redact private-room trades. Their downloaded bytes
 match an **unsigned archive index checksum**, not the referee's signed hash of
