@@ -109,15 +109,19 @@ score, prize, or real asset position. It loads no private key and posts nothing.
 
 For an explicitly chosen paper maker offer, run
 `python3 scripts/close_call_offer.py --help` for the required ID, side, quantity,
-price, expiry sweep, and
-conservative cash floor. It is **dry-run only** unless `--post` is supplied.
+price, expiry sweep, and funding assumptions. It is **dry-run only** unless
+`--post` is supplied.
 The tool verifies the latest signed price/limits and the existing owner's mint
 evidence, bounds expiry to two sweeps before lock, checks a conservative
-collateral reserve against the *caller-supplied* cash floor, and signs the
-canonical terms with the existing DID. Before a post, it requires that the
+collateral reserve, and signs the canonical terms with the existing DID. For a
+known account, `--cash-floor` assumes the entire quantity opens. When an
+earlier fill is unresolved, repeat `--scenario CASH_FLOOR:POSITION` for every
+plausible account state; the tool checks opening collateral plus bounded fees
+in **each** state. All cash and position inputs are caller assumptions, not
+claims proved by the archive. Before a post, the tool requires that the
 signed price has not advanced; afterward, it verifies exact room readback.
-The cash floor and outstanding exposure cannot currently be proved from the
-redacted, lagging archive, so an operator must establish them independently.
+Outstanding exposure cannot currently be proved from the redacted, lagging
+archive, so an operator must establish and bound the scenarios independently.
 An offer is negotiation only: it is **not** a referee-settled `t:trade`, score,
 or prize. See the [official Close Call rules](https://github.com/flop-labs/technocore-close-call-challenge/blob/close-1/close-call-game.md).
 

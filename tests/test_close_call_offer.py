@@ -100,6 +100,31 @@ class CloseCallOfferTests(unittest.TestCase):
             offer.validate_offer("bad space", "buy", "1", "230.50", 1755,
                                  "9700", self.did, price)
 
+    def test_unresolved_fill_scenarios_cover_both_account_states(self):
+        price = self.read(self.snapshot())
+        scenarios = ["9700:-0.9", "470:-40.9"]
+        terms, reserve = offer.validate_offer(
+            "conditional-buy", "buy", "40", "230.50", 1756, None,
+            self.did, price, scenarios=scenarios)
+        self.assertEqual(terms["side"], "buy")
+        self.assertEqual(reserve, offer.Decimal("9473.59"))
+        with self.assertRaisesRegex(ValueError, "scenario 1 reserve"):
+            offer.validate_offer("conditional-buy", "buy", "40", "230.50",
+                                 1756, None, self.did, price,
+                                 scenarios=["9400:-0.9", "470:-40.9"])
+        with self.assertRaisesRegex(ValueError, "scenario 2 reserve"):
+            offer.validate_offer("conditional-buy", "buy", "40", "230.50",
+                                 1756, None, self.did, price,
+                                 scenarios=["9700:-0.9", "460:-40.9"])
+        with self.assertRaisesRegex(ValueError, "scenario 1 is malformed"):
+            offer.validate_offer("conditional-buy", "buy", "40", "230.50",
+                                 1756, None, self.did, price,
+                                 scenarios=["470:--40.9"])
+        with self.assertRaisesRegex(ValueError, "either a cash floor"):
+            offer.validate_offer("conditional-buy", "buy", "40", "230.50",
+                                 1756, "9700", self.did, price,
+                                 scenarios=scenarios)
+
 
 if __name__ == "__main__":
     unittest.main()
