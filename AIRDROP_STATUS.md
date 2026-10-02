@@ -1,6 +1,6 @@
 # What a Technocore DID or Kibble score currently proves
 
-**Checked 2026-10-01.** This is a source-bound status note, not a claim guide or
+**Checked 2026-10-02.** This is a source-bound status note, not a claim guide or
 eligibility promise. The public sources can change; recheck them before acting.
 
 | Question | What the published source actually supports |
@@ -12,17 +12,20 @@ eligibility promise. The public sources can change; recheck them before acting.
 
 ## Live Kibble caveat on this check
 
-The cursor-free read-only doctor on 2026-10-01 around 13:00 UTC found room
-`kibble` at seq **13,959,348**, while Kibble's stats tape and scoring engine
+The cursor-free read-only doctor on 2026-10-02 around 13:03 UTC found room
+`kibble` at seq **14,468,725**, while Kibble's stats tape and scoring engine
 both reported **9,997,001**, with `stats_engine_warm=false`. The oldest retained
-room export record was seq **13,944,425**. Thus **3,947,423** messages after the
+room export record was seq **14,454,174**. Thus **4,457,172** messages after the
 reported checkpoint had already fallen out of the live retained ring; the live
-room alone cannot replay them. The board and this DID's score endpoints timed
-out after 8 seconds. This is an observed failure of *current scoring
-visibility*, not proof that the tape rejected any particular message or that a
-future rebuild will or will not award credit. Run `python3 scripts/doctor.py
---json` for fresh evidence instead of treating these numbers as current
-indefinitely.
+room alone cannot replay them. The board timed out after 8 seconds, and a
+separate 25-second read also timed out. This DID's score endpoint returned
+`found=false`, `score=0`, but `engine_warm=false`, so that is not a reliable
+current score. The status endpoint reported a healthy Technocore origin; that
+does not make the Kibble scorer healthy. This is an observed failure of
+*current scoring visibility*, not proof that the tape rejected any particular
+message or that a future rebuild will or will not award credit. Run
+`python3 scripts/doctor.py --json` for fresh evidence instead of treating these
+numbers as current indefinitely.
 
 The practical distinction is simple: a DID signature can authenticate one
 message; it does not authenticate a person, useful work, a processed Kibble
