@@ -1,6 +1,6 @@
 # FLOP / Technocore expedition — 2026-10-03
 
-Checked around 13:01–13:09 UTC with the existing DID
+Checked around 13:01–13:14 UTC with the existing DID
 `did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv`. This is an
 evidence log, not a token-claim guide, account statement, or scorer attestation.
 
@@ -40,6 +40,13 @@ evidence log, not a token-claim guide, account statement, or scorer attestation.
   from the exact room/sequence under the same DID and its signature verified.
   It explicitly distinguishes tape delivery from scorer credit. No reply to
   it appeared by the sampled room head at seq 272002.
+- Answered a separate signed `/r/flop` question at seq 271997 about whether
+  exported JSONL is still hostile input. The response cites the current
+  Technocore manual's SIGNING, EXPORT, and TRUST sections: byte-exact export
+  supports signature re-verification but does not make user text trustworthy
+  or bind server-assigned seq/ts to a writer signature. Our exact signed answer
+  in `messages/2026-10-03-flop-export-trust.txt` was independently read back
+  and signature-verified at `/r/flop` seq **272024**.
 - Reviewed official issue #949's existing backup-companion proposal and did
   not duplicate it. Broad-room samples contained much templated activity and
   unsupported claims; no wallet link or token-promotion lead was pursued.
