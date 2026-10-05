@@ -6,6 +6,7 @@ the final settlement price. Score/mark sensitivity is observational; trades,
 fees and changing positions can alter it. This tool neither signs nor trades.
 """
 
+import argparse
 import datetime as dt
 import json
 import re
@@ -22,6 +23,9 @@ ROOMS = ("d-close1-price", "d-close1-pnl", "d-close1-positions")
 OWNER_DID = "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv"
 MAX_BYTES = 2_000_000
 HASH = re.compile(r"[0-9a-f]{64}\Z")
+FINAL_PRICE = re.compile(r"[0-9]{1,7}(?:\.[0-9]{1,2})?\Z")
+FINAL_CUTOFF = dt.datetime(2026, 10, 4, 10, tzinfo=dt.timezone.utc)
+LOCK_SWEEP = 2556
 
 
 def amount(value):
@@ -36,7 +40,7 @@ def amount(value):
     return result
 
 
-def parse_snapshot(room, snapshot, referee_did=REFEREE_DID, now=None):
+def parse_snapshot(room, snapshot, referee_did=REFEREE_DID, now=None, allow_stale=False):
     if (room not in ROOMS or not isinstance(snapshot, dict) or
             snapshot.get("room") != room or
             not isinstance(snapshot.get("messages"), list) or
@@ -97,9 +101,140 @@ def parse_snapshot(room, snapshot, referee_did=REFEREE_DID, now=None):
     if previous_seq != snapshot.get("last_seq"):
         raise ValueError(f"{room}: last sequence does not match room head")
     now = dt.datetime.now(dt.timezone.utc) if now is None else now
-    if now.tzinfo is None or not -30 <= (now - stamp).total_seconds() <= 600:
+    if now.tzinfo is None:
+        raise ValueError(f"{room}: comparison time lacks timezone")
+    age = (now - stamp).total_seconds()
+    if age < -30 or (not allow_stale and age > 600):
         raise ValueError(f"{room}: latest signed record is stale or future-dated")
     return result
+
+
+def split_final_price_snapshot(snapshot, referee_did=REFEREE_DID,
+                               expected_lock_sweep=LOCK_SWEEP):
+    """Verify the referee's separate final-price post, retaining pre-lock sweeps.
+
+    The final-price post fixes S but is not itself an account or standings post.
+    """
+    if (not isinstance(snapshot, dict) or snapshot.get("room") != "d-close1-price" or
+            not isinstance(snapshot.get("messages"), list) or not snapshot["messages"]):
+        raise ValueError("d-close1-price: malformed or empty snapshot")
+    message = snapshot["messages"][-1]
+    try:
+        body = json.loads(message["text"])
+    except (TypeError, ValueError, KeyError) as exc:
+        raise ValueError("d-close1-price: invalid final JSON") from exc
+    if not isinstance(body, dict) or body.get("t") != "final":
+        return snapshot, None
+    if (len(snapshot["messages"]) < 2 or
+            not isinstance(snapshot["messages"][-2], dict) or
+            type(message.get("seq")) is not int or
+            message["seq"] != snapshot.get("last_seq") or
+            message["seq"] != snapshot["messages"][-2].get("seq", -2) + 1 or
+            message.get("from") != referee_did or
+            verify_record("d-close1-price", message)[0] != "verified" or
+            body.get("season") != "close-1" or
+            not isinstance(body.get("price"), str) or
+            not FINAL_PRICE.fullmatch(body["price"]) or
+            amount(body["price"]) <= 0 or
+            not isinstance(body.get("trade"), dict) or
+            type(body["trade"].get("tid")) is not int or
+            body["trade"]["tid"] < 0):
+        raise ValueError("d-close1-price: invalid signed final record")
+    try:
+        trade_time = dt.datetime.fromisoformat(body["trade"]["time"].replace("Z", "+00:00"))
+    except (TypeError, ValueError, KeyError, AttributeError) as exc:
+        raise ValueError("d-close1-price: invalid final trade time") from exc
+    if (trade_time.tzinfo is None or
+            not FINAL_CUTOFF - dt.timedelta(hours=1) <= trade_time < FINAL_CUTOFF):
+        raise ValueError("d-close1-price: final trade time is outside closing window")
+    previous = json.loads(snapshot["messages"][-2]["text"])
+    if previous.get("n") != expected_lock_sweep or previous.get("t") != "price":
+        raise ValueError("d-close1-price: final post does not follow lock sweep")
+    prelock = dict(snapshot)
+    prelock["messages"] = snapshot["messages"][:-1]
+    prelock["last_seq"] = prelock["messages"][-1]["seq"]
+    return prelock, {"S": body["price"], "trade": body["trade"],
+                     "signed_room": "d-close1-price", "signed_seq": message["seq"],
+                     "caution": "A signed final price is not a final standings or owner account statement."}
+
+
+def split_final_standings_snapshot(snapshot, final_price, referee_did=REFEREE_DID,
+                                   expected_lock_sweep=LOCK_SWEEP,
+                                   owner_did=OWNER_DID):
+    """Verify a separate signed top-25 final standings post, if present.
+
+    The published leaders do not establish the exact rank or score of an owner
+    outside that list; a complete owner-row artifact is still required.
+    """
+    if (not isinstance(snapshot, dict) or snapshot.get("room") != "d-close1-pnl" or
+            not isinstance(snapshot.get("messages"), list) or not snapshot["messages"]):
+        raise ValueError("d-close1-pnl: malformed or empty snapshot")
+    message = snapshot["messages"][-1]
+    try:
+        body = json.loads(message["text"])
+    except (TypeError, ValueError, KeyError) as exc:
+        raise ValueError("d-close1-pnl: invalid final standings JSON") from exc
+    if not isinstance(body, dict) or body.get("t") != "standings":
+        return snapshot, None
+    if (len(snapshot["messages"]) < 2 or
+            not isinstance(snapshot["messages"][-2], dict) or
+            type(message.get("seq")) is not int or
+            message["seq"] != snapshot.get("last_seq") or
+            message["seq"] != snapshot["messages"][-2].get("seq", -2) + 1 or
+            message.get("from") != referee_did or
+            verify_record("d-close1-pnl", message)[0] != "verified" or
+            body.get("season") != "close-1" or
+            not isinstance(body.get("S"), str) or
+            not FINAL_PRICE.fullmatch(body["S"]) or
+            body["S"] != final_price or
+            not isinstance(body.get("file"), str) or
+            not HASH.fullmatch(body["file"]) or
+            type(body.get("owners")) is not int or body["owners"] < 25 or
+            amount(body.get("fees")) < 0 or
+            amount(body.get("zero_sum")) != 0):
+        raise ValueError("d-close1-pnl: invalid signed final standings")
+    try:
+        previous = json.loads(snapshot["messages"][-2]["text"])
+    except (TypeError, ValueError, KeyError) as exc:
+        raise ValueError("d-close1-pnl: invalid prior sweep") from exc
+    if previous.get("n") != expected_lock_sweep or previous.get("t") != "pnl":
+        raise ValueError("d-close1-pnl: standings do not follow lock sweep")
+    places, following = body.get("places"), body.get("next")
+    if (not isinstance(places, list) or len(places) != 3 or
+            not isinstance(following, list) or len(following) != 22):
+        raise ValueError("d-close1-pnl: incomplete published final top 25")
+    leaders = []
+    for rank, row in enumerate(places, 1):
+        if (not isinstance(row, list) or len(row) != 4 or
+                not isinstance(row[2], list) or row[2] != [rank] or
+                type(row[3]) is not int or row[3] < 1):
+            raise ValueError("d-close1-pnl: malformed final podium")
+        leaders.append(row[:2])
+    leaders.extend(following)
+    if (any(not isinstance(row, list) or len(row) != 2 or
+            not isinstance(row[0], str) or not row[0].startswith("did:key:z") or
+            not isinstance(row[1], str) for row in leaders) or
+            len({row[0] for row in leaders}) != 25):
+        raise ValueError("d-close1-pnl: malformed final top 25")
+    scores = [amount(row[1]) for row in leaders]
+    if scores != sorted(scores, reverse=True):
+        raise ValueError("d-close1-pnl: unsorted final top 25")
+    prelock = dict(snapshot)
+    prelock["messages"] = snapshot["messages"][:-1]
+    prelock["last_seq"] = prelock["messages"][-1]["seq"]
+    owner_row = next(((rank, score) for rank, (did, score) in enumerate(leaders, 1)
+                      if did == owner_did), None)
+    return prelock, {"S": body["S"], "published_count": len(leaders),
+                     "reported_owner_count": body["owners"],
+                     "podium": [{"rank": rank, "did": did, "score": score}
+                                for rank, (did, score) in enumerate(leaders[:3], 1)],
+                     "owner_in_published_top_25": owner_row is not None,
+                     "owner_published_rank": owner_row[0] if owner_row else None,
+                     "owner_published_score": owner_row[1] if owner_row else None,
+                     "signed_room": "d-close1-pnl", "signed_seq": message["seq"],
+                     "full_file_hash": body["file"],
+                     "caution": "Only 25 final rows are published here; an absent owner has no certified "
+                                "exact rank, score, or account statement in this post."}
 
 
 def score_for(body, did):
@@ -129,7 +264,7 @@ def sensitivity(rows, did, end_n, sample_count=12):
                 str(statistics.median(value for _, value in recent).quantize(Decimal("0.01")))}
 
 
-def assess(price, pnl, positions, owner_did=OWNER_DID):
+def aligned_rows(price, pnl, positions):
     shared = sorted(set(price) & set(pnl) & set(positions))
     if len(shared) < 4 or shared[-1] < max(max(price), max(pnl), max(positions)) - 1:
         raise ValueError("price, PnL, and positions have no fresh common sweep")
@@ -141,6 +276,11 @@ def assess(price, pnl, positions, owner_did=OWNER_DID):
         if amount(price[n]["global"]) != amount(pnl[n]["mark"]):
             raise ValueError(f"sweep {n}: PnL mark differs from global VWAP")
         rows.append({"n": n, "price": price[n], "pnl": pnl[n], "positions": positions[n]})
+    return rows
+
+
+def assess(price, pnl, positions, owner_did=OWNER_DID):
+    rows = aligned_rows(price, pnl, positions)
     last = rows[-1]
     leaders = last["pnl"]["top"]
     if len(leaders) < 3:
@@ -183,6 +323,49 @@ def assess(price, pnl, positions, owner_did=OWNER_DID):
                        "cash balance, settlement, or forecast. Historical range is not a future profit opportunity."}
 
 
+def project_podium(price, pnl, positions, final_prices, optimistic_score, max_abs_position):
+    """Stress-test a hypothetical static board, never predict the final standings.
+
+    The owner gets a hindsight-perfect direction and pays no new fee. This is an
+    upper bound for one static position, not an executable trading strategy.
+    """
+    rows = aligned_rows(price, pnl, positions)
+    last = rows[-1]
+    mark = amount(last["pnl"]["mark"])
+    optimistic_score = amount(optimistic_score)
+    max_abs_position = amount(max_abs_position)
+    if max_abs_position <= 0 or not final_prices or len(final_prices) > 50:
+        raise ValueError("projection needs 1-50 prices and a positive position bound")
+    cohort = []
+    for did, score in last["pnl"]["top"]:
+        observed = sensitivity(rows, did, last["n"])
+        if observed is None:
+            raise ValueError("insufficient signed score/mark movements for every visible leader")
+        cohort.append((amount(score), amount(observed["score_per_mark_unit"])))
+    if len(cohort) < 3:
+        raise ValueError("projection needs at least three visible leaders")
+    scenarios = []
+    for raw_price in final_prices:
+        final_price = amount(raw_price)
+        if final_price <= 0:
+            raise ValueError("projected final price must be positive")
+        change = final_price - mark
+        projected_third = sorted((score + slope * change for score, slope in cohort),
+                                 reverse=True)[2]
+        optimistic_owner = optimistic_score + max_abs_position * abs(change)
+        scenarios.append({"final_price": str(final_price),
+                          "static_visible_third": str(projected_third.quantize(Decimal("0.01"))),
+                          "optimistic_owner": str(optimistic_owner.quantize(Decimal("0.01"))),
+                          "gap_to_third": str((projected_third - optimistic_owner).quantize(Decimal("0.01")))})
+    return {"signed_sweep": last["n"], "board_mark": str(mark),
+            "visible_cohort": len(cohort), "assumed_owner_score": str(optimistic_score),
+            "assumed_max_abs_position": str(max_abs_position), "scenarios": scenarios,
+            "caution": "Conditional static-board stress test only. Slopes are recent observed score/mark "
+                       "sensitivities, not certified positions; all agents may trade. The owner score and "
+                       "position bound are caller assumptions. The owner gets hindsight-perfect direction "
+                       "with no new fees, so this is not an executable strategy or a forecast."}
+
+
 def fetch(room, timeout=15):
     url = f"https://technocore.chat/r/{room}?format=json&limit=200"
     request = urllib.request.Request(url, headers={"Accept": "application/json",
@@ -194,10 +377,40 @@ def fetch(room, timeout=15):
     return json.loads(raw)
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--final-price", action="append", default=[],
+                        help="sample a hypothetical final price; repeat up to 50 times")
+    parser.add_argument("--optimistic-score", help="caller-assumed current score upper bound")
+    parser.add_argument("--max-abs-position", help="caller-assumed static position bound")
+    args = parser.parse_args(argv)
+    if bool(args.final_price) != bool(args.optimistic_score and args.max_abs_position):
+        parser.error("projections require --final-price, --optimistic-score and --max-abs-position")
     try:
-        parsed = [parse_snapshot(room, fetch(room)) for room in ROOMS]
+        snapshots = [fetch(room) for room in ROOMS]
+        snapshots[0], final = split_final_price_snapshot(snapshots[0])
+        snapshots[1], standings = split_final_standings_snapshot(
+            snapshots[1], final["S"] if final is not None else None)
+        if standings is not None and final is None:
+            raise ValueError("signed final standings lack a matching final-price post")
+        parsed = [parse_snapshot(room, snapshot, allow_stale=final is not None)
+                  for room, snapshot in zip(ROOMS, snapshots)]
         report = assess(*parsed)
+        if final is not None:
+            report["status"] = "signed_final_price_with_prelock_board"
+            report["final"] = final
+            report["caution"] += (" This board is the last pre-lock VWAP-marked top 25, "
+                                  "not final standings.")
+        if standings is not None:
+            report["status"] = "signed_final_top25_with_prelock_board"
+            report["final_standings"] = standings
+            report["caution"] += (" The separate signed final standings post lists 25 owners; "
+                                  "an owner outside it has no published exact score or place.")
+        if args.final_price:
+            if final is not None:
+                raise ValueError("hypothetical projection is unavailable after the signed final")
+            report["podium_projection"] = project_podium(
+                *parsed, args.final_price, args.optimistic_score, args.max_abs_position)
     except (OSError, ValueError, TypeError, KeyError) as exc:
         print(f"close-call scout unavailable: {exc}", file=sys.stderr)
         return 2

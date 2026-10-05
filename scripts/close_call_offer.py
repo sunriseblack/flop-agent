@@ -2,8 +2,9 @@
 """Prepare or post one bounded Close Call paper offer with the existing DID.
 
 Dry-run is the default. Posting requires --post and an explicit unique trade ID.
-Supply either a conservative cash floor assuming the entire offer opens, or
-cash/position lower-bound scenarios covering every unresolved fill. The
+Supply either a conservative cash floor assuming the entire offer opens,
+cash/position lower-bound scenarios that all fund the maker, or bounded
+conditional scenarios that prove the maker funds or lacks funds in each branch. The
 redacted, lagging archive cannot certify a live balance. This tool never loads
 a wallet or trades real assets.
 """
@@ -27,6 +28,9 @@ from verify_tape import public_key_from_did, verify_record
 PRICE_URL = "https://technocore.chat/r/d-close1-price?format=json&limit=1"
 AMOUNT = re.compile(r"[0-9]{1,7}(?:\.[0-9]{1,2})?\Z")
 SCENARIO = re.compile(r"([0-9]{1,7}(?:\.[0-9]{1,2})?):(-?[0-9]{1,7}(?:\.[0-9]{1,2})?)\Z")
+CONDITIONAL_SCENARIO = re.compile(
+    r"([0-9]{1,7}(?:\.[0-9]{1,2})?):([0-9]{1,7}(?:\.[0-9]{1,2})?):"
+    r"(-?[0-9]{1,7}(?:\.[0-9]{1,2})?)\Z")
 TRADE_ID = re.compile(r"[A-Za-z0-9_-]{1,64}\Z")
 LOCK_SWEEP = 2556
 
@@ -74,13 +78,69 @@ def read_price(snapshot, now=None):
             "reference": reference, "signed_seq": message["seq"], "timestamp": message["ts"]}
 
 
+def fee_ceiling_per_contract(px, reference):
+    """Upper fee if the next closing reference is within 5% of the signed one."""
+    return max(px * Decimal("0.01"),
+               abs(px - reference) + reference * Decimal("0.05"))
+
+
+def conditional_analysis(side, qty, px, price, scenarios, max_abs_position_text):
+    """Prove maker funding or maker-funds-void for every supplied account state.
+
+    The cash interval must describe free cash *when this trade is applied*. The
+    fee ceiling shares the existing offer tool's five-percent close-move
+    assumption; a larger move may void a supposedly funded branch.
+    """
+    if not scenarios or not max_abs_position_text or not AMOUNT.fullmatch(max_abs_position_text):
+        raise ValueError("conditional funding needs scenarios and a position cap")
+    cap = Decimal(max_abs_position_text)
+    if cap <= 0:
+        raise ValueError("conditional position cap must be positive")
+    min_fee = qty * px * Decimal("0.01")
+    max_fee = qty * fee_ceiling_per_contract(px, price["reference"])
+    branches = []
+    for index, scenario in enumerate(scenarios, 1):
+        match = CONDITIONAL_SCENARIO.fullmatch(scenario)
+        if not match:
+            raise ValueError(f"conditional scenario {index} is malformed")
+        cash_min, cash_max, position = (Decimal(value) for value in match.groups())
+        if cash_min < 0 or cash_max < cash_min:
+            raise ValueError(f"conditional scenario {index} has invalid cash bounds")
+        if abs(position) > cap:
+            raise ValueError(f"conditional scenario {index} starts beyond position cap")
+        closing = min(qty, max(Decimal(0), -position if side == "buy" else position))
+        opening = qty - closing
+        reserve_min = opening * px + min_fee
+        reserve_max = opening * px + max_fee
+        if cash_min >= reserve_max:
+            outcome = "maker_funded_within_fee_bound"
+            next_position = position + (qty if side == "buy" else -qty)
+        elif cash_max < reserve_min:
+            outcome = "maker_funds_void_if_reached"
+            next_position = position
+        else:
+            raise ValueError(f"conditional scenario {index} has ambiguous funding")
+        if abs(next_position) > cap:
+            raise ValueError(f"conditional scenario {index} exceeds position cap")
+        branches.append({"scenario": scenario, "outcome": outcome,
+                         "reserve_min": str(reserve_min), "reserve_max": str(reserve_max),
+                         "position_after": str(next_position)})
+    if not any(branch["outcome"] == "maker_funded_within_fee_bound" for branch in branches):
+        raise ValueError("conditional offer has no funded account scenario")
+    return branches
+
+
 def validate_offer(offer_id, side, qty_text, px_text, until, cash_floor_text, did, price,
-                   scenarios=None):
+                   scenarios=None, conditional_scenarios=None, max_abs_position=None):
     if (not TRADE_ID.fullmatch(offer_id) or side not in ("buy", "sell") or
             not AMOUNT.fullmatch(qty_text) or not AMOUNT.fullmatch(px_text)):
         raise ValueError("offer ID, side, quantity, or price is malformed")
-    if (cash_floor_text is None) == (scenarios is None):
-        raise ValueError("supply either a cash floor or account scenarios")
+    modes = sum(value is not None for value in
+                (cash_floor_text, scenarios, conditional_scenarios))
+    if modes != 1:
+        raise ValueError("supply either a cash floor or one type of account scenarios")
+    if conditional_scenarios is None and max_abs_position is not None:
+        raise ValueError("position cap applies only to conditional scenarios")
     qty, px = (Decimal(value) for value in (qty_text, px_text))
     if qty < Decimal("0.1") or px <= 0:
         raise ValueError("quantity or price is out of range")
@@ -88,11 +148,16 @@ def validate_offer(offer_id, side, qty_text, px_text, until, cash_floor_text, di
         raise ValueError("offer price is outside signed next-sweep limits")
     if type(until) is not int or not price["sweep"] <= until <= min(price["sweep"] + 2, LOCK_SWEEP):
         raise ValueError("offer expiry must be within two sweeps and before lock")
-    # Bound fees by a five-percent reference move. A larger actual sweep jump
-    # can still void the trade; these caller-supplied scenarios are not a cash
-    # proof and must cover every unresolved fill of this DID.
-    fee_per_contract = max(px * Decimal("0.01"), price["reference"] * Decimal("0.05"))
-    if scenarios is None:
+    # Include the quote's offset from the signed reference as well as a
+    # five-percent closing-reference move. A larger jump can still void the
+    # trade; scenarios are caller assumptions, not a certified cash balance.
+    fee_per_contract = fee_ceiling_per_contract(px, price["reference"])
+    if conditional_scenarios is not None:
+        branches = conditional_analysis(side, qty, px, price,
+                                        conditional_scenarios, max_abs_position)
+        worst_reserve = max(Decimal(branch["reserve_max"]) for branch in branches
+                            if branch["outcome"] == "maker_funded_within_fee_bound")
+    elif scenarios is None:
         if not AMOUNT.fullmatch(cash_floor_text):
             raise ValueError("cash floor is malformed")
         cash_floor = Decimal(cash_floor_text)
@@ -142,6 +207,11 @@ def main(argv=None):
     funding.add_argument("--cash-floor", help="POLF cash floor if the entire offer opens")
     funding.add_argument("--scenario", action="append", metavar="CASH_FLOOR:POSITION",
                          help="repeat for every unresolved-fill state; signed position, POLF cash floor")
+    funding.add_argument("--conditional-scenario", action="append",
+                         metavar="CASH_MIN:CASH_MAX:POSITION",
+                         help="repeat for every unresolved-fill state; each must prove funded or funds-void")
+    parser.add_argument("--max-abs-position",
+                        help="required for conditional scenarios; cap the position after each branch")
     parser.add_argument("--post", action="store_true", help="post one signed offer, then verify exact readback")
     parser.add_argument("--watch-seconds", type=int, default=0,
                         help="after --post, watch this public room for a verified countersignature (0-600)")
@@ -157,7 +227,9 @@ def main(argv=None):
             raise ValueError("owner mint was not found in the verified archived sweep")
         terms, reserve = validate_offer(args.id, args.side, args.qty, args.px,
                                         args.until, args.cash_floor, did, price,
-                                        scenarios=args.scenario)
+                                        scenarios=args.scenario,
+                                        conditional_scenarios=args.conditional_scenario,
+                                        max_abs_position=args.max_abs_position)
         result = {"mode": "dry_run", "terms": terms, "signed_price_seq": price["signed_seq"],
                   "next_sweep": price["sweep"],
                   "conservative_reserve": str(reserve),
@@ -165,6 +237,17 @@ def main(argv=None):
                   "caution": "This is only a negotiation offer, not a referee-settled trade. Funding scenarios are caller assumptions; archive redactions do not prove live balance."}
         if args.scenario:
             result["account_scenarios_assumed"] = args.scenario
+        elif args.conditional_scenario:
+            result["conditional_branches"] = conditional_analysis(
+                args.side, Decimal(args.qty), Decimal(args.px), price,
+                args.conditional_scenario, args.max_abs_position)
+            result["max_abs_position_assumed"] = args.max_abs_position
+            result["caution"] += (" A funds-void branch is a deliberate possible no-fill, "
+                                  "not proof of exposure or settlement; cash intervals "
+                                  "must bound free cash at application time. The fee bound "
+                                  "assumes no more than a five-percent reference move. "
+                                  "Maker funding does not prove the taker's funding, "
+                                  "countersignature, ingestion, or settlement.")
         else:
             result["cash_floor_assumed"] = args.cash_floor
         if args.post:

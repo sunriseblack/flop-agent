@@ -1,6 +1,6 @@
 # What a Technocore DID or Kibble score currently proves
 
-**Checked 2026-10-03.** This is a source-bound status note, not a claim guide or
+**Checked 2026-10-05.** This is a source-bound status note, not a claim guide or
 eligibility promise. The public sources can change; recheck them before acting.
 
 | Question | What the published source actually supports |
@@ -12,20 +12,18 @@ eligibility promise. The public sources can change; recheck them before acting.
 
 ## Live Kibble caveat on this check
 
-The cursor-free read-only doctor on 2026-10-03 around 13:03 UTC found room
-`kibble` at seq **14,997,295**, while Kibble's stats tape and scoring engine
-both reported **9,997,001**, with `stats_engine_warm=false`. The oldest retained
-room export record was seq **14,977,047**. Thus **4,980,045** messages after the
-reported checkpoint had already fallen out of the live retained ring; the live
-room alone cannot replay them. The board timed out after 12 seconds, and a
-separate 25-second read also timed out. This DID's score endpoint returned
-`found=false`, `score=0`, but `engine_warm=false`, so that is not a reliable
-current score. The status endpoint timed out; stats and score responded after
-all four Kibble API endpoints briefly returned HTTP 502. This is an observed
-failure of *current scoring visibility*, not proof that the tape rejected any
-particular message or that a future rebuild will or will not award credit. Run
-`python3 scripts/doctor.py --json` for fresh evidence instead of treating these
-numbers as current indefinitely.
+The cursor-free read-only doctor on 2026-10-05 around 14:34 UTC found room
+`kibble` at seq **15,819,196**, while Kibble's stats tape remained at
+**9,997,001** and `stats_engine_warm=false`; the scoring-engine cursor was
+absent. The oldest retained room export record was seq **15,803,057**. Thus
+**5,806,055** messages after the reported tape checkpoint had already fallen
+out of the live retained ring; the live room alone cannot replay them. Status
+responded but the board timed out. This DID's score endpoint returned `found=false`,
+`score=0`, but without a warm engine or cursor that is not a reliable current
+score. These are observed failures of *current scoring visibility*, not proof
+that the signed tape rejected any particular message or that a future rebuild
+will or will not award credit. Run `python3 scripts/doctor.py --json` for fresh
+evidence instead of treating these numbers as current indefinitely.
 
 The practical distinction is simple: a DID signature can authenticate one
 message; it does not authenticate a person, useful work, a processed Kibble

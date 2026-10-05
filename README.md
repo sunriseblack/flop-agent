@@ -137,6 +137,40 @@ sweep close*, not the time elapsed since the delayed room post or a direct
 comparison with a fresh Hyperliquid trade; investigate a stale flag before
 using it in a trade decision.
 
+Before the signed final, the scout could stress-test a *hypothetical* static
+podium against chosen final prices using caller-supplied assumptions rather
+than treating the visible board as a forecast. This historical mode is now
+disabled because the contest has closed:
+
+```bash
+python3 scripts/close_call_scout.py --final-price 200 --final-price 230 \
+  --final-price 260 --optimistic-score 0 --max-abs-position 45
+```
+
+The projection holds each visible leader's recent observed score/mark
+sensitivity fixed and gives the owner a fee-free, hindsight-perfect direction
+at every sampled price. It is deliberately optimistic for the owner, but is
+not an executable trade or a prediction: all agents may trade again, the owner
+score and position bound are assumptions, and the board omits everyone below
+its top 25.
+
+**Contest closed.** The referee's verified `d-close1-price` seq 2558 fixes
+final *S* at **234.69 POLF** (underlying trade at
+2026-10-04 09:59:40.596 UTC). After this post, the scout reports `S` and the
+last signed pre-lock board separately; the latter is marked at the paper-trade
+VWAP of 234.31 and is **not** a final standing. A separate verified
+`d-close1-pnl` seq 2557 now publishes the final top 25 at *S*, including the
+three prize-place scores. Our DID is absent from that published top 25, but
+its exact final score, rank, and account row remain unpublished. The scout
+disables hypothetical projection mode after final. As checked on 2026-10-05,
+the public archive
+has caught up through the 2556 lock, but most records are redacted and their
+contents match an unsigned index checksum rather than the referee's signed
+full-record hash. [The organizer said](https://github.com/flop-labs/technocore-close-call-challenge/issues/19#issuecomment-5986902821)
+every owner's final row would be published before 2026-10-06 01:00 UTC; do
+not infer this DID's exact placing from the truncated list. The offer tool is
+historical paper-contest tooling; no further contest posts count after lock.
+
 Most published sweep records redact private-room trades. Their downloaded bytes
 match an **unsigned archive index checksum**, not the referee's signed hash of
 the original full record. The auditor labels that provenance gap explicitly;
@@ -154,7 +188,18 @@ known account, `--cash-floor` assumes the entire quantity opens. When an
 earlier fill is unresolved, repeat `--scenario CASH_FLOOR:POSITION` for every
 plausible account state; the tool checks opening collateral plus bounded fees
 in **each** state. All cash and position inputs are caller assumptions, not
-claims proved by the archive. Before a post, the tool requires that the
+claims proved by the archive. A separate `--conditional-scenario
+CASH_MIN:CASH_MAX:POSITION` mode, repeated for every plausible state and paired
+with `--max-abs-position`, accepts a branch only when it is provably funded
+on **our maker side** within the tool's fee bound or provably void because our
+maker side lacks funds. It rejects
+ambiguous branches and all-void offers. A void branch is a possible no-fill,
+not an account-state query; cash intervals must bound free cash **when the
+trade is applied**, and the maximum-fee check assumes the closing reference
+moves no more than 5% from the latest signed one. A larger jump, changed
+state, unfunded taker, expired/limited offer, or absent countersignature can
+still prevent a fill. This mode must not be used to assert settlement or to retry an uncertain
+write. Before a post, the tool requires that the
 signed price has not advanced; afterward, it verifies exact room readback.
 With `--post --watch-seconds 300`, it then watches the same busy public room
 from that verified receipt, checks the taker's nested Ed25519 signature and

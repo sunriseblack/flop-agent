@@ -58,7 +58,7 @@ class CloseCallOfferTests(unittest.TestCase):
         self.assertEqual(price["sweep"], 1755)
         terms, reserve = offer.validate_offer(
             "test-1", "sell", "40", "230.50", 1756, "9700", self.did, price)
-        self.assertEqual(reserve, offer.Decimal("9681.04"))
+        self.assertEqual(reserve, offer.Decimal("9681.84"))
         body = json.loads(offer.signed_offer(terms, self.private))
         self.assertEqual(body["t"], "offer")
         self.assertEqual(body["season"], "close-1")
@@ -87,6 +87,13 @@ class CloseCallOfferTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "malformed"):
             self.read(self.snapshot(body=body))
 
+    def test_fee_ceiling_includes_quote_offset_from_reference(self):
+        ref = offer.Decimal("230.52")
+        self.assertEqual(offer.fee_ceiling_per_contract(offer.Decimal("227.75"), ref),
+                         offer.Decimal("14.2960"))
+        self.assertEqual(offer.fee_ceiling_per_contract(offer.Decimal("233.29"), ref),
+                         offer.Decimal("14.2960"))
+
     def test_rejects_expired_or_unfunded_offer(self):
         price = self.read(self.snapshot())
         for until in (1754, 1758, 2557):
@@ -98,7 +105,7 @@ class CloseCallOfferTests(unittest.TestCase):
                                  "9700", self.did, price)
         with self.assertRaisesRegex(ValueError, "reserve exceeds"):
             offer.validate_offer("test-1", "buy", "40", "230.50", 1755,
-                                 "9681.03", self.did, price)
+                                 "9681.83", self.did, price)
         with self.assertRaisesRegex(ValueError, "malformed"):
             offer.validate_offer("bad space", "buy", "1", "230.50", 1755,
                                  "9700", self.did, price)
@@ -110,7 +117,7 @@ class CloseCallOfferTests(unittest.TestCase):
             "conditional-buy", "buy", "40", "230.50", 1756, None,
             self.did, price, scenarios=scenarios)
         self.assertEqual(terms["side"], "buy")
-        self.assertEqual(reserve, offer.Decimal("9473.59"))
+        self.assertEqual(reserve, offer.Decimal("9474.39"))
         with self.assertRaisesRegex(ValueError, "scenario 1 reserve"):
             offer.validate_offer("conditional-buy", "buy", "40", "230.50",
                                  1756, None, self.did, price,
@@ -127,6 +134,104 @@ class CloseCallOfferTests(unittest.TestCase):
             offer.validate_offer("conditional-buy", "buy", "40", "230.50",
                                  1756, "9700", self.did, price,
                                  scenarios=scenarios)
+
+    def test_conditional_buy_proves_funded_or_funds_void_in_each_state(self):
+        price = self.read(self.snapshot())
+        scenarios = ["9760:9780:-0.9", "470:500:-40.9",
+                     "900:950:39.1", "9560:9580:-0.9"]
+        terms, reserve = offer.validate_offer(
+            "funds-gated-buy", "buy", "39", "230.42", 1755, None,
+            self.did, price, conditional_scenarios=scenarios,
+            max_abs_position="45")
+        self.assertEqual(terms["side"], "buy")
+        self.assertGreater(reserve, offer.Decimal("9000"))
+        branches = offer.conditional_analysis("buy", offer.Decimal("39"),
+                                               offer.Decimal("230.42"), price,
+                                               scenarios, "45")
+        self.assertEqual([item["outcome"] for item in branches],
+                         ["maker_funded_within_fee_bound", "maker_funded_within_fee_bound",
+                          "maker_funds_void_if_reached", "maker_funded_within_fee_bound"])
+        self.assertEqual([item["position_after"] for item in branches],
+                         ["38.1", "-1.9", "39.1", "38.1"])
+
+    def test_conditional_sell_proves_funded_or_funds_void_in_each_state(self):
+        price = self.read(self.snapshot())
+        scenarios = ["9760:9780:-0.9", "470:500:-40.9",
+                     "900:950:39.1", "9560:9580:-0.9"]
+        terms, reserve = offer.validate_offer(
+            "funds-gated-sell", "sell", "38.5", "233.29", 1755, None,
+            self.did, price, conditional_scenarios=scenarios,
+            max_abs_position="45")
+        self.assertEqual(terms["side"], "sell")
+        self.assertGreater(reserve, offer.Decimal("9000"))
+        branches = offer.conditional_analysis("sell", offer.Decimal("38.5"),
+                                               offer.Decimal("233.29"), price,
+                                               scenarios, "45")
+        self.assertEqual([item["outcome"] for item in branches],
+                         ["maker_funded_within_fee_bound", "maker_funds_void_if_reached",
+                          "maker_funded_within_fee_bound", "maker_funded_within_fee_bound"])
+        self.assertEqual([item["position_after"] for item in branches],
+                         ["-39.4", "-40.9", "0.6", "-39.4"])
+
+    def test_conditional_mode_rejects_ambiguous_or_unbounded_states(self):
+        price = self.read(self.snapshot())
+        kwargs = {"conditional_scenarios": ["9000:9500:39.1"],
+                  "max_abs_position": "45"}
+        with self.assertRaisesRegex(ValueError, "ambiguous funding"):
+            offer.validate_offer("test", "buy", "40", "230.42", 1755,
+                                 None, self.did, price, **kwargs)
+        kwargs["conditional_scenarios"] = ["0:100:39.1"]
+        with self.assertRaisesRegex(ValueError, "no funded account scenario"):
+            offer.validate_offer("test", "buy", "40", "230.42", 1755,
+                                 None, self.did, price, **kwargs)
+        kwargs["conditional_scenarios"] = ["9760:9780:-0.9"]
+        kwargs["max_abs_position"] = "30"
+        with self.assertRaisesRegex(ValueError, "exceeds position cap"):
+            offer.validate_offer("test", "buy", "40", "230.42", 1755,
+                                 None, self.did, price, **kwargs)
+        kwargs["conditional_scenarios"] = ["1000:900:-0.9"]
+        kwargs["max_abs_position"] = "45"
+        with self.assertRaisesRegex(ValueError, "invalid cash bounds"):
+            offer.validate_offer("test", "buy", "40", "230.42", 1755,
+                                 None, self.did, price, **kwargs)
+        with self.assertRaisesRegex(ValueError, "position cap applies only"):
+            offer.validate_offer("test", "buy", "1", "230.50", 1755,
+                                 "9700", self.did, price, max_abs_position="45")
+        with self.assertRaisesRegex(ValueError, "starts beyond position cap"):
+            offer.validate_offer("test", "buy", "1", "230.50", 1755,
+                                 None, self.did, price,
+                                 conditional_scenarios=["900:950:46"],
+                                 max_abs_position="45")
+
+    def test_conditional_cli_remains_dry_run_and_reports_every_branch(self):
+        fresh_stamp = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
+        snapshot = self.snapshot(stamp=fresh_stamp)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "agent-did.json").write_text(json.dumps({"did": self.did}))
+            output = io.StringIO()
+            with patch.object(offer, "PROJECT_ROOT", root), \
+                    patch.object(offer, "REFEREE_DID", self.did), \
+                    patch.object(offer, "fetch_json", return_value=snapshot), \
+                    patch.object(offer, "audit", return_value={
+                        "owner_result": {"in_input": True, "minted_this_sweep": True},
+                        "provenance": "test_full_record"}), \
+                    patch.object(offer, "post_and_verify") as posting, \
+                    patch("sys.stdout", output):
+                code = offer.main([
+                    "--id", "conditional-dry", "--side", "buy", "--qty", "39",
+                    "--px", "230.42", "--until", "1755",
+                    "--conditional-scenario", "9760:9780:-0.9",
+                    "--conditional-scenario", "470:500:-40.9",
+                    "--conditional-scenario", "900:950:39.1",
+                    "--max-abs-position", "45"])
+        self.assertEqual(code, 0)
+        result = json.loads(output.getvalue())
+        self.assertEqual(result["mode"], "dry_run")
+        self.assertEqual(len(result["conditional_branches"]), 3)
+        self.assertEqual(result["conditional_branches"][2]["outcome"],
+                         "maker_funds_void_if_reached")
+        posting.assert_not_called()
 
     def test_post_starts_watch_from_verified_receipt_without_refetching_offer(self):
         fresh_stamp = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")

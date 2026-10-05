@@ -132,6 +132,105 @@ class CloseCallScoutTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "nonnegative signed reference age"):
                 self.parsed()
 
+    def test_podium_projection_is_explicitly_hypothetical(self):
+        report = scout.project_podium(*self.parsed(), ["90", "100", "110"], "0", "5")
+        self.assertEqual(report["signed_sweep"], 5)
+        self.assertEqual(report["visible_cohort"], 3)
+        self.assertEqual([row["gap_to_third"] for row in report["scenarios"]],
+                         ["-10.00", "50.00", "0.00"])
+        self.assertIn("hindsight-perfect direction", report["caution"])
+        with self.assertRaisesRegex(ValueError, "must be positive"):
+            scout.project_podium(*self.parsed(), ["0"], "0", "5")
+        with self.assertRaisesRegex(ValueError, "positive position bound"):
+            scout.project_podium(*self.parsed(), ["110"], "0", "0")
+
+    def test_projection_fails_closed_without_observed_sensitivity(self):
+        price, pnl, positions = self.parsed()
+        for n in price:
+            price[n]["global"] = "100.00"
+            pnl[n]["mark"] = "100.00"
+        with self.assertRaisesRegex(ValueError, "insufficient signed score/mark"):
+            scout.project_podium(price, pnl, positions, ["110"], "0", "5")
+
+    def test_signed_final_is_not_the_prelock_vwap_or_owner_score(self):
+        for room in scout.ROOMS:
+            snapshot = self.snapshots[room]
+            for message in snapshot["messages"]:
+                body = json.loads(message["text"])
+                body["n"] += 2551
+                message["seq"] += 2551
+                message["ts"] = "2026-10-04T09:00:28Z"
+                message["text"] = json.dumps(body, separators=(",", ":"))
+                signature = self.private.sign(
+                    f"{room}|{message['nonce']}|{message['text']}".encode())
+                message["sig"] = base64.urlsafe_b64encode(signature).decode().rstrip("=")
+            snapshot["last_seq"] = 2556
+        room = "d-close1-price"
+        final_body = {"t": "final", "season": "close-1", "price": "234.69",
+                      "trade": {"time": "2026-10-04T09:59:40.596000Z",
+                                "tid": 868189527772348}}
+        text = json.dumps(final_body, separators=(",", ":"))
+        nonce = 1790870000010
+        signature = self.private.sign(f"{room}|{nonce}|{text}".encode())
+        final_message = {"seq": 2557, "from": self.did, "nonce": nonce, "text": text,
+                         "sig": base64.urlsafe_b64encode(signature).decode().rstrip("="),
+                         "ts": "2026-10-04T10:00:28Z"}
+        self.snapshots[room]["messages"].append(final_message)
+        self.snapshots[room]["last_seq"] = 2557
+        prelock, final = scout.split_final_price_snapshot(self.snapshots[room], self.did)
+        self.assertEqual(final["S"], "234.69")
+        self.assertEqual(final["signed_seq"], 2557)
+        self.assertEqual(prelock["last_seq"], 2556)
+        now = dt.datetime(2026, 10, 4, 11, 30, tzinfo=dt.timezone.utc)
+        parsed = [scout.parse_snapshot(name, prelock if name == room else self.snapshots[name],
+                                       self.did, now, allow_stale=True)
+                  for name in scout.ROOMS]
+        report = scout.assess(*parsed, owner_did=self.third)
+        self.assertEqual(report["sweep"], 2556)
+        self.assertEqual(report["paper_vwap_mark"], "100.00")
+        self.assertNotEqual(report["paper_vwap_mark"], final["S"])
+        with self.assertRaisesRegex(ValueError, "stale"):
+            scout.parse_snapshot(room, prelock, self.did, now)
+        final_message["text"] += " "
+        with self.assertRaisesRegex(ValueError, "invalid signed final"):
+            scout.split_final_price_snapshot(self.snapshots[room], self.did)
+
+    def test_signed_final_standings_list_only_published_top_25(self):
+        room = "d-close1-pnl"
+
+        def signed(seq, nonce, body):
+            text = json.dumps(body, separators=(",", ":"))
+            signature = self.private.sign(f"{room}|{nonce}|{text}".encode())
+            return {"seq": seq, "from": self.did, "nonce": nonce, "text": text,
+                    "sig": base64.urlsafe_b64encode(signature).decode().rstrip("="),
+                    "ts": "2026-10-04T17:33:04Z"}
+
+        before = signed(2556, 1790870000011,
+                        {"t": "pnl", "n": 2556, "file": "a" * 64,
+                         "mark": "234.31", "top": []})
+        leaders = [[f"did:key:zleader{i:02d}", str(1000 - i)] for i in range(25)]
+        body = {"t": "standings", "season": "close-1", "S": "234.69",
+                "file": "b" * 64, "owners": 100, "fees": "100.00",
+                "zero_sum": "0.000000",
+                "places": [[did, score, [rank], 1]
+                           for rank, (did, score) in enumerate(leaders[:3], 1)],
+                "next": leaders[3:]}
+        final = signed(2557, 1790870000012, body)
+        snapshot = {"room": room, "last_seq": 2557, "messages": [before, final]}
+        prelock, report = scout.split_final_standings_snapshot(
+            snapshot, "234.69", self.did, owner_did=self.third)
+        self.assertEqual(prelock["last_seq"], 2556)
+        self.assertEqual(report["published_count"], 25)
+        self.assertEqual(report["podium"][0]["score"], "1000")
+        self.assertFalse(report["owner_in_published_top_25"])
+        self.assertIsNone(report["owner_published_rank"])
+        self.assertIn("no certified exact rank", report["caution"])
+        with self.assertRaisesRegex(ValueError, "invalid signed final standings"):
+            scout.split_final_standings_snapshot(snapshot, "234.70", self.did)
+        final["text"] += " "
+        with self.assertRaisesRegex(ValueError, "invalid signed final standings"):
+            scout.split_final_standings_snapshot(snapshot, "234.69", self.did)
+
 
 if __name__ == "__main__":
     unittest.main()
