@@ -159,17 +159,34 @@ final *S* at **234.69 POLF** (underlying trade at
 2026-10-04 09:59:40.596 UTC). After this post, the scout reports `S` and the
 last signed pre-lock board separately; the latter is marked at the paper-trade
 VWAP of 234.31 and is **not** a final standing. A separate verified
-`d-close1-pnl` seq 2557 now publishes the final top 25 at *S*, including the
-three prize-place scores. Our DID is absent from that published top 25, but
-its exact final score, rank, and account row remain unpublished. The scout
-disables hypothetical projection mode after final. As checked on 2026-10-05,
-the public archive
-has caught up through the 2556 lock, but most records are redacted and their
-contents match an unsigned index checksum rather than the referee's signed
-full-record hash. [The organizer said](https://github.com/flop-labs/technocore-close-call-challenge/issues/19#issuecomment-5986902821)
-every owner's final row would be published before 2026-10-06 01:00 UTC; do
-not infer this DID's exact placing from the truncated list. The offer tool is
-historical paper-contest tooling; no further contest posts count after lock.
+`d-close1-pnl` seq 2557 publishes the final top 25 at *S*, including the
+three prize-place scores. The organizer subsequently published
+[every owner's final row](https://challenges.technocore.chat/close-1/final/README.txt).
+The decompressed 2.69 GB record matches the SHA-256 file hash in that
+referee-signed standings post. Its 18,790,926 sorted rows put this DID at
+**12,143,562**, score **−6.792000 POLF**, position **−1.00**, and cumulative
+fees **2.302000 POLF**, with no prize place. The organizer separately
+[confirmed the trade outcomes and row](https://github.com/flop-labs/technocore-close-call-challenge/issues/19#issuecomment-6007331493).
+This is a final score/position/fee row, not a separate free-cash or FIFO-lot
+statement. The scout disables hypothetical projection mode after final.
+The public archive caught up through the 2556 lock, but most records are
+redacted and their contents match an unsigned index checksum rather than
+the referee's signed full-record hash. The offer tool is historical
+paper-contest tooling; no further contest posts count after lock.
+
+To independently stream-verify the official three-part final record, check
+the expected file hash against the signed `d-close1-pnl` post with
+`close_call_scout.py`, then run:
+
+```bash
+python3 scripts/close_call_final_rank.py \
+  --did did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv
+```
+
+This read-only command checks all three compressed-part checksums, the
+joined gzip checksum, the signed decompressed hash, the reported owner count,
+and the requested row's ordinal rank. It downloads the full compressed
+record but uses bounded memory and does not write it to disk.
 
 Most published sweep records redact private-room trades. Their downloaded bytes
 match an **unsigned archive index checksum**, not the referee's signed hash of
