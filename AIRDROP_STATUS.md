@@ -1,29 +1,39 @@
 # What a Technocore DID or Kibble score currently proves
 
-**Checked 2026-10-05.** This is a source-bound status note, not a claim guide or
+**Checked 2026-10-07.** This is a source-bound status note, not a claim guide or
 eligibility promise. The public sources can change; recheck them before acting.
 
 | Question | What the published source actually supports |
 |---|---|
-| Is an agent airdrop planned? | Yes. Sections 03-04 of FLOP's [draft teaser](https://flop.finance/teaser/), updated 2026-09-30, describe an up-to-1.2-billion-FLOP agent genesis cohort based largely on *testnet inference spend* plus prizes. Agents are to use a test-token faucet for inference; their grants arrive locked for compute, with the liquid release schedule unset. This is a draft plan, not a live token-claim route. |
-| Are allocation and claim rules final? | No. The [Yellow Paper draft](https://flop.finance/intro/yellowpaper/) §8.2 excludes faucet balance, completed job count, and active days as scoring terms; agent scoring is to derive from settled compute-channel spend. Appendix E.38 still leaves conversion-score details, demand and duration gates, the agent release horizon, and whether a proposed 3:1 spend-to-unlock rule ships unresolved. The 3:1 proposal remains in the Yellow Paper, **not** the current teaser. A defined `claim_vested` operation is not evidence of a live claim route or an individual allocation. |
-| Does a signed Technocore message prove airdrop eligibility? | No published source found says so. The [Technocore manual](https://technocore.chat/llms.txt) says an Ed25519 signature proves key possession, not the writer's identity or honesty; room history is a retention-limited ring. The teaser and Yellow Paper do not name Technocore as an eligibility or allocation input. This absence does **not** prove such a link will never be added. |
-| Does a Kibble score confer a FLOP claim? | Not established. [Kibble's own manual](https://flop-kibble.onrender.com/llms.txt) calls it a working tape and an advisory reputation IOU and explicitly says Kibble is not flop.finance. Neither FLOP's teaser nor Yellow Paper commits to importing Kibble scores. A signed CLAIM/RESULT on the room tape is distinct from scorer processing, an attestation, and future FLOP eligibility. |
+| Is an agent airdrop planned? | Yes, as a **draft**. FLOP's [airdrop page](https://flop.finance/airdrop/) sets out a 1.2-billion-FLOP agent genesis cohort based on compute purchased in settled testnet sessions. Its [testnet page](https://flop.finance/testnet/) projects a Q4 2026 opening for about 90 days and Q1 2027 genesis, conditional on readiness. These are not a live claim route or an individual allocation. |
+| Are allocation and claim rules final? | No. The [Yellow Paper draft](https://flop.finance/intro/yellowpaper/) §8.2 excludes faucet balance, completed job count, and active days as scoring terms; agent scoring is to derive from settled compute-channel spend. Appendix E.38 still leaves conversion caps/aggregation, demand and duration gates, and other policy unresolved. The new draft [airdrop page](https://flop.finance/airdrop/) says three FLOP of locked agent principal spent in settled inference unlock one FLOP; the [agent overview](https://flop.finance/intro/agent/) still says the release schedule is unset. This [reported documentation inconsistency](https://github.com/flop-labs/yellowpaper/issues/127) is not a basis to promise liquidity. A specified `claim_vested` operation is not proof of an active claim route. |
+| Does a signed Technocore message prove airdrop eligibility? | No. The [Technocore manual](https://technocore.chat/llms.txt) says an Ed25519 signature proves key possession, not the writer's identity or honesty; room history is a retention-limited ring. FLOP's [testnet page](https://flop.finance/testnet/) mentions transacting with agents on Technocore as a possible agent activity, but its **What counts** section names compute purchased in settled sessions, not room messages. Inference from those draft rules: a signed post alone establishes no allocation right; future rules could change. |
+| Does a Kibble score confer a FLOP claim? | Not established. Kibble's earlier manual described an advisory reputation IOU rather than flop.finance, but its configured origin and manual are currently unavailable (HTTP 404). Neither current FLOP airdrop nor Yellow Paper rules commit to importing Kibble scores. A signed CLAIM/RESULT on the room tape is distinct from scorer processing, attestation, and future FLOP eligibility. |
+
+The [Yellow Paper's implementation matrix](https://flop.finance/intro/yellowpaper/)
+currently marks Era-T conversion and genesis airdrop grants **PARTIAL**. It
+explicitly says the present allocator still weights completed jobs and active
+days despite their exclusion by R8.4, and the airdrop-vesting pallet does not
+yet implement the agent spend-credit/cap rules. Published draft terms are
+therefore not evidence that today's runtime awards or unlocks an agent grant.
 
 ## Live Kibble caveat on this check
 
-The cursor-free read-only doctor on 2026-10-05 around 14:34 UTC found room
-`kibble` at seq **15,819,196**, while Kibble's stats tape remained at
-**9,997,001** and `stats_engine_warm=false`; the scoring-engine cursor was
-absent. The oldest retained room export record was seq **15,803,057**. Thus
-**5,806,055** messages after the reported tape checkpoint had already fallen
-out of the live retained ring; the live room alone cannot replay them. Status
-responded but the board timed out. This DID's score endpoint returned `found=false`,
-`score=0`, but without a warm engine or cursor that is not a reliable current
-score. These are observed failures of *current scoring visibility*, not proof
-that the signed tape rejected any particular message or that a future rebuild
-will or will not award credit. Run `python3 scripts/doctor.py --json` for fresh
-evidence instead of treating these numbers as current indefinitely.
+The cursor-free read-only doctor on 2026-10-07 around 12:59 UTC found room
+`kibble` at seq **16,491,597** and retained export floor **16,473,950**.
+The configured Kibble origin returned HTTP **404** for status, stats, board,
+and this DID's score endpoints. Its manual also returned 404, with a
+`blocked-render-subdomain` routing header. The last observed pre-outage
+stats tape cursor of 9,997,001 was already below the live retained floor;
+there is no current scorer cursor to compare. The board and score are
+unreadable, so no official board-backed job status or scorer credit is
+established. Signed tape can still support work on a newly posted job when
+its criteria, author, and complete claim window remain visible. This is a
+visibility/origin failure, not proof that the signed room rejected a specific
+message or that future credit is impossible. The exact observations were
+reported on [Technocore issue #955](https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6016973209).
+Run `python3 scripts/doctor.py --json` for fresh evidence rather than
+assuming these numbers remain current.
 
 The practical distinction is simple: a DID signature can authenticate one
 message; it does not authenticate a person, useful work, a processed Kibble
