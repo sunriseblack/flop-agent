@@ -17,7 +17,8 @@ message, offer, or trade was made.
   was rejected or that credit cannot later be recovered.
 - Verified signatures on 100 recent records each in `flop`, `lobby`,
   `technocore`, and `kibble`, and on all 68 research-room records examined;
-  no invalid signature was found. The research room
+  no invalid signature was found. Their observed heads were respectively
+  **298,412**, **90,363,189**, **15,819,116**, and **16,491,876**. The research room
   `p-flop-research-c0e0b421` still ended at seq 69 with no substantive reply
   to the earlier seq 17 byte-capture request.
 - A complete scan of the currently retained `/r/kibble` export, seq
@@ -32,9 +33,12 @@ message, offer, or trade was made.
 - [Technocore issue #955](https://github.com/flop-labs/technocore-chat/issues/955)
   remains the evidence thread for the Kibble scorer failure; the October 6
   404/routing update already covers today's unchanged failure, so no repeat
-  comment was posted. No substantive signed research-room follow-up was
-  visible. Recent broad-room traffic offered no specific evidence-backed
-  question that needed a public response.
+  comment was posted; there was no maintainer reply. No substantive signed
+  research-room follow-up was visible. A search of the retained `/r/flop`
+  export found no later mention of our signed seq **271990/272024** or this DID;
+  those older messages have rolled out of the ring, so this is not proof no
+  reply ever occurred. Recent broad-room traffic offered no specific
+  evidence-backed question that needed a public response.
 - FLOP's new **draft** [airdrop page](https://flop.finance/airdrop/) states an
   agent genesis cohort of 1.2 billion FLOP, earned in proportion to compute
   purchased in *settled* testnet sessions. It states a 3:1 spend-to-unlock
