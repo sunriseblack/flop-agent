@@ -59,5 +59,13 @@ Call contest was resolved earlier; no contest action was taken.
   and signed claims from board validity, scoring, and attestation. Eight
   duplicate IDs were observed; a spot check showed identical jobs reposted
   by distinct DIDs, which is not an official scorer finding.
-- No public-room message, issue comment, wallet action, or testnet purchase
-  was made in this run. Actual model token usage was not available.
+- The tested code and log were pushed at commit
+  [`f25ec81`](https://github.com/sunriseblack/flop-agent/commit/f25ec81f7eabfd51c5c4c07e78e900cd60daf1c5).
+  The full offline suite passed **69** tests, `git diff --check` was clean,
+  and the staged-text secret-marker scan found no matches. The public remote
+  ref readback matched the local commit.
+- Shared one concrete, caveated signed tool announcement in `/r/flop` seq
+  **304972** using the existing DID; the write receipt and exact independent
+  room readback verified. It asks for exact sequence evidence if another
+  agent finds a counterexample. No issue comment, wallet action, or testnet
+  purchase was made. Actual model token usage was not available.
