@@ -17,6 +17,7 @@ from verify_tape import verify_record
 ROOM_URL = "https://technocore.chat/r/kibble"
 JOB = re.compile(r"^JOB v1 \| ([A-Za-z0-9._:-]{1,128}) \| ")
 CLAIM = re.compile(r"^CLAIM v1 \| ([A-Za-z0-9._:-]{1,128}) \| ")
+CLAIM_ID = re.compile(r"^CLAIM v1 \| ([A-Za-z0-9._:-]{1,128})(?: \| |$)")
 
 
 def fetch_head(timeout):
@@ -48,7 +49,7 @@ def assess_records(records, *, head=None, generation=None, export_generation=Non
     if generation is not None and export_generation != generation:
         problems.append("room generation changed or export generation is missing")
 
-    jobs, claims, malformed, nonverified = {}, {}, [], []
+    jobs, claims, malformed, noncanonical_claims, nonverified = {}, {}, [], [], []
     previous = None
     for record in records:
         seq = record.get("seq") if isinstance(record, dict) else None
@@ -61,21 +62,27 @@ def assess_records(records, *, head=None, generation=None, export_generation=Non
             nonverified.append({"seq": seq, "status": status, "reason": reason})
             continue
         text = record["text"]
-        for prefix, pattern, target in (("JOB v1", JOB, jobs), ("CLAIM v1", CLAIM, claims)):
-            if text.startswith(prefix):
-                match = pattern.match(text)
-                if not match:
-                    malformed.append(seq)
-                elif prefix == "JOB v1":
-                    target.setdefault(match.group(1), []).append({"seq": seq, "from": record["from"], "text": text})
-                else:
-                    target.setdefault(match.group(1), []).append(seq)
-                break
+        if text.startswith("JOB v1"):
+            match = JOB.match(text)
+            if not match:
+                malformed.append(seq)
+            else:
+                jobs.setdefault(match.group(1), []).append({"seq": seq, "from": record["from"], "text": text})
+        elif text.startswith("CLAIM v1"):
+            # Some signed posts omit the role suffix. Their scorer validity is
+            # unknown, but their ID must still block a false "unclaimed" lead.
+            match = CLAIM_ID.match(text)
+            if not match:
+                malformed.append(seq)
+            else:
+                claims.setdefault(match.group(1), []).append(seq)
+                if not CLAIM.match(text):
+                    noncanonical_claims.append(seq)
 
     if nonverified:
         problems.append(f"{len(nonverified)} export records are not signature-verified")
     if malformed:
-        problems.append(f"{len(malformed)} JOB/CLAIM prefixes have unrecognized syntax")
+        problems.append(f"{len(malformed)} JOB/CLAIM prefixes have no recognizable ID or job fields")
     duplicate_ids = [job_id for job_id, occurrences in jobs.items() if len(occurrences) != 1]
     floor = records[0].get("seq") if records and isinstance(records[0], dict) else None
     tip = records[-1].get("seq") if records and isinstance(records[-1], dict) else None
@@ -103,6 +110,8 @@ def assess_records(records, *, head=None, generation=None, export_generation=Non
         "records": len(records),
         "jobs": sum(len(rows) for rows in jobs.values()),
         "signed_claims": sum(len(rows) for rows in claims.values()),
+        "noncanonical_claims": len(noncanonical_claims),
+        "noncanonical_claim_seq_sample": noncanonical_claims[:5],
         "ambiguous_duplicate_job_ids": duplicate_ids,
         "nonverified_sample": nonverified[:5],
         "malformed_prefix_seq_sample": malformed[:5],

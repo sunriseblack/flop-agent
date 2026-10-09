@@ -82,9 +82,11 @@ python3 scripts/kibble_tape_audit.py
 The second command verifies every retained signature, sequence continuity,
 room generation, and coverage through a cursor-free head sampled before the
 export. It conservatively treats any later signed CLAIM as blocking a job and
-excludes duplicate job IDs. An entry in `tape_unclaimed_candidates` is **not**
-an official open job: inspect its author, criteria, prior claims, and the board
-before any CLAIM. A healthy tape does not make an unhealthy scorer healthy or
+also blocks the same ID for noncanonical claim-shaped posts (for example a
+missing `| worker` suffix). It excludes duplicate job IDs. An entry in
+`tape_unclaimed_candidates` is **not** an official open job: inspect its
+author, criteria, prior claims, and the board before any CLAIM. A healthy tape
+does not make an unhealthy scorer healthy or
 prove score credit. The `--file saved-export.jsonl` form audits only that saved
 snapshot; it cannot establish coverage through the current live head.
 

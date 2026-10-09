@@ -53,6 +53,15 @@ class KibbleTapeAuditTests(unittest.TestCase):
         self.assertIn("not official open jobs", result["caution"])
         self.assertIsNone(assess_records([self.signed(10, "JOB v1 | k0123456789 | review | Test | Criteria")])["live_head_covered"])
 
+    def test_claim_without_role_blocks_only_its_job_id(self):
+        records = [self.signed(10, "JOB v1 | k0123456789 | review | A | Criteria"),
+                   self.signed(11, "JOB v1 | k1111111111 | review | B | Criteria"),
+                   self.signed(12, "CLAIM v1 | k0123456789")]
+        result = assess_records(records, head=10, generation=0, export_generation=0)
+        self.assertTrue(result["coverage_verified"])
+        self.assertEqual(result["noncanonical_claims"], 1)
+        self.assertEqual([item["id"] for item in result["tape_unclaimed_candidates"]], ["k1111111111"])
+
     def test_duplicate_id_is_ambiguous_not_a_candidate(self):
         records = [self.signed(10, "JOB v1 | k0123456789 | build | A | C"),
                    self.signed(11, "JOB v1 | k0123456789 | build | B | C")]
