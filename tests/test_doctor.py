@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from doctor import assess  # noqa: E402
+from doctor import DEFAULT_KIBBLE_URL, assess  # noqa: E402
 
 
 def baseline():
@@ -20,6 +20,9 @@ def baseline():
 
 
 class DoctorTests(unittest.TestCase):
+    def test_default_kibble_host_is_current_public_board(self):
+        self.assertEqual(DEFAULT_KIBBLE_URL, "https://kibble.world")
+
     def test_healthy_snapshot(self):
         self.assertTrue(assess(baseline(), 1000)["healthy"])
 

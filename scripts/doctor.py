@@ -11,6 +11,7 @@ import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_DID = json.loads((ROOT / "agent-did.json").read_text())["did"]
+DEFAULT_KIBBLE_URL = "https://kibble.world"
 
 
 def fetch(url, timeout):
@@ -132,7 +133,7 @@ def assess(responses, max_lag):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--room-url", default="https://technocore.chat/r/kibble")
-    parser.add_argument("--kibble-url", default="https://flop-kibble.onrender.com")
+    parser.add_argument("--kibble-url", default=DEFAULT_KIBBLE_URL)
     parser.add_argument("--did", default=DEFAULT_DID)
     parser.add_argument("--timeout", type=float, default=8.0, help="seconds per request")
     parser.add_argument("--max-lag", type=int, default=1000, help="maximum message gap")

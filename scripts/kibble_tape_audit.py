@@ -18,6 +18,21 @@ ROOM_URL = "https://technocore.chat/r/kibble"
 JOB = re.compile(r"^JOB v1 \| ([A-Za-z0-9._:-]{1,128}) \| ")
 CLAIM = re.compile(r"^CLAIM v1 \| ([A-Za-z0-9._:-]{1,128}) \| ")
 CLAIM_ID = re.compile(r"^CLAIM v1 \| ([A-Za-z0-9._:-]{1,128})(?: \| |$)")
+CANONICAL_JOB_ID = re.compile(r"k[0-9a-f]{10}\Z")
+JOB_CATEGORIES = frozenset({"explain", "research", "review", "build", "coordinate"})
+UNRESOLVED_PLACEHOLDER = re.compile(r"\{p[0-9]+\}")
+
+
+def job_candidate_syntax(text, job_id):
+    """Classify the visible wire shape, not scorer acceptance or job quality."""
+    fields = text.split(" | ", 4)
+    if (len(fields) != 5 or not CANONICAL_JOB_ID.fullmatch(job_id)
+            or fields[2] not in JOB_CATEGORIES or not fields[3].strip()
+            or not fields[4].strip()):
+        return "noncanonical"
+    if UNRESOLVED_PLACEHOLDER.search(text):
+        return "unresolved_placeholder"
+    return "candidate"
 
 
 def fetch_head(timeout):
@@ -50,6 +65,7 @@ def assess_records(records, *, head=None, generation=None, export_generation=Non
         problems.append("room generation changed or export generation is missing")
 
     jobs, claims, malformed, noncanonical_claims, nonverified = {}, {}, [], [], []
+    noncanonical_jobs, unresolved_placeholder_jobs = [], []
     previous = None
     for record in records:
         seq = record.get("seq") if isinstance(record, dict) else None
@@ -67,7 +83,14 @@ def assess_records(records, *, head=None, generation=None, export_generation=Non
             if not match:
                 malformed.append(seq)
             else:
-                jobs.setdefault(match.group(1), []).append({"seq": seq, "from": record["from"], "text": text})
+                job_id = match.group(1)
+                syntax = job_candidate_syntax(text, job_id)
+                if syntax == "noncanonical":
+                    noncanonical_jobs.append(seq)
+                elif syntax == "unresolved_placeholder":
+                    unresolved_placeholder_jobs.append(seq)
+                jobs.setdefault(job_id, []).append({"seq": seq, "from": record["from"],
+                                                     "text": text, "syntax": syntax})
         elif text.startswith("CLAIM v1"):
             # Some signed posts omit the role suffix. Their scorer validity is
             # unknown, but their ID must still block a false "unclaimed" lead.
@@ -95,10 +118,13 @@ def assess_records(records, *, head=None, generation=None, export_generation=Non
             if len(occurrences) != 1:
                 continue
             job = occurrences[0]
+            if job["syntax"] != "candidate":
+                continue
             # Any later signed CLAIM blocks a candidate. This is deliberately
             # conservative: scorer validity cannot be inferred from this tape.
             if not any(seq > job["seq"] for seq in claims.get(job_id, [])):
-                candidates.append({"id": job_id, **job})
+                candidates.append({"id": job_id, "seq": job["seq"],
+                                   "from": job["from"], "text": job["text"]})
     return {
         "coverage_verified": not problems,
         "live_head_covered": None if head is None else isinstance(tip, int) and tip >= head and not problems,
@@ -112,12 +138,16 @@ def assess_records(records, *, head=None, generation=None, export_generation=Non
         "signed_claims": sum(len(rows) for rows in claims.values()),
         "noncanonical_claims": len(noncanonical_claims),
         "noncanonical_claim_seq_sample": noncanonical_claims[:5],
+        "noncanonical_jobs": len(noncanonical_jobs),
+        "noncanonical_job_seq_sample": noncanonical_jobs[:5],
+        "unresolved_placeholder_jobs": len(unresolved_placeholder_jobs),
+        "unresolved_placeholder_job_seq_sample": unresolved_placeholder_jobs[:5],
         "ambiguous_duplicate_job_ids": duplicate_ids,
         "nonverified_sample": nonverified[:5],
         "malformed_prefix_seq_sample": malformed[:5],
         "problems": problems,
         "tape_unclaimed_candidates": candidates,
-        "caution": "Tape candidates are not official open jobs or score credit; inspect author, criteria, prior claims, and the official board before acting.",
+        "caution": "Tape candidates have a recognizable current wire shape but are not official open jobs or score credit; inspect author, criteria, prior claims, and the official board before acting.",
     }
 
 

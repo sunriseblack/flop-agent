@@ -70,6 +70,20 @@ class KibbleTapeAuditTests(unittest.TestCase):
         self.assertEqual(result["ambiguous_duplicate_job_ids"], ["k0123456789"])
         self.assertEqual(result["tape_unclaimed_candidates"], [])
 
+    def test_noncanonical_jobs_and_unresolved_placeholders_are_not_candidates(self):
+        records = [
+            self.signed(10, "JOB v1 | 1791456463692 | build | Numeric ID | Criteria"),
+            self.signed(11, "JOB v1 | k1111111111 | devops | Wrong category | Criteria"),
+            self.signed(12, "JOB v1 | k2222222222 | build | No body | "),
+            self.signed(13, "JOB v1 | k3333333333 | build | Write {p3} code | Criteria"),
+            self.signed(14, "JOB v1 | k4444444444 | build | Clear task | Criteria"),
+        ]
+        result = assess_records(records, head=14, generation=0, export_generation=0)
+        self.assertTrue(result["coverage_verified"])
+        self.assertEqual(result["noncanonical_jobs"], 3)
+        self.assertEqual(result["unresolved_placeholder_jobs"], 1)
+        self.assertEqual([item["id"] for item in result["tape_unclaimed_candidates"]], ["k4444444444"])
+
     def test_gap_invalid_signature_and_head_lag_fail_closed(self):
         records = [self.signed(10, "JOB v1 | k0123456789 | build | A | C"),
                    self.signed(12, "CLAIM v1 | k0123456789 | worker")]

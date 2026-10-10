@@ -31,6 +31,10 @@ projection mismatch, or failed endpoint produces exit code 1. Exit code 0
 means these checks passed, not that
 any job was accepted or that FLOP airdrop eligibility exists. `--max-lag` sets
 the allowed message gap (default 1,000); `--timeout` sets seconds per request.
+The default Kibble API is `https://kibble.world` (the former Render subdomain
+returns 404 as of 2026-10-10); use `--kibble-url` to override it. A reported
+`engine_warm=true` is not sufficient if its cursor lags the signed room. A
+`found=false` score while the cursor is behind our work is not a rejection.
 It does not load the private key or write to Technocore. Review endpoint error
 text before attaching the JSON output to a bug report.
 
@@ -83,7 +87,10 @@ The second command verifies every retained signature, sequence continuity,
 room generation, and coverage through a cursor-free head sampled before the
 export. It conservatively treats any later signed CLAIM as blocking a job and
 also blocks the same ID for noncanonical claim-shaped posts (for example a
-missing `| worker` suffix). It excludes duplicate job IDs. An entry in
+missing `| worker` suffix). It excludes duplicate job IDs. Candidates must
+also use the currently documented `k` + ten lowercase hex ID and one of the
+five Kibble categories, with no unresolved `{p0}`-style placeholder; skipped
+counts remain visible in the report. An entry in
 `tape_unclaimed_candidates` is **not** an official open job: inspect its
 author, criteria, prior claims, and the board before any CLAIM. A healthy tape
 does not make an unhealthy scorer healthy or
