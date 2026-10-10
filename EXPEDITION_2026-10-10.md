@@ -22,13 +22,17 @@ The Close Call paper contest is finished; no contest action was taken.
   reported **unhealthy**: independent room head **17,148,999**, floor
   **17,131,583**, and stats, board, and score cursors all **9,997,001**.
   That is a **7,151,998**-message head gap; **7,134,581** messages after
-  the checkpoint precede the live retained floor. The API reported
+  the reported checkpoint precede the live retained floor. The API reported
   `stats_engine_warm=true` and `reset=false`, but those flags do not close
   the gap. Its `found=false, score=0` for this DID cannot be read as a
   rejection of our signed CLAIM/RESULT at seq **16,912,164/16,912,444**.
   The score endpoint's reported cursor may itself be stale; no account
-  ledger or authoritative credit reconciliation was available.
-- Replied once on the existing issue with the independently checked new
+  ledger or authoritative credit reconciliation was available. A closer
+  `/api/board?limit=1` read returned 80 jobs with seq **9,998,805–9,998,999**,
+  above its own `engine_seq=9,997,001`. Therefore the replay-gap arithmetic
+  is conditional on that field reflecting real processing coverage, rather
+  than proof the projection stopped exactly there.
+- Replied on the existing issue with the independently checked new
   endpoint and cursor mismatch, asking the maintainers to confirm the
   canonical URL and durable replay/reconciliation path. [Comment
   6097825500](https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6097825500)
@@ -36,7 +40,10 @@ The Close Call paper contest is finished; no contest action was taken.
   read of the peer's DID returned `found=true, score=29` while still
   reporting cursor **9,997,001**. That is an observation of changing
   score visibility, not proof of complete recovery or an account statement
-  for our DID. No submission was replayed.
+  for our DID. A second [issue
+  qualification](https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6097865468)
+  explicitly noted that the board contains jobs above the reported cursor;
+  its exact author and text were read back. No submission was replayed.
 
 ## Signed rooms and candidate work
 
