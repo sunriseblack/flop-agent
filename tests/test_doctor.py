@@ -58,6 +58,43 @@ class DoctorTests(unittest.TestCase):
         data["board"] = ({"ok": True, "jobs": None}, None)
         self.assertFalse(assess(data, 1000)["healthy"])
 
+    def test_board_cursor_can_be_in_origin_when_top_level_is_absent(self):
+        data = baseline()
+        data["board"] = ({"jobs": [{"seq": 994}], "origin": {
+            "ok": True, "stats_engine_warm": True, "stats_engine_seq": 995, "tape_last_seq": 1000,
+        }}, None)
+        result = assess(data, 1000)
+        self.assertTrue(result["healthy"])
+        self.assertEqual(result["observations"]["board_engine_seq_source"], "origin")
+        self.assertEqual(result["observations"]["board_tape_last_seq"], 1000)
+
+    def test_board_job_above_reported_cursor_is_explicit_ambiguity(self):
+        data = baseline()
+        data["board"] = ({"jobs": [{"seq": 999}], "origin": {
+            "ok": True, "stats_engine_seq": 995,
+        }}, None)
+        result = assess(data, 1000)
+        self.assertFalse(result["healthy"])
+        self.assertEqual(result["observations"]["board_max_job_seq"], 999)
+        self.assertTrue(any("cursor coverage is ambiguous" in p for p in result["problems"]))
+
+    def test_board_missing_cursor_or_conflicting_sources_is_unhealthy(self):
+        data = baseline()
+        data["board"] = ({"jobs": []}, None)
+        self.assertTrue(any("missing integer engine sequence" in p for p in assess(data, 1000)["problems"]))
+        data["board"] = ({"jobs": [], "engine_seq": 995, "origin": {"stats_engine_seq": 994}}, None)
+        self.assertTrue(any("differs from origin" in p for p in assess(data, 1000)["problems"]))
+
+    def test_board_origin_failure_is_unhealthy(self):
+        data = baseline()
+        data["board"] = ({"jobs": [], "origin": {
+            "ok": False, "stats_engine_warm": False, "stats_engine_seq": 995,
+        }}, None)
+        result = assess(data, 1000)
+        self.assertFalse(result["healthy"])
+        self.assertTrue(any("board: origin is not healthy" in p for p in result["problems"]))
+        self.assertTrue(any("origin scoring engine is not warm" in p for p in result["problems"]))
+
     def test_cursor_below_retained_floor_cannot_catch_up_from_live_room(self):
         data = baseline()
         data["floor"][0]["seq"] = 998

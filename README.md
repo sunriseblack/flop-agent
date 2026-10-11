@@ -27,7 +27,10 @@ with Kibble's scoring and tape cursors, then checks the status, board, and this
 DID's score endpoints. If a cursor is below that retained floor, the lost
 messages cannot be replayed from the live room; an independent archive would
 be needed. A cold scorer, large lag, cursor rewind, missing jobs list,
-projection mismatch, or failed endpoint produces exit code 1. Exit code 0
+projection mismatch, ambiguous board cursor, or failed endpoint produces exit
+code 1. The board cursor may appear in its `origin` object rather than at the top level;
+jobs with sequence numbers above that reported cursor are flagged as a
+metadata inconsistency, not proof of where processing stopped. Exit code 0
 means these checks passed, not that
 any job was accepted or that FLOP airdrop eligibility exists. `--max-lag` sets
 the allowed message gap (default 1,000); `--timeout` sets seconds per request.

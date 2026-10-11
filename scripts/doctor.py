@@ -111,10 +111,37 @@ def assess(responses, max_lag):
             problems.append("board: job list unavailable or API not healthy")
         if board.get("engine_warm", True) is False:
             problems.append("board: engine is not warm")
-        board_seq = number(board.get("engine_seq"))
+        board_origin = board.get("origin") if isinstance(board.get("origin"), dict) else {}
+        if board_origin.get("ok", True) is False:
+            problems.append("board: origin is not healthy")
+        if board_origin.get("stats_engine_warm", True) is False:
+            problems.append("board: origin scoring engine is not warm")
+        top_level_seq = number(board.get("engine_seq"))
+        origin_seq = number(board_origin.get("stats_engine_seq"))
+        board_seq = top_level_seq if top_level_seq is not None else origin_seq
         observations["board_engine_seq"] = board_seq
+        observations["board_engine_seq_source"] = (
+            "top_level" if top_level_seq is not None else "origin" if origin_seq is not None else None
+        )
+        observations["board_tape_last_seq"] = number(board_origin.get("tape_last_seq"))
+        if board_seq is None:
+            problems.append("board: missing integer engine sequence in board and origin")
+        if top_level_seq is not None and origin_seq is not None and top_level_seq != origin_seq:
+            problems.append(
+                f"board: top-level engine sequence {top_level_seq} differs from origin {origin_seq}"
+            )
         if board_seq is not None and engine is not None and board_seq != engine:
             problems.append(f"board: engine sequence {board_seq} differs from stats {engine}")
+        if isinstance(board.get("jobs"), list):
+            job_seqs = [seq for job in board["jobs"] if isinstance(job, dict)
+                        if (seq := number(job.get("seq"))) is not None]
+            max_job_seq = max(job_seqs, default=None)
+            observations["board_max_job_seq"] = max_job_seq
+            if max_job_seq is not None and board_seq is not None and max_job_seq > board_seq:
+                problems.append(
+                    f"board: published job sequence {max_job_seq} exceeds reported engine sequence {board_seq}; "
+                    "cursor coverage is ambiguous"
+                )
 
     score = payloads.get("score", {})
     if "score" in payloads:
