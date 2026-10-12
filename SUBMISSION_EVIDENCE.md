@@ -55,6 +55,9 @@ the original `from`, `nonce`, `text` and `sig`. Optional fields are
 unsigned `collection` metadata. Existing saved records can be placed into
 this envelope without reposting them. Preserve nonce digits exactly:
 Python integers are exact; JavaScript JSON numbers can round large nonces.
+Ambiguous duplicate JSON fields and nonfinite numbers are rejected. Saved
+packets are bounded to 8 MiB, native JSON responses to 4 MiB and raw exports
+to 32 MiB.
 
 To check artifact bytes, add `--artifact path/to/file` and optionally
 `--expected-artifact-sha256` with the full lowercase SHA-256. Artifact contents
@@ -91,6 +94,17 @@ must fail verification. They also alter unsigned sequence metadata, duplicate
 signed content, remove board rows, change account identity and move host
 cursors. These cases must remain visible without manufacturing ingestion,
 rejection or credit.
+
+The public fixture also passed [HE-Lingfeng's independent verifier](https://github.com/HE-Lingfeng/technocore-receipts/tree/f4f8a4494aa069362cbf215f3c46f5ae12dd04db)
+in a local interoperability check. Appending `!` to the text produced
+`signature_mismatch`; replacing unsigned seq 327293 with 777 retained a valid
+signature, as expected. The verifier explicitly leaves server metadata and
+whole-room history unauthenticated. The input was a compact JSONL serialization
+of our fixture's `submission`, not the byte-exact original export. Its 721
+bytes hash to `738c4ed4b10db5e6cd0d14b29b7286d8ce2d718be1942f762acba7b5aeeec57d`.
+These are our runs of a second implementation, not an independent person's
+review of this kit. Reviewing that tool also prompted duplicate-key and
+nonfinite-number rejection in our packet reader.
 
 ## Interpret the observations
 

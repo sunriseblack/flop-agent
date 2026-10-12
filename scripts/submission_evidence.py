@@ -27,6 +27,22 @@ EVENT = re.compile(r"^(JOB|CLAIM|RESULT|ATTEST) v1 \| (k[0-9a-f]{10})(?: \| |$)"
 SIGNED_FIELDS = ("from", "text", "sig")
 MAX_JSON_BYTES = 4 * 1024 * 1024
 MAX_EXPORT_BYTES = 32 * 1024 * 1024
+MAX_PACKET_BYTES = 8 * 1024 * 1024
+
+
+def strict_json(raw):
+    # Ambiguous duplicate fields can be interpreted differently by reviewers.
+    # Nonfinite numbers are not JSON and must not leak into an evidence report.
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("duplicate JSON field")
+            result[key] = value
+        return result
+    def reject_constant(value):
+        raise ValueError("nonfinite JSON number")
+    return json.loads(raw, object_pairs_hook=unique_object, parse_constant=reject_constant)
 
 
 def integer(value):
@@ -181,7 +197,7 @@ def get_json(url, timeout):
         raw = response.read(MAX_JSON_BYTES + 1)
     if len(raw) > MAX_JSON_BYTES:
         raise ValueError("JSON response exceeds byte bound")
-    return json.loads(raw)
+    return strict_json(raw)
 
 
 def get_export(room, timeout):
@@ -191,7 +207,7 @@ def get_export(room, timeout):
         generation = response.headers.get("X-Room-Generation")
     if len(raw) > MAX_EXPORT_BYTES:
         raise ValueError("export exceeds byte bound")
-    return [json.loads(line) for line in raw.splitlines() if line.strip()], generation
+    return [strict_json(line) for line in raw.splitlines() if line.strip()], generation
 
 
 def collect_packet(room, seq, timeout):
@@ -260,8 +276,11 @@ def main(argv=None):
         if args.output and pathlib.Path(args.output).exists():
             raise ValueError("output already exists; refusing to overwrite preserved evidence")
         if args.file:
-            with open(args.file, encoding="utf-8") as source_file:
-                packet = json.load(source_file)
+            with open(args.file, "rb") as source_file:
+                raw = source_file.read(MAX_PACKET_BYTES + 1)
+            if len(raw) > MAX_PACKET_BYTES:
+                raise ValueError("saved packet exceeds byte bound")
+            packet = strict_json(raw)
         else:
             packet = collect_packet(args.room, args.seq, args.timeout)
         result = assess_packet(packet, args.did)

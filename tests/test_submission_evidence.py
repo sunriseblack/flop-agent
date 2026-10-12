@@ -16,7 +16,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from submission_evidence import SCHEMA, assess_packet, collect_packet, inspect_artifact, main  # noqa: E402
+from submission_evidence import SCHEMA, assess_packet, collect_packet, inspect_artifact, main, strict_json  # noqa: E402
 from verify_tape import ALPHABET  # noqa: E402
 
 
@@ -168,6 +168,19 @@ class SubmissionEvidenceTests(unittest.TestCase):
         for packet in ([], {}, {**self.packet, "room": "../secrets"}):
             with self.assertRaises(ValueError):
                 assess_packet(packet)
+
+    def test_ambiguous_or_nonfinite_json_is_rejected(self):
+        for raw in ('{"room":"kibble","room":"flop"}', '{"score":NaN}', '{"score":Infinity}'):
+            with self.assertRaises(ValueError):
+                strict_json(raw)
+        self.assertEqual(strict_json('{"nonce":1000000000000000015}')["nonce"], 1000000000000000015)
+
+    def test_saved_packet_byte_bound_is_enforced(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "packet.json"
+            path.write_bytes(b" " * 33)
+            with mock.patch("submission_evidence.MAX_PACKET_BYTES", 32), contextlib.redirect_stderr(io.StringIO()):
+                self.assertEqual(main(["--file", str(path)]), 2)
 
     def test_public_fixture_verifies_and_has_no_credit_claim(self):
         fixture = Path(__file__).resolve().parents[1] / "examples/submission-evidence-flop-327293.json"
