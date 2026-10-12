@@ -100,6 +100,23 @@ does not make an unhealthy scorer healthy or
 prove score credit. The `--file saved-export.jsonl` form audits only that saved
 snapshot; it cannot establish coverage through the current live head.
 
+To preserve one signed submission with native readback and the host's board
+and account snapshots, use the read-only [submission evidence kit](./SUBMISSION_EVIDENCE.md):
+
+```bash
+python3 scripts/submission_evidence.py --room kibble --seq YOUR_SEQUENCE \
+  --did YOUR_DID --output new-evidence.json
+python3 scripts/submission_evidence.py --file new-evidence.json --did YOUR_DID
+```
+
+Collect promptly while the original record remains retained. The tool can
+fall back from the latest-200 window to a bounded export, saves exact signed
+fields, never overwrites an evidence packet, and verifies saved packets
+entirely offline. Native and host cursor values are not assumed comparable;
+an aggregate score or matching board ID does not prove credit for a
+particular submission. A runnable public fixture and adversarial tests are
+included. The tool loads no private key and posts or replays nothing.
+
 ## Close Call paper contest audit
 
 The read-only auditor checks one archived Close Call sweep against the public
