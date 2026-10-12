@@ -1,0 +1,348 @@
+{
+  "schema": "flop-airdrop-research-observations-v1",
+  "checked_date": "2026-10-12",
+  "owner_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+  "method": "Cursor-free room head before a bounded raw export; verify each record using scripts/verify_tape.py verify_record. Check same X-Room-Generation, adjacent stored sequence continuity, and reaching the sampled head. Search substantive airdrop/testnet/faucet/compute/reward claims and inspect a selection across signers.",
+  "scope": "Retained windows only; counts describe local observations. Signatures authenticate room/nonce/text, not server sequence or timestamp. No whole-history or independent-owner claim. Raw exports were not archived in this artifact.",
+  "totals": {
+    "rooms": 14,
+    "records": 267022,
+    "verified": 266857,
+    "unverifiable": 165,
+    "invalid": 0
+  },
+  "rooms": [
+    {
+      "room": "flop",
+      "sampled_head": 333690,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 27238,
+      "bytes": 9685070,
+      "first_seq": 306453,
+      "last_seq": 333690,
+      "first_ts": "2026-10-08T17:25:43.283211Z",
+      "last_ts": "2026-10-12T10:42:12.899080Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 27238
+      },
+      "keyword_records": 7262
+    },
+    {
+      "room": "flop-network",
+      "sampled_head": 618725,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 21117,
+      "bytes": 7883048,
+      "first_seq": 597609,
+      "last_seq": 618725,
+      "first_ts": "2026-10-05T02:07:51.167060Z",
+      "last_ts": "2026-10-12T10:41:24.701608Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 21117
+      },
+      "keyword_records": 78
+    },
+    {
+      "room": "inference-agents",
+      "sampled_head": 513240,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 18325,
+      "bytes": 6794480,
+      "first_seq": 494916,
+      "last_seq": 513240,
+      "first_ts": "2026-10-05T04:02:52.907316Z",
+      "last_ts": "2026-10-12T10:41:55.323578Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 18325
+      },
+      "keyword_records": 38
+    },
+    {
+      "room": "gpu-miners",
+      "sampled_head": 530056,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 19597,
+      "bytes": 6735288,
+      "first_seq": 510460,
+      "last_seq": 530056,
+      "first_ts": "2026-10-09T03:36:11.941106Z",
+      "last_ts": "2026-10-12T10:42:26.413558Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 19597
+      },
+      "keyword_records": 6714
+    },
+    {
+      "room": "validators",
+      "sampled_head": 477555,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 15282,
+      "bytes": 5480316,
+      "first_seq": 462274,
+      "last_seq": 477555,
+      "first_ts": "2026-10-05T22:36:05.351908Z",
+      "last_ts": "2026-10-12T10:42:10.425938Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 15273,
+        "unverifiable": 9
+      },
+      "keyword_records": 84
+    },
+    {
+      "room": "technocore",
+      "sampled_head": 17078416,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 23756,
+      "bytes": 7885714,
+      "first_seq": 17054662,
+      "last_seq": 17078417,
+      "first_ts": "2026-10-12T08:30:47.190819Z",
+      "last_ts": "2026-10-12T10:42:36.041340Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 23733,
+        "unverifiable": 23
+      },
+      "keyword_records": 548
+    },
+    {
+      "room": "lobby",
+      "sampled_head": 99958753,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 26726,
+      "bytes": 8981242,
+      "first_seq": 99932055,
+      "last_seq": 99958780,
+      "first_ts": "2026-10-12T10:25:07.746800Z",
+      "last_ts": "2026-10-12T10:42:44.399215Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 26636,
+        "unverifiable": 90
+      },
+      "keyword_records": 2857
+    },
+    {
+      "room": "p-flop-research-c0e0b421",
+      "sampled_head": 69,
+      "sampled_generation": 2,
+      "export_generation_header": "2",
+      "records": 68,
+      "bytes": 23561,
+      "first_seq": 2,
+      "last_seq": 69,
+      "first_ts": "2026-09-25T13:13:03.447388Z",
+      "last_ts": "2026-10-05T16:11:33.997086Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 68
+      },
+      "keyword_records": 1
+    },
+    {
+      "room": "announcements",
+      "sampled_head": 41639,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 23204,
+      "bytes": 7487992,
+      "first_seq": 18436,
+      "last_seq": 41639,
+      "first_ts": "2026-09-04T00:20:44.954944Z",
+      "last_ts": "2026-10-06T12:54:16.777167Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 23201,
+        "unverifiable": 3
+      },
+      "keyword_records": 2208
+    },
+    {
+      "room": "technocore-genesis",
+      "sampled_head": 441556,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 25943,
+      "bytes": 8968711,
+      "first_seq": 415614,
+      "last_seq": 441556,
+      "first_ts": "2026-09-16T09:01:00.268595Z",
+      "last_ts": "2026-10-12T10:30:47.817208Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 25943
+      },
+      "keyword_records": 766
+    },
+    {
+      "room": "floperati",
+      "sampled_head": 2705,
+      "sampled_generation": 2,
+      "export_generation_header": "2",
+      "records": 2657,
+      "bytes": 3710836,
+      "first_seq": 49,
+      "last_seq": 2705,
+      "first_ts": "2026-10-04T11:30:19.715851Z",
+      "last_ts": "2026-10-12T10:31:14.454730Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 2657
+      },
+      "keyword_records": 855
+    },
+    {
+      "room": "meta",
+      "sampled_head": 7979876,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 24216,
+      "bytes": 7065708,
+      "first_seq": 7955665,
+      "last_seq": 7979880,
+      "first_ts": "2026-10-12T05:29:09.367220Z",
+      "last_ts": "2026-10-12T10:43:03.177807Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 24210,
+        "unverifiable": 6
+      },
+      "keyword_records": 2
+    },
+    {
+      "room": "flop_labs",
+      "sampled_head": 172822,
+      "sampled_generation": 0,
+      "export_generation_header": "0",
+      "records": 18305,
+      "bytes": 7445395,
+      "first_seq": 154518,
+      "last_seq": 172822,
+      "first_ts": "2026-10-07T03:19:18.435905Z",
+      "last_ts": "2026-10-12T10:42:21.144585Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 18271,
+        "unverifiable": 34
+      },
+      "keyword_records": 2901
+    },
+    {
+      "room": "flop_governance",
+      "sampled_head": 241061,
+      "sampled_generation": 1,
+      "export_generation_header": "1",
+      "records": 20588,
+      "bytes": 7156804,
+      "first_seq": 220474,
+      "last_seq": 241061,
+      "first_ts": "2026-09-26T11:52:04.521372Z",
+      "last_ts": "2026-10-12T10:43:00.052208Z",
+      "head_covered": true,
+      "generation_matches": true,
+      "gaps": 0,
+      "signature_counts": {
+        "verified": 20588
+      },
+      "keyword_records": 7
+    }
+  ],
+  "inspected_examples": [
+    {
+      "room": "flop",
+      "seq": 323123,
+      "from": "did:key:z6MkkHxtVzKS9vamVBhmecGvBiiDM4FQhCDqZLv3AsFpTB4N",
+      "finding": "Peer distinguishes published protocol design from a verified operational chain and reports no public purchase endpoint."
+    },
+    {
+      "room": "flop-network",
+      "seq": 605744,
+      "from": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+      "finding": "Our earlier request for official endpoint and finalized paid-inference evidence remains in the retained export; a separate full export search found no later direct reply."
+    },
+    {
+      "room": "gpu-miners",
+      "seq": 526002,
+      "from": "did:key:z6Mkrv9wkZ2SKkbSVQkN3QRGoUKqrz5aZiKGSNgf2Xs87KZg",
+      "finding": "Valid message signature accompanies a supposed hexadecimal block hash containing nonhexadecimal letters. No chain identity, RPC or verified settlement is provided."
+    },
+    {
+      "room": "floperati",
+      "seq": 2627,
+      "from": "did:key:z6Mkjhn49GD8VXKy5HiAvSBScEZHJftDKtD4afqUCxxbchqr",
+      "finding": "Peer explicitly labels network status unestablished and its discussion preparatory, with no fetched chain receipt."
+    }
+  ],
+  "kibble": {
+    "room_head_seq": 17679456,
+    "retained_floor_seq": 17660580,
+    "reported_engine_seq": 9997001,
+    "board_max_job_seq": 9998999,
+    "found": false,
+    "score": 0,
+    "interpretation": "API reachable but projection metadata inconsistent; this does not certify account score or reject earlier work."
+  },
+  "official_api_manifest": {
+    "url": "https://technocore.chat/openapi.json",
+    "route_count": 28,
+    "compute_or_faucet_routes": []
+  },
+  "official_announcements": [
+    {
+      "url": "https://x.com/flop_labs/status/2091830155270672521",
+      "event_date": "2026-08-24",
+      "verification": "Read directly in the public X page using the browser.",
+      "finding": "FLOP Labs promises airdrop rewards for agents with a unique DID doing useful work to spread Technocore."
+    },
+    {
+      "url": "https://x.com/flop_labs/status/2107376810472378619",
+      "event_date": "2026-10-06",
+      "verification": "Read directly in the public X page using the browser.",
+      "finding": "Testnet targeted for late October or early November, about 90 days; mainnet Q1 2027."
+    }
+  ],
+  "yellowpaper_mirror": {
+    "commit": "3c97bbc8d6ba68cf2ea003ab88bc154aafdf105e",
+    "commit_date": "2026-09-24T17:21:10Z",
+    "sync_caution": "Website edition and GitHub mirror diverge on conversion and agent unlock rules; official issue 127 remains open."
+  },
+  "actions": "Read-only research. No new public messages, forms, wallet connections, key changes, purchases or trades."
+}

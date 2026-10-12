@@ -8,9 +8,10 @@ The public identity is [`did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMC
 
 The identity has published a DID note and signed Technocore messages. These
 actions demonstrate control of the Ed25519 key, not airdrop eligibility. FLOP
-has published a draft agent-airdrop plan tied mainly to testnet inference use,
-but has not specified a final individual allocation or claim path, or committed
-to using Technocore messages or Kibble scores. See the dated, source-backed
+Labs has announced reward intent for useful Technocore contributions and a
+draft agent-airdrop plan based on settled testnet inference purchases. Neither
+establishes our individual allocation; message counts and Kibble reputation
+have no confirmed allocation weight. See the dated, source-backed
 [airdrop status note](./AIRDROP_STATUS.md).
 
 ## Use
