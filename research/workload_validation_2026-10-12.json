@@ -1,0 +1,72 @@
+{
+  "schema": "flop-workload-validation-v1",
+  "checked_date": "2026-10-12",
+  "implementation_commit": "3eb8f1f636896127958f699837ce70980b228af1",
+  "sources": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-12T16:21:53.963433+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-12T16:21:54.449312+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-12T16:21:54.004493+00:00",
+      "raw_sha256": "de15e447595f9b8b11f67dfdc04ab7a79d64b2f9dd3e626fa27b0b5ac27f5825",
+      "text_sha256": "4004c40b18071e295438ec9bffdd9c94200353899268e42d65c669f215172ce5"
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-12T16:21:54.766959+00:00",
+      "raw_sha256": "61f7a2a2eb012e1ca3dec1d59cc67da8c0a46ffb13bc930678ff740edfff857b",
+      "text_sha256": "7c05444a4f22e56e5c2d2db71bfbd2dcef529f7db4103d2cec0c9a04596c2c1b"
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-12T16:21:54.770176+00:00",
+      "raw_sha256": "af8b462d7e0caf2e54f364d0e5f2e914dce9ea04ddde7e93b53e71b7a8c4767b",
+      "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-12T16:21:55.861822+00:00",
+      "raw_sha256": "ea62346d2f9f0826d712be4e635ccdd76250785430314452b6cd5f7adc66be7b",
+      "text_sha256": "a49bdd6ef4db7da481f304c3c48ee52b935d3bd6b3faca408b3dbedd2ca20e95"
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-12T16:21:55.861798+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    }
+  ],
+  "tasks": 8,
+  "mechanical_passes": 8,
+  "generator": "Codex current chat, manual response import",
+  "model": "current-chat-unspecified",
+  "usage": null,
+  "cost": null,
+  "semantic_review": {
+    "reviewer": "same author in current chat",
+    "independent": false,
+    "status": "claims checked against supplied excerpts; external review pending"
+  },
+  "flop_session": {
+    "status": "not_executed",
+    "settlement": "not_verified"
+  },
+  "scope": "Source snapshots and unreviewed response files remain in the ignored local cache; hashes are observations, not server attestations."
+}
