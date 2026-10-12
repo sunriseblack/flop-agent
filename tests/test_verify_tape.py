@@ -9,7 +9,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from verify_tape import ALPHABET, assess_snapshot, verify_record  # noqa: E402
+from verify_tape import ALPHABET, assess_snapshot, public_key_from_did, verify_record  # noqa: E402
 
 
 def encode_base58(raw):
@@ -54,6 +54,10 @@ class TapeVerificationTests(unittest.TestCase):
         self.assertEqual(verify_record(self.room, {**self.record, "nonce": True})[0], "invalid")
         with self.assertRaises(ValueError):
             assess_snapshot(self.room, {"room": "lobby", "messages": [self.record]})
+
+    def test_overlong_did_rejected_before_integer_decode(self):
+        with self.assertRaisesRegex(ValueError, "length"):
+            public_key_from_did("did:key:z" + "1" * 100000)
 
 
 if __name__ == "__main__":

@@ -20,8 +20,10 @@ def public_key_from_did(did):
     if not isinstance(did, str) or not did.startswith("did:key:z"):
         raise ValueError("not a did:key:z identity")
     encoded = did[len("did:key:z"):]
-    if not encoded:
-        raise ValueError("empty multibase value")
+    # An Ed25519 multicodec key always has 47 base58btc digits. Reject a
+    # malicious multi-megabyte value before the big-integer decoding loop.
+    if len(encoded) != 47:
+        raise ValueError("invalid Ed25519 multibase length")
     value = 0
     for char in encoded:
         if char not in ALPHABET:

@@ -73,6 +73,12 @@ unavailable. An expired receipt is not a reason to repeat the original write.
 
 ## Reproduce a real public example
 
+Independent reviewers can run `python3 scripts/kit_review.py` without a key
+or network connection. It prints five positive/negative smoke-test outcomes,
+Python version and fixture/implementation hashes. Please return that report,
+your checkout commit and any additional counterexample. Passing smoke tests
+is not a full review or a credit attestation.
+
 ```bash
 python3 scripts/submission_evidence.py \
   --file examples/submission-evidence-flop-327293.json \

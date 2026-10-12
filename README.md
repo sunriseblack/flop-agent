@@ -118,6 +118,14 @@ an aggregate score or matching board ID does not prove credit for a
 particular submission. A runnable public fixture and adversarial tests are
 included. The tool loads no private key and posts or replays nothing.
 
+## Public document inference workload
+
+The [public-document inference workload](INFERENCE_WORKLOAD.md) prepares
+bounded source-pinned model tasks and checks imported draft answers. It is
+transport-neutral and has no wallet, purchase or publication path. See the
+[daily routine](DAILY_ROUTINE.md) for the contribution review loop and the
+official testnet launch gate.
+
 ## Close Call paper contest audit
 
 The read-only auditor checks one archived Close Call sweep against the public

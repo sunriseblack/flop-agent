@@ -295,7 +295,7 @@ def main(argv=None):
         print(json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False))
         artifact_bad = result.get("artifact", {}).get("expected_hash_matches") is False
         return 0 if result["evidence_verified"] and not artifact_bad else 1
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, RecursionError) as exc:
         print(f"Submission evidence unavailable: {exc}", file=sys.stderr)
         return 2
 

@@ -182,6 +182,13 @@ class SubmissionEvidenceTests(unittest.TestCase):
             with mock.patch("submission_evidence.MAX_PACKET_BYTES", 32), contextlib.redirect_stderr(io.StringIO()):
                 self.assertEqual(main(["--file", str(path)]), 2)
 
+    def test_deeply_nested_json_returns_unavailable_not_traceback(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "nested.json"
+            path.write_text("[" * 2000 + "0" + "]" * 2000)
+            with contextlib.redirect_stderr(io.StringIO()):
+                self.assertEqual(main(["--file", str(path)]), 2)
+
     def test_public_fixture_verifies_and_has_no_credit_claim(self):
         fixture = Path(__file__).resolve().parents[1] / "examples/submission-evidence-flop-327293.json"
         result = assess_packet(json.loads(fixture.read_text()))
