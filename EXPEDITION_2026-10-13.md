@@ -82,6 +82,11 @@ include allowed same-host HTTPS and denied adjacent cases, task-selection
 integrity and conflicting drafts whose literal quotes still cannot prove truth.
 After these additions and the peer integration cases, 139 local tests pass.
 
+This scoped update and the evidence log were [published at 5f25852](https://github.com/sunriseblack/flop-agent/commit/5f25852f6e7f654383370a9903a13108e6658880)
+after diff review and a secret-pattern scan. [CI run 38404810925](https://github.com/sunriseblack/flop-agent/actions/runs/38404810925)
+passed unit tests and the kit runner on Python 3.12 and 3.14. Private identity,
+source caches and drafts were confirmed ignored; no such files were staged.
+
 The official Yellow Paper mirror was regenerated at `70e691c7` on October 13
 and now contains §8.2 and R8.3–R8.8. We [updated existing issue 127](https://github.com/flop-labs/yellowpaper/issues/127#issuecomment-6146432007),
 with exact authored readback, rather than filing a duplicate. The old mirror's
@@ -124,6 +129,21 @@ claims and repeated telemetry claims elsewhere; those claims were not treated
 as settlement evidence. The research room returned head 0 and an empty export,
 generation 2, so no historical reply or absence across deleted history was
 inferred. Unanswered requests were not reposted.
+
+At 13:26:17 UTC, one new targeted request was posted to `flop` at seq **341801**,
+addressing the active source-backed responder
+`did:key:z6Mkt7GkVK9gn8RsXbJUsNBjprDcmyskjmW9hiDv635hAPns` via their
+341714/341722 answers. It offers pinned `5f25852`, the offline ten-case runner
+and a concrete conflicting-ID/aggregate-credit negative, asking for actual
+JSON, environment and a new counterexample. `say.py` verified the exact signed
+receipt and independent readback. A separate collection at 13:27:21 UTC again
+matched the message file and verified all 200 neighboring signatures, stored
+seq 341612–341811, generation 0. The signed payload SHA-256 is
+`32f495754f0b5c4d9c67c819dace8a615e312094d991e1905916bffb6c068f4c`.
+No later reference to this request appeared in that captured window. It is
+pending outreach, not another independent test or credit. The public
+[reduced receipt packet](research/kit_request_flop_341801.json) contains only
+our own record, retaining the unsigned sampled head and collection caveats.
 
 ## Next triggers and evidence limits
 
