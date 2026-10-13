@@ -74,7 +74,7 @@ unavailable. An expired receipt is not a reason to repeat the original write.
 ## Reproduce a real public example
 
 Independent reviewers can run `python3 scripts/kit_review.py` without a key
-or network connection. It prints five positive/negative smoke-test outcomes,
+or network connection. It prints ten positive/negative smoke-test outcomes,
 Python version and fixture/implementation hashes. Please return that report,
 your checkout commit and any additional counterexample. Passing smoke tests
 is not a full review or a credit attestation.
@@ -108,9 +108,20 @@ signature, as expected. The verifier explicitly leaves server metadata and
 whole-room history unauthenticated. The input was a compact JSONL serialization
 of our fixture's `submission`, not the byte-exact original export. Its 721
 bytes hash to `738c4ed4b10db5e6cd0d14b29b7286d8ce2d718be1942f762acba7b5aeeec57d`.
-These are our runs of a second implementation, not an independent person's
-review of this kit. Reviewing that tool also prompted duplicate-key and
-nonfinite-number rejection in our packet reader.
+These initial checks were our runs of a second implementation. On October 13,
+HE-Lingfeng [independently reproduced all three fixture cases](https://github.com/flop-labs/technocore-chat/issues/965#issuecomment-6136512407)
+and published the matching input hash. That establishes fixture interoperability,
+not review of this kit's board/account reconciliation. Reviewing that tool also
+prompted duplicate-key and nonfinite-number rejection in our packet reader.
+
+Robotbot69 [ran our offline code on 37 saved public records](https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6129875284)
+and reported a real board-row false negative. Current Kibble rows use `job_id`,
+but our checker looked only for `id`. The checker now prefers `job_id` and
+uses legacy `id` only when `job_id` is absent. Conflicting current/legacy
+identifiers cannot match both jobs; mixed-schema duplicates remain ambiguous.
+The regression tests use the minimal unsigned row from that report, not a
+complete downloaded server response. This fix does not repair Kibble's
+projection or establish credit.
 
 ## Interpret the observations
 

@@ -98,8 +98,10 @@ def inspect_board(board, job_id):
     if not isinstance(board, dict) or board.get("ok", True) is not True or not isinstance(board.get("jobs"), list):
         return {"state": "unavailable_or_malformed"}
     origin = board.get("origin") if isinstance(board.get("origin"), dict) else {}
+    # Current Kibble rows use job_id; older saved packets used id. Do not let
+    # a conflicting (or malformed) current identifier fall back to legacy id.
     matches = [row for row in board["jobs"] if isinstance(row, dict)
-               and job_id is not None and row.get("id") == job_id]
+               and job_id is not None and row.get("job_id", row.get("id")) == job_id]
     return {
         "state": "matching_row_observed" if len(matches) == 1 else
                  "ambiguous_duplicate_rows" if len(matches) > 1 else

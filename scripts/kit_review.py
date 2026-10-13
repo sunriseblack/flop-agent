@@ -8,7 +8,7 @@ import pathlib
 import platform
 import sys
 
-from submission_evidence import assess_packet, strict_json
+from submission_evidence import assess_packet, inspect_board, strict_json
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -41,6 +41,22 @@ def run():
     changed = copy.deepcopy(original)
     changed["host_score"] = {"ok": True, "did": did, "score": 999, "found": True, "engine_warm": True}
     check("aggregate_score_is_not_submission_credit", changed, True, "exact_fields_match_in_supplied_snapshot")
+    # Minimal unsigned row from Robotbot69's issue-955 counterexample,
+    # not a complete server response or a signed board fixture.
+    target = "k000a311a3c"
+    board_cases = [
+        ("current_job_id_row", [{"job_id": target}], "matching_row_observed"),
+        ("legacy_id_row", [{"id": target}], "matching_row_observed"),
+        ("current_id_precedes_conflicting_legacy", [{"job_id": "k0123456789", "id": target}],
+         "not_observed_in_supplied_board"),
+        ("mixed_identifier_duplicate_rows", [{"job_id": target}, {"id": target}],
+         "ambiguous_duplicate_rows"),
+        ("missing_board_job", [{"job_id": "k0123456789"}], "not_observed_in_supplied_board"),
+    ]
+    for name, rows, expected in board_cases:
+        result = inspect_board({"jobs": rows}, target)
+        cases.append({"case": name, "passed": result["state"] == expected,
+                      "observed": {"board_state": result["state"], "coverage": result["coverage"]}})
     return {"schema": "flop-kit-review-v1", "python": platform.python_version(),
             "fixture_sha256": hashlib.sha256(raw).hexdigest(),
             "implementation_sha256": hashlib.sha256((ROOT / "scripts/submission_evidence.py").read_bytes()).hexdigest(),

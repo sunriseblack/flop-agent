@@ -172,7 +172,9 @@ class DocsWorkloadTests(unittest.TestCase):
     def test_one_command_kit_review_passes_expected_cases(self):
         result = kit_smoke_test()
         self.assertTrue(result["all_passed"])
-        self.assertEqual(len(result["cases"]), 5)
+        self.assertEqual(len(result["cases"]), 10)
+        self.assertIn("current_id_precedes_conflicting_legacy",
+                      {case["case"] for case in result["cases"]})
 
 
 if __name__ == "__main__":

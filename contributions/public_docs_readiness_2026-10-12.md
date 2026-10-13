@@ -1,9 +1,9 @@
-# Public document readiness checks 12 October 2026
+# Draft public document readiness checks 12 October 2026
 
 The source-pinned workload produced eight draft answers from seven official
 public documents. All eight passed request-version, citation and structural
-checks, including two required abstentions. The author checked the claims
-against the supplied excerpts; independent semantic review is still pending.
+checks, including two required abstentions. The AI author checked the claims
+against the supplied excerpts; human semantic review is still required.
 These are local Codex-session outputs, not paid FLOP inference or allocation
 evidence. Source hashes and retrieval times are retained with the run.
 

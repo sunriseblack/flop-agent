@@ -16,7 +16,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from submission_evidence import SCHEMA, assess_packet, collect_packet, inspect_artifact, main, strict_json  # noqa: E402
+from submission_evidence import SCHEMA, assess_packet, collect_packet, inspect_artifact, inspect_board, main, strict_json  # noqa: E402
 from verify_tape import ALPHABET  # noqa: E402
 
 
@@ -124,6 +124,48 @@ class SubmissionEvidenceTests(unittest.TestCase):
         packet = copy.deepcopy(self.packet)
         packet["host_board"]["jobs"] *= 2
         self.assertEqual(self.assess(packet)["host_board"]["state"], "ambiguous_duplicate_rows")
+
+    def test_peer_reported_job_id_row_is_observed(self):
+        # Minimal unsigned row reported by Robotbot69 in upstream issue 955,
+        # comment 6129875284. This is not a complete downloaded board snapshot.
+        row = {"job_id": "k000a311a3c"}
+        result = inspect_board({"jobs": [row]}, "k000a311a3c")
+        self.assertEqual(result["state"], "matching_row_observed")
+        self.assertEqual(result["matching_rows"], [row])
+
+    def test_board_identifier_precedence_ignores_conflicting_legacy_id(self):
+        row = {"job_id": "k000a311a3c", "id": "k0123456789"}
+        self.assertEqual(inspect_board({"jobs": [row]}, row["job_id"])["state"],
+                         "matching_row_observed")
+        self.assertEqual(inspect_board({"jobs": [row]}, row["id"])["state"],
+                         "not_observed_in_supplied_board")
+
+    def test_board_legacy_id_is_supported_only_when_job_id_absent(self):
+        row = {"id": "k0123456789"}
+        self.assertEqual(inspect_board({"jobs": [row]}, row["id"])["state"],
+                         "matching_row_observed")
+        for value in (None, "", False, []):
+            with self.subTest(value=value):
+                self.assertEqual(inspect_board({"jobs": [{**row, "job_id": value}]},
+                                               row["id"])["state"],
+                                 "not_observed_in_supplied_board")
+
+    def test_mixed_board_identifier_duplicates_remain_ambiguous(self):
+        rows = [{"job_id": "k000a311a3c"}, {"id": "k000a311a3c"}]
+        result = inspect_board({"jobs": rows}, "k000a311a3c")
+        self.assertEqual(result["state"], "ambiguous_duplicate_rows")
+        self.assertEqual(result["matching_rows"], rows)
+
+    def test_other_job_id_row_is_not_observed(self):
+        result = inspect_board({"jobs": [{"job_id": "k000a311a3c"}]}, "k0123456789")
+        self.assertEqual(result["state"], "not_observed_in_supplied_board")
+
+    def test_job_id_board_row_does_not_establish_submission_credit(self):
+        packet = copy.deepcopy(self.packet)
+        packet["host_board"]["jobs"] = [{"job_id": "k0123456789", "status": "delivered"}]
+        result = self.assess(packet)
+        self.assertEqual(result["host_board"]["state"], "matching_row_observed")
+        self.assertEqual(result["credit_for_submission"], "not_determined")
 
     def test_missing_board_row_and_zero_score_do_not_prove_rejection(self):
         packet = copy.deepcopy(self.packet)
