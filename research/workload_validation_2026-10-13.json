@@ -1,0 +1,30 @@
+{
+  "schema": "flop-docs-validation-observation-v1",
+  "date": "2026-10-13",
+  "corpus_sha256": "a81dd6c07916f34641dcf565e7cffd8e3addb3020a6ed1fd585c1b2a6c614cb7",
+  "full_suite_jobs_sha256": "f8034b34a0dabf231a0dd88b940e3a52be44f5a68d9de726fd6b961e7832043a",
+  "sources": [
+    {"id":"auth","url":"https://technocore.chat/auth.md","retrieved_at":"2026-10-13T13:12:08.594954+00:00","raw_sha256":"ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb","text_sha256":"ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"},
+    {"id":"manual","url":"https://technocore.chat/llms.txt","retrieved_at":"2026-10-13T13:12:07.972137+00:00","raw_sha256":"ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6","text_sha256":"ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"},
+    {"id":"testnet","url":"https://flop.finance/testnet/","retrieved_at":"2026-10-13T13:12:07.943118+00:00","raw_sha256":"69614641c6e4e3c85c406e5263cbda66ff46a8404c6aab931bcd84fbf301787f","text_sha256":"4004c40b18071e295438ec9bffdd9c94200353899268e42d65c669f215172ce5"},
+    {"id":"airdrop","url":"https://flop.finance/airdrop/","retrieved_at":"2026-10-13T13:12:08.200471+00:00","raw_sha256":"18735a2c717c96dd750735cf73e1199e3473a3d4d9fd12ab923c26f399ecca8a","text_sha256":"7c05444a4f22e56e5c2d2db71bfbd2dcef529f7db4103d2cec0c9a04596c2c1b"},
+    {"id":"agent","url":"https://flop.finance/intro/agent/","retrieved_at":"2026-10-13T13:12:08.198129+00:00","raw_sha256":"5c1885150f31f7db9edbe3bf877eeeddb641490944b1e2dacd7359c543cd08f3","text_sha256":"bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"},
+    {"id":"yellowpaper","url":"https://flop.finance/intro/yellowpaper/","retrieved_at":"2026-10-13T13:12:08.431877+00:00","raw_sha256":"e82fcef493998a4bf247935589c0fc039f4ed9f5dedb2b2b43659618fec6c78d","text_sha256":"a49bdd6ef4db7da481f304c3c48ee52b935d3bd6b3faca408b3dbedd2ca20e95"},
+    {"id":"store","url":"https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py","retrieved_at":"2026-10-13T13:12:08.358298+00:00","raw_sha256":"0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249","text_sha256":"0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"},
+    {"id":"money_path","url":"https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md","retrieved_at":"2026-10-13T13:12:08.595500+00:00","raw_sha256":"3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1","text_sha256":"3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"}
+  ],
+  "suite_tasks": 9,
+  "unchanged_previous_request_hashes": 8,
+  "unchanged_drafts_regenerated": 0,
+  "new_task": {"id":"money-path-scope","job_sha256":"6776e16b500f3d384fadc9ebd4d158ba5b18c49055d7d18c5195e407471f11ce","mechanical_pass":true,"semantic_review":"required"},
+  "provider": "codex-current-session",
+  "model": "current-chat-unspecified",
+  "provider_identity_verified": false,
+  "review": "Same AI author checked supplied excerpts; no independent or human semantic review recorded.",
+  "usage": null,
+  "latency": null,
+  "cost": null,
+  "flop_sessions": 0,
+  "flop_settlement": "not_verified",
+  "caution": "Private source caches, prompts and draft output are not published. Mechanical checks are not truth, runtime conformance or allocation proof."
+}

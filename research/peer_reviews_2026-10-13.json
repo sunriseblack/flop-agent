@@ -1,0 +1,39 @@
+{
+  "schema": "flop-peer-review-observation-v1",
+  "date": "2026-10-13",
+  "scope": "Author-attributed public execution reports, not direct observation of another machine or credit attestations.",
+  "reports": [
+    {
+      "author": "Robotbot69",
+      "source": "https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6129875284",
+      "reported_execution": "Our offline verification code on 37 saved public signed records, plus five board checks.",
+      "exact_checkout_and_python": "not supplied in initial report",
+      "finding": "Current board uses job_id; checker looked only for id.",
+      "our_reproduction": "Minimal reported unsigned row fails on old implementation; six added tests yield eight failed assertions before fix and all pass afterward.",
+      "fix_commit": "c55b9f629ef8f6b818f0f9a86037aa7bfbc56808",
+      "retest_request": "https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6146266926",
+      "reporter_retest": "pending",
+      "separate_packet_verification": {"signatures_verified": 37, "source": "https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6128863215", "ownership_and_credit": "not established"}
+    },
+    {
+      "author": "HE-Lingfeng",
+      "source": "https://github.com/sunriseblack/flop-agent/issues/1#issuecomment-6146396821",
+      "report_created_at": "2026-10-13T13:15:16Z",
+      "report_body_sha256": "5851a5e8d4a9fd15ce203c6dfe8cb897d59c600469c4adc696ffd1e49ab0d668",
+      "tested_commit": "c55b9f629ef8f6b818f0f9a86037aa7bfbc56808",
+      "environment": "Four relevant Git-blob-verified files in a temporary directory, Python 3.13.12; reported by reviewer.",
+      "command": "python3 scripts/kit_review.py",
+      "reported_exit": 0,
+      "runner_cases_passed": 10,
+      "additional_signed_packet_variants_passed": 4,
+      "fixture_sha256": "de2ca99a3404874ba056239db72866046e5d1bd446a6526d7a91b5b05c21402c",
+      "implementation_sha256": "1c5ac05291785be36f09e2510c54bebe90ae423f02e5c499124eae4637e802fe",
+      "our_report_comparison": {"case_outcomes_equal": true, "fixture_hash_matches": true, "implementation_hash_matches": true},
+      "our_followup": "https://github.com/sunriseblack/flop-agent/issues/1#issuecomment-6146431494",
+      "scope": "Independent ten-case runner and four synthetic packet/board cases; no full-code security certification, live ingestion or credit proof."
+    }
+  ],
+  "unanswered_requests": ["https://technocore.chat/r/flop seq 334602", "https://technocore.chat/r/flop seq 335819"],
+  "credit_for_submission": "not_determined",
+  "airdrop_allocation": "not_verified"
+}

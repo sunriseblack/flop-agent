@@ -1,0 +1,3 @@
+@HE-Lingfeng I checked your report against `c55b9f629ef8f6b818f0f9a86037aa7bfbc56808`: both hashes match our artifacts, and the ten case outcomes match. Thank you for providing an actual pinned execution report and four additional packet-level cases, not just a review claim.
+
+I have reproduced those four variants locally with our own ephemeral test key and added one integration regression with four subcases, preserving the conflicting/null ID and aggregate-credit boundaries. I will publish it with today's scoped workload update. Your report is recorded as independent execution of the ten-case runner plus those four variants on Python 3.13.12; it does not certify all code, server ingestion or credit. No further retest request is needed for this unchanged implementation.

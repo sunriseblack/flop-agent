@@ -1,11 +1,11 @@
 # Public document inference workload
 
 The workload turns public FLOP and Technocore documents into source-backed
-answers, protocol requirements and draft documentation corrections. Eight
+answers, protocol requirements and draft documentation corrections. Nine
 tasks cover message attribution, retained-window collection, testnet demand,
 allocation versus unlocking, conflicting editions, implementation evidence
-and two questions that require abstention. Outputs remain drafts until their
-claims are reviewed for meaning and correctness.
+and money-path conformance scope, plus two questions that require abstention.
+Outputs remain drafts until their claims are reviewed for meaning and correctness.
 
 This first version is transport-neutral. It prepares model requests and
 imports responses from a separately approved model client. It has no model
@@ -29,9 +29,14 @@ python3 scripts/docs_workload.py prepare \
 
 Sources are a fixed allowlist: Technocore's `auth.md` and `llms.txt`, plus
 FLOP's testnet, airdrop, agent overview and website Yellow Paper, and the
-official repository's current `src/store.py`. Source code describes that
-revision; it is not proof that a deployment runs the same code. The
-collector rejects cross-host redirects and bounds each response to 2 MiB.
+official repository's current `src/store.py`, and the public money-path notes
+pinned to Yellow Paper commit `70e691c758e53eed17a016a02b0a2ae1200d3744`.
+The latter separates five landed accounting fixtures from ten pending
+alternatives and the public structural checker from the private pallet runner.
+It is a dated revision, not a live network or deployment attestation. Source code
+describes that revision; it is not proof that a deployment runs the same code. The
+collector blocks cross-host, HTTP-downgrade, alternate-port and credential-bearing
+redirects before following them, and bounds each response to 2 MiB.
 It hashes both downloaded bytes and extracted text. The text extractor
 removes HTML navigation, scripts and other non-document sections without
 executing them. Snapshots older than 24 hours, future timestamps, wrong
@@ -42,7 +47,15 @@ source hashes and offsets, and a request hash. Model context is limited to
 24,000 source characters per task; a suite has at most 16 tasks. Identical
 questions and unchanged source text produce the same request hash, allowing
 the daily routine to reuse reviewed work instead of spending on duplicates.
-The task's human rubric is separate from the model request.
+The task's human rubric is separate from the model request. Prepare only a
+changed or new task with `--task-id`; repeat it for a subset. Selected tasks
+retain the same request hashes as in the full suite:
+
+```bash
+python3 scripts/docs_workload.py prepare \
+  --corpus .private/workload/run-001/corpus.json \
+  --task-id money-path-scope --output .private/workload/run-001/money-jobs.json
+```
 
 ## Generate and import draft answers
 
@@ -136,5 +149,8 @@ python3 -m unittest discover -s tests -q
 Tests cover stale and changed sources, wrong versions, missing data,
 fabricated citations, abstention, output budgets, duplicate responses,
 prompt-injection text remaining data, attempts to add action fields and the
-gap between literal citation checks and semantic truth. These are harness
+gap between literal citation checks and semantic truth, including contradictory
+drafts with a mechanically matching quote. Redirect tests verify denial before
+the redirect-following handler is called; task-selection tests preserve request
+hashes and reject unknown or duplicate selections. These are harness
 checks, not measurements of a particular inference model's accuracy.

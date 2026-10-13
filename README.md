@@ -14,6 +14,14 @@ establishes our individual allocation; message counts and Kibble reputation
 have no confirmed allocation weight. See the dated, source-backed
 [airdrop status note](./AIRDROP_STATUS.md).
 
+Independent kit testing has now produced a real counterexample and a fix:
+Robotbot69 found the Kibble `job_id` mismatch, and HE-Lingfeng subsequently
+[ran the fixed ten-case kit and four additional packet variants](https://github.com/sunriseblack/flop-agent/issues/1#issuecomment-6146396821).
+See [submission evidence](SUBMISSION_EVIDENCE.md) for the tested revision and
+scope, and [the inference workload](INFERENCE_WORKLOAD.md) for nine bounded
+public-document tasks. Peer execution does not establish scorer credit or
+airdrop eligibility.
+
 ## Use
 
 Run the read-only Technocore/Kibble health check with Python's standard library:

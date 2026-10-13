@@ -28,6 +28,7 @@ SOURCES = {
     "agent": "https://flop.finance/intro/agent/",
     "yellowpaper": "https://flop.finance/intro/yellowpaper/",
     "store": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+    "money_path": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
 }
 MAX_SOURCE_BYTES = 2 * 1024 * 1024
 MAX_FILE_BYTES = 8 * 1024 * 1024
@@ -82,13 +83,28 @@ class PublicText(HTMLParser):
                          if (line := " ".join(part.split())))
 
 
+class OfficialRedirect(urllib.request.HTTPRedirectHandler):
+    """Reject an out-of-scope redirect before a request reaches that host."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        original, target = urllib.parse.urlsplit(req.full_url), urllib.parse.urlsplit(newurl)
+        if (target.scheme != "https" or target.hostname != original.hostname
+                or (target.port or 443) != (original.port or 443)
+                or target.username is not None or target.password is not None):
+            raise ValueError("unexpected source redirect")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
 def fetch_source(item, timeout):
     source_id, url = item
     request = urllib.request.Request(url, headers={"User-Agent": "flop-docs-workload/1", "Accept": "text/html,text/plain"})
-    with urllib.request.urlopen(request, timeout=timeout) as response:
+    opener = urllib.request.build_opener(OfficialRedirect())
+    with opener.open(request, timeout=timeout) as response:
         final = urllib.parse.urlsplit(response.url)
         original = urllib.parse.urlsplit(url)
-        if final.scheme != "https" or final.hostname != original.hostname:
+        if (final.scheme != "https" or final.hostname != original.hostname
+                or (final.port or 443) != (original.port or 443)
+                or final.username is not None or final.password is not None):
             raise ValueError("unexpected source redirect")
         raw = response.read(MAX_SOURCE_BYTES + 1)
         content_type = response.headers.get("Content-Type", "")
@@ -170,6 +186,22 @@ def excerpt(source, anchors):
     return [{"snippet_id": f"{source['id']}:{start}:{end}", "source_id": source["id"],
              "url": source["url"], "source_text_sha256": source["text_sha256"],
              "start": start, "end": end, "text": text[start:end]} for start, end in merged[:3]]
+
+
+def select_tasks(tasks, task_ids):
+    """Select changed/new questions without regenerating the whole suite."""
+    if not task_ids:
+        return tasks
+    if (not isinstance(tasks, dict) or tasks.get("schema") != "flop-docs-tasks-v1"
+            or not isinstance(tasks.get("tasks"), list) or not 1 <= len(tasks["tasks"]) <= MAX_JOBS):
+        raise ValueError("invalid task suite")
+    ids = [task.get("id") if isinstance(task, dict) else None for task in tasks["tasks"]]
+    if (any(not isinstance(task_id, str) or not task_id for task_id in ids)
+            or len(ids) != len(set(ids))):
+        raise ValueError("invalid or duplicate task ID")
+    if len(task_ids) != len(set(task_ids)) or not set(task_ids) <= set(ids):
+        raise ValueError("duplicate or unknown selected task ID")
+    return {"schema": tasks["schema"], "tasks": [task for task in tasks["tasks"] if task["id"] in task_ids]}
 
 
 def prepare(corpus, tasks, *, now=None):
@@ -295,6 +327,7 @@ def main(argv=None):
     build = commands.add_parser("prepare")
     build.add_argument("--corpus", required=True)
     build.add_argument("--tasks", default=str(ROOT / "workload/tasks.json"))
+    build.add_argument("--task-id", action="append", help="prepare only this task; repeat for a subset")
     build.add_argument("--output", required=True)
     review = commands.add_parser("grade")
     review.add_argument("--bundle", required=True)
@@ -311,7 +344,7 @@ def main(argv=None):
                 raise ValueError("timeout must be 0..30 seconds")
             result = collect(args.timeout)
         elif args.command == "prepare":
-            result = prepare(load_file(args.corpus), load_file(args.tasks))
+            result = prepare(load_file(args.corpus), select_tasks(load_file(args.tasks), args.task_id))
         else:
             result = grade(load_file(args.bundle), load_file(args.responses), args.provider, args.model)
         save_file(args.output, result)

@@ -26,8 +26,10 @@ requests pending without repeated generic reminders.
 Use the [workload guide](INFERENCE_WORKLOAD.md). Refresh allowlisted official
 sources and pin bytes, text hashes and retrieval times. Prepare bounded
 questions from the task suite or a concrete new public-document problem.
-Compare request hashes with previous reviewed outputs and skip unchanged
-work. Generate drafts using an approved available model path, inspect the
+Compare request hashes with previous outputs and skip unchanged generation;
+an earlier unreviewed draft still needs human review. Use `--task-id` to
+prepare just the changed or new questions. Generate drafts using an approved
+available model path, inspect the
 mechanical checks, then review correctness and citation entailment. Record
 the provider, actual usage when available, review identity, accepted useful
 outputs and demonstrated failures. Do not call a paid API or arbitrary model

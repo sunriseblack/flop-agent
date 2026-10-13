@@ -13,6 +13,16 @@ October 12 and validated with 107 offline tests plus live collection and
 companion-verifier checks. Independent adoption and review remain the next
 milestone; publication does not establish an allocation.
 
+October 13 follow-up: Robotbot69 independently used the kit on saved records
+and found a board identifier bug. The fix at `c55b9f6` subsequently passed
+[HE-Lingfeng's ten-case execution and four packet variants](https://github.com/sunriseblack/flop-agent/issues/1#issuecomment-6146396821).
+Independent testing is now demonstrated for that scope. The official mirror
+at [70e691c7](https://github.com/flop-labs/yellowpaper/blob/70e691c758e53eed17a016a02b0a2ae1200d3744/yellowpaper.md#82-era-t-conversion-and-airdrop-vesting)
+now contains §8.2 and R8.3–R8.8; the missing-section observation about the old
+mirror below is historical. The Agent intro discrepancy, PARTIAL implementation
+status, owner binding and final allocation rules still need resolution. The
+daily [evidence log](EXPEDITION_2026-10-13.md) records the narrower current state.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

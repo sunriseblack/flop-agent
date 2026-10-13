@@ -7,12 +7,13 @@ import json
 import sys
 import tempfile
 import unittest
+import urllib.request
 from pathlib import Path
 from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from docs_workload import (PublicText, SOURCES, SYSTEM, checked_sources, digest, excerpt, grade,
-                           load_file, prepare, response_errors, save_file)  # noqa: E402
+from docs_workload import (OfficialRedirect, PublicText, SOURCES, SYSTEM, checked_sources, digest, excerpt, grade,
+                           load_file, prepare, response_errors, save_file, select_tasks)  # noqa: E402
 from kit_review import run as kit_smoke_test  # noqa: E402
 
 
@@ -136,6 +137,58 @@ class DocsWorkloadTests(unittest.TestCase):
         parser.feed('<nav>Menu</nav><main><p>Real requirement.</p><script>steal()</script></main><footer>Footer</footer>')
         self.assertEqual(parser.text(), "Real requirement.")
 
+    def test_cross_host_downgrade_port_and_userinfo_redirects_block_before_follow(self):
+        request = urllib.request.Request(SOURCES["auth"])
+        for url in ("https://evil.example/auth.md", "http://technocore.chat/auth.md",
+                    "https://technocore.chat:8443/auth.md", "https://someone@technocore.chat/auth.md"):
+            with self.subTest(url=url), mock.patch.object(urllib.request.HTTPRedirectHandler,
+                                                         "redirect_request") as follow:
+                with self.assertRaisesRegex(ValueError, "unexpected source redirect"):
+                    OfficialRedirect().redirect_request(request, None, 302, "Found", {}, url)
+                follow.assert_not_called()
+
+    def test_same_official_host_https_redirect_is_allowed(self):
+        request = urllib.request.Request(SOURCES["auth"])
+        target = "https://technocore.chat:443/docs/auth.md"
+        with mock.patch.object(urllib.request.HTTPRedirectHandler, "redirect_request", return_value=request) as follow:
+            self.assertIs(OfficialRedirect().redirect_request(request, None, 302, "Found", {}, target), request)
+            follow.assert_called_once()
+
+    def test_selected_task_hash_matches_full_suite_and_preserves_input(self):
+        tasks = copy.deepcopy(self.tasks)
+        tasks["tasks"].append({**tasks["tasks"][0], "id": "second"})
+        selected = select_tasks(tasks, ["scope"])
+        self.assertEqual(len(tasks["tasks"]), 2)
+        self.assertEqual(len(selected["tasks"]), 1)
+        full = prepare(self.corpus, tasks, now=self.now)
+        single = prepare(self.corpus, selected, now=self.now)
+        self.assertEqual(full["jobs"][0]["request"]["job_sha256"], single["jobs"][0]["request"]["job_sha256"])
+        self.assertIs(select_tasks(tasks, None), tasks)
+
+    def test_unknown_duplicate_selection_and_ambiguous_suite_fail(self):
+        for selected in (["missing"], ["scope", "scope"]):
+            with self.assertRaises(ValueError):
+                select_tasks(self.tasks, selected)
+        tasks = copy.deepcopy(self.tasks)
+        tasks["tasks"] *= 2
+        with self.assertRaises(ValueError):
+            select_tasks(tasks, ["scope"])
+
+    def test_conflicting_drafts_remain_visible_for_semantic_review(self):
+        corpus = copy.deepcopy(self.corpus)
+        text = "Draft A: agent unlocking is undecided. Draft B: spend three to unlock one."
+        corpus["sources"][0].update(text=text, text_sha256=hashlib.sha256(text.encode()).hexdigest())
+        bundle = prepare(corpus, self.tasks, now=self.now)
+        snippet = bundle["jobs"][0]["request"]["snippets"][0]
+        self.assertIn("undecided", snippet["text"])
+        self.assertIn("three to unlock one", snippet["text"])
+        response = {**self.response, "job_sha256": bundle["jobs"][0]["request"]["job_sha256"],
+                    "claims": [{"text": "Both drafts definitively agree.", "evidence": [
+                        {"snippet_id": snippet["snippet_id"], "quote": "spend three to unlock one"}]}]}
+        report = grade(bundle, [response])
+        self.assertTrue(report["ready_for_human_review"])
+        self.assertEqual(report["results"][0]["semantic_review"], "required")
+
     def test_overlapping_anchor_windows_merge_without_losing_evidence(self):
         text = "x" * 2500 + "FIRST" + "y" * 1495 + "SECOND" + "z" * 2500
         source = {"id": "auth", "url": SOURCES["auth"], "text": text,
@@ -165,7 +218,7 @@ class DocsWorkloadTests(unittest.TestCase):
     def test_public_task_suite_has_real_work_and_abstention_cases(self):
         path = Path(__file__).resolve().parents[1] / "workload/tasks.json"
         tasks = json.loads(path.read_text())["tasks"]
-        self.assertEqual(len(tasks), 8)
+        self.assertEqual(len(tasks), 9)
         self.assertEqual(sum(task.get("must_abstain", False) for task in tasks), 2)
         self.assertTrue(all(task["human_rubric"] for task in tasks))
 

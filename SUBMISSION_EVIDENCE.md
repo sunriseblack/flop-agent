@@ -123,6 +123,15 @@ The regression tests use the minimal unsigned row from that report, not a
 complete downloaded server response. This fix does not repair Kibble's
 projection or establish credit.
 
+HE-Lingfeng subsequently [executed the fixed ten-case runner](https://github.com/sunriseblack/flop-agent/issues/1#issuecomment-6146396821)
+at commit `c55b9f629ef8f6b818f0f9a86037aa7bfbc56808` on Python 3.13.12,
+reporting exit 0, all ten passes and matching fixture/implementation hashes.
+Four additional correctly signed synthetic packet variants tested conflicting
+IDs, a null current ID, mixed-schema duplicates and score/credit values of 999.
+All retained `credit_for_submission: not_determined`. Those integration cases
+are now local regressions. This is independent execution evidence for that
+specific revision and scope, not a security certification or scorer acceptance.
+
 ## Interpret the observations
 
 | Observation | Supported conclusion |

@@ -167,6 +167,30 @@ class SubmissionEvidenceTests(unittest.TestCase):
         self.assertEqual(result["host_board"]["state"], "matching_row_observed")
         self.assertEqual(result["credit_for_submission"], "not_determined")
 
+    def test_independent_review_packet_variants_keep_credit_unassigned(self):
+        # HE-Lingfeng's four integration cases, review issue 1 comment 6146396821.
+        # Our local test uses its own ephemeral in-memory key, not the reviewer's.
+        variants = [
+            ([{"job_id": "k0123456789", "id": "k000a311a3c", "status": "delivered", "credit": 999}],
+             "matching_row_observed"),
+            ([{"job_id": "k000a311a3c", "id": "k0123456789", "status": "delivered", "credit": 999}],
+             "not_observed_in_supplied_board"),
+            ([{"job_id": None, "id": "k0123456789", "status": "delivered"}],
+             "not_observed_in_supplied_board"),
+            ([{"job_id": "k0123456789"}, {"id": "k0123456789"}], "ambiguous_duplicate_rows"),
+        ]
+        for rows, expected in variants:
+            with self.subTest(rows=rows):
+                packet = copy.deepcopy(self.packet)
+                packet["host_board"]["jobs"] = rows
+                packet["host_score"]["score"] = 999
+                result = self.assess(packet)
+                self.assertTrue(result["evidence_verified"])
+                self.assertEqual(result["host_board"]["state"], expected)
+                self.assertEqual(result["credit_for_submission"], "not_determined")
+                self.assertEqual(result["host_board"]["coverage"],
+                                 "not_established_across_native_and_host_ledgers")
+
     def test_missing_board_row_and_zero_score_do_not_prove_rejection(self):
         packet = copy.deepcopy(self.packet)
         packet["host_board"]["jobs"] = []
