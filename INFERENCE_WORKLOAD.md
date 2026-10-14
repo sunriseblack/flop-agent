@@ -57,6 +57,23 @@ python3 scripts/docs_workload.py prepare \
   --task-id money-path-scope --output .private/workload/run-001/money-jobs.json
 ```
 
+Compare the freshly prepared bundle with a previous one before generating
+drafts. This command is offline and never overwrites an earlier report:
+
+```bash
+python3 scripts/docs_workload.py compare \
+  --previous-bundle .private/workload/previous/jobs.json \
+  --bundle .private/workload/run-001/jobs.json \
+  --output .private/workload/run-001/comparison.json
+```
+
+The report separates new, changed, unchanged and removed requests. Changed
+abstention rules or human rubrics require regrading and review even when the
+model request hash is unchanged. A matching request does not prove a saved
+response exists or was accepted; `saved_response_available` stays `not_checked`
+and semantic review remains required. No model client or network is called.
+Refresh the corpus before preparation; comparison is not a freshness check.
+
 ## Generate and import draft answers
 
 Pass only each job's `request` to an approved model client, not the human
@@ -101,6 +118,13 @@ fields such as model-proposed tool actions. The wallet-binding and
 guaranteed-award questions require abstention with no factual claims. All
 input JSON rejects duplicate keys and nonfinite numbers; saved artifacts
 are bounded to 8 MiB.
+
+Saved bundles are validated before grading or comparison: task IDs and excerpt
+IDs must be unique, abstention flags must be Boolean, request hashes must match
+and the context budget still applies. Recomputing a file hash does not make an
+ambiguous bundle valid. In particular, duplicating one task cannot count its
+single response as two mechanically passed tasks. Hashes check local integrity,
+not authentic retrieval from an official source.
 
 ## Review what the checks cannot establish
 

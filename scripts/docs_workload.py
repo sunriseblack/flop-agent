@@ -235,8 +235,10 @@ def prepare(corpus, tasks, *, now=None):
         jobs.append({"request": {**request, "job_sha256": job_hash},
                      "evaluation": {"must_abstain": task.get("must_abstain", False),
                                     "human_rubric": task.get("human_rubric", [])}})
-    return {"schema": "flop-docs-jobs-v1", "corpus_sha256": digest(corpus),
-            "tasks_sha256": digest(tasks), "jobs": jobs, "jobs_sha256": digest(jobs)}
+    bundle = {"schema": "flop-docs-jobs-v1", "corpus_sha256": digest(corpus),
+              "tasks_sha256": digest(tasks), "jobs": jobs, "jobs_sha256": digest(jobs)}
+    checked_jobs(bundle)
+    return bundle
 
 
 def response_errors(job, response):
@@ -278,32 +280,98 @@ def response_errors(job, response):
     return sorted(set(errors))
 
 
-def grade(bundle, responses, provider="manual", model="unspecified"):
+def checked_jobs(bundle):
+    """Validate saved requests before grading or comparing them.
+
+    Hashes bind this file's contents, not source provenance or semantic truth.
+    Unique IDs prevent dictionary lookup from hiding duplicate tasks/excerpts.
+    """
     if (not isinstance(bundle, dict) or bundle.get("schema") != "flop-docs-jobs-v1"
             or not isinstance(bundle.get("jobs"), list) or bundle.get("jobs_sha256") != digest(bundle["jobs"])):
         raise ValueError("invalid or changed job bundle")
+    if not 1 <= len(bundle["jobs"]) <= MAX_JOBS:
+        raise ValueError("job count exceeds budget")
+    jobs = {}
+    for job in bundle["jobs"]:
+        if (not isinstance(job, dict) or not isinstance(job.get("request"), dict)
+                or not isinstance(job.get("evaluation"), dict)):
+            raise ValueError("invalid job fields")
+        request, evaluation = job["request"], job["evaluation"]
+        task_id = request.get("task_id")
+        if not isinstance(task_id, str) or not task_id or task_id in jobs:
+            raise ValueError("invalid or duplicate task ID in bundle")
+        base = {key: value for key, value in request.items() if key != "job_sha256"}
+        if digest(base) != request.get("job_sha256"):
+            raise ValueError("request hash mismatch")
+        if (not isinstance(request.get("system"), str) or not request["system"]
+                or not isinstance(request.get("question"), str) or not 1 <= len(request["question"]) <= 2000):
+            raise ValueError("invalid request fields")
+        if (type(evaluation.get("must_abstain")) is not bool
+                or not isinstance(evaluation.get("human_rubric"), list)
+                or any(not isinstance(row, str) for row in evaluation["human_rubric"])):
+            raise ValueError("invalid evaluation fields")
+        snippets = request.get("snippets")
+        if not isinstance(snippets, list) or not snippets:
+            raise ValueError("missing request excerpts")
+        seen, context_chars = set(), 0
+        for snippet in snippets:
+            if (not isinstance(snippet, dict) or not isinstance(snippet.get("snippet_id"), str)
+                    or not snippet["snippet_id"] or not isinstance(snippet.get("text"), str)):
+                raise ValueError("invalid excerpt fields")
+            if snippet["snippet_id"] in seen:
+                raise ValueError("duplicate excerpt ID in request")
+            seen.add(snippet["snippet_id"])
+            context_chars += len(snippet["text"])
+        if context_chars > MAX_CONTEXT_CHARS:
+            raise ValueError("request context budget exceeded")
+        jobs[task_id] = job
+    return jobs
+
+
+def compare_bundles(previous, current):
+    """Offline request comparison; never certify cached output or review."""
+    old, new = checked_jobs(previous), checked_jobs(current)
+    rows = []
+    for task_id, job in new.items():
+        prior = old.get(task_id)
+        state = ("new" if prior is None else "unchanged"
+                 if prior["request"]["job_sha256"] == job["request"]["job_sha256"] else "changed")
+        evaluation_changed = prior is not None and digest(prior["evaluation"]) != digest(job["evaluation"])
+        rows.append({"task_id": task_id, "request_state": state,
+                     "previous_job_sha256": prior["request"]["job_sha256"] if prior else None,
+                     "current_job_sha256": job["request"]["job_sha256"],
+                     "evaluation_changed": evaluation_changed,
+                     "next_step": "prepare_new_draft_if_useful" if state != "unchanged" else
+                                  "check_saved_response_and_repeat_review" if evaluation_changed else
+                                  "check_saved_response_and_review_status",
+                     "saved_response_available": "not_checked", "semantic_review": "required"})
+    return {"schema": "flop-docs-comparison-v1",
+            "previous_jobs_sha256": previous["jobs_sha256"], "current_jobs_sha256": current["jobs_sha256"],
+            "tasks": len(rows), "new_or_changed_task_ids": [r["task_id"] for r in rows if r["request_state"] != "unchanged"],
+            "unchanged_task_ids": [r["task_id"] for r in rows if r["request_state"] == "unchanged"],
+            "removed_task_ids": sorted(set(old) - set(new)), "results": rows,
+            "model_calls": 0, "network_requests": 0,
+            "caution": "Matching requests do not prove an earlier response exists or was reviewed. Regrade under changed evaluation rules. Hashes are local integrity checks, not source authenticity or FLOP settlement."}
+
+
+def grade(bundle, responses, provider="manual", model="unspecified"):
+    jobs = checked_jobs(bundle)
     if not isinstance(responses, list):
         raise ValueError("responses must be a list")
-    if not 1 <= len(bundle["jobs"]) <= MAX_JOBS or len(responses) > MAX_JOBS:
-        raise ValueError("job or response count exceeds budget")
+    if len(responses) > MAX_JOBS:
+        raise ValueError("response count exceeds budget")
     by_id, global_errors = {}, []
     for response in responses:
         task_id = response.get("task_id") if isinstance(response, dict) else None
         if not isinstance(task_id, str) or task_id in by_id:
             raise ValueError("invalid or duplicate response ID")
         by_id[task_id] = response
-    expected = {job["request"]["task_id"] for job in bundle["jobs"]}
+    expected = set(jobs)
     if set(by_id) - expected:
         global_errors.append("unexpected_response_ids")
     rows = []
-    for job in bundle["jobs"]:
-        if (not isinstance(job, dict) or not isinstance(job.get("request"), dict)
-                or not isinstance(job.get("evaluation"), dict)):
-            raise ValueError("invalid job fields")
+    for job in jobs.values():
         request = job["request"]
-        base = {key: value for key, value in request.items() if key != "job_sha256"}
-        if digest(base) != request["job_sha256"]:
-            raise ValueError("request hash mismatch")
         response = by_id.get(request["task_id"])
         errors = ["response_missing"] if response is None else response_errors(job, response)
         rows.append({"task_id": request["task_id"], "mechanical_pass": not errors, "errors": errors,
@@ -335,6 +403,10 @@ def main(argv=None):
     review.add_argument("--provider", default="manual")
     review.add_argument("--model", default="unspecified")
     review.add_argument("--output", required=True)
+    comparison = commands.add_parser("compare", help="compare request hashes without a model or network")
+    comparison.add_argument("--previous-bundle", required=True)
+    comparison.add_argument("--bundle", required=True)
+    comparison.add_argument("--output", required=True)
     args = parser.parse_args(argv)
     try:
         if pathlib.Path(args.output).exists():
@@ -345,6 +417,8 @@ def main(argv=None):
             result = collect(args.timeout)
         elif args.command == "prepare":
             result = prepare(load_file(args.corpus), select_tasks(load_file(args.tasks), args.task_id))
+        elif args.command == "compare":
+            result = compare_bundles(load_file(args.previous_bundle), load_file(args.bundle))
         else:
             result = grade(load_file(args.bundle), load_file(args.responses), args.provider, args.model)
         save_file(args.output, result)

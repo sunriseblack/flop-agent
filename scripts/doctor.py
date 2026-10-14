@@ -3,6 +3,7 @@
 
 import argparse
 import json
+import math
 import pathlib
 import sys
 import urllib.parse
@@ -12,14 +13,21 @@ import urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_DID = json.loads((ROOT / "agent-did.json").read_text())["did"]
 DEFAULT_KIBBLE_URL = "https://kibble.world"
+MAX_JSON_BYTES = 4 * 1024 * 1024
 
 
 def fetch(url, timeout):
     request = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "flop-agent-doctor/1"})
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
-            return json.load(response), None
-    except (OSError, ValueError) as exc:
+            raw = response.read(MAX_JSON_BYTES + 1)
+        if len(raw) > MAX_JSON_BYTES:
+            raise ValueError("JSON response exceeds byte bound")
+        payload = json.loads(raw)
+        if not isinstance(payload, dict):
+            raise ValueError("expected a JSON object")
+        return payload, None
+    except (OSError, ValueError, RecursionError) as exc:
         return None, f"{type(exc).__name__}: {exc}"
 
 
@@ -40,7 +48,35 @@ def number(value):
     return value if isinstance(value, int) and not isinstance(value, bool) else None
 
 
-def assess(responses, max_lag):
+def cursor_inventory(responses):
+    """Keep qualified metadata paths, never imply a shared cursor domain.
+
+    Message/job arrays are not high-water marks and are intentionally omitted.
+    """
+    cursors, truncated = {}, False
+    def walk(value, path, depth):
+        nonlocal truncated
+        if not isinstance(value, dict):
+            return
+        if depth > 8:
+            truncated = True
+            return
+        for key, child in value.items():
+            name = str(key)
+            child_path = path + "." + name
+            if name == "seq" or name.endswith(("_seq", "_cursor")):
+                if len(cursors) >= 128:
+                    truncated = True
+                    return
+                cursors[child_path] = number(child)
+            if isinstance(child, dict):
+                walk(child, child_path, depth + 1)
+    for name, (payload, _) in responses.items():
+        walk(payload, name, 0)
+    return cursors, truncated
+
+
+def assess(responses, max_lag, expected_did=None):
     """Assess fetched (payload, error) pairs without network access."""
     problems, observations, payloads = [], {}, {}
     for name in ("room", "status", "stats", "board", "score"):
@@ -84,9 +120,9 @@ def assess(responses, max_lag):
             gap = head - cursor
             observations[label.replace(" ", "_") + "_gap"] = gap
             if gap < 0:
-                problems.append(f"{label}: cursor {cursor} is ahead of room head {head}; possible rewind")
+                problems.append(f"{label}: cursor {cursor} numerically exceeds room head {head}; possible rewind or different ledger")
             elif gap > max_lag:
-                problems.append(f"{label}: {gap} messages behind room head (limit {max_lag})")
+                problems.append(f"{label}: numeric difference {gap} exceeds limit {max_lag}; stale or non-comparable cursor metadata")
 
     if "floor" in responses:
         floor_record, error = responses["floor"]
@@ -103,7 +139,8 @@ def assess(responses, max_lag):
             for label, cursor in (("scoring engine", engine), ("stats tape", tape)):
                 if cursor is not None and cursor < floor - 1:
                     missing = floor - 1 - cursor
-                    problems.append(f"{label}: {missing} messages have fallen before retained floor {floor}; live room cannot replay them")
+                    problems.append(f"{label}: cursor {cursor} below retained native floor {floor}; if it is a native cursor, "
+                                    f"{missing} intervening sequences are outside live replay; cursor domain is not bound")
 
     board = payloads.get("board", {})
     if "board" in payloads:
@@ -149,12 +186,29 @@ def assess(responses, max_lag):
             problems.append("score: API or engine is not healthy")
         score_seq = number(score.get("engine_seq"))
         observations.update(score_engine_seq=score_seq, did_found=score.get("found"), did_score=score.get("score"))
+        observations["score_did"] = score.get("did")
+        observations["score_identity_matches"] = None if expected_did is None else score.get("did") == expected_did
+        if expected_did is not None and score.get("did") != expected_did:
+            problems.append("score: wrong or missing requested DID")
+        breakdown = score.get("breakdown")
+        if (isinstance(breakdown, dict) and number(score.get("score")) is not None
+                and number(breakdown.get("score")) is not None and score["score"] != breakdown["score"]):
+            problems.append("score: account score differs from breakdown score")
         if score_seq is None:
             problems.append("score: missing integer engine sequence")
         elif engine is not None and score_seq != engine:
             problems.append(f"score: engine sequence {score_seq} differs from stats {engine}")
 
-    return {"healthy": not problems, "observations": observations, "problems": problems}
+    cursors, truncated = cursor_inventory(responses)
+    observations["reported_cursor_metadata"] = cursors
+    observations["cursor_inventory_truncated"] = truncated
+    if truncated:
+        problems.append("metadata: cursor inventory exceeds structural bound")
+    return {"healthy": not problems, "observations": observations, "problems": problems,
+            "evidence_scope": {"native_to_host_cursor_mapping": "not_established",
+                               "legacy_gap_fields": "numeric differences, not verified processing lag",
+                               "credit_for_submission": "not_determined",
+                               "healthy_means": "no diagnostic flags observed, not certified coverage or acceptance"}}
 
 
 def main(argv=None):
@@ -166,8 +220,8 @@ def main(argv=None):
     parser.add_argument("--max-lag", type=int, default=1000, help="maximum message gap")
     parser.add_argument("--json", action="store_true", help="machine-readable result")
     args = parser.parse_args(argv)
-    if args.timeout <= 0 or args.max_lag < 0:
-        parser.error("--timeout must be positive and --max-lag nonnegative")
+    if not math.isfinite(args.timeout) or args.timeout <= 0 or args.max_lag < 0:
+        parser.error("--timeout must be finite and positive and --max-lag nonnegative")
     base = args.kibble_url.rstrip("/")
     urls = {
         "status": base + "/api/status",
@@ -180,7 +234,7 @@ def main(argv=None):
     # Read the independent head last. On a busy room, reading it first can
     # make a later scorer cursor look falsely ahead of the sampled head.
     responses["room"] = fetch(args.room_url.rstrip("/") + "?format=json&limit=1", args.timeout)
-    result = assess(responses, args.max_lag)
+    result = assess(responses, args.max_lag, expected_did=args.did)
     result["endpoints"] = {name: {"ok": error is None, "error": error} for name, (_, error) in responses.items()}
     if args.json:
         print(json.dumps(result, indent=2, sort_keys=True))

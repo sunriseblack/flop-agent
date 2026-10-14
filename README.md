@@ -32,10 +32,13 @@ python3 scripts/doctor.py --json
 ```
 
 The doctor compares a fresh room head and the oldest retained export record
-with Kibble's scoring and tape cursors, then checks the status, board, and this
-DID's score endpoints. If a cursor is below that retained floor, the lost
-messages cannot be replayed from the live room; an independent archive would
-be needed. A cold scorer, large lag, cursor rewind, missing jobs list,
+with Kibble's reported scoring and tape cursors, then checks the status, board,
+and this DID's score endpoints. Those ledgers are not automatically comparable.
+If a reported cursor is in the native room's sequence domain, values below the
+retained floor imply that an independent archive would be needed for replay.
+The legacy `*_gap` fields are arithmetic differences, not proven processing
+lag. `evidence_scope` keeps the mapping unestablished and credit undetermined.
+A cold scorer, large or non-comparable cursor difference, possible rewind, missing jobs list,
 projection mismatch, ambiguous board cursor, or failed endpoint produces exit
 code 1. The board cursor may appear in its `origin` object rather than at the top level;
 jobs with sequence numbers above that reported cursor are flagged as a
@@ -47,7 +50,11 @@ The default Kibble API is `https://kibble.world` (the former Render subdomain
 returns 404 as of 2026-10-10); use `--kibble-url` to override it. A reported
 `engine_warm=true` is not sufficient if its cursor lags the signed room. A
 `found=false` score while the cursor is behind our work is not a rejection.
-It does not load the private key or write to Technocore. Review endpoint error
+The metadata inventory preserves each reported cursor's qualified endpoint/path
+instead of merging unlike ledgers; message/job arrays are not high-water marks.
+The CLI also checks the returned account DID and account-versus-breakdown score,
+bounds JSON reads to 4 MiB and rejects nonfinite timeouts. It does not load the
+private key or write to Technocore. Review endpoint error
 text before attaching the JSON output to a bug report.
 
 Install the sole dependency before using the signing and verification tools:

@@ -13,7 +13,7 @@ from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from docs_workload import (OfficialRedirect, PublicText, SOURCES, SYSTEM, checked_sources, digest, excerpt, grade,
-                           load_file, prepare, response_errors, save_file, select_tasks)  # noqa: E402
+                           compare_bundles, load_file, main, prepare, response_errors, save_file, select_tasks)  # noqa: E402
 from kit_review import run as kit_smoke_test  # noqa: E402
 
 
@@ -111,6 +111,105 @@ class DocsWorkloadTests(unittest.TestCase):
         bundle["jobs_sha256"] = digest(bundle["jobs"])
         with self.assertRaisesRegex(ValueError, "request hash"):
             grade(bundle, [self.response])
+
+    def test_duplicate_bundle_tasks_cannot_count_one_response_twice(self):
+        bundle = copy.deepcopy(self.bundle)
+        bundle["jobs"] *= 2
+        bundle["jobs_sha256"] = digest(bundle["jobs"])
+        with self.assertRaisesRegex(ValueError, "duplicate task"):
+            grade(bundle, [self.response])
+
+    def test_duplicate_excerpt_ids_are_rejected_even_with_updated_hashes(self):
+        bundle = copy.deepcopy(self.bundle)
+        request = bundle["jobs"][0]["request"]
+        request["snippets"] *= 2
+        request["job_sha256"] = digest({key: value for key, value in request.items() if key != "job_sha256"})
+        bundle["jobs_sha256"] = digest(bundle["jobs"])
+        response = {**self.response, "job_sha256": request["job_sha256"]}
+        with self.assertRaisesRegex(ValueError, "duplicate excerpt"):
+            grade(bundle, [response])
+
+    def test_bundle_evaluation_boolean_cannot_be_an_unvalidated_string(self):
+        bundle = copy.deepcopy(self.bundle)
+        bundle["jobs"][0]["evaluation"]["must_abstain"] = ""
+        bundle["jobs_sha256"] = digest(bundle["jobs"])
+        with self.assertRaisesRegex(ValueError, "evaluation"):
+            grade(bundle, [self.response])
+
+    def test_comparison_of_identical_requests_does_not_certify_saved_output(self):
+        with mock.patch("urllib.request.build_opener") as network:
+            report = compare_bundles(self.bundle, copy.deepcopy(self.bundle))
+            network.assert_not_called()
+        self.assertEqual(report["unchanged_task_ids"], ["scope"])
+        self.assertEqual(report["new_or_changed_task_ids"], [])
+        self.assertEqual(report["model_calls"], 0)
+        self.assertEqual(report["network_requests"], 0)
+        self.assertEqual(report["results"][0]["saved_response_available"], "not_checked")
+        self.assertEqual(report["results"][0]["semantic_review"], "required")
+
+    def test_changed_evaluation_does_not_hide_behind_same_request_hash(self):
+        current = copy.deepcopy(self.bundle)
+        current["jobs"][0]["evaluation"]["human_rubric"].append("Check source edition conflicts.")
+        current["jobs_sha256"] = digest(current["jobs"])
+        row = compare_bundles(self.bundle, current)["results"][0]
+        self.assertEqual(row["request_state"], "unchanged")
+        self.assertTrue(row["evaluation_changed"])
+        self.assertEqual(row["next_step"], "check_saved_response_and_repeat_review")
+
+    def test_comparison_classifies_new_changed_and_removed_tasks(self):
+        previous = copy.deepcopy(self.bundle)
+        removed = copy.deepcopy(previous["jobs"][0])
+        removed["request"]["task_id"] = "removed"
+        removed["request"]["job_sha256"] = digest({k:v for k,v in removed["request"].items() if k != "job_sha256"})
+        previous["jobs"].append(removed)
+        previous["jobs_sha256"] = digest(previous["jobs"])
+        current = copy.deepcopy(self.bundle)
+        current["jobs"][0]["request"]["question"] += " Explain limitations."
+        request = current["jobs"][0]["request"]
+        request["job_sha256"] = digest({k:v for k,v in request.items() if k != "job_sha256"})
+        added = copy.deepcopy(removed)
+        added["request"]["task_id"] = "added"
+        added["request"]["job_sha256"] = digest({k:v for k,v in added["request"].items() if k != "job_sha256"})
+        current["jobs"].append(added)
+        current["jobs_sha256"] = digest(current["jobs"])
+        report = compare_bundles(previous, current)
+        self.assertEqual(report["removed_task_ids"], ["removed"])
+        self.assertEqual(report["new_or_changed_task_ids"], ["scope", "added"])
+        self.assertEqual([r["request_state"] for r in report["results"]], ["changed", "new"])
+        current["jobs"][0]["evaluation"]["human_rubric"].append("New review criterion.")
+        current["jobs_sha256"] = digest(current["jobs"])
+        row = compare_bundles(previous, current)["results"][0]
+        self.assertTrue(row["evaluation_changed"])
+        self.assertEqual(row["next_step"], "prepare_new_draft_if_useful")
+
+    def test_comparison_rejects_corrupt_or_duplicated_input_on_either_side(self):
+        invalid = copy.deepcopy(self.bundle)
+        invalid["jobs"] *= 2
+        invalid["jobs_sha256"] = digest(invalid["jobs"])
+        for previous, current in ((invalid, self.bundle), (self.bundle, invalid)):
+            with self.assertRaises(ValueError):
+                compare_bundles(previous, current)
+
+    def test_saved_bundle_context_budget_still_applies_after_rehash(self):
+        bundle = copy.deepcopy(self.bundle)
+        request = bundle["jobs"][0]["request"]
+        request["snippets"][0]["text"] = "x" * 24001
+        request["job_sha256"] = digest({k:v for k,v in request.items() if k != "job_sha256"})
+        bundle["jobs_sha256"] = digest(bundle["jobs"])
+        with self.assertRaisesRegex(ValueError, "context budget"):
+            compare_bundles(self.bundle, bundle)
+
+    def test_comparison_cli_is_offline_and_will_not_overwrite(self):
+        with tempfile.TemporaryDirectory() as temp:
+            old, new, output = (Path(temp)/name for name in ("old.json", "new.json", "comparison.json"))
+            save_file(old, self.bundle)
+            save_file(new, self.bundle)
+            args = ["compare", "--previous-bundle", str(old), "--bundle", str(new), "--output", str(output)]
+            with mock.patch("urllib.request.build_opener") as network, mock.patch("builtins.print"):
+                self.assertEqual(main(args), 0)
+                network.assert_not_called()
+                self.assertEqual(main(args), 2)
+            self.assertEqual(load_file(output)["unchanged_task_ids"], ["scope"])
 
     def test_literal_matching_quote_does_not_prove_entailment(self):
         response = copy.deepcopy(self.response)
