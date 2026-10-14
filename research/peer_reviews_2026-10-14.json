@@ -22,6 +22,10 @@
       "our_reproduction": "Three permanent tests cover duplicate task IDs with distinct valid hashes, evaluation-only abstention changes and simultaneous request/abstention changes; adjacent valid inputs pass.",
       "our_workload_tests_after_additions": 35,
       "our_full_suite_after_additions": 160,
+      "our_followup": "https://github.com/sunriseblack/flop-agent/issues/2#issuecomment-6169835748",
+      "our_followup_created_at": "2026-10-14T13:45:47Z",
+      "our_followup_body_sha256": "fefa7743fe5ea5e3a7e8f673927e88c00d21240605349a914936ed1546fe58dc",
+      "our_followup_exact_body_readback": true,
       "scope": "Offline structural validator/comparator and stale-response rejection; no model execution, semantic entailment review, key loading, live doctor review, FLOP settlement or credit proof."
     }
   ],

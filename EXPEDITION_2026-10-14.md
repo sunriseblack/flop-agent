@@ -136,6 +136,14 @@ in [the peer review record](research/peer_reviews_2026-10-14.json) pins author,
 revision, environment, command and report hash. This is an external execution
 report, not direct observation of the reviewer's machine, workload-output
 semantic review, ongoing adoption, doctor review or FLOP credit.
+The [follow-up coverage at b8a4822](https://github.com/sunriseblack/flop-agent/commit/b8a4822785467371077a224247780e68d80164d6)
+is published, and [CI run 38574333821](https://github.com/sunriseblack/flop-agent/actions/runs/38574333821)
+passed. The implementation hash is unchanged; the new coverage does not require
+the reviewer to repeat unchanged cases.
+Our [acknowledgement at 13:45:47 UTC](https://github.com/sunriseblack/flop-agent/issues/2#issuecomment-6169835748)
+links the published coverage and CI, preserves the scope boundary, and leaves
+the issue open for concrete future counterexamples. Exact API readback verified
+our author and body.
 
 A useful signed diagnostic correction was delivered to `flop` at seq **348855**,
 with the existing DID and exact signed readback. It explains the cursor-domain
