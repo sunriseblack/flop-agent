@@ -119,6 +119,71 @@ class DocsWorkloadTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicate task"):
             grade(bundle, [self.response])
 
+    def test_peer_distinct_request_hashes_do_not_make_duplicate_task_ids_valid(self):
+        # HE-Lingfeng's pinned-release review, issue 2 comment 6169623778.
+        bundle = copy.deepcopy(self.bundle)
+        other = copy.deepcopy(bundle["jobs"][0])
+        other["request"]["question"] += " Explain the unsigned fields."
+        other["request"]["job_sha256"] = digest({k:v for k,v in other["request"].items() if k != "job_sha256"})
+        bundle["jobs"].append(other)
+        bundle["jobs_sha256"] = digest(bundle["jobs"])
+        self.assertNotEqual(bundle["jobs"][0]["request"]["job_sha256"], other["request"]["job_sha256"])
+        for previous, current in ((bundle, self.bundle), (self.bundle, bundle)):
+            with self.assertRaisesRegex(ValueError, "duplicate task"):
+                compare_bundles(previous, current)
+        with tempfile.TemporaryDirectory() as temp:
+            bad, responses, output = (Path(temp)/name for name in ("bad.json", "responses.json", "grade.json"))
+            save_file(bad, bundle)
+            save_file(responses, [self.response])
+            with mock.patch("builtins.print") as diagnostic:
+                self.assertEqual(main(["grade", "--bundle", str(bad), "--responses", str(responses),
+                                       "--output", str(output)]), 2)
+                self.assertIn("invalid or duplicate task ID in bundle", diagnostic.call_args.args[0])
+            self.assertFalse(output.exists())
+        # Adjacent valid input: distinct IDs may legitimately carry different requests.
+        other["request"]["task_id"] = "other"
+        other["request"]["job_sha256"] = digest({k:v for k,v in other["request"].items() if k != "job_sha256"})
+        bundle["jobs_sha256"] = digest(bundle["jobs"])
+        response = {**self.response, "task_id": "other", "job_sha256": other["request"]["job_sha256"]}
+        report = grade(bundle, [self.response, response])
+        self.assertEqual(report["tasks"], 2)
+        self.assertEqual(report["mechanical_passes"], 2)
+
+    def test_peer_abstention_change_requires_regrading_unchanged_request(self):
+        current = copy.deepcopy(self.bundle)
+        current["jobs"][0]["evaluation"]["must_abstain"] = True
+        current["jobs_sha256"] = digest(current["jobs"])
+        row = compare_bundles(self.bundle, current)["results"][0]
+        self.assertEqual(row["request_state"], "unchanged")
+        self.assertTrue(row["evaluation_changed"])
+        self.assertEqual(row["next_step"], "check_saved_response_and_repeat_review")
+        self.assertEqual(row["saved_response_available"], "not_checked")
+        report = grade(current, [self.response])
+        self.assertEqual(report["mechanical_passes"], 0)
+        self.assertIn("abstention_policy_failed", report["results"][0]["errors"])
+        self.assertFalse(report["ready_for_human_review"])
+        valid = {**self.response, "abstain": True, "claims": []}
+        self.assertTrue(grade(current, [valid])["ready_for_human_review"])
+
+    def test_peer_changed_request_and_abstention_reject_old_response(self):
+        current = copy.deepcopy(self.bundle)
+        current["jobs"][0]["evaluation"]["must_abstain"] = True
+        request = current["jobs"][0]["request"]
+        request["question"] += " Is a personal allocation established?"
+        request["job_sha256"] = digest({k:v for k,v in request.items() if k != "job_sha256"})
+        current["jobs_sha256"] = digest(current["jobs"])
+        row = compare_bundles(self.bundle, current)["results"][0]
+        self.assertEqual(row["request_state"], "changed")
+        self.assertTrue(row["evaluation_changed"])
+        self.assertEqual(row["next_step"], "prepare_new_draft_if_useful")
+        report = grade(current, [self.response])
+        self.assertEqual(report["mechanical_passes"], 0)
+        self.assertEqual(set(report["results"][0]["errors"]),
+                         {"task_or_version_mismatch", "abstention_policy_failed"})
+        self.assertFalse(report["ready_for_human_review"])
+        valid = {**self.response, "job_sha256": request["job_sha256"], "abstain": True, "claims": []}
+        self.assertTrue(grade(current, [valid])["ready_for_human_review"])
+
     def test_duplicate_excerpt_ids_are_rejected_even_with_updated_hashes(self):
         bundle = copy.deepcopy(self.bundle)
         request = bundle["jobs"][0]["request"]

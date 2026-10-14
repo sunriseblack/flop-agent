@@ -48,8 +48,8 @@ any job was accepted or that FLOP airdrop eligibility exists. `--max-lag` sets
 the allowed message gap (default 1,000); `--timeout` sets seconds per request.
 The default Kibble API is `https://kibble.world` (the former Render subdomain
 returns 404 as of 2026-10-10); use `--kibble-url` to override it. A reported
-`engine_warm=true` is not sufficient if its cursor lags the signed room. A
-`found=false` score while the cursor is behind our work is not a rejection.
+`engine_warm=true` is not sufficient when coverage remains unbound or other
+checks fail. A `found=false` account projection is not a submission rejection.
 The metadata inventory preserves each reported cursor's qualified endpoint/path
 instead of merging unlike ledgers; message/job arrays are not high-water marks.
 The CLI also checks the returned account DID and account-versus-breakdown score,
