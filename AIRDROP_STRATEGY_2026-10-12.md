@@ -23,6 +23,16 @@ mirror below is historical. The Agent intro discrepancy, PARTIAL implementation
 status, owner binding and final allocation rules still need resolution. The
 daily [evidence log](EXPEDITION_2026-10-13.md) records the narrower current state.
 
+October 15 follow-up: the [workload validator/comparator also received a pinned
+execution report](https://github.com/sunriseblack/flop-agent/issues/2#issuecomment-6169623778)
+on October 14. Today's separate saved-request handoff fix is published at
+`71dc3aa` and needs its own review; neither report establishes continuing
+adoption or semantic approval of model outputs. FLOP Labs has now posted an
+[upcoming KOL leaderboard preview](https://x.com/flop_labs/status/2110628169476981128).
+That post does not supply programme admission/scoring terms or a live compute
+client. Track the actual terms when published, without treating a preview as
+eligibility, payment or a reason to manufacture promotional activity.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

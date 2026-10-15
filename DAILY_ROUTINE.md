@@ -50,6 +50,11 @@ document conflicts and public claims against official network and allocation
 evidence. Never invent endpoints, owner mappings, individual allocations or
 rewards.
 
+Keep creator/builder programme announcements separate from the compute route.
+The October 15 KOL leaderboard preview is a trigger to inspect official terms
+when they appear, not proof of enrolment, payout or testnet launch. Do not
+manufacture promotion or submit audience claims that we cannot substantiate.
+
 Only after the launch gate in the workload guide is met, prepare one bounded
 approved test-token session with an independent miner and a useful task.
 Verify output, proof, settlement and owner attribution before scaling. Keep
