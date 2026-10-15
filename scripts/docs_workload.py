@@ -297,6 +297,10 @@ def checked_jobs(bundle):
                 or not isinstance(job.get("evaluation"), dict)):
             raise ValueError("invalid job fields")
         request, evaluation = job["request"], job["evaluation"]
+        if set(request) != {"system", "task_id", "question", "snippets", "job_sha256"}:
+            raise ValueError("invalid request schema; tool/action/model fields are not supported")
+        if request["system"] != SYSTEM:
+            raise ValueError("request system policy does not match this harness; prepare a new bundle")
         task_id = request.get("task_id")
         if not isinstance(task_id, str) or not task_id or task_id in jobs:
             raise ValueError("invalid or duplicate task ID in bundle")
@@ -315,15 +319,29 @@ def checked_jobs(bundle):
             raise ValueError("missing request excerpts")
         seen, context_chars = set(), 0
         for snippet in snippets:
-            if (not isinstance(snippet, dict) or not isinstance(snippet.get("snippet_id"), str)
+            if not isinstance(snippet, dict) or set(snippet) != {
+                    "snippet_id", "source_id", "url", "source_text_sha256", "start", "end", "text"}:
+                raise ValueError("invalid excerpt schema; role/instruction fields are not supported")
+            if (not isinstance(snippet.get("snippet_id"), str)
                     or not snippet["snippet_id"] or not isinstance(snippet.get("text"), str)):
                 raise ValueError("invalid excerpt fields")
             if snippet["snippet_id"] in seen:
                 raise ValueError("duplicate excerpt ID in request")
             seen.add(snippet["snippet_id"])
             context_chars += len(snippet["text"])
-        if context_chars > MAX_CONTEXT_CHARS:
-            raise ValueError("request context budget exceeded")
+            if context_chars > MAX_CONTEXT_CHARS:
+                raise ValueError("request context budget exceeded")
+            source_id, source_hash = snippet["source_id"], snippet["source_text_sha256"]
+            start, end = snippet["start"], snippet["end"]
+            if (not isinstance(source_id, str) or source_id not in SOURCES
+                    or snippet["url"] != SOURCES[source_id]
+                    or not isinstance(source_hash, str) or len(source_hash) != 64
+                    or any(char not in "0123456789abcdef" for char in source_hash)
+                    or type(start) is not int or type(end) is not int
+                    or not 0 <= start <= end <= MAX_SOURCE_BYTES
+                    or end - start != len(snippet["text"])
+                    or snippet["snippet_id"] != f"{source_id}:{start}:{end}"):
+                raise ValueError("invalid excerpt metadata; allowlist, hash, offsets or ID mismatch")
         jobs[task_id] = job
     return jobs
 

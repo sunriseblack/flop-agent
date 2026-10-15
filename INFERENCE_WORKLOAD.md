@@ -126,6 +126,17 @@ ambiguous bundle valid. In particular, duplicating one task cannot count its
 single response as two mechanically passed tasks. Hashes check local integrity,
 not authentic retrieval from an official source.
 
+Saved requests must also contain exactly the fields emitted by this harness,
+with its exact system policy. Excerpts are data objects, not chat-role or
+instruction envelopes. Re-hashed tool, action, model-selection or role fields,
+replaced system instructions and huge alternate system prompts are rejected
+before grading or comparison. Excerpt URLs must match the fixed source allowlist;
+hash shapes, character offsets and excerpt IDs must agree locally. This is not
+an independent match against the original complete source. A deliberate system-policy change requires
+preparing a new bundle with the new harness revision, not editing saved jobs.
+This guards the model-client handoff contract; it does not authenticate sources
+or make arbitrary text inside the question or excerpts trustworthy.
+
 ## Review what the checks cannot establish
 
 An exact quote can be irrelevant to the sentence citing it. A model can
