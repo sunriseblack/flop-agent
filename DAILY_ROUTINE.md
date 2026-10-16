@@ -44,7 +44,7 @@ source caches and unreviewed outputs out of the public repository.
 
 For a selected passing draft, export a private `review-packet` containing the
 answer, citations, all provided context and human rubric. Keep its status pending
-until a human actually reviews that exact request version. An export is not an
+until a human actually reviews that exact request and draft version. An export is not an
 acceptance record, and source-edition changes require new pinned preparation.
 
 ## Check official readiness and enable a bounded first session

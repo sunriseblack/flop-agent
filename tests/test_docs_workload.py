@@ -54,6 +54,17 @@ class DocsWorkloadTests(unittest.TestCase):
             self.assertIn(value, text)
         self.assertIn("This tool neither accepts nor publishes", text)
 
+    def test_human_review_packet_binds_draft_content_not_only_the_request(self):
+        changed = {**self.response, "answer": "A different draft for the same request."}
+        original_text = review_packet(self.bundle, [self.response], "scope")
+        changed_text = review_packet(self.bundle, [changed], "scope")
+        self.assertIn("Draft SHA-256: " + digest(self.response), original_text)
+        self.assertIn("Draft SHA-256: " + digest(changed), changed_text)
+        self.assertNotEqual(digest(self.response), digest(changed))
+        request_line = "Request SHA-256: " + self.response["job_sha256"]
+        self.assertIn(request_line, original_text)
+        self.assertIn(request_line, changed_text)
+
     def test_human_review_packet_rejects_ambiguous_missing_and_failed_drafts(self):
         invalid = {**self.response, "claims": []}
         for task_id, responses in (("unknown", [self.response]), ("scope", []),

@@ -164,7 +164,7 @@ python3 scripts/docs_workload.py review-packet \
   --output .private/workload/run-001/money-human-review.txt
 ```
 
-The packet groups the question, answer, exact citations, request/bundle hashes,
+The packet groups the question, answer, exact citations, request/draft/bundle hashes,
 rubric and all supplied excerpts, including uncited context. Each excerpt appears
 once so the human can inspect omitted conditions and conflicts without duplicate
 context. Model/source strings are inert JSON literals in a `.txt` file, not active
@@ -177,7 +177,8 @@ exclusive creation preserve earlier packets. Nothing is fetched or executed.
 It does not check source freshness: prepare from fresh sources first and compare
 request hashes. A successful export only means `pending_human_review`; it cannot
 record acceptance, an independent reviewer identity or a FLOP session. The human
-must separately provide a decision and reasons tied to the exact request hash.
+must separately provide a decision and reasons tied to both the request and draft
+hashes; a changed answer to the same question needs its own review.
 
 The harness is a bounded single-step context/model/import/review loop, not
 an autonomous action agent. It needs no compaction because each task has a

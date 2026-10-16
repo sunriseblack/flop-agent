@@ -425,6 +425,7 @@ def review_packet(bundle, responses, task_id):
              "Mechanical checks do not prove entailment, source authenticity or FLOP settlement.",
              "Task: " + literal(task_id), "Bundle SHA-256: " + bundle["jobs_sha256"],
              "Request SHA-256: " + request["job_sha256"],
+             "Draft SHA-256: " + digest(draft),
              "Question: " + literal(request["question"]), "Answer: " + literal(draft["answer"]),
              "Abstains: " + literal(draft["abstain"]), "Limitations: " + literal(draft["limitations"])]
     for index, claim in enumerate(draft["claims"], 1):
@@ -442,7 +443,7 @@ def review_packet(bundle, responses, task_id):
     lines.extend(["Human rubric: " + literal(row["human_rubric"]),
                   "Human review checklist: check entailment, omitted conditions, conflicting editions,",
                   "draft versus operating runtime, and usefulness. Check original sources independently.",
-                  "Record reviewer identity, independence, decision and reasons separately.",
+                  "Record reviewer identity, independence, decision and reasons against both request and draft hashes.",
                   "This tool neither accepts nor publishes the draft. No inference session is recorded."])
     return "\n\n".join(lines) + "\n"
 
