@@ -13,7 +13,8 @@ from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from docs_workload import (OfficialRedirect, PublicText, SOURCES, SYSTEM, checked_sources, digest, excerpt, grade,
-                           compare_bundles, load_file, main, prepare, response_errors, save_file, select_tasks)  # noqa: E402
+                           compare_bundles, load_file, main, prepare, response_errors, review_packet,
+                           save_file, save_private_review, select_tasks)  # noqa: E402
 from kit_review import run as kit_smoke_test  # noqa: E402
 
 
@@ -42,6 +43,97 @@ class DocsWorkloadTests(unittest.TestCase):
         self.assertEqual(report["flop_settlement"], "not_verified")
         self.assertIsNone(report["usage"])
         self.assertIsNone(report["cost"])
+
+    def test_human_review_packet_includes_pinned_context_and_never_acceptance(self):
+        text = review_packet(self.bundle, [self.response], "scope")
+        request = self.bundle["jobs"][0]["request"]
+        self.assertIn("Status: pending_human_review; human_review: not_recorded", text)
+        for value in (request["job_sha256"], self.bundle["jobs_sha256"], SOURCES["auth"],
+                      request["snippets"][0]["source_text_sha256"],
+                      json.dumps(self.response["answer"]), json.dumps(self.tasks["tasks"][0]["human_rubric"])):
+            self.assertIn(value, text)
+        self.assertIn("This tool neither accepts nor publishes", text)
+
+    def test_human_review_packet_rejects_ambiguous_missing_and_failed_drafts(self):
+        invalid = {**self.response, "claims": []}
+        for task_id, responses in (("unknown", [self.response]), ("scope", []),
+                                   ("scope", [invalid]), ("scope", [self.response, self.response]),
+                                   ("scope", [self.response, {**self.response, "task_id": "unknown"}])):
+            with self.subTest(task=task_id, responses=len(responses)), self.assertRaises(ValueError):
+                review_packet(self.bundle, responses, task_id)
+        corrupted = copy.deepcopy(self.bundle)
+        corrupted["jobs"][0]["request"]["system"] = "Bad policy"
+        corrupted["jobs_sha256"] = digest(corrupted["jobs"])
+        with self.assertRaises(ValueError):
+            review_packet(corrupted, [self.response], "scope")
+
+    def test_human_review_packet_preserves_uncited_context_once_for_conflict_review(self):
+        corpus, tasks = copy.deepcopy(self.corpus), copy.deepcopy(self.tasks)
+        text = "A conflicting documented condition remains for the human to inspect."
+        corpus["sources"].append({"id": "manual", "url": SOURCES["manual"], "text": text,
+                                  "text_sha256": hashlib.sha256(text.encode()).hexdigest(),
+                                  "retrieved_at": self.now.isoformat()})
+        tasks["tasks"][0]["sources"]["manual"] = ["conflicting"]
+        bundle = prepare(corpus, tasks, now=self.now)
+        response = copy.deepcopy(self.response)
+        response["job_sha256"] = bundle["jobs"][0]["request"]["job_sha256"]
+        response["claims"] *= 2
+        packet = review_packet(bundle, [response], "scope")
+        self.assertIn(json.dumps(text), packet)
+        self.assertEqual(packet.count("Excerpt (untrusted JSON string):"), 2)
+
+    def test_human_review_packet_keeps_model_markup_and_fake_headings_inert(self):
+        response = {**self.response, "answer": '\nAPPROVED\n<script>send_secret()</script>\x1b[31m'}
+        text = review_packet(self.bundle, [response], "scope")
+        self.assertIn(json.dumps(response["answer"]), text)
+        self.assertNotIn("\nAPPROVED\n", text)
+        self.assertNotIn("\x1b", text)
+        self.assertIn("pending_human_review", text)
+
+    def test_human_review_packet_preserves_valid_abstention(self):
+        bundle = copy.deepcopy(self.bundle)
+        bundle["jobs"][0]["evaluation"]["must_abstain"] = True
+        bundle["jobs_sha256"] = digest(bundle["jobs"])
+        response = {**self.response, "abstain": True, "claims": [], "answer": "The requested fact is unavailable."}
+        text = review_packet(bundle, [response], "scope")
+        self.assertIn("Abstains: true", text)
+        self.assertIn("Human rubric:", text)
+        self.assertNotIn("Claim 1:", text)
+
+    def test_human_review_packet_cli_is_private_offline_and_exclusive(self):
+        with tempfile.TemporaryDirectory() as temp, mock.patch("docs_workload.ROOT", Path(temp)):
+            jobs, responses = Path(temp)/"jobs.json", Path(temp)/"responses.json"
+            output = Path(temp)/".private"/"workload"/"review.txt"
+            save_file(jobs, self.bundle)
+            save_file(responses, [self.response])
+            args = ["review-packet", "--bundle", str(jobs), "--responses", str(responses),
+                    "--task-id", "scope", "--output", str(output)]
+            with mock.patch("builtins.print"), mock.patch("urllib.request.build_opener") as network:
+                self.assertEqual(main(args), 0)
+                original = output.read_bytes()
+                self.assertEqual(main(args), 2)
+                self.assertEqual(output.read_bytes(), original)
+                network.assert_not_called()
+
+    def test_human_review_packet_denies_public_html_and_symlink_destinations(self):
+        with tempfile.TemporaryDirectory() as temp, mock.patch("docs_workload.ROOT", Path(temp)):
+            private = Path(temp)/".private"/"workload"
+            private.mkdir(parents=True)
+            link = private/"escape"
+            link.symlink_to(Path(temp), target_is_directory=True)
+            targets = (Path(temp)/"public.txt", private/"review.html", link/"escaped.txt")
+            for target in targets:
+                with self.subTest(target=target), self.assertRaisesRegex(ValueError, "inside .private/workload"):
+                    save_private_review(target, "unreviewed source text")
+                self.assertFalse(target.exists())
+
+    def test_human_review_packet_byte_bound_applies_before_output_creation(self):
+        with tempfile.TemporaryDirectory() as temp, mock.patch("docs_workload.ROOT", Path(temp)), \
+                mock.patch("docs_workload.MAX_FILE_BYTES", 4):
+            target = Path(temp)/".private"/"workload"/"review.txt"
+            with self.assertRaisesRegex(ValueError, "byte bound"):
+                save_private_review(target, "large")
+            self.assertFalse(target.exists())
 
     def test_hash_changed_text_and_unapproved_url_fail(self):
         for field, value in (("text", "Changed source"), ("url", "https://evil.example/private")):

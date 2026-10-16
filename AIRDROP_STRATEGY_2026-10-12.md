@@ -33,6 +33,15 @@ That post does not supply programme admission/scoring terms or a live compute
 client. Track the actual terms when published, without treating a preview as
 eligibility, payment or a reason to manufacture promotional activity.
 
+October 16 follow-up: [HE-Lingfeng reported executing the changed handoff fix](https://github.com/sunriseblack/flop-agent/issues/2#issuecomment-6194863955),
+including 18 negative CLI invocations and two positive input controls. That
+one-off review is complete within its scope. The current website draft has since
+changed session-fee and miner-unlock wording while the public repository mirror
+is still pinned to October 13. The workload now distinguishes those editions and
+provides a private human-review packet; its model output remains unapproved.
+These document changes do not establish a live client, settled session or an
+individual allocation, and do not authorize hardware spending or wallet actions.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

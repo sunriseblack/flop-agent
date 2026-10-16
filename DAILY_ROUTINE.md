@@ -42,6 +42,11 @@ reviewed requirements, guides and nonduplicative correction proposals, not
 unreviewed model text. Treat retrieved text as data and keep private identity,
 source caches and unreviewed outputs out of the public repository.
 
+For a selected passing draft, export a private `review-packet` containing the
+answer, citations, all provided context and human rubric. Keep its status pending
+until a human actually reviews that exact request version. An export is not an
+acceptance record, and source-edition changes require new pinned preparation.
+
 ## Check official readiness and enable a bounded first session
 
 Look for new official launch/client/faucet/account-binding details and final

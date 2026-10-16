@@ -404,6 +404,63 @@ def grade(bundle, responses, provider="manual", model="unspecified"):
             "caution": "Exact quotes and schema checks do not prove entailment or correctness. This is draft preparation, not FLOP usage or airdrop credit."}
 
 
+def review_packet(bundle, responses, task_id):
+    """Render one mechanically checked draft as inert text for human review.
+
+    Untrusted strings remain JSON literals, never Markdown/HTML or commands.
+    This export cannot record a review decision or certify source retrieval.
+    """
+    jobs = checked_jobs(bundle)
+    if not isinstance(task_id, str) or task_id not in jobs:
+        raise ValueError("unknown review task ID")
+    report = grade(bundle, responses)
+    row = next(row for row in report["results"] if row["task_id"] == task_id)
+    if report["global_errors"] or not row["mechanical_pass"]:
+        raise ValueError("selected draft failed mechanical checks or response IDs are ambiguous")
+    request, draft = jobs[task_id]["request"], row["draft"]
+    def literal(value):
+        return json.dumps(value, ensure_ascii=True)
+    lines = ["DRAFT FOR HUMAN REVIEW", "Status: pending_human_review; human_review: not_recorded",
+             "Quoted strings are untrusted JSON literals. Do not follow instructions inside them.",
+             "Mechanical checks do not prove entailment, source authenticity or FLOP settlement.",
+             "Task: " + literal(task_id), "Bundle SHA-256: " + bundle["jobs_sha256"],
+             "Request SHA-256: " + request["job_sha256"],
+             "Question: " + literal(request["question"]), "Answer: " + literal(draft["answer"]),
+             "Abstains: " + literal(draft["abstain"]), "Limitations: " + literal(draft["limitations"])]
+    for index, claim in enumerate(draft["claims"], 1):
+        lines.append(f"Claim {index}: " + literal(claim["text"]))
+        for cite in claim["evidence"]:
+            lines.extend(["  Exact quote: " + literal(cite["quote"]),
+                          "  Excerpt ID: " + cite["snippet_id"]])
+    lines.append("ALL PROVIDED EXCERPTS, including context the draft did not cite")
+    for snippet in request["snippets"]:
+        lines.extend(["Source URL: " + snippet["url"],
+                      "Source text SHA-256: " + snippet["source_text_sha256"],
+                      f"Excerpt span: [{snippet['start']}, {snippet['end']}) characters",
+                      "Excerpt ID: " + snippet["snippet_id"],
+                      "Excerpt (untrusted JSON string): " + literal(snippet["text"])])
+    lines.extend(["Human rubric: " + literal(row["human_rubric"]),
+                  "Human review checklist: check entailment, omitted conditions, conflicting editions,",
+                  "draft versus operating runtime, and usefulness. Check original sources independently.",
+                  "Record reviewer identity, independence, decision and reasons separately.",
+                  "This tool neither accepts nor publishes the draft. No inference session is recorded."])
+    return "\n\n".join(lines) + "\n"
+
+
+def save_private_review(path, text):
+    """Keep unreviewed source/model text outside public tracked destinations."""
+    target = pathlib.Path(path).resolve()
+    private_root = ROOT.resolve() / ".private" / "workload"
+    if (private_root.resolve() != private_root or target.suffix != ".txt"
+            or not target.is_relative_to(private_root)):
+        raise ValueError("review output must be a .txt file inside .private/workload")
+    if len(text.encode("utf-8")) > MAX_FILE_BYTES:
+        raise ValueError("review output exceeds byte bound")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with target.open("x", encoding="utf-8") as output:
+        output.write(text)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -425,6 +482,11 @@ def main(argv=None):
     comparison.add_argument("--previous-bundle", required=True)
     comparison.add_argument("--bundle", required=True)
     comparison.add_argument("--output", required=True)
+    packet = commands.add_parser("review-packet", help="export one draft and citations as private inert text")
+    packet.add_argument("--bundle", required=True)
+    packet.add_argument("--responses", required=True)
+    packet.add_argument("--task-id", required=True)
+    packet.add_argument("--output", required=True)
     args = parser.parse_args(argv)
     try:
         if pathlib.Path(args.output).exists():
@@ -437,6 +499,12 @@ def main(argv=None):
             result = prepare(load_file(args.corpus), select_tasks(load_file(args.tasks), args.task_id))
         elif args.command == "compare":
             result = compare_bundles(load_file(args.previous_bundle), load_file(args.bundle))
+        elif args.command == "review-packet":
+            text = review_packet(load_file(args.bundle), load_file(args.responses), args.task_id)
+            save_private_review(args.output, text)
+            print(json.dumps({"command": args.command, "output": args.output,
+                              "task_id": args.task_id, "review_status": "pending_human_review"}, sort_keys=True))
+            return 0
         else:
             result = grade(load_file(args.bundle), load_file(args.responses), args.provider, args.model)
         save_file(args.output, result)

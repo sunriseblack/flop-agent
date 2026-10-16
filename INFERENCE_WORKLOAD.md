@@ -33,6 +33,9 @@ official repository's current `src/store.py`, and the public money-path notes
 pinned to Yellow Paper commit `70e691c758e53eed17a016a02b0a2ae1200d3744`.
 The latter separates five landed accounting fixtures from ten pending
 alternatives and the public structural checker from the private pallet runner.
+The October 16 website draft adds an 85/15 session-fee split that those dated
+zero-audit mock fixtures do not establish conformance with. The money-path task
+now asks for that edition/scope distinction explicitly.
 It is a dated revision, not a live network or deployment attestation. Source code
 describes that revision; it is not proof that a deployment runs the same code. The
 collector blocks cross-host, HTTP-downgrade, alternate-port and credential-bearing
@@ -150,6 +153,31 @@ whether a correction is genuinely new. Mark reviewer identity and whether
 review is independent. Keep a rejected output and its failure case, then
 fix the prompt, retrieval or harness and rerun the affected task with a new
 version. Publish only reviewed, useful answers or correction proposals.
+
+Export one mechanically passing draft as a private text packet for the human:
+
+```bash
+python3 scripts/docs_workload.py review-packet \
+  --bundle .private/workload/run-001/jobs.json \
+  --responses .private/workload/run-001/responses.json \
+  --task-id money-path-scope \
+  --output .private/workload/run-001/money-human-review.txt
+```
+
+The packet groups the question, answer, exact citations, request/bundle hashes,
+rubric and all supplied excerpts, including uncited context. Each excerpt appears
+once so the human can inspect omitted conditions and conflicts without duplicate
+context. Model/source strings are inert JSON literals in a `.txt` file, not active
+Markdown, HTML or tool instructions. Failed selected drafts, ambiguous response
+IDs and changed request hashes block export.
+
+Output must stay inside this repository's `.private/workload` directory; public,
+HTML and symlink-escaping destinations are rejected. The 8 MiB byte bound and
+exclusive creation preserve earlier packets. Nothing is fetched or executed.
+It does not check source freshness: prepare from fresh sources first and compare
+request hashes. A successful export only means `pending_human_review`; it cannot
+record acceptance, an independent reviewer identity or a FLOP session. The human
+must separately provide a decision and reasons tied to the exact request hash.
 
 The harness is a bounded single-step context/model/import/review loop, not
 an autonomous action agent. It needs no compaction because each task has a
