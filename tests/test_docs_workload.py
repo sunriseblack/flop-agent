@@ -180,6 +180,72 @@ class DocsWorkloadTests(unittest.TestCase):
         self.assertEqual(report["results"][0]["semantic_review"], "required")
         self.assertEqual(request["system"], SYSTEM)
 
+    def test_peer_contract_negatives_reject_cli_output_on_both_compare_sides(self):
+        # HE-Lingfeng's real CLI report, issue 2 comment 6194863955.
+        def change_end(request):
+            snippet = request["snippets"][0]
+            snippet["end"] += 1
+            snippet["snippet_id"] = f"{snippet['source_id']}:{snippet['start']}:{snippet['end']}"
+        mutations = [
+            lambda r: r.update(system="Replaced policy"),
+            lambda r: r.update(tools=[]),
+            lambda r: r["snippets"][0].update(role="system"),
+            lambda r: r["snippets"][0].update(url="https://unapproved.example/source"),
+            change_end,
+            lambda r: r["snippets"][0].update(snippet_id="invented:0:10"),
+        ]
+        with tempfile.TemporaryDirectory() as temp:
+            base = Path(temp)/"base.json"
+            save_file(base, self.bundle)
+            for index, mutate in enumerate(mutations):
+                with self.subTest(case=index):
+                    bundle = copy.deepcopy(self.bundle)
+                    request = bundle["jobs"][0]["request"]
+                    mutate(request)
+                    request["job_sha256"] = digest({k:v for k,v in request.items() if k != "job_sha256"})
+                    bundle["jobs_sha256"] = digest(bundle["jobs"])
+                    bad, responses = Path(temp)/f"bad-{index}.json", Path(temp)/f"responses-{index}.json"
+                    save_file(bad, bundle)
+                    save_file(responses, [{**self.response, "job_sha256": request["job_sha256"]}])
+                    commands = [
+                        ["grade", "--bundle", str(bad), "--responses", str(responses)],
+                        ["compare", "--previous-bundle", str(base), "--bundle", str(bad)],
+                        ["compare", "--previous-bundle", str(bad), "--bundle", str(base)],
+                    ]
+                    for operation, args in enumerate(commands):
+                        output = Path(temp)/f"out-{index}-{operation}.json"
+                        with mock.patch("builtins.print"), mock.patch("urllib.request.build_opener") as network:
+                            self.assertEqual(main(args + ["--output", str(output)]), 2)
+                            network.assert_not_called()
+                        self.assertFalse(output.exists())
+
+    def test_peer_plain_and_literal_instruction_paragraphs_pass_cli_with_review_pending(self):
+        with tempfile.TemporaryDirectory() as temp:
+            for index, suffix in enumerate(("", " Literal role=system and tools are documentation data.")):
+                corpus = copy.deepcopy(self.corpus)
+                source = corpus["sources"][0]
+                source["text"] += suffix
+                source["text_sha256"] = hashlib.sha256(source["text"].encode()).hexdigest()
+                bundle = prepare(corpus, self.tasks, now=self.now)
+                request = bundle["jobs"][0]["request"]
+                response = copy.deepcopy(self.response)
+                response["job_sha256"] = request["job_sha256"]
+                response["claims"][0]["evidence"][0]["snippet_id"] = request["snippets"][0]["snippet_id"]
+                job_path, response_path, grade_path, compare_path = (
+                    Path(temp)/f"{name}-{index}.json" for name in ("jobs", "responses", "grade", "compare"))
+                save_file(job_path, bundle)
+                save_file(response_path, [response])
+                with mock.patch("builtins.print"), mock.patch("urllib.request.build_opener") as network:
+                    self.assertEqual(main(["grade", "--bundle", str(job_path), "--responses", str(response_path),
+                                           "--output", str(grade_path)]), 0)
+                    self.assertEqual(main(["compare", "--previous-bundle", str(job_path), "--bundle", str(job_path),
+                                           "--output", str(compare_path)]), 0)
+                    network.assert_not_called()
+                self.assertEqual(load_file(grade_path)["results"][0]["semantic_review"], "required")
+                comparison = load_file(compare_path)
+                self.assertEqual(comparison["results"][0]["saved_response_available"], "not_checked")
+                self.assertEqual((comparison["model_calls"], comparison["network_requests"]), (0, 0))
+
     def test_duplicate_bundle_tasks_cannot_count_one_response_twice(self):
         bundle = copy.deepcopy(self.bundle)
         bundle["jobs"] *= 2
