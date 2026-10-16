@@ -20,8 +20,8 @@
   "unchanged_requests":3,
   "changed_evaluation_ids":["money-path-scope"],
   "manual_imported_drafts":1,
-  "new_draft":{"task_id":"money-path-scope","job_sha256":"1e952713560fe850b90a1434773941698c0ce0923c89271f339f12399447602d","draft_sha256":"32637c6de1f690df22d75bda6933a8f86d7776be9a936af914af905a6d49825e","mechanical_pass":true,"semantic_review":"required"},
-  "human_packet":{"sha256":"8dd3f8bda549a5cfac6a4870f6e3f67edba71a24a17aedc124ef3cb825a6995f","bytes":14288,"status":"pending_human_review","human_reviewer":null,"decision":null},
+  "new_draft":{"task_id":"money-path-scope","job_sha256":"1e952713560fe850b90a1434773941698c0ce0923c89271f339f12399447602d","draft_sha256":"32637c6de1f690df22d75bda6933a8f86d7776be9a936af914af905a6d49825e","mechanical_pass":true,"semantic_review":"user_approval_recorded"},
+  "human_packet":{"sha256":"8dd3f8bda549a5cfac6a4870f6e3f67edba71a24a17aedc124ef3cb825a6995f","bytes":14288,"status":"user_approved","human_reviewer":"repository_owner_via_conversation","decision":"approved","independent_review":false,"recorded_at":"2026-10-16T16:02:30Z","private_receipt_sha256":"f0a17dfd813c572a1bd9b4b078bf985bf612e696a9a2ec86f6641c01682a20bc","reasons_supplied":false,"rubric_item_assessments_supplied":false},
   "provider":"codex-current-session",
   "model":"current-chat-unspecified",
   "provider_identity_verified":false,
@@ -34,7 +34,7 @@
   "ci":"https://github.com/sunriseblack/flop-agent/actions/runs/38906442612",
   "flop_sessions":0,
   "flop_settlement":"not_verified",
-  "review":"AI-authored manual preparation with rubric visible, not a blinded model evaluation or human semantic acceptance.",
-  "deferred":"Five other changed request versions have no new accepted output. No human review or FLOP transport session is claimed.",
+  "review":"AI-authored manual preparation with rubric visible, followed by direct user approval of this exact draft. No rationale or itemized rubric assessment was supplied; this is not independent review or a blinded model evaluation.",
+  "deferred":"Five other changed request versions have no new accepted output. Approval covers only this draft, not those tasks or a FLOP transport session.",
   "caution":"Source snapshots, prompts, outputs and review packet remain local/ignored. Structural checks and hashes do not authenticate sources, prove semantic truth, demonstrate continuing adoption or establish an allocation."
 }

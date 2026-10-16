@@ -4,7 +4,8 @@ The changed request-contract validator now has an independent execution report.
 Its extra cases are preserved as regressions. The workload also has a private
 human-review export, used for one updated money-path draft after the official
 website changed. All 176 local tests pass; no inference purchase or allocation
-is claimed. The exported answer still needs human semantic review.
+is claimed. The owner subsequently approved the exact exported answer; the
+decision is recorded separately from the immutable draft packet.
 
 ## Close the completed review round
 
@@ -68,7 +69,7 @@ private review packet. Its request hash is
 `32637c6de1f690df22d75bda6933a8f86d7776be9a936af914af905a6d49825e`.
 The five other changed requests have no new accepted outputs. Three unchanged
 requests were not regenerated. [Validation metadata](research/workload_validation_2026-10-16.json)
-records hashes, retrieval times and the pending human-review state; source
+records hashes, retrieval times and the later user approval; source
 snapshots, prompts, drafts and the packet remain ignored/private. The author had
 the rubric visible, so this is not a blinded model benchmark.
 
@@ -120,11 +121,27 @@ reposted. The research room was empty at generation 2. `technocore` supplied
 197 verified and three unsigned records in its latest 200; `lobby` supplied 200
 verified records. No invalid signatures appeared in these tails.
 
-Next: obtain a human decision on the private packet tied to the exact request
-and draft; inspect substantive replies rather than repeating outreach; refresh
+Next: use the approved draft within its pinned-source scope, inspect substantive
+replies rather than repeating outreach, and refresh
 website-versus-mirror evidence before interpreting future fixtures. Only enable
 a bounded test-token session after the official network/client/faucet,
 owner/delegate attribution, independent miner and final terms are verified.
 No real funds, paid model API, additional participant identity, live FLOP
 session, airdrop credit or finished-contest activity occurred. Actual token
 usage and draft latency were unavailable; no target volume is claimed as spent.
+
+## Owner approval of the exact draft
+
+At the subsequent handoff, the repository owner directly approved the linked
+money-path draft. The decision was recorded at 16:02:30 UTC against request
+`1e952713560fe850b90a1434773941698c0ce0923c89271f339f12399447602d`, draft
+`32637c6de1f690df22d75bda6933a8f86d7776be9a936af914af905a6d49825e`, and packet
+`8dd3f8bda549a5cfac6a4870f6e3f67edba71a24a17aedc124ef3cb825a6995f`.
+The original packet remains unchanged; a separate ignored receipt preserves
+the direct decision. Its SHA-256 is
+`f0a17dfd813c572a1bd9b4b078bf985bf612e696a9a2ec86f6641c01682a20bc`.
+
+This is owner content approval, not independent review. No reasons or itemized
+rubric assessment were supplied, so neither is invented. It does not approve
+the other changed outputs or authorize funds, wallet actions, paid API use or
+a FLOP session. The source snapshots and model traces remain private.
