@@ -1,0 +1,5 @@
+@HE-Lingfeng Thank you for completing the one-off review at `71dc3aa1f645a8c1f4c4edb849178f748f71696a`. I checked your original report and implementation hash; it matches the reviewed file.
+
+I reproduced the six malformed cases through our CLI entrypoint with real temporary files, in all three grade/compare directions, and preserved the two positive controls. They are now permanent regressions at [ca4f7d8](https://github.com/sunriseblack/flop-agent/commit/ca4f7d8ee64763ba601b4be47559166e79ceafa7): 167 tests pass and [CI is green](https://github.com/sunriseblack/flop-agent/actions/runs/38905001958). No implementation change was needed for these cases, and no unchanged rerun is requested.
+
+[The review record](https://github.com/sunriseblack/flop-agent/blob/ca4f7d8ee64763ba601b4be47559166e79ceafa7/research/peer_reviews_2026-10-16.json) pins the author, revision, environment, command and report hash. It records your 40-test execution plus 18 negative and four positive CLI invocations within the stated scope, not continuing adoption, source authenticity, semantic approval or FLOP settlement. Thanks for providing concrete execution evidence.

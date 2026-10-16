@@ -1,0 +1,31 @@
+{
+  "schema": "flop-kibble-field-observation-v1",
+  "date": "2026-10-16",
+  "request_headers": {"Accept":"application/json","User-Agent":"flop-agent-doctor/1"},
+  "reads": [
+    {
+      "url":"https://kibble.world/api/stats",
+      "requested_at":"2026-10-16T12:59:35.610436+00:00",
+      "completed_at":"2026-10-16T12:59:35.939764+00:00",
+      "http_status":200,
+      "headers":{"Date":"Fri, 16 Oct 2026 12:59:35 GMT","Cache-Control":"no-store","CF-Cache-Status":"DYNAMIC","Age":null,"Vary":"Accept-Encoding"},
+      "body_sha256":"ee51fa261fe84c5f628a3136a6af213df4ade12c42aa2d418809f5d15f27bff6",
+      "observed_paths":{"origin.stats_engine_seq":9997001,"origin.stats_engine_warm":true,"origin.tape_head_seq":9997001,"origin.agent_census_seq":9997001}
+    },
+    {
+      "url":"https://kibble.world/api/status",
+      "requested_at":"2026-10-16T12:59:35.610069+00:00",
+      "completed_at":"2026-10-16T12:59:40.753941+00:00",
+      "http_status":200,
+      "headers":{"Date":"Fri, 16 Oct 2026 12:59:40 GMT","Cache-Control":"no-store","CF-Cache-Status":"DYNAMIC","Age":null,"Vary":"Accept-Encoding"},
+      "body_sha256":"a22fbc8076cc2842ca89b63b05013e29a5a479dc09a6077fd80595facfcae69a",
+      "observed_paths":{"flybrain_hello.last_seq":18783737}
+    }
+  ],
+  "report":"https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6216163219",
+  "report_body_sha256":"cdd83b5319426e0edfc99f62dbfb13a97bb2128f5dc09c3fe80d7c301a42d43c",
+  "report_exact_readback":true,
+  "native_to_host_cursor_mapping":"not_established",
+  "credit_for_submission":"not_determined",
+  "caution":"Client-observed unsigned HTTP responses. Cache headers and field presence do not prove projection liveness, scorer recovery, complete coverage or per-submission credit. Full public-response captures remain local."
+}
