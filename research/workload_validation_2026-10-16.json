@@ -36,5 +36,6 @@
   "flop_settlement":"not_verified",
   "review":"AI-authored manual preparation with rubric visible, followed by direct user approval of this exact draft. No rationale or itemized rubric assessment was supplied; this is not independent review or a blinded model evaluation.",
   "deferred":"Five other changed request versions have no new accepted output. Approval covers only this draft, not those tasks or a FLOP transport session.",
-  "caution":"Source snapshots, prompts, outputs and review packet remain local/ignored. Structural checks and hashes do not authenticate sources, prove semantic truth, demonstrate continuing adoption or establish an allocation."
+  "publication":{"path":"MONEY_PATH_EVIDENCE_2026-10-16.md","scope":"Approved answer wording only, with source pins and public review metadata; raw model/source traces and direct approval receipt remain private."},
+  "caution":"Raw source snapshots, prompts, response traces and review packet remain local/ignored. The approved answer is published separately. Structural checks and hashes do not authenticate sources, prove semantic truth, demonstrate continuing adoption or establish an allocation."
 }

@@ -141,6 +141,10 @@ transport-neutral and has no wallet, purchase or publication path. See the
 [daily routine](DAILY_ROUTINE.md) for the contribution review loop and the
 official testnet launch gate.
 
+The reviewed [money path evidence answer](MONEY_PATH_EVIDENCE_2026-10-16.md)
+separates public fixture validation, executable accounting checks, finalized
+inference and individual allocation, using pinned October 16 source editions.
+
 ## Close Call paper contest audit
 
 The read-only auditor checks one archived Close Call sweep against the public

@@ -186,6 +186,33 @@ small fixed context and independent durable files. The operational trace
 is the source snapshot, prepared request/hash, imported response and review
 result. No hidden reasoning is collected.
 
+## Independently test the review exporter
+
+Run the synthetic peer packet through the real local CLI:
+
+```bash
+git rev-parse HEAD
+python3 scripts/review_exporter_review.py
+python3 -m unittest discover -s tests -p test_docs_workload.py -q
+```
+
+The runner reports Python/platform, implementation and fixture hashes, and 13
+observed cases. It checks request/draft binding, uncited context, inert hostile
+strings and abstention, then checks that malformed inputs, public/HTML paths,
+symlink escapes and overwrites fail without a new output. An unsupported
+symlink check is a failure to complete this packet, not a silent pass.
+
+All input text is synthetic, even where the schema requires an official URL
+label. Nothing is downloaded or presented as official source evidence. The
+runner invokes only this checkout's `review-packet` command with the current
+Python interpreter; it needs no signing key, wallet or model. Temporary files
+are removed after the run. It does not inspect a participant's private inputs.
+
+For an independent report, include the exact checkout, runner JSON, environment
+and an additional counterexample or platform observation. A posted request or
+our own passing run is not independent execution. Keep any real private source
+or model text out of the report.
+
 ## Testnet launch gate
 
 Before enabling a FLOP transport, identify the official client, chain and
