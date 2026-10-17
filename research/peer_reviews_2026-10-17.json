@@ -28,6 +28,13 @@
       "our_reproduction": "Permanent test_peer_dangling_file_link_and_regular_controls_through_real_cli reproduces all three extra cases with subprocess child umask=0.",
       "our_workload_tests_after_reproduction": 55,
       "our_full_tests_after_reproduction": 184,
+      "our_reproduction_commit": "1abd92f3ba0a7276ba101dc6732e8487e6b543b8",
+      "our_ci": "https://github.com/sunriseblack/flop-agent/actions/runs/39034923906",
+      "our_ci_lanes_verified": ["Python 3.12", "Python 3.14"],
+      "our_acknowledgement": "https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6234203365",
+      "our_acknowledgement_body_sha256": "fef5d34d27114c568f918401f3e2f1e6e0093f8978c5ddbd524970943dea2047",
+      "our_acknowledgement_exact_readback": true,
+      "unchanged_rerun_requested": false,
       "review_status": "one_off_execution_complete_within_reported_scope",
       "scope": "Author-attributed execution report, not observation of the reviewer's machine, ongoing adoption, semantic acceptance, authenticated source retrieval, FLOP settlement or allocation."
     }

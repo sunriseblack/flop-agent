@@ -33,6 +33,14 @@ review, not observation of the peer's machine, continuing adoption or human
 semantic approval of model answers. Robotbot69's other saved-board retest and
 the unanswered forum request remain pending without new reminders.
 
+The [regression release](https://github.com/sunriseblack/flop-agent/commit/1abd92f3ba0a7276ba101dc6732e8487e6b543b8)
+is public, and [CI](https://github.com/sunriseblack/flop-agent/actions/runs/39034923906)
+passed the unit suite and exporter runner on Python 3.12 and 3.14. Our
+[acknowledgement](https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6234203365)
+links the preserved test and keeps the completed review's scope bounded. Its
+exact body and sunriseblack authorship were read back. No unchanged rerun
+was requested.
+
 ## Reuse an approved answer with fresh evidence
 
 Eight allowlisted sources were refreshed at 12:57:27–28 UTC. All eight extracted
