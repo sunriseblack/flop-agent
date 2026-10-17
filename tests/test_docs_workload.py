@@ -4,6 +4,7 @@ import copy
 import datetime
 import hashlib
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -145,6 +146,38 @@ class DocsWorkloadTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "byte bound"):
                 save_private_review(target, "large")
             self.assertFalse(target.exists())
+
+    @unittest.skipUnless(os.name == "posix", "POSIX file permission check")
+    def test_human_review_packet_is_owner_only_even_with_permissive_umask(self):
+        with tempfile.TemporaryDirectory() as temp, mock.patch("docs_workload.ROOT", Path(temp)):
+            target = Path(temp)/".private"/"workload"/"review.txt"
+            previous = os.umask(0)
+            try:
+                save_private_review(target, "synthetic private text")
+            finally:
+                os.umask(previous)
+            self.assertEqual(target.stat().st_mode & 0o777, 0o600)
+
+    def test_human_review_packet_size_limit_counts_utf8_bytes(self):
+        with tempfile.TemporaryDirectory() as temp, mock.patch("docs_workload.ROOT", Path(temp)), \
+                mock.patch("docs_workload.MAX_FILE_BYTES", 4):
+            private = Path(temp)/".private"/"workload"
+            exact, too_large = private/"exact.txt", private/"too-large.txt"
+            save_private_review(exact, "\u00e9\u00e9")
+            self.assertEqual(exact.read_bytes(), b"\xc3\xa9\xc3\xa9")
+            with self.assertRaisesRegex(ValueError, "byte bound"):
+                save_private_review(too_large, "\u00e9\u00e9!")
+            self.assertFalse(too_large.exists())
+
+    def test_human_review_writer_rejects_redirected_private_root(self):
+        with tempfile.TemporaryDirectory() as temp, tempfile.TemporaryDirectory() as outside, \
+                mock.patch("docs_workload.ROOT", Path(temp)):
+            private = Path(temp)/".private"
+            private.mkdir()
+            (private/"workload").symlink_to(outside, target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, "inside .private/workload"):
+                save_private_review(private/"workload"/"escaped.txt", "synthetic text")
+            self.assertFalse((Path(outside)/"escaped.txt").exists())
 
     def test_hash_changed_text_and_unapproved_url_fail(self):
         for field, value in (("text", "Changed source"), ("url", "https://evil.example/private")):

@@ -11,6 +11,7 @@ import datetime
 import hashlib
 from html.parser import HTMLParser
 import json
+import os
 import pathlib
 import sys
 import urllib.parse
@@ -458,7 +459,8 @@ def save_private_review(path, text):
     if len(text.encode("utf-8")) > MAX_FILE_BYTES:
         raise ValueError("review output exceeds byte bound")
     target.parent.mkdir(parents=True, exist_ok=True)
-    with target.open("x", encoding="utf-8") as output:
+    descriptor = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, "w", encoding="utf-8") as output:
         output.write(text)
 
 

@@ -21,6 +21,13 @@ regressions, fix it, run the suite and ask that reviewer to verify the fix.
 Publish a tested patch after diff review and secret scan. Keep unanswered
 requests pending without repeated generic reminders.
 
+The new [review exporter round](https://github.com/sunriseblack/flop-agent/issues/3)
+uses `python3 scripts/review_exporter_review.py` and the 13-case synthetic CLI
+packet. Check replies to signed `flop` seq 368669 as well. Keep reported checkouts
+separate from later fixes, and verify the request/draft and filesystem boundaries
+on the revision the reporter actually ran. This new round is pending; do not
+count the completed validator review as exporter review or resend unanswered asks.
+
 ## Produce useful document inference
 
 Use the [workload guide](INFERENCE_WORKLOAD.md). Refresh allowlisted official

@@ -9,6 +9,7 @@ import copy
 import datetime
 import hashlib
 import json
+import os
 import pathlib
 import platform
 import subprocess
@@ -88,6 +89,10 @@ def run():
             "Request SHA-256: " + request_hash, "Draft SHA-256: " + workload.digest(response),
             "pending_human_review", "human_review: not_recorded", "SYNTHETIC conflicting context")))
         first["passed"] &= bool(packet and packet.count("Excerpt (untrusted JSON string):") == 2)
+        if os.name == "posix" and packet is not None:
+            mode = (directory / "valid.txt").stat().st_mode & 0o777
+            first["output_mode"] = oct(mode)
+            first["passed"] &= mode == 0o600
         invoke("overwrite", target=directory / "valid.txt", expected=2)
         invoke("public_destination", target=pathlib.Path(outside) / "review.txt", expected=2)
         invoke("html_destination", target=directory / "review.html", expected=2)

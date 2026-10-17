@@ -174,6 +174,8 @@ IDs and changed request hashes block export.
 Output must stay inside this repository's `.private/workload` directory; public,
 HTML and symlink-escaping destinations are rejected. The 8 MiB byte bound and
 exclusive creation preserve earlier packets. Nothing is fetched or executed.
+New packet files use owner-only `0600` permissions even with a permissive umask;
+existing files are never overwritten or chmodded by the exporter.
 It does not check source freshness: prepare from fresh sources first and compare
 request hashes. A successful export only means `pending_human_review`; it cannot
 record acceptance, an independent reviewer identity or a FLOP session. The human
@@ -198,7 +200,8 @@ python3 -m unittest discover -s tests -p test_docs_workload.py -q
 
 The runner reports Python/platform, implementation and fixture hashes, and 13
 observed cases. It checks request/draft binding, uncited context, inert hostile
-strings and abstention, then checks that malformed inputs, public/HTML paths,
+strings, abstention and POSIX owner-only output, then checks that malformed
+inputs, public/HTML paths,
 symlink escapes and overwrites fail without a new output. An unsupported
 symlink check is a failure to complete this packet, not a silent pass.
 

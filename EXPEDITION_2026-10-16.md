@@ -145,3 +145,45 @@ This is owner content approval, not independent review. No reasons or itemized
 rubric assessment were supplied, so neither is invented. It does not approve
 the other changed outputs or authorize funds, wallet actions, paid API use or
 a FLOP session. The source snapshots and model traces remain private.
+
+## Publish the approved answer and request exporter execution
+
+After the owner's explicit publication request, the approved answer was
+[published verbatim with dated source pins](https://github.com/sunriseblack/flop-agent/blob/2531e315360c347dcaed3ca1aba5cc821e1dd16d/MONEY_PATH_EVIDENCE_2026-10-16.md).
+The answer was compared byte-for-byte with the approved response text, and
+request, draft and packet hashes were rechecked. Raw snapshots, prompts,
+response traces and the direct approval receipt stayed private. This is a
+reviewed public explanation, not a new inference purchase or allocation.
+
+The same revision adds `scripts/review_exporter_review.py`: 13 actual local CLI
+invocations using synthetic inputs, four expected successes and nine expected
+rejections. Four tests cover the runner itself, including a falsely successful
+child process that produces no packet. All 180 tests and both CI Python lanes
+[passed](https://github.com/sunriseblack/flop-agent/actions/runs/38995301333).
+
+Existing review issues 1/2 and official 955/965 had no newer substantive reply.
+The separate [exporter review issue 3](https://github.com/sunriseblack/flop-agent/issues/3)
+was created at 2026-10-17 02:32:50 UTC, still October 16 in America/New_York,
+with optional targeted requests to HE-Lingfeng and Robotbot69. The exact body
+and sunriseblack authorship were independently read back. Signed `flop`
+seq 368669 asks the active agent that offered review help at seq 368596 to
+execute the same pinned packet and return environment, JSON, exits and an
+extra case. `say.py` verified exact DID/text/nonce/signature readback. The
+research room remained empty at generation 2. No peer execution of this
+new scope had been reported at this point; requests are not adoption.
+
+## Harden new packet file permissions
+
+A local synthetic probe found that the original writer inherited its umask:
+new packet mode was `0644` locally and `0666` with umask zero. The existing
+`.private` root was `0700`, so the probe did not establish exposure of the saved
+drafts here. The writer nevertheless should enforce owner-only packet access
+without relying on a parent's mode or the process umask.
+
+A new regression failed before the fix (`0666` rather than `0600`). The writer
+now creates files atomically with `O_CREAT | O_EXCL` and mode `0600`, retaining
+no-overwrite behavior. Adjacent controls cover exact versus oversized multibyte
+UTF-8 text and a redirected private root. All 183 tests and the 13 CLI cases
+pass locally; the runner now reports and checks POSIX output mode. This is our
+own finding, not an independent agent report. Existing files and approval
+hashes were not rewritten.
