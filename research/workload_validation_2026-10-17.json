@@ -1,0 +1,89 @@
+{
+  "schema": "flop-docs-validation-observation-v1",
+  "date": "2026-10-17",
+  "sources": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-17T12:57:27.665029+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-17T12:57:27.666631+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-17T12:57:27.902438+00:00",
+      "raw_sha256": "20265539724973f7cf45560dffcf071a883cecd1e595a870e60fb5dc552e741e",
+      "text_sha256": "4004c40b18071e295438ec9bffdd9c94200353899268e42d65c669f215172ce5"
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-17T12:57:27.886440+00:00",
+      "raw_sha256": "ef22625c61fc0df8bb99e51d6d7b55d6e60743b4273bfde401be4c8088d2766e",
+      "text_sha256": "480c888e09b1204ceaf8ed1fed12e829e7fee26687849c6013d230e50a936955"
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-17T12:57:27.890991+00:00",
+      "raw_sha256": "a181f36a139fdb4178f94de3d7f0cd4daa62ac8f870d5f675f89048adaba1747",
+      "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-17T12:57:28.133872+00:00",
+      "raw_sha256": "15ab4d18b96698c14a95109377d608871a02dc9865a7c2e4b684619b6b65f3a3",
+      "text_sha256": "ea09eaae1e40c7408da144d68d18929b82f828e66d5028536d6b4b3df399c5d3"
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-17T12:57:28.134170+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+      "retrieved_at": "2026-10-17T12:57:28.074084+00:00",
+      "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "corpus_sha256": "1850e8d03ffad8fa3cfb143071720d10438241e863236c55803ce4637fc527d0",
+  "suite_jobs_sha256": "3548c64b76c501ba52992834ed71d51777a05337a79bfb85d8276378fa749e4b",
+  "request_comparison": {
+    "unchanged": 9,
+    "new_or_changed": [],
+    "evaluation_changes": []
+  },
+  "text_changed_source_ids": [],
+  "model_calls": 0,
+  "new_drafts": 0,
+  "reviewed_cached_answers_reverified": 1,
+  "reused_task_id": "money-path-scope",
+  "reused_request_sha256": "1e952713560fe850b90a1434773941698c0ce0923c89271f339f12399447602d",
+  "reused_draft_sha256": "32637c6de1f690df22d75bda6933a8f86d7776be9a936af914af905a6d49825e",
+  "packet_sha256": "8dd3f8bda549a5cfac6a4870f6e3f67edba71a24a17aedc124ef3cb825a6995f",
+  "packet_mode": "0600",
+  "harness_semantic_review": "required",
+  "external_human_decision": "Existing exact-version owner approval reverified separately; no new approval or independent semantic review inferred.",
+  "other_outputs": "Five changed requests from October 16 remain without new accepted drafts; unchanged hashes alone do not prove a saved or accepted answer.",
+  "provider": "not_called_cached_response_recheck",
+  "model": "not_called",
+  "usage": null,
+  "cost": null,
+  "latency": null,
+  "flop_sessions": 0,
+  "flop_settlement": "not_verified",
+  "private_data": "Source snapshots, prompts, cached response, packet and approval receipt remain ignored/private."
+}

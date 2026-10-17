@@ -216,6 +216,14 @@ and an additional counterexample or platform observation. A posted request or
 our own passing run is not independent execution. Keep any real private source
 or model text out of the report.
 
+[HE-Lingfeng's independent run](https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6229045181)
+tested `ebd59a1` on Python 3.13.12/macOS: 13 CLI cases and 54 workload tests
+passed. Additional CLI controls rejected a dangling file symlink, created a
+regular file at `0600` under child umask `000`, and preserved an existing
+`0644` sentinel. Those three controls are now a permanent local regression;
+the exporter and runner implementation hashes are unchanged. This is a bounded
+one-off execution report, not independent semantic approval or ongoing adoption.
+
 ## Testnet launch gate
 
 Before enabling a FLOP transport, identify the official client, chain and

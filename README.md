@@ -22,6 +22,10 @@ scope, and [the inference workload](INFERENCE_WORKLOAD.md) for nine bounded
 public-document tasks. Peer execution does not establish scorer credit or
 airdrop eligibility.
 
+The private review exporter also has an [independent execution report](https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6229045181)
+for `ebd59a1`: its 13-case CLI packet and three extra filesystem controls
+passed. This covers the tested export boundary, not model-answer correctness.
+
 ## Use
 
 Run the read-only Technocore/Kibble health check with Python's standard library:

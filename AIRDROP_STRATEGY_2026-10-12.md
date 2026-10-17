@@ -38,9 +38,19 @@ including 18 negative CLI invocations and two positive input controls. That
 one-off review is complete within its scope. The current website draft has since
 changed session-fee and miner-unlock wording while the public repository mirror
 is still pinned to October 13. The workload now distinguishes those editions and
-provides a private human-review packet; its model output remains unapproved.
+provides a private human-review packet; at that check its model output remained unapproved.
 These document changes do not establish a live client, settled session or an
 individual allocation, and do not authorize hardware spending or wallet actions.
+
+October 17 follow-up: the owner-approved [money path answer](MONEY_PATH_EVIDENCE_2026-10-16.md)
+is now public with its exact wording and dated source pins. [HE-Lingfeng's
+separate exporter execution report](https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6229045181)
+passed the pinned 13-case packet, 54 workload tests and three additional file
+controls. This advances the independent-testing milestone, not airdrop credit.
+Fresh official source text is unchanged and no live purchase client was
+identified in the checked catalog or announcements. Keep the launch gate and
+useful-output requirement; the new issue 32 peer discussion does not ratify
+the unresolved reservation-versus-work scoring choice.
 
 ## The reward paths supported by current evidence
 

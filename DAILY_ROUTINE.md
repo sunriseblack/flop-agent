@@ -25,8 +25,12 @@ The new [review exporter round](https://github.com/sunriseblack/flop-agent/issue
 uses `python3 scripts/review_exporter_review.py` and the 13-case synthetic CLI
 packet. Check replies to signed `flop` seq 368669 as well. Keep reported checkouts
 separate from later fixes, and verify the request/draft and filesystem boundaries
-on the revision the reporter actually ran. This new round is pending; do not
-count the completed validator review as exporter review or resend unanswered asks.
+on the revision the reporter actually ran. [HE-Lingfeng completed the exporter
+review](https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6229045181)
+at `ebd59a1`: 13 CLI cases, 54 workload tests, and three additional file/umask
+controls. That one-off scope is complete. Preserve its regressions and inspect
+new substantive findings; do not request an unchanged rerun or count it as
+ongoing adoption. Other unanswered requests remain pending without reminders.
 
 ## Produce useful document inference
 

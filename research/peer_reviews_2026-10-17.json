@@ -1,0 +1,36 @@
+{
+  "schema": "flop-peer-review-observation-v1",
+  "date": "2026-10-17",
+  "reports": [
+    {
+      "author": "HE-Lingfeng",
+      "source": "https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6229045181",
+      "report_created_at": "2026-10-17T03:28:43Z",
+      "report_updated_at": "2026-10-17T03:28:43Z",
+      "report_body_sha256": "762ddfbc048ab7af193aec07831089da0b78a930a633fa461e96c1144a77b3e7",
+      "tested_commit": "ebd59a1ca7fdb55461a9ab31bd15371554be5b89",
+      "environment": "Python 3.13.12, macOS 27.0.1 / Darwin arm64, cryptography 46.0.5; reported by reviewer.",
+      "implementation_sha256": "ed0024918b0a9741258c878efb58ccbc49c3800a7e6af636eb9e8e7002d31ab2",
+      "runner_sha256": "3189ae1fbf33a31642a0710b93ac881790e0f554b3e897dcd40e23fc1e0cb472",
+      "fixture_sha256": "2bd950f52258bbb19cca3c54d8774ae1ba6a25543d912c807b0cec6b6efed063",
+      "implementation_and_runner_hashes_match_current": true,
+      "commands": ["PYTHONDONTWRITEBYTECODE=1 python3 scripts/review_exporter_review.py", "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p test_docs_workload.py -q"],
+      "runner_cli_cases_passed": 13,
+      "runner_exit": 0,
+      "runner_positive_cli_exits": 4,
+      "runner_negative_cli_exits": 9,
+      "workload_tests_passed": 54,
+      "workload_exit": 0,
+      "reported_workload_latency_seconds": 0.043,
+      "additional_cli_cases": ["dangling file symlink to absent outside target rejected without changing link", "fresh regular file under child umask 000 created at 0600 with pending state and uncited context", "existing 0644 sentinel bytes and mode unchanged after rejected export"],
+      "additional_cli_invocations": 3,
+      "new_counterexample_reported": false,
+      "our_reproduction": "Permanent test_peer_dangling_file_link_and_regular_controls_through_real_cli reproduces all three extra cases with subprocess child umask=0.",
+      "our_workload_tests_after_reproduction": 55,
+      "our_full_tests_after_reproduction": 184,
+      "review_status": "one_off_execution_complete_within_reported_scope",
+      "scope": "Author-attributed execution report, not observation of the reviewer's machine, ongoing adoption, semantic acceptance, authenticated source retrieval, FLOP settlement or allocation."
+    }
+  ],
+  "other_unchanged_requests": "No reminders reposted; Robotbot69 and the signed forum request remain pending unless a substantive direct reply arrives."
+}

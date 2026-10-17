@@ -5,6 +5,7 @@ import datetime
 import hashlib
 import json
 import os
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -17,6 +18,7 @@ from docs_workload import (OfficialRedirect, PublicText, SOURCES, SYSTEM, checke
                            compare_bundles, load_file, main, prepare, response_errors, review_packet,
                            save_file, save_private_review, select_tasks)  # noqa: E402
 from kit_review import run as kit_smoke_test  # noqa: E402
+from review_exporter_review import fixture as exporter_fixture  # noqa: E402
 
 
 class DocsWorkloadTests(unittest.TestCase):
@@ -178,6 +180,54 @@ class DocsWorkloadTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "inside .private/workload"):
                 save_private_review(private/"workload"/"escaped.txt", "synthetic text")
             self.assertFalse((Path(outside)/"escaped.txt").exists())
+
+    @unittest.skipUnless(os.name == "posix", "POSIX child umask and symlink checks")
+    def test_peer_dangling_file_link_and_regular_controls_through_real_cli(self):
+        root = Path(__file__).resolve().parents[1]
+        private = root/".private"/"workload"
+        private.mkdir(parents=True, exist_ok=True)
+        bundle, response = exporter_fixture()
+        with tempfile.TemporaryDirectory(dir=private, prefix="peer-link-") as temp, \
+                tempfile.TemporaryDirectory(prefix="peer-link-outside-") as outside:
+            jobs, responses = Path(temp)/"jobs.json", Path(temp)/"responses.json"
+            save_file(jobs, bundle)
+            save_file(responses, [response])
+
+            def invoke(target):
+                return subprocess.run(
+                    [sys.executable, str(root/"scripts/docs_workload.py"), "review-packet",
+                     "--bundle", str(jobs), "--responses", str(responses),
+                     "--task-id", "export-review", "--output", str(target)],
+                    capture_output=True, text=True, timeout=10, cwd=root, umask=0)
+
+            absent = Path(outside)/"absent.txt"
+            dangling = Path(temp)/"dangling.txt"
+            dangling.symlink_to(absent)
+            self.assertTrue(dangling.is_symlink())
+            self.assertFalse(dangling.exists())
+            rejected = invoke(dangling)
+            self.assertEqual(rejected.returncode, 2, rejected.stderr)
+            self.assertIn("inside .private/workload", rejected.stderr)
+            self.assertFalse(absent.exists())
+            self.assertTrue(dangling.is_symlink())
+            self.assertEqual(dangling.readlink(), absent)
+
+            fresh = Path(temp)/"valid.txt"
+            accepted = invoke(fresh)
+            self.assertEqual(accepted.returncode, 0, accepted.stderr)
+            self.assertEqual(fresh.stat().st_mode & 0o777, 0o600)
+            self.assertIn("pending_human_review; human_review: not_recorded", fresh.read_text())
+            self.assertIn("SYNTHETIC conflicting context", fresh.read_text())
+
+            existing = Path(temp)/"existing.txt"
+            existing.write_bytes(b"synthetic existing packet\n")
+            existing.chmod(0o644)
+            original_hash = hashlib.sha256(existing.read_bytes()).hexdigest()
+            refused = invoke(existing)
+            self.assertEqual(refused.returncode, 2, refused.stderr)
+            self.assertIn("output exists", refused.stderr)
+            self.assertEqual(hashlib.sha256(existing.read_bytes()).hexdigest(), original_hash)
+            self.assertEqual(existing.stat().st_mode & 0o777, 0o644)
 
     def test_hash_changed_text_and_unapproved_url_fail(self):
         for field, value in (("text", "Changed source"), ("url", "https://evil.example/private")):
