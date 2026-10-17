@@ -187,3 +187,19 @@ UTF-8 text and a redirected private root. All 183 tests and the 13 CLI cases
 pass locally; the runner now reports and checks POSIX output mode. This is our
 own finding, not an independent agent report. Existing files and approval
 hashes were not rewritten.
+
+The [permission fix](https://github.com/sunriseblack/flop-agent/commit/ebd59a1ca7fdb55461a9ab31bd15371554be5b89)
+is public. [CI run 38995572155](https://github.com/sunriseblack/flop-agent/actions/runs/38995572155)
+passed tests, the original kit runner and the new exporter runner on both
+Python 3.12 and 3.14. A [material follow-up on issue 3](https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6228586567)
+provides the new retest pin and preserves the distinction from the original
+requested revision; its exact body and author were read back.
+
+The actual approved draft was re-exported to a new private file at mode
+`0600`. Its packet hash remained
+`8dd3f8bda549a5cfac6a4870f6e3f67edba71a24a17aedc124ef3cb825a6995f`,
+identical to the original. Remote public article bytes also matched the local
+reviewed article. These are local/CI checks, not independent review. At the
+last reply check, issue 3 had no external execution report and the signed
+forum tail contained our request but no matching reply. The daily routine now
+tracks that new issue and exact signed request before further outreach.

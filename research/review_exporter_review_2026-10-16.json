@@ -4,6 +4,8 @@
   "timezone": "America/New_York",
   "approved_answer_publication": "https://github.com/sunriseblack/flop-agent/blob/2531e315360c347dcaed3ca1aba5cc821e1dd16d/MONEY_PATH_EVIDENCE_2026-10-16.md",
   "approved_answer_exact_match": true,
+  "public_article_sha256": "7ebb3e1caa41ac12cb82b3f162a943d0fb095c88c543d20c9a0bbc6b7be62255",
+  "public_article_remote_bytes_match": true,
   "initial_review_commit": "2531e315360c347dcaed3ca1aba5cc821e1dd16d",
   "initial_review_ci": "https://github.com/sunriseblack/flop-agent/actions/runs/38995301333",
   "initial_review_full_tests": 180,
@@ -40,6 +42,21 @@
   "local_cli_cases": 13,
   "local_cli_cases_passed": 13,
   "local_full_tests_after_fix": 183,
+  "fix_commit": "ebd59a1ca7fdb55461a9ab31bd15371554be5b89",
+  "fix_ci": "https://github.com/sunriseblack/flop-agent/actions/runs/38995572155",
+  "fix_ci_verified_lanes": ["Python 3.12: tests, kit runner and exporter runner passed", "Python 3.14: tests, kit runner and exporter runner passed"],
+  "fix_followup": {
+    "url": "https://github.com/sunriseblack/flop-agent/issues/3#issuecomment-6228586567",
+    "author": "sunriseblack",
+    "body_sha256": "29383131371c11ace2a3702514d473b4961c9775274dfdfc422ce1fd5beb781c",
+    "exact_readback": true
+  },
+  "approved_packet_integration": {
+    "new_packet_sha256": "8dd3f8bda549a5cfac6a4870f6e3f67edba71a24a17aedc124ef3cb825a6995f",
+    "byte_identical_to_original_packet": true,
+    "new_packet_mode": "0600",
+    "scope": "Local private integration check, not independent execution."
+  },
   "independent_exporter_reports": [],
   "review_status": "awaiting_independent_execution",
   "scope": "Publication and independent exporter review. No model API, payment, wallet, new DID, FLOP session or airdrop credit."
