@@ -1,0 +1,260 @@
+{
+  "schema": "flop-docs-followup-observation-v1",
+  "date": "2026-10-18",
+  "approved_publication": {
+    "task_id": "testnet-demand",
+    "version": "v3",
+    "owner_approval_recorded_at": "2026-10-18T19:48:47Z",
+    "independent_review": false,
+    "answer_preserved_verbatim": true,
+    "commit": "c4a6115d79814fa6a45fece7de950c6d36bc3377",
+    "path": "TESTNET_DEMAND_EVIDENCE_2026-10-18.md",
+    "remote_blob_sha1": "a0b3df1f1922a99b820ac622b4f339d4b5bf295b",
+    "remote_blob_matches_local": true,
+    "ci_url": "https://github.com/sunriseblack/flop-agent/actions/runs/39160553984",
+    "ci_conclusion": "success",
+    "approval_does_not_extend_to_other_tasks": true
+  },
+  "sources": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-18T19:48:59.356066+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-18T19:48:59.875253+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-18T19:48:59.119629+00:00",
+      "raw_sha256": "0fe7d58a7a818a49cb2086e8e402c694d1a4d8f04f4f21a904e64c8f69678254",
+      "text_sha256": "4004c40b18071e295438ec9bffdd9c94200353899268e42d65c669f215172ce5"
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-18T19:48:59.250447+00:00",
+      "raw_sha256": "caea9c09f3fa67cd0a030407fd702df924b99fe7109e9b1dc70ee6ae87ed468f",
+      "text_sha256": "480c888e09b1204ceaf8ed1fed12e829e7fee26687849c6013d230e50a936955"
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-18T19:48:59.458731+00:00",
+      "raw_sha256": "a7a6cdea3968410113e4fe91e49c4f11f2cb5b995a417254f3dedb69076991f9",
+      "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-18T19:48:59.581058+00:00",
+      "raw_sha256": "44c1f3ec518646837f69656f28c01ef37cf3123b8a6acd6630a169933b9e3182",
+      "text_sha256": "ea09eaae1e40c7408da144d68d18929b82f828e66d5028536d6b4b3df399c5d3"
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-18T19:48:59.731116+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+      "retrieved_at": "2026-10-18T19:48:59.754668+00:00",
+      "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "corpus_sha256": "511d244c44725c94f942c59c15ca88da36006d2f6e84de99d93e35e14e16cfdf",
+  "suite_jobs_sha256": "3548c64b76c501ba52992834ed71d51777a05337a79bfb85d8276378fa749e4b",
+  "selected_jobs_sha256": "cff432155b68acb2793afd3ee1a2afdf32b228a70f9fc7a3a5dc32c05bfdbafa",
+  "source_text_changes": [],
+  "request_changes": [],
+  "evaluation_changes": [],
+  "new_draft_tasks": 4,
+  "response_file_versions": 2,
+  "locally_revised_tasks": [
+    "unlock-versus-allocation",
+    "implementation-gap"
+  ],
+  "self_review": "Strengthened the supporting unlock quote and separated finalized Era-T allocation inputs from Era-0 grant state. Earlier responses retained; no exporter defect or independent finding claimed.",
+  "drafts": [
+    {
+      "task_id": "unlock-versus-allocation",
+      "request_sha256": "72cbeafd9e9c8f1c760032d5692037a6ce2e02d2555e276f0ae82b4bdddd76d7",
+      "draft_sha256": "08fe6ce6818299fb35b58a88a27be0453712b72bc53d33a588459e4ee4cd0f3c",
+      "version": "v2",
+      "packet_sha256": "50c81fdd3eb4f546f5111b0e701a488d14a6c54788e9eefa32bb4f6c86a06d03",
+      "packet_bytes": 6803,
+      "packet_mode": "0600",
+      "abstain": false,
+      "mechanical_pass": true,
+      "semantic_review": "required",
+      "human_decision": "not_recorded",
+      "publication": "private"
+    },
+    {
+      "task_id": "document-conflict",
+      "request_sha256": "85796aee69c0f3ad3f75ffd3d532737846a37ea7ccdfe50d1b817c954c09bf57",
+      "draft_sha256": "384c86a1baedb6034ce1bfb6e7329603616ef2362564dc0492d8f61919c911d1",
+      "version": "v2",
+      "packet_sha256": "17ff9b2dc696bc6d26c95b41a70672989f56ba3ecbc16055ed4a7404b9dd4215",
+      "packet_bytes": 7576,
+      "packet_mode": "0600",
+      "abstain": false,
+      "mechanical_pass": true,
+      "semantic_review": "required",
+      "human_decision": "not_recorded",
+      "publication": "private"
+    },
+    {
+      "task_id": "implementation-gap",
+      "request_sha256": "c15e97a541eec48ce1a17bcc54c35e34fa5d58b0f2eeb615f3e7cbe5726e54ef",
+      "draft_sha256": "222269a39ad0b89303aabb4d71eb1deb6506e6d3d4ea8d6f648db354bf08cbee",
+      "version": "v2",
+      "packet_sha256": "c60bc68d639f5002e5e2ab75e2a5304e6c34edf3dc12b9e50968c4aaa4971d70",
+      "packet_bytes": 9074,
+      "packet_mode": "0600",
+      "abstain": false,
+      "mechanical_pass": true,
+      "semantic_review": "required",
+      "human_decision": "not_recorded",
+      "publication": "private"
+    },
+    {
+      "task_id": "individual-award",
+      "request_sha256": "c5436f73681bbe4cd3344c5b8aabd07e6554b1bb5b48bc66001441e0bd4c64ee",
+      "draft_sha256": "c9090f750f1b3e32d6b99705efb83e2ff5bf89c702a6ea311db8e9e1a3454d96",
+      "version": "v2",
+      "packet_sha256": "8fce9b181dfbc46e0adbcab3764b7508712f58e46a830747a99236dd99d80c30",
+      "packet_bytes": 7533,
+      "packet_mode": "0600",
+      "abstain": true,
+      "mechanical_pass": true,
+      "semantic_review": "required",
+      "human_decision": "not_recorded",
+      "publication": "private"
+    }
+  ],
+  "current_suite_integration": {
+    "matched_saved_responses": 9,
+    "mechanical_passes": 9,
+    "approved_task_ids": [
+      "money-path-scope",
+      "testnet-demand"
+    ],
+    "other_task_ids_without_recorded_owner_approval": [
+      "signature-scope",
+      "cursor-window",
+      "identity-binding",
+      "unlock-versus-allocation",
+      "document-conflict",
+      "implementation-gap",
+      "individual-award"
+    ],
+    "selection": "Three unchanged October 12 drafts, approved October 16 money-path answer, approved October 18 demand v3 and four current remaining v2 drafts. Reused, not regenerated, older answers.",
+    "all_passes_are_semantic_approval": false
+  },
+  "model_execution": {
+    "scope": "AI-authored manual current-session preparation with rubric and prior context visible, then offline import of selected saved responses; not a blinded benchmark.",
+    "external_model_calls": 0,
+    "provider": "codex-current-session-manual",
+    "model": "current-chat-unspecified",
+    "provider_identity_verified": false,
+    "usage": null,
+    "cost": null,
+    "latency": null
+  },
+  "peer_followups": {
+    "checked_issues": [
+      {
+        "repo": "sunriseblack/flop-agent",
+        "issue": 1,
+        "comments": 2,
+        "latest_id": 6146431494
+      },
+      {
+        "repo": "sunriseblack/flop-agent",
+        "issue": 2,
+        "comments": 5,
+        "latest_id": 6216162955
+      },
+      {
+        "repo": "sunriseblack/flop-agent",
+        "issue": 3,
+        "comments": 4,
+        "latest_id": 6234203365
+      },
+      {
+        "repo": "flop-labs/technocore-chat",
+        "issue": 955,
+        "comments": 14,
+        "latest_id": 6216163219
+      },
+      {
+        "repo": "flop-labs/technocore-chat",
+        "issue": 965,
+        "comments": 9,
+        "latest_id": 6146403005
+      }
+    ],
+    "new_comments": 0,
+    "flop_tape": {
+      "checked_at": "2026-10-18T19:50:25.751562+00:00",
+      "generation": 0,
+      "floor": 366145,
+      "tip": 383467,
+      "sampled_head": 383467,
+      "records": 17323,
+      "contiguous": true,
+      "verified": 17323,
+      "unverifiable": 0,
+      "invalid": 0,
+      "request_seq": 368669,
+      "matching_peer_replies_in_retained_window": 0,
+      "older_seq_334602_below_floor": true
+    },
+    "research_room": {
+      "generation": 2,
+      "head": 0,
+      "records": 0
+    },
+    "technocore_tail": {
+      "generation": 0,
+      "floor": 18649959,
+      "tip": 18650158,
+      "verified": 200,
+      "unverifiable": 0,
+      "invalid": 0
+    },
+    "lobby_tail": {
+      "generation": 0,
+      "floor": 111884775,
+      "tip": 111884974,
+      "verified": 183,
+      "unverifiable": 17,
+      "invalid": 0
+    },
+    "new_review_requests_posted": 0,
+    "new_peer_findings": 0,
+    "previous_exporter_review": "Completed October 17; local checks are not another independent run. Unanswered requests left pending without reminders."
+  },
+  "validation": {
+    "repository_tests_passed": 184,
+    "exporter_cases_passed": 13,
+    "kit_cases_passed": 10,
+    "new_production_code_changes": 0,
+    "review_index_mode": "0600"
+  },
+  "flop_sessions": 0,
+  "flop_settlement": "not_verified",
+  "private_data": "Snapshots, prompts, response versions, review packets, composite responses and direct approval receipt remain ignored/private. Only approved v3 wording and bounded metadata are public."
+}

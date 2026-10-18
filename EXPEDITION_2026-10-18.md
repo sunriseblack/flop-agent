@@ -1,9 +1,10 @@
-# FLOP demand-evidence draft ready for human review
+# FLOP demand evidence publication and workload review
 
-The first saved answer for the current `testnet-demand` request is prepared,
-mechanically checked and exported privately as version 3. It is not approved
-or published. All 184 repository tests and 13 exporter CLI cases pass. No new
-peer finding, inference purchase, account credit or allocation is claimed.
+The owner-approved `testnet-demand` version 3 answer is now public. Four
+remaining current-task drafts are prepared privately for separate review;
+all nine current requests now have saved responses and mechanical passes.
+All 184 repository tests and 13 exporter CLI cases pass. No new peer finding,
+inference purchase, account credit or allocation is claimed.
 
 ## Advance the workload without regenerating approved work
 
@@ -19,8 +20,8 @@ a claim about every possible filename. It justifies preparing this missing
 answer rather than treating matching request hashes as completed work.
 
 The new task addresses permitted activity versus the evidence needed for the
-agent-genesis compute route. Its full answer, source excerpts, citations and
-rubric remain private until a human reviews the exact version. The request hash
+agent-genesis compute route. Its full review packet remained private through
+the initial handoff; the approved answer is now public. The request hash
 is `dd010f05fd8496d9a79a1c7fed7ee67dd303781a59de8b4818495b9a155fdc4c`;
 the v3 draft hash is
 `b194249bccc43c1b0fbdad06b6baa6372a86e4349a8749b8df9f6afb88de8dbf`.
@@ -39,10 +40,12 @@ cost and latency were unavailable and remain null.
 
 [Workload metadata](research/workload_validation_2026-10-18.json) records exact
 source retrievals, hashes, inventory scope and the pending review boundary.
-Prior approval of `money-path-scope` does not approve this new answer. Four
-other current requests still lack drafts in the inspected files:
+Prior approval of `money-path-scope` did not approve this new answer; its own
+later decision is recorded below. At the initial handoff, four other current
+requests lacked drafts in the inspected files:
 `unlock-versus-allocation`, `document-conflict`, `implementation-gap` and
-`individual-award`. They are deferred, not counted as accepted outputs.
+`individual-award`. They were initially deferred and are now prepared privately,
+not counted as accepted outputs.
 
 ## Close follow-ups before new outreach
 
@@ -93,9 +96,59 @@ own-wallet design and KOL preview posts, not verified operational onboarding.
 The temporary read-only browser tab was closed. No quoted third-party claim
 was adopted as launch evidence.
 
-The next action is human review of the exact private v3 packet, not automatic
-publication. Source changes require fresh preparation and comparison before
-reuse. Preserve the launch gate before any bounded test-token session: official
+The initial v3 handoff was followed by the owner's explicit approval and
+publication, recorded below. Remaining drafts need their own human decisions.
+Source changes require fresh preparation and comparison before reuse.
+Preserve the launch gate before any bounded test-token session: official
 network/client/faucet, owner attribution, final rules, independent miner,
 approved bounds and verified useful output/proof/settlement. No wallet action,
 new identity, real spending, live adapter or finished-contest check occurred.
+
+## Publish approved v3 and complete the draft backlog
+
+After the owner explicitly approved v3 and requested publication, its request,
+canonical response and packet hashes were reverified. The approval was recorded
+at 19:48:47 UTC against that exact version. The
+[approved answer](https://github.com/sunriseblack/flop-agent/blob/c4a6115d79814fa6a45fece7de950c6d36bc3377/TESTNET_DEMAND_EVIDENCE_2026-10-18.md)
+is published verbatim with the original source pins. Its remote Git blob matches
+the local file, and [CI passed](https://github.com/sunriseblack/flop-agent/actions/runs/39160553984).
+The direct conversation receipt stays private. No approval of other drafts,
+operational activity or an individual allocation is inferred.
+
+At 19:48:59 UTC all eight sources were refreshed again. Extracted text, all
+nine request hashes and their evaluation rules remained unchanged. The four
+missing current-task drafts were prepared: unlock versus allocation, a draft
+documentation correction request, implementation versus owner evidence, and
+abstention from a numerical individual award. Local self-review strengthened
+an unlock citation and separated the finalized Era-T allocation record from
+Era-0 funded grant state. Both response-file versions remain private. This
+is manual AI-authored preparation with rubric visible, not independent review.
+
+Each final v2 draft has a mode-0600 packet containing the answer, citations,
+uncited context and rubric, linked from a private review index. Four of four
+mechanically pass; none has human approval. A composite integration reuses the
+three unchanged October 12 answers, the approved money-path and demand answers,
+and these four drafts. Nine of nine match current requests and mechanically
+pass. Only two have recorded owner approval; the other seven are not counted
+as accepted outputs. The correction request is not an upstream issue.
+
+## Afternoon agent follow ups
+
+The five tracked GitHub threads have no new comments since the earlier check.
+At 19:50:25 UTC the full retained `flop` tape reached its sampled head 383467:
+17,323 contiguous generation-0 records from floor 366145, all signature-verified.
+Only our own seq 368669 matched the pending-request references; no matching
+peer reply was found in that window. Seq 334602 remains below the floor.
+The research room is still empty at generation 2. The latest `technocore`
+window, seq 18649959–18650158, has 200 verified signatures. `lobby`, seq
+111884775–111884974, has 183 verified and 17 missing signatures, none invalid.
+Unverified or generic snapshot chatter was not adopted as evidence or answered.
+
+No new peer finding required a patch, and no duplicate reminder or unchanged
+review request was posted. The local kit and exporter runners passed 10 and
+13 cases respectively; these are not new independent executions. The
+[follow-up metadata](research/workload_followup_2026-10-18.json) pins the four
+private drafts and records the two approval boundaries. Actual model usage,
+cost and latency remain unavailable; no paid/external model call or FLOP
+session occurred. The next publication decision concerns the four v2 packets,
+not another regeneration of unchanged work.

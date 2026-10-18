@@ -66,6 +66,16 @@ and direct approval receipt remain private. Reverify the saved response and
 approval before reuse; this approval does not extend to other tasks or live
 FLOP usage. Unchanged request hashes alone do not close the remaining backlog.
 
+All nine current requests now have matching saved drafts and mechanical passes.
+The four newly prepared remaining tasks are version 2 in
+`.private/workload/2026-10-18-followup/REVIEW_INDEX.md`, with exact hashes in
+[the follow-up metadata](research/workload_followup_2026-10-18.json). They still
+need human review; reuse them instead of generating duplicates when sources,
+requests and evaluation rules remain unchanged. Three older matched drafts
+also lack a recorded owner approval. Only money-path-scope and testnet-demand
+are currently owner-approved; a passing nine-task suite does not approve the
+other seven.
+
 ## Check official readiness and enable a bounded first session
 
 Look for new official launch/client/faucet/account-binding details and final

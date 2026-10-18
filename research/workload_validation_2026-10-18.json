@@ -97,7 +97,8 @@
   "external_human_decision": "repository_owner_approved_exact_v3",
   "decision_recorded_at": "2026-10-18T19:48:47Z",
   "independent_human_review": false,
-  "publication_status": "approved_answer_prepared_for_publication",
+  "publication_status": "approved_answer_published",
+  "publication_commit": "c4a6115d79814fa6a45fece7de950c6d36bc3377",
   "publication_path": "TESTNET_DEMAND_EVIDENCE_2026-10-18.md",
   "local_self_review": "Earlier mechanically passing versions retained. A forfeiture claim needed stronger supporting text, then mandatory wording was preserved. This is local self-review, not an external finding or a production exporter defect.",
   "evaluation_scope": "AI-authored manual preparation with earlier context and rubric visible; not a blinded model benchmark.",
@@ -110,12 +111,13 @@
   "latency": null,
   "new_human_accepted_outputs": 1,
   "other_outputs": {
-    "missing_current_drafts_in_inspected_files": [
+    "missing_current_drafts_at_initial_inventory": [
       "unlock-versus-allocation",
       "document-conflict",
       "implementation-gap",
       "individual-award"
     ],
+    "followup": "The four initially missing drafts were later prepared privately; see workload_followup_2026-10-18.json. They remain unapproved.",
     "approval_boundary": "Direct owner approval of exact testnet-demand v3 recorded separately; no approval of other workload drafts or operational activity inferred."
   },
   "validation": {
