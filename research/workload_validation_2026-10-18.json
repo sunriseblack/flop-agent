@@ -1,0 +1,128 @@
+{
+  "schema": "flop-docs-validation-observation-v1",
+  "date": "2026-10-18",
+  "sources": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-18T12:58:03.945860+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-18T12:58:03.519973+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-18T12:58:03.511277+00:00",
+      "raw_sha256": "a3bfbea40c553155264a313d14a73fc3bd3bc26f6e76ef9d8c93dd0193138355",
+      "text_sha256": "4004c40b18071e295438ec9bffdd9c94200353899268e42d65c669f215172ce5"
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-18T12:58:03.628492+00:00",
+      "raw_sha256": "1802a9df3ccbc82cf2814e2e1ba325892cc73b332a597a6b417909b702866a38",
+      "text_sha256": "480c888e09b1204ceaf8ed1fed12e829e7fee26687849c6013d230e50a936955"
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-18T12:58:03.641519+00:00",
+      "raw_sha256": "1e459e6e1a120862b16e4334f90a321c99f655c68b2515ca6614cffd290c72cb",
+      "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-18T12:58:03.863133+00:00",
+      "raw_sha256": "001a3af02ebae403dd175bba2f1979f56f4db72b41a8fdabddb0ab2f2796704d",
+      "text_sha256": "ea09eaae1e40c7408da144d68d18929b82f828e66d5028536d6b4b3df399c5d3"
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-18T12:58:03.863451+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+      "retrieved_at": "2026-10-18T12:58:04.006686+00:00",
+      "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "corpus_sha256": "6c6fb94035b1ad899046f2a188dbcf6798a1956ad37eb00783d44178f6451781",
+  "corpus_file_sha256": "fa17656625b3adc4d1b25ec19cc0386cf320e3ffb69f89f530a12602fe4e53d9",
+  "suite_jobs_sha256": "3548c64b76c501ba52992834ed71d51777a05337a79bfb85d8276378fa749e4b",
+  "request_comparison": {
+    "unchanged": 9,
+    "new_or_changed": [],
+    "evaluation_changes": []
+  },
+  "text_changed_source_ids": [],
+  "saved_response_inventory": {
+    "scope": "Four saved files matching *responses*.json inspected with bounded strict JSON loading before generation; not a claim about arbitrary filenames.",
+    "files_inspected": 4,
+    "errors": [],
+    "matching_current_task_ids": [
+      "signature-scope",
+      "cursor-window",
+      "identity-binding",
+      "money-path-scope"
+    ],
+    "matching_testnet_demand_draft_found": false
+  },
+  "new_draft_tasks": 1,
+  "local_draft_versions": 3,
+  "task_id": "testnet-demand",
+  "request_sha256": "dd010f05fd8496d9a79a1c7fed7ee67dd303781a59de8b4818495b9a155fdc4c",
+  "selected_jobs_sha256": "20ce98303328477f3de12f418c22140f7f831014200508bc3eb7cf6d46756065",
+  "selected_bundle_file_sha256": "23dfb3a3a223170d2dd2d0e35cd9c23a834f3ae603355e62649f5be4ad5e4e3f",
+  "draft_version": "v3",
+  "draft_sha256": "b194249bccc43c1b0fbdad06b6baa6372a86e4349a8749b8df9f6afb88de8dbf",
+  "responses_file_sha256": "09d49c5dced21802f018527320ac4830f2b07e209cc0b0e1045bb1fa1e57a3d0",
+  "packet_sha256": "d7c8cbb188f4811c392210f0fc8991ed06a574b326fc0347b463405bcc40bfbc",
+  "packet_bytes": 13674,
+  "packet_mode": "0600",
+  "mechanical_pass": true,
+  "harness_semantic_review": "required",
+  "external_human_decision": "not_recorded",
+  "publication_status": "private_pending_human_review",
+  "local_self_review": "Earlier mechanically passing versions retained. A forfeiture claim needed stronger supporting text, then mandatory wording was preserved. This is local self-review, not an external finding or a production exporter defect.",
+  "evaluation_scope": "AI-authored manual preparation with earlier context and rubric visible; not a blinded model benchmark.",
+  "provider": "codex-current-session-manual",
+  "model": "current-chat-unspecified",
+  "provider_identity_verified": false,
+  "external_model_calls": 0,
+  "usage": null,
+  "cost": null,
+  "latency": null,
+  "new_human_accepted_outputs": 0,
+  "other_outputs": {
+    "missing_current_drafts_in_inspected_files": [
+      "unlock-versus-allocation",
+      "document-conflict",
+      "implementation-gap",
+      "individual-award"
+    ],
+    "approval_boundary": "Prior money-path-scope approval does not extend to this draft."
+  },
+  "validation": {
+    "repository_tests_passed": 184,
+    "exporter_cli_cases_passed": 13,
+    "workload_implementation_sha256": "ed0024918b0a9741258c878efb58ccbc49c3800a7e6af636eb9e8e7002d31ab2",
+    "review_runner_sha256": "3189ae1fbf33a31642a0710b93ac881790e0f554b3e897dcd40e23fc1e0cb472",
+    "local_checks_are_independent_peer_execution": false
+  },
+  "flop_sessions": 0,
+  "flop_settlement": "not_verified",
+  "private_data": "Source snapshots, prompts, response versions, packets and any approval receipts remain ignored/private. Only bounded metadata is published."
+}
