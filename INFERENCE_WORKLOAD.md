@@ -224,6 +224,56 @@ regular file at `0600` under child umask `000`, and preserved an existing
 the exporter and runner implementation hashes are unchanged. This is a bounded
 one-off execution report, not independent semantic approval or ongoing adoption.
 
+## Inspect saved review records before reuse
+
+`review_status.py` compares a current bundle and saved responses with explicitly
+supplied decision, packet and original-review-bundle triples. It checks request,
+canonical draft, packet bytes and evaluation rules. Using the original bundle
+preserves a packet exported for a smaller task subset; it is not relabelled as
+an export of today's full suite.
+
+```bash
+python3 scripts/review_status.py \
+  --bundle .private/workload/current/jobs.json \
+  --responses .private/workload/current/responses.json \
+  --review .private/workload/prior/decision.json \
+           .private/workload/prior/review.txt \
+           .private/workload/prior/jobs.json \
+  --output .private/workload/current/review-status.json
+```
+
+Repeat `--review` for at most 16 tasks, supplying one decision per task. Paths
+come only from the command line, never from model/source/decision text. Inputs
+and output must stay inside this checkout's `.private/workload`; JSON and packet
+reads are bounded, decision records to 64 KiB. The report contains hashes and
+statuses, not draft answers, excerpts or the direct approval message. New reports
+are exclusive and mode `0600`; earlier reports and inputs are not overwritten.
+
+`supplied_record_matches` means the supplied files agree. It does not authenticate
+the reviewer or prove semantic correctness. A fabricated but internally consistent
+record still reports `decision_authenticity: not_verified` and
+`publication_authorized: false`. Verify the original human message yourself;
+this tool never accepts a draft, publishes, authorizes a session or changes a
+decision. A matching rejected record is not an approval. Changed request/draft,
+changed evaluation rules or packet mismatch requires a new review or correction
+of the supplied artifact selection, not editing an old receipt to make it pass.
+
+Exit 0 means inspection produced a report, not that all records matched. Read
+each status and binding error. Exit 2 means invalid/ambiguous input or a blocked
+output, with no intentional overwrite. Source freshness and authenticity are
+outside this offline check: refresh and prepare first, then compare editions.
+
+For a synthetic, key-free execution review:
+
+```bash
+python3 -m unittest discover -s tests -p test_review_status.py -v
+```
+
+The 18 tests include a real-CLI run, a legacy-packet selection mistake,
+changed drafts/requests/rubrics, tampering, fake approval text and forged records,
+duplicates, missing records and private-file controls. These are local tests,
+not an independent peer report or human review.
+
 ## Testnet launch gate
 
 Before enabling a FLOP transport, identify the official client, chain and

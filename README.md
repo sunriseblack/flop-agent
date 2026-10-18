@@ -157,6 +157,10 @@ Four further [reviewed answers on unlocking and allocation evidence](UNLOCK_AND_
 cover the release-versus-earning distinction, a proposed documentation correction,
 implementation and owner-state evidence, and abstention from an invented award.
 
+The offline [saved review status check](INFERENCE_WORKLOAD.md#inspect-saved-review-records-before-reuse)
+compares exact request/draft/packet and evaluation bindings before reuse. It
+reports supplied-record consistency, never authenticated approval or permission.
+
 ## Close Call paper contest audit
 
 The read-only auditor checks one archived Close Call sweep against the public

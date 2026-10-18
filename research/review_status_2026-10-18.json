@@ -1,0 +1,139 @@
+{
+  "schema": "flop-review-status-observation-v1",
+  "date": "2026-10-18",
+  "implementation_sha256": "69f9f2980c1be821d4656cfe47c183b91fc64279ae2bd4c9321c9d5aa13e02e2",
+  "test_sha256": "49d86bda97004f20d8473b5617fa20b922e96a1cf24be4b05dc72f8b8889c76c",
+  "local_validation": {
+    "review_status_tests": 18,
+    "repository_tests": 202,
+    "exporter_cases": 13,
+    "kit_cases": 10,
+    "python": "3.14.3",
+    "platform": "Darwin"
+  },
+  "source_refresh": {
+    "corpus_sha256": "5d8bab5fdf9bc185abcbc7483916d0592e5dda40f8efdb4b3a53597d4bdfc2e4",
+    "source_text_changes": [],
+    "request_changes": [],
+    "evaluation_changes": [],
+    "sources": [
+      {
+        "id": "auth",
+        "url": "https://technocore.chat/auth.md",
+        "retrieved_at": "2026-10-18T20:17:56.084161+00:00",
+        "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+        "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+      },
+      {
+        "id": "manual",
+        "url": "https://technocore.chat/llms.txt",
+        "retrieved_at": "2026-10-18T20:17:55.615801+00:00",
+        "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+        "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+      },
+      {
+        "id": "testnet",
+        "url": "https://flop.finance/testnet/",
+        "retrieved_at": "2026-10-18T20:17:55.530546+00:00",
+        "raw_sha256": "a55998ff0c23374afe82703c90f5131c96a61c7f10335bd19e9ae576535006f2",
+        "text_sha256": "4004c40b18071e295438ec9bffdd9c94200353899268e42d65c669f215172ce5"
+      },
+      {
+        "id": "airdrop",
+        "url": "https://flop.finance/airdrop/",
+        "retrieved_at": "2026-10-18T20:17:55.690752+00:00",
+        "raw_sha256": "0c93695eb4132810dd034e6a3b833c7aad3f5a99054de90fa242c743e0aeae2f",
+        "text_sha256": "480c888e09b1204ceaf8ed1fed12e829e7fee26687849c6013d230e50a936955"
+      },
+      {
+        "id": "agent",
+        "url": "https://flop.finance/intro/agent/",
+        "retrieved_at": "2026-10-18T20:17:55.756832+00:00",
+        "raw_sha256": "9fd74c68400fd68ec8242448b4c7f94154734d50079e5eee0f5a68bcd70bcaab",
+        "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"
+      },
+      {
+        "id": "yellowpaper",
+        "url": "https://flop.finance/intro/yellowpaper/",
+        "retrieved_at": "2026-10-18T20:17:55.938075+00:00",
+        "raw_sha256": "b9ed3cb338288c5954711d9cad5932c26606e2c90deac5eb7e1ea34248d68435",
+        "text_sha256": "ea09eaae1e40c7408da144d68d18929b82f828e66d5028536d6b4b3df399c5d3"
+      },
+      {
+        "id": "store",
+        "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+        "retrieved_at": "2026-10-18T20:17:56.049443+00:00",
+        "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+        "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+      },
+      {
+        "id": "money_path",
+        "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+        "retrieved_at": "2026-10-18T20:17:56.147181+00:00",
+        "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+        "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+      }
+    ]
+  },
+  "real_private_integration": {
+    "tasks": 9,
+    "mechanical_passes": 9,
+    "matching_supplied_approval_records": 6,
+    "records_not_supplied": 3,
+    "binding_mismatches": 0,
+    "report_sha256": "e0e1dfe79f4a6de3535d45f25e2b5bcc549eafbe16c1538dfd5eb0b76ae1ddf0",
+    "report_mode": "0600",
+    "decision_authenticity": "not_verified",
+    "publication_authorized": false,
+    "live_usage_authorized": false
+  },
+  "legacy_packet_selection": {
+    "first_report_sha256": "52aa0c76883530ea1d9b82c6063c13436bb4d94f4a07a449788de414c597a08a",
+    "matching_records": 5,
+    "mismatched_task": "money-path-scope",
+    "errors": [
+      "packet_hash_mismatch",
+      "packet_does_not_reproduce_original_review"
+    ],
+    "resolution": "Caller selected the preserved approved v2 packet instead of the earlier same-request packet. Neither packet nor original receipt was rewritten. Both reports retained. Adjacent legacy-versus-exact packet regression added.",
+    "independent_finding": false,
+    "implementation_defect": false
+  },
+  "human_approval": {
+    "four_v2_decisions_recorded_at": "2026-10-18T20:11:43Z",
+    "publication_commit": "e3b19031a95ad60be6693439491d306198df2bb6",
+    "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md",
+    "ci": "https://github.com/sunriseblack/flop-agent/actions/runs/39162345698",
+    "ci_conclusion": "success",
+    "exact_wording_verified": true,
+    "independent_review": false,
+    "older_three_tasks_approved": false
+  },
+  "followups": {
+    "github_threads_checked": [
+      1,
+      2,
+      3,
+      955,
+      965
+    ],
+    "new_comments": 0,
+    "forum_checked_at": "2026-10-18T20:14:03.753076+00:00",
+    "room": "flop",
+    "generation": 0,
+    "floor": 366145,
+    "tip": 383575,
+    "sampled_head": 383575,
+    "verified": 17431,
+    "unverifiable": 0,
+    "invalid": 0,
+    "contiguous": true,
+    "matching_peer_reply_in_retained_window": false
+  },
+  "peer_review": "Not yet requested for this new checker; prior exporter review does not cover it.",
+  "external_model_calls": 0,
+  "flop_sessions": 0,
+  "usage": null,
+  "cost": null,
+  "private_data": "Decision receipts, packets, input bundles, model traces and real status reports remain ignored/private. Public metadata contains no raw approval messages or source/model text."
+}

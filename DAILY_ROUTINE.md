@@ -76,6 +76,13 @@ recorded owner approval. The three older signature-scope, cursor-window and
 identity-binding drafts still lack it; a passing nine-task suite does not
 approve those three or authorize live inference.
 
+Use the offline `scripts/review_status.py` check described in the workload guide
+to inspect supplied decision/packet/original-bundle triples. A matching record
+is not authenticated human approval: verify the original conversation and fresh
+source preparation separately. Keep failed or mismatched reports intact; check
+for an accidentally selected legacy packet before proposing a new review, and
+never rewrite an old decision to clear an error.
+
 ## Check official readiness and enable a bounded first session
 
 Look for new official launch/client/faucet/account-binding details and final

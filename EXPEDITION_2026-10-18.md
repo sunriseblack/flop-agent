@@ -1,10 +1,12 @@
 # FLOP demand evidence publication and workload review
 
-The owner-approved `testnet-demand` version 3 answer is now public. Four
-remaining current-task drafts are prepared privately for separate review;
-all nine current requests now have saved responses and mechanical passes.
-All 184 repository tests and 13 exporter CLI cases pass. No new peer finding,
-inference purchase, account credit or allocation is claimed.
+Six owner-approved answers are now public, including `testnet-demand` v3
+and all four remaining v2 drafts. A new offline review-status checker has
+18 synthetic tests and was exercised on the actual private artifacts.
+All nine requests have saved responses and mechanical passes; three older
+drafts still lack recorded owner approval. The repository now has 202 passing
+tests. No new peer finding, inference purchase, account credit or allocation
+is claimed.
 
 ## Advance the workload without regenerating approved work
 
@@ -150,5 +152,52 @@ review request was posted. The local kit and exporter runners passed 10 and
 [follow-up metadata](research/workload_followup_2026-10-18.json) pins the four
 private drafts and records the two approval boundaries. Actual model usage,
 cost and latency remain unavailable; no paid/external model call or FLOP
-session occurred. The next publication decision concerns the four v2 packets,
-not another regeneration of unchanged work.
+session occurred. The four v2 packets were then explicitly approved, as below.
+
+## Approve four v2 answers and inspect review reuse
+
+The owner explicitly approved all four v2 drafts and authorized publication.
+The four request, draft and packet hashes were reverified, and the decisions
+were recorded at 20:11:43 UTC. The
+[four answers are public](https://github.com/sunriseblack/flop-agent/blob/e3b19031a95ad60be6693439491d306198df2bb6/UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md)
+with their exact wording and dated source pins; [publication CI passed](https://github.com/sunriseblack/flop-agent/actions/runs/39162345698).
+The correction remains a published proposal, not an upstream issue. Approval
+does not extend to the three older drafts, real spending or live FLOP usage.
+
+`scripts/review_status.py` now performs the previously manual consistency
+check without fetching sources, calling models, signing or publishing. Each
+explicit input triple contains a decision, packet and original review bundle.
+It compares current request/draft hashes, evaluation rules and exact packet
+bytes, preserving subset-bundle provenance. Matching supplied files cannot
+authenticate a human decision; publication and live-usage authorization are
+always false in this diagnostic report. The human must still verify the
+original message and fresh source preparation separately.
+
+The first actual run correctly flagged my selection of an older money-path
+packet: five records matched, one failed its packet hash and reproduction.
+The approved v2 packet still has its original hash. Correcting the caller's
+file selection yielded six matches and zero binding errors, without rewriting
+either packet or the receipt. Both reports remain private. A legacy-versus-exact
+packet test now covers this mistake with its positive control. This is a local
+integration finding, not a tool defect or independent peer report.
+
+Eighteen synthetic tests include real CLI execution, changed request/draft/rubric,
+tampered packets, forged but consistent records, fake model approval text,
+rejected records, duplicate IDs, bounded private inputs and exclusive mode-0600
+output. All 202 repository tests, the 13 exporter cases and ten kit cases pass.
+The prior exporter implementation and completed review are unchanged; they do
+not establish independent review of this new checker.
+
+Eight official sources were refreshed at 20:17:55–56 UTC. Extracted texts, all
+nine request hashes and evaluation rules were unchanged. Running the new checker
+against the fresh bundle still found six supplied-record matches, nine mechanical
+passes and three tasks with no supplied decision. No model output was regenerated.
+The [bounded metadata](research/review_status_2026-10-18.json) pins implementation,
+tests, fresh sources and private report hashes.
+
+Another GitHub follow-up read found no new comments on the five tracked threads.
+At 20:14:03 UTC the retained `flop` tape covered seq 366145–383575, generation 0,
+17,431 contiguous records, all signature-verified. Only our own existing request
+matched its references; no matching peer reply was found in that window. No
+unchanged reminder was sent. Independent execution of the new checker remains
+the next contribution-review step.
