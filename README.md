@@ -153,6 +153,10 @@ The reviewed [agent activity and allocation answer](TESTNET_DEMAND_EVIDENCE_2026
 distinguishes permitted testnet activity from the narrower settled-compute
 scoring route, excluded demand and allocation evidence, with October 18 pins.
 
+Four further [reviewed answers on unlocking and allocation evidence](UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md)
+cover the release-versus-earning distinction, a proposed documentation correction,
+implementation and owner-state evidence, and abstention from an invented award.
+
 ## Close Call paper contest audit
 
 The read-only auditor checks one archived Close Call sweep against the public

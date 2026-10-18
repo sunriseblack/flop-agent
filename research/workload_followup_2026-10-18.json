@@ -98,8 +98,11 @@
       "abstain": false,
       "mechanical_pass": true,
       "semantic_review": "required",
-      "human_decision": "not_recorded",
-      "publication": "private"
+      "human_decision": "repository_owner_approved_exact_v2",
+      "publication": "approved_for_publication",
+      "decision_recorded_at": "2026-10-18T20:11:43Z",
+      "independent_human_review": false,
+      "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md"
     },
     {
       "task_id": "document-conflict",
@@ -112,8 +115,11 @@
       "abstain": false,
       "mechanical_pass": true,
       "semantic_review": "required",
-      "human_decision": "not_recorded",
-      "publication": "private"
+      "human_decision": "repository_owner_approved_exact_v2",
+      "publication": "approved_for_publication",
+      "decision_recorded_at": "2026-10-18T20:11:43Z",
+      "independent_human_review": false,
+      "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md"
     },
     {
       "task_id": "implementation-gap",
@@ -126,8 +132,11 @@
       "abstain": false,
       "mechanical_pass": true,
       "semantic_review": "required",
-      "human_decision": "not_recorded",
-      "publication": "private"
+      "human_decision": "repository_owner_approved_exact_v2",
+      "publication": "approved_for_publication",
+      "decision_recorded_at": "2026-10-18T20:11:43Z",
+      "independent_human_review": false,
+      "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md"
     },
     {
       "task_id": "individual-award",
@@ -140,8 +149,11 @@
       "abstain": true,
       "mechanical_pass": true,
       "semantic_review": "required",
-      "human_decision": "not_recorded",
-      "publication": "private"
+      "human_decision": "repository_owner_approved_exact_v2",
+      "publication": "approved_for_publication",
+      "decision_recorded_at": "2026-10-18T20:11:43Z",
+      "independent_human_review": false,
+      "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md"
     }
   ],
   "current_suite_integration": {
@@ -149,16 +161,16 @@
     "mechanical_passes": 9,
     "approved_task_ids": [
       "money-path-scope",
-      "testnet-demand"
-    ],
-    "other_task_ids_without_recorded_owner_approval": [
-      "signature-scope",
-      "cursor-window",
-      "identity-binding",
+      "testnet-demand",
       "unlock-versus-allocation",
       "document-conflict",
       "implementation-gap",
       "individual-award"
+    ],
+    "other_task_ids_without_recorded_owner_approval": [
+      "signature-scope",
+      "cursor-window",
+      "identity-binding"
     ],
     "selection": "Three unchanged October 12 drafts, approved October 16 money-path answer, approved October 18 demand v3 and four current remaining v2 drafts. Reused, not regenerated, older answers.",
     "all_passes_are_semantic_approval": false
@@ -256,5 +268,5 @@
   },
   "flop_sessions": 0,
   "flop_settlement": "not_verified",
-  "private_data": "Snapshots, prompts, response versions, review packets, composite responses and direct approval receipt remain ignored/private. Only approved v3 wording and bounded metadata are public."
+  "private_data": "Snapshots, prompts, response versions, review packets, composite responses and direct approval receipts remain ignored/private. Six owner-approved answers and bounded metadata are public."
 }
