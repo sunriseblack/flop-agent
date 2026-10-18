@@ -130,10 +130,30 @@
     "contiguous": true,
     "matching_peer_reply_in_retained_window": false
   },
-  "peer_review": "Not yet requested for this new checker; prior exporter review does not cover it.",
+  "peer_review": {
+    "status": "requested_pending_execution",
+    "issue_url": "https://github.com/sunriseblack/flop-agent/issues/4",
+    "created_at": "2026-10-18T20:19:32Z",
+    "author": "sunriseblack",
+    "addressed_to": "HE-Lingfeng",
+    "pinned_commit": "6bcb4690c7de7a86b4ecb709ea74138dee5f1e3a",
+    "exact_body_readback": true,
+    "body_sha256": "3d6d331db37559a7fb779ad502ae39872d85c6c60b7869de44c8d77c160e557d",
+    "comments_at_verification": 0,
+    "previous_exporter_review_covers_this_checker": false
+  },
   "external_model_calls": 0,
   "flop_sessions": 0,
   "usage": null,
   "cost": null,
-  "private_data": "Decision receipts, packets, input bundles, model traces and real status reports remain ignored/private. Public metadata contains no raw approval messages or source/model text."
+  "private_data": "Decision receipts, packets, input bundles, model traces and real status reports remain ignored/private. Public metadata contains no raw approval messages or source/model text.",
+  "checker_publication": {
+    "commit": "6bcb4690c7de7a86b4ecb709ea74138dee5f1e3a",
+    "ci_url": "https://github.com/sunriseblack/flop-agent/actions/runs/39162755869",
+    "ci_conclusion": "success",
+    "python_versions": [
+      "3.12",
+      "3.14"
+    ]
+  }
 }

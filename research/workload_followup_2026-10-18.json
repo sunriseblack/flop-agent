@@ -76,6 +76,13 @@
   "corpus_sha256": "511d244c44725c94f942c59c15ca88da36006d2f6e84de99d93e35e14e16cfdf",
   "suite_jobs_sha256": "3548c64b76c501ba52992834ed71d51777a05337a79bfb85d8276378fa749e4b",
   "selected_jobs_sha256": "cff432155b68acb2793afd3ee1a2afdf32b228a70f9fc7a3a5dc32c05bfdbafa",
+  "four_v2_publication": {
+    "commit": "e3b19031a95ad60be6693439491d306198df2bb6",
+    "path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md",
+    "remote_blob_sha1": "39080e2b265e19236e020412b373510cb00424c6",
+    "exact_remote_readback": true,
+    "ci_conclusion": "success"
+  },
   "source_text_changes": [],
   "request_changes": [],
   "evaluation_changes": [],
@@ -99,7 +106,7 @@
       "mechanical_pass": true,
       "semantic_review": "required",
       "human_decision": "repository_owner_approved_exact_v2",
-      "publication": "approved_for_publication",
+      "publication": "published",
       "decision_recorded_at": "2026-10-18T20:11:43Z",
       "independent_human_review": false,
       "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md"
@@ -116,7 +123,7 @@
       "mechanical_pass": true,
       "semantic_review": "required",
       "human_decision": "repository_owner_approved_exact_v2",
-      "publication": "approved_for_publication",
+      "publication": "published",
       "decision_recorded_at": "2026-10-18T20:11:43Z",
       "independent_human_review": false,
       "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md"
@@ -133,7 +140,7 @@
       "mechanical_pass": true,
       "semantic_review": "required",
       "human_decision": "repository_owner_approved_exact_v2",
-      "publication": "approved_for_publication",
+      "publication": "published",
       "decision_recorded_at": "2026-10-18T20:11:43Z",
       "independent_human_review": false,
       "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md"
@@ -150,7 +157,7 @@
       "mechanical_pass": true,
       "semantic_review": "required",
       "human_decision": "repository_owner_approved_exact_v2",
-      "publication": "approved_for_publication",
+      "publication": "published",
       "decision_recorded_at": "2026-10-18T20:11:43Z",
       "independent_human_review": false,
       "publication_path": "UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md"

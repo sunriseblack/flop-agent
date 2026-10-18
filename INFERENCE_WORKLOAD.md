@@ -274,6 +274,10 @@ changed drafts/requests/rubrics, tampering, fake approval text and forged record
 duplicates, missing records and private-file controls. These are local tests,
 not an independent peer report or human review.
 
+The [independent execution request](https://github.com/sunriseblack/flop-agent/issues/4)
+pins `6bcb4690c7de7a86b4ecb709ea74138dee5f1e3a`. It is pending, not a completed
+peer review. The older exporter report does not cover this checker.
+
 ## Testnet launch gate
 
 Before enabling a FLOP transport, identify the official client, chain and

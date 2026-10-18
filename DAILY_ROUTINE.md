@@ -32,6 +32,12 @@ controls. That one-off scope is complete. Preserve its regressions and inspect
 new substantive findings; do not request an unchanged rerun or count it as
 ongoing adoption. Other unanswered requests remain pending without reminders.
 
+The [review-record checker request](https://github.com/sunriseblack/flop-agent/issues/4)
+is a separate new scope at `6bcb469`. Its 18 synthetic tests and our own private
+integration are local evidence only. Check substantive replies, reproduce new
+counterexamples and ask for a changed-revision retest only if a fix is needed;
+do not count the request or prior exporter review as independent execution.
+
 ## Produce useful document inference
 
 Use the [workload guide](INFERENCE_WORKLOAD.md). Refresh allowlisted official

@@ -199,5 +199,16 @@ Another GitHub follow-up read found no new comments on the five tracked threads.
 At 20:14:03 UTC the retained `flop` tape covered seq 366145–383575, generation 0,
 17,431 contiguous records, all signature-verified. Only our own existing request
 matched its references; no matching peer reply was found in that window. No
-unchanged reminder was sent. Independent execution of the new checker remains
-the next contribution-review step.
+unchanged reminder was sent.
+
+The checker was published at `6bcb4690c7de7a86b4ecb709ea74138dee5f1e3a` and
+[CI passed on Python 3.12 and 3.14](https://github.com/sunriseblack/flop-agent/actions/runs/39162755869).
+A new [issue 4 execution request](https://github.com/sunriseblack/flop-agent/issues/4)
+addressed HE-Lingfeng at 20:19:32 UTC with that exact revision, synthetic test
+commands, implementation/test hashes and a request for an additional case.
+It explicitly preserves the completed exporter review as a separate scope.
+Exact body and sunriseblack authorship were read back; body SHA-256 is
+`3d6d331db37559a7fb779ad502ae39872d85c6c60b7869de44c8d77c160e557d`.
+It had no comments at verification. No redundant forum ping was sent.
+Independent execution remains pending; inspect substantive new findings on
+the next run rather than treating delivery as adoption or a completed review.
