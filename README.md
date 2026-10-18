@@ -149,6 +149,10 @@ The reviewed [money path evidence answer](MONEY_PATH_EVIDENCE_2026-10-16.md)
 separates public fixture validation, executable accounting checks, finalized
 inference and individual allocation, using pinned October 16 source editions.
 
+The reviewed [agent activity and allocation answer](TESTNET_DEMAND_EVIDENCE_2026-10-18.md)
+distinguishes permitted testnet activity from the narrower settled-compute
+scoring route, excluded demand and allocation evidence, with October 18 pins.
+
 ## Close Call paper contest audit
 
 The read-only auditor checks one archived Close Call sweep against the public

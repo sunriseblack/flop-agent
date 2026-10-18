@@ -58,14 +58,13 @@ answer, citations, all provided context and human rubric. Keep its status pendin
 until a human actually reviews that exact request and draft version. An export is not an
 acceptance record, and source-edition changes require new pinned preparation.
 
-The October 18 `testnet-demand` v3 packet is pending human review. Its exact
+The October 18 `testnet-demand` v3 answer has exact-version owner approval and
+is [published with source pins](TESTNET_DEMAND_EVIDENCE_2026-10-18.md). Its
 request, draft and packet hashes are in
 [the dated metadata](research/workload_validation_2026-10-18.json); the packet
-remains under `.private/workload/2026-10-18-run/demand-human-review-v3.txt`.
-Check that version and any actual approval before generating it again. Earlier
-money-path approval does not cover it. Four other current requests still lack
-drafts in the inspected response files; unchanged requests alone do not close
-that backlog.
+and direct approval receipt remain private. Reverify the saved response and
+approval before reuse; this approval does not extend to other tasks or live
+FLOP usage. Unchanged request hashes alone do not close the remaining backlog.
 
 ## Check official readiness and enable a bounded first session
 

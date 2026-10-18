@@ -94,8 +94,11 @@
   "packet_mode": "0600",
   "mechanical_pass": true,
   "harness_semantic_review": "required",
-  "external_human_decision": "not_recorded",
-  "publication_status": "private_pending_human_review",
+  "external_human_decision": "repository_owner_approved_exact_v3",
+  "decision_recorded_at": "2026-10-18T19:48:47Z",
+  "independent_human_review": false,
+  "publication_status": "approved_answer_prepared_for_publication",
+  "publication_path": "TESTNET_DEMAND_EVIDENCE_2026-10-18.md",
   "local_self_review": "Earlier mechanically passing versions retained. A forfeiture claim needed stronger supporting text, then mandatory wording was preserved. This is local self-review, not an external finding or a production exporter defect.",
   "evaluation_scope": "AI-authored manual preparation with earlier context and rubric visible; not a blinded model benchmark.",
   "provider": "codex-current-session-manual",
@@ -105,7 +108,7 @@
   "usage": null,
   "cost": null,
   "latency": null,
-  "new_human_accepted_outputs": 0,
+  "new_human_accepted_outputs": 1,
   "other_outputs": {
     "missing_current_drafts_in_inspected_files": [
       "unlock-versus-allocation",
@@ -113,7 +116,7 @@
       "implementation-gap",
       "individual-award"
     ],
-    "approval_boundary": "Prior money-path-scope approval does not extend to this draft."
+    "approval_boundary": "Direct owner approval of exact testnet-demand v3 recorded separately; no approval of other workload drafts or operational activity inferred."
   },
   "validation": {
     "repository_tests_passed": 184,
