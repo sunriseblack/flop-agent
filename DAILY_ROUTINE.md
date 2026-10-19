@@ -32,11 +32,20 @@ controls. That one-off scope is complete. Preserve its regressions and inspect
 new substantive findings; do not request an unchanged rerun or count it as
 ongoing adoption. Other unanswered requests remain pending without reminders.
 
-The [review-record checker request](https://github.com/sunriseblack/flop-agent/issues/4)
-is a separate new scope at `6bcb469`. Its 18 synthetic tests and our own private
-integration are local evidence only. Check substantive replies, reproduce new
-counterexamples and ask for a changed-revision retest only if a fix is needed;
-do not count the request or prior exporter review as independent execution.
+The [review-record checker review](https://github.com/sunriseblack/flop-agent/issues/4#issuecomment-6266428967)
+is complete for `6bcb469`: HE-Lingfeng executed 18 checker and 202 repository
+tests, plus three real-CLI controls changing only the response limitations.
+We reproduced those controls in a permanent regression; the checker now has
+19 tests, with its implementation unchanged. No counterexample emerged in this
+scope. Inspect new substantive findings, but do not request an unchanged rerun
+or count one-off execution as ongoing adoption, semantic approval or credit.
+
+On October 19, upstream issues 955 and 965 were closed as `not_planned` and
+folded into [community tracking issue 1002](https://github.com/flop-labs/technocore-chat/issues/1002).
+That is triage, not proof of a Kibble repair or restored credit. Follow direct
+substantive replies through the new routing; do not reopen or duplicate old
+requests merely because they were folded. The proposed community-projects
+index in PR 1007 is not yet a merged listing or endorsement of our kit.
 
 ## Produce useful document inference
 
@@ -81,6 +90,10 @@ and evaluation rules instead of generating duplicates. Six current tasks have
 recorded owner approval. The three older signature-scope, cursor-window and
 identity-binding drafts still lack it; a passing nine-task suite does not
 approve those three or authorize live inference.
+Fresh private review packets for those three were prepared on October 19;
+the answers and current request/evaluation hashes are unchanged. Keep them
+pending an exact-version owner decision rather than regenerating or publishing
+them to clear the backlog.
 
 Use the offline `scripts/review_status.py` check described in the workload guide
 to inspect supplied decision/packet/original-bundle triples. A matching record

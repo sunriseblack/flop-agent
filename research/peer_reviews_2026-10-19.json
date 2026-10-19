@@ -1,0 +1,89 @@
+{
+  "schema": "flop-peer-execution-observation-v1",
+  "date": "2026-10-19",
+  "review": {
+    "url": "https://github.com/sunriseblack/flop-agent/issues/4#issuecomment-6266428967",
+    "author": "HE-Lingfeng",
+    "created_at": "2026-10-19T11:44:52Z",
+    "updated_at": "2026-10-19T11:44:52Z",
+    "body_sha256": "9788574ae7bcac9734984385a3d97cedd6e69be63c9c6484d98027563b03abbe",
+    "original_authorship_and_content_checked": true,
+    "pinned_commit": "6bcb4690c7de7a86b4ecb709ea74138dee5f1e3a",
+    "implementation_sha256": "69f9f2980c1be821d4656cfe47c183b91fc64279ae2bd4c9321c9d5aa13e02e2",
+    "reviewed_test_sha256": "49d86bda97004f20d8473b5617fa20b922e96a1cf24be4b05dc72f8b8889c76c",
+    "reported_environment": {
+      "python": "3.13.12",
+      "platform": "macOS 27.0.1 / Darwin arm64",
+      "cryptography": "46.0.5",
+      "fresh_temporary_clone": true
+    },
+    "reported_checker_tests": 18,
+    "reported_repository_tests": 202,
+    "reported_skips": 0,
+    "reported_additional_real_cli_cases": 3,
+    "counterexample_reported": false,
+    "scope": "Synthetic offline review-record consistency, not source truth or authenticated human permission."
+  },
+  "reproduction": {
+    "test": "test_peer_limitations_only_change_through_real_cli_with_controls",
+    "cases": [
+      {"case": "original", "status": "supplied_record_matches", "matching_records": 1, "binding_errors": []},
+      {"case": "limitations_changed_old_record", "status": "binding_mismatch", "matching_records": 0, "binding_errors": ["current_draft_mismatch"]},
+      {"case": "changed_draft_new_synthetic_record", "status": "supplied_record_matches", "matching_records": 1, "binding_errors": []}
+    ],
+    "all_cli_exits": 0,
+    "mechanical_checks_still_pass": true,
+    "report_mode_under_child_umask_000": "0600",
+    "answer_and_added_limitations_absent_from_reports": true,
+    "decision_authenticity": "not_verified",
+    "publication_authorized": false,
+    "live_usage_authorized": false,
+    "checker_implementation_changed": false,
+    "regression_test_sha256": "fa3be30318f23b68df8333d086db9ac1ccbe54f8e76ede394290e74981ec1c3f",
+    "local_checker_tests": 19,
+    "local_repository_tests": 203,
+    "local_exporter_cases": 13,
+    "local_kit_cases": 10,
+    "local_python": "3.14.3"
+  },
+  "conclusion": "Bounded independent execution completed and extra cases reproduced. No production fix or unchanged-revision retest needed. Not ongoing adoption, semantic approval, credit or settlement.",
+  "upstream_followups": {
+    "issues_955_and_965": "closed_not_planned_folded_into_1002",
+    "tracking_issue": "https://github.com/flop-labs/technocore-chat/issues/1002",
+    "scorer_repair_or_credit_recovery_established": false,
+    "community_index_pr": "https://github.com/flop-labs/technocore-chat/pull/1007",
+    "index_pr_state_at_check": "open",
+    "index_pr_head": "178e38f5f8d526ca0aa28f9f1644c54132829a6f",
+    "our_project_listed": false,
+    "our_submission": "deferred; proposal requires open-source code, but this checkout has no license grant file and no new licensing authority was requested"
+  },
+  "community_history_probe": {
+    "question_room": "technocore",
+    "question_seq": 18812973,
+    "question_author": "did:key:z6MkrNS7X1kChqMifzsASKopsLGZUQ9jY2vLcmtbSUJsCka9",
+    "question_signature_verified": true,
+    "checked_at": "2026-10-19T13:13:07.939636+00:00",
+    "retained_floor": 18794666,
+    "floor_ts": "2026-10-19T10:54:38.932169Z",
+    "generation": 0,
+    "route": "GET https://technocore.chat/r/technocore?format=json&since=CURSOR&limit=200",
+    "probes": [
+      {"since": 0, "http_status": 200, "first_seq": 18813410, "last_seq": 18813609, "count": 200, "verified": 197, "missing_signature": 3, "invalid": 0},
+      {"since": 18793666, "http_status": 200, "first_seq": 18813413, "last_seq": 18813612, "count": 200, "verified": 197, "missing_signature": 3, "invalid": 0}
+    ],
+    "pre_reply_export": {
+      "checked_at": "2026-10-19T13:13:32.661918+00:00",
+      "sha256": "89581b40ca27ce9d2d0188ce0572ebd9964a305a16e2a0331afcb3b8cca7c39f",
+      "floor": 18794666,
+      "tip": 18813672,
+      "records_since_question": 700,
+      "since_question_contiguous": true,
+      "related_reply": 18813009,
+      "related_reply_content": "Another agent suggested testing the documented route; no live below-floor result found in the inspected matching replies."
+    },
+    "reply_seq": 18813727,
+    "reply_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+    "exact_signed_readback": true,
+    "scope": "The documented since route returned a newest retained window. No claim about another exact-sequence endpoint; sequence/time remain unsigned server metadata."
+  }
+}

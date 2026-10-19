@@ -1,0 +1,140 @@
+{
+  "schema": "flop-workload-validation-observation-v1",
+  "date": "2026-10-19",
+  "preparation": {
+    "corpus_sha256": "ae77c8b82e7d215f0e6efbf01e34172e7d05501160b6d4fb4517dccc6b168790",
+    "jobs_sha256": "3548c64b76c501ba52992834ed71d51777a05337a79bfb85d8276378fa749e4b",
+    "source_text_changes": [],
+    "request_changes": [],
+    "evaluation_changes": [],
+    "sources": [
+      {
+        "id": "auth",
+        "url": "https://technocore.chat/auth.md",
+        "retrieved_at": "2026-10-19T13:03:11.581450+00:00",
+        "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+        "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+      },
+      {
+        "id": "manual",
+        "url": "https://technocore.chat/llms.txt",
+        "retrieved_at": "2026-10-19T13:03:11.334696+00:00",
+        "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+        "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+      },
+      {
+        "id": "testnet",
+        "url": "https://flop.finance/testnet/",
+        "retrieved_at": "2026-10-19T13:03:11.539964+00:00",
+        "raw_sha256": "7c30b1ea0c205cf2323f1df16761b7a191dca2f1277e8705cf2037a2b1c26602",
+        "text_sha256": "4004c40b18071e295438ec9bffdd9c94200353899268e42d65c669f215172ce5"
+      },
+      {
+        "id": "airdrop",
+        "url": "https://flop.finance/airdrop/",
+        "retrieved_at": "2026-10-19T13:03:11.584399+00:00",
+        "raw_sha256": "26a00b036ea116348543f0c0d1f82d885aee892b132b25f9756985a2564ff409",
+        "text_sha256": "480c888e09b1204ceaf8ed1fed12e829e7fee26687849c6013d230e50a936955"
+      },
+      {
+        "id": "agent",
+        "url": "https://flop.finance/intro/agent/",
+        "retrieved_at": "2026-10-19T13:03:11.675823+00:00",
+        "raw_sha256": "c08a1981f5d7014e774f1cfe237f7026f041efc8ba24d81986e4e97e2b17e5fb",
+        "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"
+      },
+      {
+        "id": "yellowpaper",
+        "url": "https://flop.finance/intro/yellowpaper/",
+        "retrieved_at": "2026-10-19T13:03:11.833947+00:00",
+        "raw_sha256": "7bc789e12816296318ec86ab62f736fe48cb890bf41f9da7fee0c552b3d5644b",
+        "text_sha256": "ea09eaae1e40c7408da144d68d18929b82f828e66d5028536d6b4b3df399c5d3"
+      },
+      {
+        "id": "store",
+        "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+        "retrieved_at": "2026-10-19T13:03:11.850866+00:00",
+        "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+        "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+      },
+      {
+        "id": "money_path",
+        "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+        "retrieved_at": "2026-10-19T13:03:11.860048+00:00",
+        "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+        "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+      }
+    ]
+  },
+  "private_integration": {
+    "tasks": 9,
+    "mechanical_passes": 9,
+    "matching_supplied_approval_records": 6,
+    "decision_authenticity": "not_verified",
+    "publication_authorized": false,
+    "live_usage_authorized": false,
+    "records_not_supplied": 3,
+    "binding_mismatches": 0,
+    "report_sha256": "e0e1dfe79f4a6de3535d45f25e2b5bcc549eafbe16c1538dfd5eb0b76ae1ddf0",
+    "report_mode": "0600",
+    "decision_authenticity_caution": "File consistency cannot authenticate the original human conversation or confer publication permission."
+  },
+  "cached_draft_review": {
+    "tasks": [
+      {
+        "task_id": "signature-scope",
+        "request_sha256": "6cb2df79a537a6fbe3df42fe6e1fa00f6568b4dce49010444b87daadc2df23d2",
+        "draft_sha256": "ef79e39b7723972e25993a4fb42f1d79fe5e236f7b892924c2319d11a5aabe25",
+        "packet_sha256": "f421e8b1bee4034cd2bdd3643ffd552f59d845b0e349f9336bd7ff95d368e5d7",
+        "packet_mode": "0600",
+        "human_approval": "not_recorded"
+      },
+      {
+        "task_id": "cursor-window",
+        "request_sha256": "c3c21ae0e86ed1a3f7e9c93a0db76aa54d3fdf42ca4ca63aac8533dd15c3667f",
+        "draft_sha256": "ecb2751a3ec4bd90dcee5f5f18262a763c152d3adf6066e3647df1413b8166ea",
+        "packet_sha256": "9a9bce24345929bf11d62c066819d95bb25f50bdf17778123b15cb2d2f75911d",
+        "packet_mode": "0600",
+        "human_approval": "not_recorded"
+      },
+      {
+        "task_id": "identity-binding",
+        "request_sha256": "095bdeefc3aa6e9bee76922ceef30a2f71362bf56e226d7c49e7324a00782b5f",
+        "draft_sha256": "8e74cddad8ac9325445d0f2022d0e9a4ad62b1e5b771915e57424055045dc8a4",
+        "packet_sha256": "e697d0eb883d2b8f9fb506101209363e6559eada4330fd8383311765c28a6da9",
+        "packet_mode": "0600",
+        "human_approval": "not_recorded"
+      }
+    ],
+    "mechanical_passes": 3,
+    "answers_regenerated": false,
+    "provider": "cached-manual-response-recheck",
+    "model": "not_called",
+    "new_generation_usage": null,
+    "new_generation_cost": null,
+    "new_generation_latency_ms": null,
+    "private_index": ".private/workload/2026-10-19-run/REVIEW_INDEX.md",
+    "review_index_mode": "0600",
+    "prior_six_approvals_apply_to_these_three": false
+  },
+  "official_readiness": {
+    "yellowpaper_head": "70e691c758e53eed17a016a02b0a2ae1200d3744",
+    "yellowpaper_edition": "0.5.0 draft",
+    "public_catalog_repositories": 7,
+    "policy_issues_checked": [
+      31,
+      32,
+      123,
+      127,
+      133
+    ],
+    "policy_issue_changes": [],
+    "official_new_visible_post": "https://x.com/flop_labs/status/2112027080598982886",
+    "new_post_scope": "Market commentary; not operational launch, client, faucet or owner-binding evidence. Market figures were not independently verified or adopted.",
+    "operational_launch_gate_met": false
+  },
+  "external_model_calls": 0,
+  "flop_sessions": 0,
+  "measured_session_token_usage": null,
+  "data_boundary": "Source snapshots, prompts, responses, packets, original human decisions and raw integration reports remain ignored/private. This public file contains metadata only. Mechanical passing, peer execution, owner semantic approval, official account credit and finalized FLOP usage are different states."
+}

@@ -219,6 +219,53 @@ class ReviewStatusTests(unittest.TestCase):
             self.assertEqual(subprocess.run(args, capture_output=True, timeout=10).returncode, 2)
             self.assertFalse((p/"bad.json").exists())
 
+    def test_peer_limitations_only_change_through_real_cli_with_controls(self):
+        root = Path(__file__).resolve().parents[1]
+        private = root/".private/workload"
+        private.mkdir(parents=True, exist_ok=True)
+        changed = copy.deepcopy(self.response)
+        extra = "SYNTHETIC extra uncertainty, added after the saved review."
+        changed["limitations"].append(extra)
+        for key in self.response.keys() - {"limitations"}:
+            self.assertEqual(changed[key], self.response[key])
+        changed_packet = workload.review_packet(self.bundle, [changed], "export-review").encode()
+        changed_record = {**self.record, "draft_sha256": workload.digest(changed),
+                          "packet_sha256": hashlib.sha256(changed_packet).hexdigest()}
+        cases = [("original", self.response, self.record, self.packet, "supplied_record_matches", []),
+                 ("old-review", changed, self.record, self.packet, "binding_mismatch", ["current_draft_mismatch"]),
+                 ("new-synthetic-review", changed, changed_record, changed_packet, "supplied_record_matches", [])]
+        with tempfile.TemporaryDirectory(prefix="status-peer-", dir=private) as temp:
+            p = Path(temp)
+            workload.save_file(p/"jobs.json", self.bundle)
+            for name, response, record, packet, expected, errors in cases:
+                with self.subTest(case=name):
+                    workload.save_file(p/(name+"-responses.json"), [response])
+                    workload.save_file(p/(name+"-decision.json"), record)
+                    (p/(name+"-packet.txt")).write_bytes(packet)
+                    output = p/(name+"-report.json")
+                    args = [sys.executable, str(root/"scripts/review_status.py"),
+                            "--bundle", str(p/"jobs.json"), "--responses", str(p/(name+"-responses.json")),
+                            "--review", str(p/(name+"-decision.json")), str(p/(name+"-packet.txt")),
+                            str(p/"jobs.json"), "--output", str(output)]
+                    options = {"umask": 0} if os.name == "posix" else {}
+                    run = subprocess.run(args, capture_output=True, text=True, timeout=10, **options)
+                    self.assertEqual(run.returncode, 0, run.stderr)
+                    report = workload.load_file(output)
+                    row = report["results"][0]
+                    self.assertTrue(row["mechanical_pass"])
+                    self.assertEqual(row["record_status"], expected)
+                    self.assertEqual(row["binding_errors"], errors)
+                    self.assertEqual(report["matching_supplied_approval_records"], int(not errors))
+                    self.assertEqual(report["decision_authenticity"], "not_verified")
+                    self.assertFalse(report["publication_authorized"])
+                    self.assertFalse(report["live_usage_authorized"])
+                    self.assertNotIn(response["answer"], output.read_text())
+                    self.assertNotIn(extra, output.read_text())
+                    if os.name == "posix":
+                        self.assertEqual(output.stat().st_mode & 0o777, 0o600)
+                    self.assertEqual(row["next_step"], "new_review_required" if errors else
+                                     "verify_original_human_decision_before_reuse")
+
 
 if __name__ == "__main__":
     unittest.main()

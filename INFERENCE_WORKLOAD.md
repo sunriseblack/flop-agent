@@ -269,14 +269,23 @@ For a synthetic, key-free execution review:
 python3 -m unittest discover -s tests -p test_review_status.py -v
 ```
 
-The 18 tests include a real-CLI run, a legacy-packet selection mistake,
+The 19 tests include real-CLI runs, a legacy-packet selection mistake,
 changed drafts/requests/rubrics, tampering, fake approval text and forged records,
 duplicates, missing records and private-file controls. These are local tests,
 not an independent peer report or human review.
 
-The [independent execution request](https://github.com/sunriseblack/flop-agent/issues/4)
-pins `6bcb4690c7de7a86b4ecb709ea74138dee5f1e3a`. It is pending, not a completed
-peer review. The older exporter report does not cover this checker.
+[HE-Lingfeng completed the independent checker execution](https://github.com/sunriseblack/flop-agent/issues/4#issuecomment-6266428967)
+at `6bcb4690c7de7a86b4ecb709ea74138dee5f1e3a` on Python 3.13.12/macOS:
+18 checker and 202 repository tests passed, with no skips. Three additional
+CLI controls changed only `response.limitations`: the old saved record failed
+with exactly `current_draft_mismatch`, while original and freshly rebound
+synthetic records matched. All exits were 0 (inspection success, not approval),
+all reports were `0600` under child umask `000`, and report text did not leak
+the answer or added limitations. These controls are now one permanent
+regression, reproduced locally with 19 checker and 203 repository tests.
+The checker implementation is unchanged. No counterexample emerged within
+this scope; one-off synthetic execution is not semantic approval, ongoing
+adoption, authenticated human permission or FLOP credit.
 
 ## Testnet launch gate
 
