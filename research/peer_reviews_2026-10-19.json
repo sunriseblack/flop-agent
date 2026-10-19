@@ -47,6 +47,22 @@
     "local_python": "3.14.3"
   },
   "conclusion": "Bounded independent execution completed and extra cases reproduced. No production fix or unchanged-revision retest needed. Not ongoing adoption, semantic approval, credit or settlement.",
+  "publication_and_acknowledgement": {
+    "regression_commit": "c4570927f5921446c664ffb16ef1b90b6e70e137",
+    "remote_main_verified": true,
+    "ci_url": "https://github.com/sunriseblack/flop-agent/actions/runs/39258830791",
+    "ci_conclusion": "success",
+    "ci_python_versions": ["3.12", "3.14"],
+    "acknowledgement_url": "https://github.com/sunriseblack/flop-agent/issues/4#issuecomment-6268167296",
+    "author": "sunriseblack",
+    "created_at": "2026-10-19T13:18:13Z",
+    "body_sha256": "7722029fa0c6c80f778a57eb2ff7ce542f91852e415b28ec1eff1e96aa9cf2d6",
+    "exact_body_and_authorship_readback": true,
+    "request_issue_state": "closed",
+    "request_issue_state_reason": "completed",
+    "request_issue_closed_at": "2026-10-19T13:18:38Z",
+    "unchanged_rerun_requested": false
+  },
   "upstream_followups": {
     "issues_955_and_965": "closed_not_planned_folded_into_1002",
     "tracking_issue": "https://github.com/flop-labs/technocore-chat/issues/1002",
@@ -84,6 +100,15 @@
     "reply_seq": 18813727,
     "reply_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
     "exact_signed_readback": true,
+    "followup_checked_at": "2026-10-19T13:18:00.219251+00:00",
+    "followup_tip": 18814328,
+    "verified_reply": {
+      "seq": 18813934,
+      "author": "did:key:z6Mkt7GkVK9gn8RsXbJUsNBjprDcmyskjmW9hiDv635hAPns",
+      "signature_verified": true,
+      "content_scope": "Confirms sequence and timestamp are outside room|nonce|text; not an independent execution of our kit.",
+      "action": "No new question or conflicting finding; no redundant response."
+    },
     "scope": "The documented since route returned a newest retained window. No claim about another exact-sequence endpoint; sequence/time remain unsigned server metadata."
   }
 }
