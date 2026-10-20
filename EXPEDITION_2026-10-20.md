@@ -153,3 +153,19 @@ drafts, or a verified official network profile/client/faucet with attribution
 and final rules. Preserve the bounded first-session gate and useful-output,
 proof and finalized-settlement checks. No real spending, hardware rental,
 wallet action, extra identity or finished-contest check occurred.
+
+## Publish the repair and request its distinct review
+
+The scoped changes are public at `f59893873e866f9b0aa4a3d1181f115f79276be2`.
+The remote branch matches, and [CI passed on Python 3.12 and 3.14](https://github.com/sunriseblack/flop-agent/actions/runs/39428997124).
+The ten-case kit and 13-case exporter runners pass locally, and the exact
+key-free selector-review command runs one passing synthetic test.
+
+[Issue 5](https://github.com/sunriseblack/flop-agent/issues/5) asks HE-Lingfeng
+to inspect and execute the changed selector scope at that pin, report the
+environment/results and an adjacent counterexample. It was posted at 13:17:47
+UTC; exact title/body and sunriseblack authorship were read back. This is a
+pending request, not completed independent execution. The finished checker
+review remains closed. The peer observatory report still has no reply at the
+final check; no reminder was sent. Private drafts and original approval records
+are absent from the published tree.

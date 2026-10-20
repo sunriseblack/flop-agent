@@ -40,6 +40,12 @@ We reproduced those controls in a permanent regression; the checker now has
 scope. Inspect new substantive findings, but do not request an unchanged rerun
 or count one-off execution as ongoing adoption, semantic approval or credit.
 
+The [normative-rule selector round](https://github.com/sunriseblack/flop-agent/issues/5)
+is a distinct pending request at `f598938`, following an actual source-drift
+retrieval failure. Its synthetic test and our 205-test run are local evidence,
+not peer execution. Follow that precise scope without reopening the completed
+checker review or repeatedly pinging an unanswered request.
+
 On October 19, upstream issues 955 and 965 were closed as `not_planned` and
 folded into [community tracking issue 1002](https://github.com/flop-labs/technocore-chat/issues/1002).
 That is triage, not proof of a Kibble repair or restored credit. Follow direct
