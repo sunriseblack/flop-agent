@@ -50,6 +50,22 @@ class TapeVerificationTests(unittest.TestCase):
         self.assertEqual(verify_record(self.room, {**self.record, "sig": self.record["sig"][:-1] + "B"})[0], "invalid")
         self.assertEqual(verify_record(self.room, {**self.record, "from": "did:key:z123"})[0], "invalid")
 
+    def test_all_unused_padbit_aliases_are_invalid_despite_identical_bytes(self):
+        # A peer verifier accepted these aliases after Node's permissive decode.
+        # Canonical encoding is a wire condition, separate from Ed25519 validity.
+        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+        original = self.record["sig"]
+        decoded = base64.urlsafe_b64decode(original + "==")
+        last = alphabet.index(original[-1])
+        self.assertEqual(last % 16, 0)
+        self.assertEqual(verify_record(self.room, self.record)[0], "verified")
+        for offset in range(1, 16):
+            alias = original[:-1] + alphabet[last + offset]
+            with self.subTest(offset=offset):
+                self.assertEqual(base64.urlsafe_b64decode(alias + "=="), decoded)
+                self.assertEqual(verify_record(self.room, {**self.record, "sig": alias}),
+                                 ("invalid", "noncanonical signature encoding"))
+
     def test_bool_nonce_and_wrong_snapshot_room_are_rejected(self):
         self.assertEqual(verify_record(self.room, {**self.record, "nonce": True})[0], "invalid")
         with self.assertRaises(ValueError):

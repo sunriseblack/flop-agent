@@ -47,6 +47,32 @@ class DocsWorkloadTests(unittest.TestCase):
         self.assertIsNone(report["usage"])
         self.assertIsNone(report["cost"])
 
+    def test_normative_rule_retrieval_is_not_stolen_by_earlier_cross_references(self):
+        tasks = load_file(Path(__file__).resolve().parents[1] / "workload/tasks.json")
+        headings = ("R8.4 — Conversion eligibility.", "R8.5 — Snapshot.")
+        body = (headings[0] + " Agent scoring MUST derive from settled compute-channel spend.\n"
+                + headings[1] + " Finalized chain state and allocation hashes form the record.")
+        cross_reference = "Sponsored bonds create no right (R8.4); see R8.5.\n" + "earlier section\n" * 400
+        for task_id in ("testnet-demand", "implementation-gap", "money-path-scope"):
+            task = copy.deepcopy(next(t for t in tasks["tasks"] if t["id"] == task_id))
+            for prefix in ("", cross_reference):
+                with self.subTest(task=task_id, earlier_reference=bool(prefix)):
+                    text = prefix + body
+                    source = {"id": "yellowpaper", "url": SOURCES["yellowpaper"],
+                              "retrieved_at": self.now.isoformat(), "text": text,
+                              "text_sha256": hashlib.sha256(text.encode()).hexdigest()}
+                    if prefix:
+                        legacy = excerpt(source, ["R8.4", "R8.5"])
+                        self.assertNotIn(body, "\n".join(s["text"] for s in legacy))
+                    # Exercise the actual configured normative selectors, not a
+                    # private corrected fixture that could leave the suite stale.
+                    task["sources"] = {"yellowpaper": [a for a in task["sources"]["yellowpaper"]
+                                                       if a.startswith(("R8.4", "R8.5"))]}
+                    bundle = prepare({"schema": "flop-docs-corpus-v1", "sources": [source]},
+                                     {"schema": "flop-docs-tasks-v1", "tasks": [task]}, now=self.now)
+                    context = "\n".join(s["text"] for s in bundle["jobs"][0]["request"]["snippets"])
+                    self.assertIn(body, context)
+
     def test_human_review_packet_includes_pinned_context_and_never_acceptance(self):
         text = review_packet(self.bundle, [self.response], "scope")
         request = self.bundle["jobs"][0]["request"]
@@ -702,9 +728,12 @@ class DocsWorkloadTests(unittest.TestCase):
     def test_public_task_suite_has_real_work_and_abstention_cases(self):
         path = Path(__file__).resolve().parents[1] / "workload/tasks.json"
         tasks = json.loads(path.read_text())["tasks"]
-        self.assertEqual(len(tasks), 9)
+        self.assertEqual(len(tasks), 10)
         self.assertEqual(sum(task.get("must_abstain", False) for task in tasks), 2)
         self.assertTrue(all(task["human_rubric"] for task in tasks))
+        conflict = next(task for task in tasks if task["id"] == "operator-delegation-conflict")
+        self.assertEqual(set(conflict["sources"]), {"agent", "yellowpaper"})
+        self.assertIn("R9.12 — Agent & staker legs.", conflict["sources"]["yellowpaper"])
 
     def test_one_command_kit_review_passes_expected_cases(self):
         result = kit_smoke_test()

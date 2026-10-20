@@ -1,0 +1,126 @@
+{
+  "schema": "flop-community-review-observation-v1",
+  "date": "2026-10-20",
+  "reviewer": "sunriseblack",
+  "invitation": {
+    "url": "https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6288108076",
+    "author": "congge918",
+    "created_at": "2026-10-20T09:43:23Z"
+  },
+  "peer_project": {
+    "repository": "https://github.com/congge918/technocore-network-observatory",
+    "commit": "bf4660aa99bc6bbfef8343fb4da363b967534cb5",
+    "node": "v25.9.0",
+    "platform": "Darwin",
+    "dependency_installation": false,
+    "code_inspected_before_execution": true,
+    "baseline_command": "node scripts/check-project.mjs",
+    "baseline_exit": 0,
+    "sampled_events": 1000,
+    "room_summaries": 50,
+    "verified_anchors": 5,
+    "snapshot_sha256": "37dcafb23e33476724f237bd55c007c4c27c5f7406c80fc26ba79ece3436d1cb",
+    "checker_sha256": "81b42a2c0c8555e98e382ad8902972ef3d52ae13c610c10021a2c8b954ad9a9c",
+    "verifier_sha256": "9f0576533ab3281c19b5d0f05115826828b4d7c1bb461a9b2630bfe96824438b"
+  },
+  "encoding_boundary": {
+    "contract": "https://technocore.chat/auth.md",
+    "contract_text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+    "original_anchors_accepted": 5,
+    "aliases_per_anchor": 15,
+    "aliases_accepted_by_peer": 75,
+    "all_aliases_decode_to_original_signature_bytes": true,
+    "changed_payload_rejected": 5,
+    "changed_signature_bytes_rejected": 5,
+    "short_signature_rejected": 5,
+    "our_python_originals_verified": 5,
+    "our_python_aliases_rejected": 75,
+    "anchor_refs": [
+      {
+        "room": "lobby",
+        "seq": 928339
+      },
+      {
+        "room": "technocore",
+        "seq": 173444
+      },
+      {
+        "room": "technocore",
+        "seq": 2009942
+      },
+      {
+        "room": "technocore",
+        "seq": 2106713
+      },
+      {
+        "room": "technocore",
+        "seq": 2144740
+      }
+    ],
+    "scope": "Canonical wire-encoding mismatch, not key forgery or altered signed payload. No live write or exploit."
+  },
+  "report": {
+    "url": "https://github.com/congge918/technocore-network-observatory/issues/1",
+    "author": "sunriseblack",
+    "created_at": "2026-10-20T13:06:21Z",
+    "body_sha256": "79d9bb70628d7881e97d8c2ab49e312d491940b01544374fed539d12c616ef60",
+    "exact_title_body_author_verified": true,
+    "existing_issues_before_report": 0,
+    "response_at_last_check": "pending",
+    "comments_at_last_check": 0,
+    "upstream_fix_or_adoption_claimed": false
+  },
+  "local_regression": {
+    "test": "test_all_unused_padbit_aliases_are_invalid_despite_identical_bytes",
+    "scope": "All 15 unused-pad-bit aliases rejected after proving identical decoded bytes, with a verified original control; existing verifier implementation unchanged."
+  },
+  "official_followups": {
+    "own_review_issues_1_to_4_new_comments": 0,
+    "issue_955_last_comment": 6264386147,
+    "issue_965_last_comment": 6267927717,
+    "new_direct_request_on_965": false,
+    "community_pr_1007": {
+      "merged_at": "2026-10-19T14:33:28Z",
+      "head": "ce4dd8860816a8a83cb5f7c0521a58d07e58022b",
+      "scope": "Merged README links five unaffiliated community indexes, not individual project listings. No endorsement of our kit."
+    }
+  },
+  "readiness": {
+    "operator_hub": "https://ask.flop.finance/operators",
+    "testnet_profile": "https://ask.flop.finance/networks/testnet",
+    "capture_kind": "Visible official browser page, not a signed chain statement or byte-exact saved HTML",
+    "checked_on": "2026-10-20",
+    "network": "testnet (planned)",
+    "release": "next (unreleased)",
+    "displayed_source_short": "9053bbf88a4b",
+    "full_source_revision_independently_verified": false,
+    "chain_spec": "unavailable_no_verified_public_value",
+    "genesis": "unavailable_no_verified_public_value",
+    "bootnodes": "unavailable_no_verified_public_value",
+    "rpc": "unavailable_no_verified_public_value",
+    "gateway": "unavailable_no_verified_public_value",
+    "model_catalog": "unavailable_no_verified_public_value",
+    "supported_releases": "none_verified",
+    "admission": "unavailable_until_identity_artifacts_policy_verified",
+    "new_official_announcements": [
+      "https://x.com/flop_labs/status/2112461913678635518",
+      "https://x.com/flop_labs/status/2112414772461494705"
+    ],
+    "scope": "Documentation assistant announcement and hardware-economics commentary, not purchase/settlement evidence. Quoted third-party claims and market prices were not adopted."
+  },
+  "assistant_probe": {
+    "url": "https://ask.flop.finance/",
+    "question_scope": "Public agent-overview versus current operator-staking documentation inconsistency",
+    "state": "public question entered but Send remained disabled behind HUMAN CHECK",
+    "send_submitted": false,
+    "human_check_bypassed": false,
+    "model_response_obtained": false,
+    "provider_model_usage": "not_verified",
+    "flop_session": false,
+    "temporary_browser_tabs_closed": true
+  },
+  "no_signing_key_used_in_peer_review": true,
+  "no_public_technocore_posts_today": true,
+  "no_paid_api_calls": true,
+  "no_wallet_or_financial_actions": true
+}

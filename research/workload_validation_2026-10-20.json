@@ -1,0 +1,233 @@
+{
+  "schema": "flop-workload-validation-observation-v1",
+  "date": "2026-10-20",
+  "sources": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-20T13:00:59.310027+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_changed": false
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-20T13:00:59.061752+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_changed": false
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-20T13:00:59.372109+00:00",
+      "raw_sha256": "2806cbf8206b5ce19378ff4f45be7da4b903dc4edd556b258450173755de5df6",
+      "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218",
+      "text_changed": true
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-20T13:00:59.349797+00:00",
+      "raw_sha256": "ad940ed85f0abdf9a66141f4080849df023bd7ead79d68ee5b390691f3877d6a",
+      "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0",
+      "text_changed": true
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-20T13:00:59.504382+00:00",
+      "raw_sha256": "73283b3df69e66d5463969b7e73b0e971cf6a8545324e94a056769b99d855e58",
+      "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19",
+      "text_changed": false
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-20T13:00:59.736583+00:00",
+      "raw_sha256": "73cce0bb4cdbf24a23393dd35457eb173250c97300e4d2e53becd389d329a64f",
+      "text_sha256": "c4edce674b4b12e918858a58f524eca79b83138fda40a1f5410897da5624c37e",
+      "text_changed": true
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-20T13:00:59.736939+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_changed": false
+    },
+    {
+      "id": "money_path",
+      "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+      "retrieved_at": "2026-10-20T13:00:59.667594+00:00",
+      "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_changed": false
+    }
+  ],
+  "preparation": {
+    "corpus_sha256": "2d0e1a30bd2ee08b0eea1e813002b33261f10a7c42afc4cf51d0202889aa340f",
+    "previous_jobs_sha256": "3548c64b76c501ba52992834ed71d51777a05337a79bfb85d8276378fa749e4b",
+    "initial_nine_job_sha256": "1f2d53b464e8d8fe90f92ed75652bb435a744e4d989b74c9562016f8b7a785f0",
+    "corrected_nine_job_sha256": "b79bc1d6e8de96b54c4f60236cf49bec24e06aa55b226bd6c910ef0c68657339",
+    "current_jobs_sha256": "55407814ebebca2ae71ae92b4758eed1ae7cc90d4421f5149d0103ded4066751",
+    "current_tasks_sha256": "c695d8b006956f48efd7b05116c0ea38741ad13fb5f3c5230c86e80168dff9f2",
+    "request_changes": 7,
+    "unchanged_requests": 2,
+    "new_tasks": 1,
+    "evaluation_rules_changed_for_existing_tasks": false,
+    "max_context_chars": 8536
+  },
+  "retrieval_finding": {
+    "source": "Local fresh-corpus integration, not an independent peer finding",
+    "cause": "Earlier sponsored-bond reference to R8.4 stole a first-substring window from the normative rule.",
+    "bad_excerpt": "yellowpaper:100034:102234",
+    "corrected_excerpt": "yellowpaper:117637:120392",
+    "affected_tasks": [
+      "testnet-demand",
+      "implementation-gap",
+      "money-path-scope"
+    ],
+    "fix": "Complete normative rule headings; explicit implementation-status paragraph selector instead of the bare PARTIAL word.",
+    "retrieval_engine_changed": false,
+    "implementation_sha256": "ed0024918b0a9741258c878efb58ccbc49c3800a7e6af636eb9e8e7002d31ab2",
+    "task_file_sha256": "7b83194c1af75a1efc987c5e412cacd58aa428402a7cb8f783d052ab1d87ce42",
+    "regression": "test_normative_rule_retrieval_is_not_stolen_by_earlier_cross_references",
+    "before_fix_failing_subcases": 3,
+    "after_fix_reference_and_no_reference_controls_pass": true,
+    "scope": "First-match bounded retrieval remains heuristic, not guaranteed semantic completeness."
+  },
+  "review_boundary": {
+    "tasks": 10,
+    "mechanical_passes": 10,
+    "current_matching_supplied_approvals": 0,
+    "old_record_binding_mismatches": 6,
+    "records_not_supplied": 4,
+    "prior_unmodified_responses_mechanical_passes": 2,
+    "prior_failed_report_sha256": "d8e2054e91c2acca8e3230f254b1082cf094bac5220ec7c5f7a08bbdb8224f80",
+    "current_report_sha256": "20ca0087ebabc96e309c7edc80750f9879a2b1ecaa1a98c3c38fa12aef3436c8",
+    "current_report_mode": "0600",
+    "original_decisions_and_packets_rewritten": false,
+    "old_six_approvals_reused_as_current": false,
+    "decision_authenticity": "not_verified",
+    "publication_authorized": false,
+    "live_usage_authorized": false
+  },
+  "drafts": [
+    {
+      "task_id": "signature-scope",
+      "request_state": "unchanged",
+      "request_sha256": "6cb2df79a537a6fbe3df42fe6e1fa00f6568b4dce49010444b87daadc2df23d2",
+      "draft_sha256": "ef79e39b7723972e25993a4fb42f1d79fe5e236f7b892924c2319d11a5aabe25",
+      "packet_sha256": "ebabc7197192fd727ea3c661f8f839afcffa3d37a0eb66caefd3bf4fd378e2cd",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "cursor-window",
+      "request_state": "unchanged",
+      "request_sha256": "c3c21ae0e86ed1a3f7e9c93a0db76aa54d3fdf42ca4ca63aac8533dd15c3667f",
+      "draft_sha256": "ecb2751a3ec4bd90dcee5f5f18262a763c152d3adf6066e3647df1413b8166ea",
+      "packet_sha256": "4dfb24441ff5ff601ee9b57d37b28dbf5005fcd6965ed34a025e7f053fa86a9d",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "testnet-demand",
+      "request_state": "changed",
+      "request_sha256": "20ba7c10ce3001e39b057c665fcf2df55fb5651f305f789bcd684586c4235538",
+      "draft_sha256": "beb5be6aa1b8e2a7026b6771deace556ceefbd6889d11e25ee9dffedc0ac2722",
+      "packet_sha256": "0f32287e8e5e1f5aedfaf85192ddb577cb8e0578aefb52932c54ca5ac5ba6647",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "unlock-versus-allocation",
+      "request_state": "changed",
+      "request_sha256": "e6dc581272957274af53f10e118fd0142f9850218293f6167fddff8f3eb634f6",
+      "draft_sha256": "cb48207027f2207f086047f65c46f166fb174a73a744ee8d39154a5a7dbae43b",
+      "packet_sha256": "2cc3a822e9c4946913158f1bf3573c3b9967a2d2a01423100c2ba66ba162569b",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "document-conflict",
+      "request_state": "changed",
+      "request_sha256": "d3eaea1bca2dc24ed4313599350501a463528fad864e963c8e5040251b63c9d8",
+      "draft_sha256": "8023fd005e33f9a610be34ccc9698a3ddb40b947fa07ba5016b325c93689b19b",
+      "packet_sha256": "aed2d1e66d51cf266b32cdce69e1cdc92475e8e8d2fd1c51656bc26df60d2326",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "implementation-gap",
+      "request_state": "changed",
+      "request_sha256": "c53413fd7370057b1739040614c9f3dbbafc5fda991ae10da04d988916c1ace6",
+      "draft_sha256": "28e453af925377f18b867826adc9645154ea9436b367cf5ac1c2f7576f405df4",
+      "packet_sha256": "ddd2b5514a912ca5b003ad7ba971213990e1095c994fbdb8521122f2a252cc18",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "identity-binding",
+      "request_state": "changed",
+      "request_sha256": "58063bf4f6e23da7afa30d9e17a3e4c1b626bde618c535455e72f421951d1c5c",
+      "draft_sha256": "607ac8f7369fba4aefebb93ed3b055020d497775c08d12494f834a865937a07e",
+      "packet_sha256": "4ab58347e64f022134b589fa48aefe9aead71fe5a973720c9fa33a205013dc48",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "individual-award",
+      "request_state": "changed",
+      "request_sha256": "6706002d43819b231529a26357e46848d8d7020e824a7460cc74f14f74405c47",
+      "draft_sha256": "2001805ec91b21a7646511439a5f23c0b8fd8b61c013653cdf8a88b6946c9c4a",
+      "packet_sha256": "fdcdf2e27aa7e230bbd8e9e94afdd4db0d00a80a4adc68a08b3c1cde99e655aa",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "money-path-scope",
+      "request_state": "changed",
+      "request_sha256": "7d97a2d4226c38d417cacb8d43f69a641b3aef116363022e15727d97749ba932",
+      "draft_sha256": "90d8d4de627ab1fde01bb1cc45bca29c6d699f74aec10dc5cbc3650153be8102",
+      "packet_sha256": "98d7554dafdc5bfaa482b989bf4582ac979037a563d4cb7bf8ff5b96ca77c85a",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    },
+    {
+      "task_id": "operator-delegation-conflict",
+      "request_state": "new",
+      "request_sha256": "304eaff33567275a76aebe139bde356505171617ee8cc1bfb584ad6a2cd9579d",
+      "draft_sha256": "cf45f7503f354f90aa9ee4bfd92ad2021e0a9183efd437eb669c9b6319811ad4",
+      "packet_sha256": "0c2e05246e12cb237f62bade27d783bc1f28c08e4700e47e0bd20a469e0eb749",
+      "packet_mode": "0600",
+      "human_approval": "not_recorded_for_current_version"
+    }
+  ],
+  "authoring": {
+    "cached_answers_revalidated": 9,
+    "new_manual_drafts": 1,
+    "source_and_rubric_visible": true,
+    "provider": "manual-source-revalidation-and-one-new-draft",
+    "model": "current-chat-unspecified",
+    "blinded_model_evaluation": false,
+    "external_model_calls": 0,
+    "paid_api_calls": 0,
+    "measured_model_token_usage": null,
+    "cost": null,
+    "latency_ms": null,
+    "flop_sessions": 0
+  },
+  "local_validation": {
+    "repository_tests": 205,
+    "workload_tests": 56,
+    "exporter_cases": 13,
+    "kit_cases": 10,
+    "python": "3.14.3",
+    "platform": "Darwin"
+  },
+  "privacy": "All raw source snapshots, prepared prompts, answers, packets, original decisions and status reports remain ignored/private. This publication contains metadata only; no current draft has owner approval."
+}

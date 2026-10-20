@@ -44,8 +44,11 @@ On October 19, upstream issues 955 and 965 were closed as `not_planned` and
 folded into [community tracking issue 1002](https://github.com/flop-labs/technocore-chat/issues/1002).
 That is triage, not proof of a Kibble repair or restored credit. Follow direct
 substantive replies through the new routing; do not reopen or duplicate old
-requests merely because they were folded. The proposed community-projects
-index in PR 1007 is not yet a merged listing or endorsement of our kit.
+requests merely because they were folded. PR 1007 merged on October 19 with
+different guidance from its first draft: the official README links five
+unaffiliated community-maintained indexes, not individual tools. Check each
+index's own criteria before any submission; the official links are not
+endorsement, adoption or review of our kit.
 
 ## Produce useful document inference
 
@@ -81,19 +84,27 @@ and direct approval receipt remain private. Reverify the saved response and
 approval before reuse; this approval does not extend to other tasks or live
 FLOP usage. Unchanged request hashes alone do not close the remaining backlog.
 
-All nine current requests have matching saved drafts and mechanical passes.
-The owner also approved all four remaining v2 drafts, now
+The owner approved all four remaining October 18 v2 drafts, now
 [published together](UNLOCK_AND_ALLOCATION_EVIDENCE_2026-10-18.md), with exact
 hashes in [the follow-up metadata](research/workload_followup_2026-10-18.json).
 Reuse approved versions after verifying response, packet, original decision
-and evaluation rules instead of generating duplicates. Six current tasks have
-recorded owner approval. The three older signature-scope, cursor-window and
-identity-binding drafts still lack it; a passing nine-task suite does not
-approve those three or authorize live inference.
-Fresh private review packets for those three were prepared on October 19;
-the answers and current request/evaluation hashes are unchanged. Keep them
-pending an exact-version owner decision rather than regenerating or publishing
-them to clear the backlog.
+and evaluation rules instead of generating duplicates. Those six exact-version
+approvals remain historical decisions, not blanket approval of new editions.
+
+On October 20, three official source texts changed. Seven request hashes
+changed, two remained identical and one operator-delegation conflict task was
+added. The ten-task suite has private saved drafts and mechanical passes,
+but no matching current-version owner approval. Seven answers were revalidated
+with updated request/citation bindings, two previously unapproved answers were
+reused unchanged, and one new correction was drafted. Full private review
+packets are pending an exact-version owner decision. Neither source refresh
+nor mechanical passing authorizes publication or live inference.
+
+Use explicit normative headings for rule retrieval. A newly inserted earlier
+cross-reference can redirect a bare rule-ID anchor into the wrong section.
+Preserve the original bad preparation and failed binding report, repair the
+selectors, test the earlier-reference negative and no-reference control, and
+prepare new versioned artifacts rather than editing a saved bundle or decision.
 
 Use the offline `scripts/review_status.py` check described in the workload guide
 to inspect supplied decision/packet/original-bundle triples. A matching record
@@ -109,6 +120,12 @@ scoring terms. An expected calendar window is not a launch signal. Resolve
 document conflicts and public claims against official network and allocation
 evidence. Never invent endpoints, owner mappings, individual allocations or
 rewards.
+
+The new official `ask.flop.finance` operator hub exposes network profiles.
+Its October 20 testnet profile is planned, with an unreleased release and no
+verified public network/client values. Treat the documentation assistant and
+operator manuals as documentation surfaces, not settled inference or live
+onboarding. Do not bypass a human-check gate to manufacture assistant usage.
 
 Keep creator/builder programme announcements separate from the compute route.
 The October 15 KOL leaderboard preview is a trigger to inspect official terms

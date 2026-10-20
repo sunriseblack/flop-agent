@@ -1,10 +1,12 @@
 # Public document inference workload
 
 The workload turns public FLOP and Technocore documents into source-backed
-answers, protocol requirements and draft documentation corrections. Nine
+answers, protocol requirements and draft documentation corrections. Ten
 tasks cover message attribution, retained-window collection, testnet demand,
 allocation versus unlocking, conflicting editions, implementation evidence
 and money-path conformance scope, plus two questions that require abstention.
+The October 20 task compares the agent overview's delegation invitation with
+the newer operator self-stake, sponsored-bond and community-pool rules.
 Outputs remain drafts until their claims are reviewed for meaning and correctness.
 
 This first version is transport-neutral. It prepares model requests and
@@ -76,6 +78,17 @@ model request hash is unchanged. A matching request does not prove a saved
 response exists or was accepted; `saved_response_available` stays `not_checked`
 and semantic review remains required. No model client or network is called.
 Refresh the corpus before preparation; comparison is not a freshness check.
+
+Normative rule selectors use complete headings such as `R8.4 — Conversion
+eligibility.`, not bare rule IDs. An October 20 document insertion put an
+earlier `R8.4` cross-reference ahead of the actual rule and exposed the bare-ID
+selector's wrong-section retrieval. A synthetic regression exercises the actual
+three affected task configurations, with and without distant earlier references.
+The fix changes task selectors, not the retrieval engine. The engine still
+uses bounded first-match text windows, not a structural document parser;
+humans must inspect completeness and missing context before approving a draft.
+Changing source editions or selectors changes request hashes and requires
+fresh preparation and review; never relabel an old approval as current.
 
 ## Generate and import draft answers
 
