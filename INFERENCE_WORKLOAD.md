@@ -90,6 +90,17 @@ humans must inspect completeness and missing context before approving a draft.
 Changing source editions or selectors changes request hashes and requires
 fresh preparation and review; never relabel an old approval as current.
 
+[HE-Lingfeng's independent selector review](https://github.com/sunriseblack/flop-agent/issues/5#issuecomment-6291973184)
+passed the requested checks at `f598938` but found a Unicode coordinate bug
+in `excerpt()`: case-folding `ß` into `ss` shifted an anchor's index before
+the original text was sliced. The helper now maps folded match starts back
+to original character positions in one pass. Three regressions cover ASCII
+and expanding Unicode controls, matches inside an expansion, first-match and
+fallback behavior, and the real prepare CLI with all three affected task
+configurations intact. The 208-test local suite passes. The repair needs its
+own peer verification; the original execution report is not a test of the fix.
+Bounded first-match retrieval still does not establish complete semantic context.
+
 ## Generate and import draft answers
 
 Pass only each job's `request` to an approved model client, not the human

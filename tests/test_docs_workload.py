@@ -73,6 +73,80 @@ class DocsWorkloadTests(unittest.TestCase):
                     context = "\n".join(s["text"] for s in bundle["jobs"][0]["request"]["snippets"])
                     self.assertIn(body, context)
 
+    def test_casefold_expansion_preserves_original_excerpt_coordinates(self):
+        heading = "R8.4 — Conversion eligibility."
+        cases = [("Strasse " * 700, heading, heading.lower()),
+                 ("Straße " * 700, heading, heading.lower()),
+                 ("İ " * 700, heading, heading),
+                 ("ﬃ " * 700, heading, heading),
+                 ("Straße " * 700, "Straße — Regel.", "STRASSE — REGEL."),
+                 ("prefix " * 700, "ß — Regel.", "s — regel.")]
+        for prefix, original_heading, anchor in cases:
+            with self.subTest(prefix=prefix[:8], heading=original_heading, anchor=anchor):
+                text = prefix + original_heading + "\nEXPECTED_BODY\n" + "tail\n" * 600
+                source = {"id": "yellowpaper", "url": SOURCES["yellowpaper"], "text": text,
+                          "text_sha256": hashlib.sha256(text.encode()).hexdigest()}
+                snippets = excerpt(source, [anchor])
+                self.assertEqual(len(snippets), 1)
+                expected_index = len(prefix)
+                self.assertEqual(snippets[0]["start"], max(0, expected_index - 450))
+                self.assertEqual(snippets[0]["end"], min(len(text), expected_index + 1750))
+                self.assertEqual(snippets[0]["text"], text[snippets[0]["start"]:snippets[0]["end"]])
+                self.assertIn(original_heading + "\nEXPECTED_BODY", snippets[0]["text"])
+
+    def test_casefold_mapping_keeps_first_match_and_missing_anchor_fallback(self):
+        heading = "R8.4 — Conversion eligibility."
+        text = "Straße " * 700 + heading + " FIRST_BODY\n" + "gap\n" * 1000 + heading + " SECOND_BODY"
+        source = {"id": "yellowpaper", "url": SOURCES["yellowpaper"], "text": text,
+                  "text_sha256": hashlib.sha256(text.encode()).hexdigest()}
+        snippets = excerpt(source, [heading, heading.lower()])
+        self.assertEqual(len(snippets), 1)
+        self.assertIn("FIRST_BODY", snippets[0]["text"])
+        self.assertNotIn("SECOND_BODY", snippets[0]["text"])
+        for anchors in ([], ["unavailable heading"]):
+            with self.subTest(anchors=anchors):
+                fallback = excerpt(source, anchors)
+                self.assertEqual((fallback[0]["start"], fallback[0]["end"], fallback[0]["text"]),
+                                 (0, 2200, text[:2200]))
+
+    def test_unicode_prefix_through_real_prepare_cli_keeps_all_configured_anchors(self):
+        tasks = load_file(Path(__file__).resolve().parents[1] / "workload/tasks.json")
+        selected = select_tasks(tasks, ["testnet-demand", "implementation-gap", "money-path-scope"])
+        anchors = list(dict.fromkeys(a for task in selected["tasks"]
+                                    for a in task["sources"]["yellowpaper"]))
+        references = ("SYNTHETIC overview, not normative:\nSee [r8.4]    and\n"
+                      "(r8.5); section-six cross-references only.\n"
+                      "R12.1a is another cross-reference; PARTIAL is only a summary label.\n")
+        for word in ("Strasse annex context.\n", "Straße annex context.\n"):
+            with self.subTest(word=word), tempfile.TemporaryDirectory() as temp:
+                text = references + word * 700
+                for index, anchor in enumerate(anchors):
+                    text += anchor + f"\nEXPECTED_BODY_{index}\n" + "tail\n" * 600
+                source_ids = set(source_id for task in selected["tasks"] for source_id in task["sources"])
+                corpus = {"schema": "flop-docs-corpus-v1", "sources": []}
+                for source_id in sorted(source_ids):
+                    content = text if source_id == "yellowpaper" else "SYNTHETIC public fixture only."
+                    corpus["sources"].append({"id": source_id, "url": SOURCES[source_id],
+                        "retrieved_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                        "text": content, "text_sha256": hashlib.sha256(content.encode()).hexdigest()})
+                corpus_path, output = Path(temp)/"corpus.json", Path(temp)/"jobs.json"
+                save_file(corpus_path, corpus)
+                command = [sys.executable, str(Path(__file__).resolve().parents[1]/"scripts/docs_workload.py"),
+                           "prepare", "--corpus", str(corpus_path), "--output", str(output)]
+                for task in selected["tasks"]:
+                    command.extend(["--task-id", task["id"]])
+                result = subprocess.run(command, capture_output=True, text=True, timeout=15)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                bundle = load_file(output)
+                for job in bundle["jobs"]:
+                    task = next(t for t in selected["tasks"] if t["id"] == job["request"]["task_id"])
+                    snippets = [s for s in job["request"]["snippets"] if s["source_id"] == "yellowpaper"]
+                    context = "\n".join(s["text"] for s in snippets)
+                    for anchor in task["sources"]["yellowpaper"]:
+                        self.assertIn(anchor + f"\nEXPECTED_BODY_{anchors.index(anchor)}", context)
+                    for snippet in snippets:
+                        self.assertEqual(snippet["text"], text[snippet["start"]:snippet["end"]])
+
     def test_human_review_packet_includes_pinned_context_and_never_acceptance(self):
         text = review_packet(self.bundle, [self.response], "scope")
         request = self.bundle["jobs"][0]["request"]

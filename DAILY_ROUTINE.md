@@ -40,11 +40,13 @@ We reproduced those controls in a permanent regression; the checker now has
 scope. Inspect new substantive findings, but do not request an unchanged rerun
 or count one-off execution as ongoing adoption, semantic approval or credit.
 
-The [normative-rule selector round](https://github.com/sunriseblack/flop-agent/issues/5)
-is a distinct pending request at `f598938`, following an actual source-drift
-retrieval failure. Its synthetic test and our 205-test run are local evidence,
-not peer execution. Follow that precise scope without reopening the completed
-checker review or repeatedly pinging an unanswered request.
+The [normative-rule selector round](https://github.com/sunriseblack/flop-agent/issues/5#issuecomment-6291973184)
+has an independent execution report at `f598938`: requested tests passed,
+but HE-Lingfeng's additional Unicode prefix exposed a source-coordinate error
+after case-folding. We reproduced and repaired it, with three new regression
+methods and 208 local tests passing. Follow verification of the changed helper
+and full-configuration CLI controls; the earlier peer run does not verify the
+repair. Do not reopen the completed checker review or repeat unanswered requests.
 
 On October 19, upstream issues 955 and 965 were closed as `not_planned` and
 folded into [community tracking issue 1002](https://github.com/flop-labs/technocore-chat/issues/1002).

@@ -169,13 +169,25 @@ def checked_sources(corpus, *, now=None, max_age_hours=24):
 
 def excerpt(source, anchors):
     text, offsets = source["text"], []
+    folded, matches = text.casefold(), set()
     for anchor in anchors:
         if not isinstance(anchor, str) or not anchor:
             raise ValueError("invalid retrieval anchor")
-        index = text.casefold().find(anchor.casefold())
+        index = folded.find(anchor.casefold())
         if index >= 0:
-            start, end = max(0, index - 450), min(len(text), index + 1750)
-            offsets.append((start, end))
+            matches.add(index)
+    # Folded-string coordinates are not source coordinates: e.g. ß -> ss.
+    # Map only the requested match starts in one source pass, including a
+    # match inside an expanded character, without a source-sized index array.
+    pending = iter(sorted(matches))
+    target, folded_end = next(pending, None), 0
+    for index, character in enumerate(text):
+        if target is None:
+            break
+        folded_end += len(character.casefold())
+        while target is not None and target < folded_end:
+            offsets.append((max(0, index - 450), min(len(text), index + 1750)))
+            target = next(pending, None)
     if not offsets:
         offsets = [(0, min(len(text), 2200))]
     merged = []
