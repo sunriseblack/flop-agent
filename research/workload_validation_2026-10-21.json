@@ -1,0 +1,102 @@
+{
+  "schema": "flop-workload-validation-v1",
+  "date": "2026-10-21",
+  "owner_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+  "peer_report": {
+    "url": "https://github.com/sunriseblack/flop-agent/issues/5#issuecomment-6291973184",
+    "author": "HE-Lingfeng",
+    "created_at": "2026-10-20T13:27:47Z",
+    "reviewed_commit": "f59893873e866f9b0aa4a3d1181f115f79276be2",
+    "environment": "Python 3.13.12, macOS 27.0.1 / Darwin arm64, cryptography 46.0.5",
+    "reported_requested_tests": {"normative_rule": 1, "repository": 205, "skips": 0},
+    "additional_finding": "Unicode casefold expansion shifts a folded-string index away from original-source coordinates; the real prepare CLI accepts a locally consistent wrong slice.",
+    "report_authorship_content_and_pins_inspected": true
+  },
+  "reproduction_and_fix": {
+    "minimal_unicode_before": {"original_index": 4900, "folded_index": 5600, "window_start": 5150, "heading_and_body_retained": false},
+    "minimal_unicode_after": {"original_index": 4900, "folded_index": 5600, "window_start": 4450, "heading_and_body_retained": true},
+    "ascii_control_before_and_after": {"original_index": 5600, "folded_index": 5600, "window_start": 5150, "heading_and_body_retained": true},
+    "commit": "6138fecf3d43953be9cab8c32e0a8793ca19110f",
+    "implementation_sha256": "8aa285f6b441d150b4e91181d363e351d6eda083a4d49947c17f175a6971ce01",
+    "tests_sha256": "d03e21b2f654520185c3b153d74e55708e10b67e4462eacf2c7c36da3b23a7f3",
+    "task_configuration_sha256_unchanged": "7b83194c1af75a1efc987c5e412cacd58aa428402a7cb8f783d052ab1d87ce42",
+    "new_regression_methods": [
+      "test_casefold_expansion_preserves_original_excerpt_coordinates",
+      "test_casefold_mapping_keeps_first_match_and_missing_anchor_fallback",
+      "test_unicode_prefix_through_real_prepare_cli_keeps_all_configured_anchors"
+    ],
+    "all_three_methods_failed_before_helper_fix": true,
+    "ascii_controls_passed_before_helper_fix": true,
+    "local_environment": "Python 3.14.3 / Darwin",
+    "local_workload_tests": 59,
+    "local_repository_tests": 208,
+    "kit_cases_passed": 10,
+    "exporter_cli_cases_passed": 13,
+    "ci": {"url": "https://github.com/sunriseblack/flop-agent/actions/runs/39604643615", "conclusion": "success", "python_versions": ["3.12", "3.14"]},
+    "scope": "Original-character coordinate mapping for first casefolded match starts; not structural parsing, complete context, semantic review or authenticated retrieval."
+  },
+  "fix_retest_request": {
+    "url": "https://github.com/sunriseblack/flop-agent/issues/5#issuecomment-6316751036",
+    "author": "sunriseblack",
+    "created_at": "2026-10-21T13:03:50Z",
+    "body_sha256": "ab192828d27b717f53dda3af40ca4f848cd4b284bbd9af9f5e684ca023296230",
+    "status": "pending_peer_execution",
+    "exact_body_and_author_readback_verified": true
+  },
+  "source_refresh": {
+    "retrieved_between_utc": ["2026-10-21T12:58:56.625592+00:00", "2026-10-21T12:58:58.986353+00:00"],
+    "sources": [
+      {"id": "auth", "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"},
+      {"id": "manual", "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"},
+      {"id": "testnet", "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218"},
+      {"id": "airdrop", "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0"},
+      {"id": "agent", "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"},
+      {"id": "yellowpaper", "text_sha256": "c4edce674b4b12e918858a58f524eca79b83138fda40a1f5410897da5624c37e"},
+      {"id": "store", "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"},
+      {"id": "money_path", "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"}
+    ],
+    "all_source_text_hashes_unchanged_since_october_20": true,
+    "private_corpus_file_sha256": "85266e0a2ef207b0a2bec1c56d851a0a4badc0004d838f6c50a5d669f8a7d59a",
+    "raw_hashes_and_exact_retrieval_times_retained_in_private_corpus": true
+  },
+  "workload": {
+    "tasks": 10,
+    "jobs_sha256": "55407814ebebca2ae71ae92b4758eed1ae7cc90d4421f5149d0103ded4066751",
+    "bundle_file_sha256": "e339d493efc5a3e59f5773d2aaab9e702593842e39eb2c4198324075fa77fd94",
+    "request_hashes_changed_by_refresh_or_fix": 0,
+    "evaluation_rules_changed": 0,
+    "cached_responses_regraded": 10,
+    "mechanical_passes": 10,
+    "matching_supplied_approval_records": 0,
+    "old_approval_binding_mismatches": 6,
+    "current_tasks_without_supplied_decision": 4,
+    "private_review_packets": 10,
+    "packet_and_index_modes": "0600",
+    "new_generation_skipped_for_unchanged_requests": true,
+    "semantic_review": "required",
+    "publication_authorized_by_checker": false,
+    "review_file_sha256": "334026314dc8e96a1f45db7bae701b47c605179271182fdd19267a842763688f",
+    "review_status_file_sha256": "20ca0087ebabc96e309c7edc80750f9879a2b1ecaa1a98c3c38fa12aef3436c8",
+    "comparison_file_sha256": "3351c6e02e3fecc97d3788abd8fcf713cd7dc8409f2c6385251b00233198cf41",
+    "paid_api_calls": 0,
+    "external_model_calls": 0,
+    "flop_sessions": 0,
+    "actual_model_usage_cost_latency": null
+  },
+  "readiness": {
+    "official_profile": "https://ask.flop.finance/networks/testnet",
+    "observation_kind": "Official visible browser page, not signed chain evidence or byte-exact HTML snapshot",
+    "network": "testnet (planned)",
+    "release": "next (unreleased)",
+    "displayed_source_short": "9053bbf88a4b",
+    "unavailable_verified_public_values": ["chain_spec", "genesis", "bootnodes", "rpc", "gateway", "model_catalog"],
+    "supported_releases": "none_verified",
+    "public_admission": "unavailable_until_identity_artifacts_and_policy_verified",
+    "github_yellowpaper_commit": "70e691c758e53eed17a016a02b0a2ae1200d3744",
+    "official_public_repository_catalog_count": 7,
+    "purchase_client_identified_in_checked_catalog": false,
+    "official_x_visible_latest_post": "https://x.com/flop_labs/status/2112461913678635518",
+    "launch_gate_met": false,
+    "temporary_browser_tabs_closed": true
+  }
+}

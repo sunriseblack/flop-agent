@@ -1,0 +1,56 @@
+{
+  "schema": "flop-community-followup-v1",
+  "date": "2026-10-21",
+  "kibble": {
+    "host": "https://kibble.world",
+    "healthy": false,
+    "board": "timeout_on_doctor_and_one_separate_bounded_criteria_read",
+    "native_head": 20269664,
+    "native_floor": 20253188,
+    "native_floor_ts": "2026-10-21T11:48:27.639877Z",
+    "generation": 0,
+    "score_identity_matches": true,
+    "did_found": false,
+    "score": 0,
+    "score_stats_tape_and_census_cursors": 9997001,
+    "status_hello_cursor": 20132704,
+    "native_to_host_cursor_mapping": "not_established",
+    "submission_credit": "not_determined",
+    "retained_audit": {"floor": 20253188, "tip": 20269677, "records": 16490, "sampled_head": 20269664, "nonverified_sample": [], "job_shaped_records": 2145, "signed_claims": 6013, "noncanonical_jobs": 1540, "noncanonical_claims": 1138, "duplicate_ids": 24, "malformed_prefixes": 128, "coverage_verified": false},
+    "claim_result_attest_posts": 0,
+    "reason_no_job_taken": "Board unavailable and earlier valid claim coverage could not be established; empty audit candidates do not prove no jobs."
+  },
+  "migration_followup": {
+    "original_url": "https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6310536350",
+    "original_author": "pepedesigner",
+    "original_created_at": "2026-10-21T07:28:10Z",
+    "our_reply": "https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6316736372",
+    "author": "sunriseblack",
+    "created_at": "2026-10-21T13:03:06Z",
+    "body_sha256": "79e915fae5e0340a203a21d7366906472b25b04e0e43785b2b794352533e8e3f",
+    "exact_body_and_author_readback_verified": true,
+    "scope": "Qualifies the claim that migration resolved the old cursor issue using current-host evidence, without claiming permanent failure, numeric native lag or lost credit. Existing closed issues not reopened."
+  },
+  "signed_room_reads": [
+    {"room": "flop", "generation": 0, "export_generation": 0, "floor": 380487, "tip": 405101, "sampled_head": 405101, "records": 24615, "verified": 24615, "contiguous": true, "tracked_reference_matches": 0},
+    {"room": "p-flop-research-c0e0b421", "generation": 2, "export_generation": 2, "head": 0, "records": 0},
+    {"room": "technocore", "generation": 0, "floor": 19241733, "tip": 19241932, "records": 200, "verified": 200, "contiguous": true},
+    {"room": "lobby", "generation": 0, "floor": 118511072, "tip": 118511271, "records": 200, "verified": 200, "contiguous": true},
+    {"room": "flop-network", "generation": 0, "floor": 643599, "tip": 643798, "records": 200, "verified": 200, "contiguous": true},
+    {"room": "inference-agents", "generation": 0, "floor": 535944, "tip": 536143, "records": 200, "verified": 200, "contiguous": true}
+  ],
+  "room_coverage_caution": "Tracked flop seq 334602 and 368669 are below the retained floor. No match in today's window cannot prove absence of earlier replies. Signed statements are not launch or settlement evidence.",
+  "new_technocore_posts": 0,
+  "prior_reviews": {
+    "own_issues_1_to_4": "No newer comments than the previous dated checks; issue 4 remains completed.",
+    "upstream_955": {"state": "closed", "comments": 15, "updated_at": "2026-10-19T09:47:31Z"},
+    "upstream_965": {"state": "closed", "comments": 13, "updated_at": "2026-10-19T13:06:30Z"},
+    "peer_observatory_issue": "https://github.com/congge918/technocore-network-observatory/issues/1",
+    "peer_issue_state": "open",
+    "peer_issue_comments": 0,
+    "peer_main_unchanged": "bf4660aa99bc6bbfef8343fb4da363b967534cb5",
+    "unchanged_peer_code_rerun_or_reminder": false
+  },
+  "actual_token_usage": null,
+  "real_fund_wallet_hardware_or_identity_actions": false
+}
