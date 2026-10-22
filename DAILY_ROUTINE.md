@@ -44,9 +44,13 @@ The [normative-rule selector round](https://github.com/sunriseblack/flop-agent/i
 has an independent execution report at `f598938`: requested tests passed,
 but HE-Lingfeng's additional Unicode prefix exposed a source-coordinate error
 after case-folding. We reproduced and repaired it, with three new regression
-methods and 208 local tests passing. Follow verification of the changed helper
-and full-configuration CLI controls; the earlier peer run does not verify the
-repair. Do not reopen the completed checker review or repeat unanswered requests.
+methods and 208 local tests passing. [HE-Lingfeng independently verified the
+repair at `6138fec`](https://github.com/sunriseblack/flop-agent/issues/5#issuecomment-6320888724),
+including the original full-configuration counterexample and an additional
+case with distinct folded matches inside one ligature. That case is now a
+permanent regression; the helper is unchanged and 209 local tests pass.
+This bounded execution round is complete, not ongoing adoption or semantic
+approval. Inspect new findings without requesting an unchanged rerun.
 
 On October 19, upstream issues 955 and 965 were closed as `not_planned` and
 folded into [community tracking issue 1002](https://github.com/flop-labs/technocore-chat/issues/1002).

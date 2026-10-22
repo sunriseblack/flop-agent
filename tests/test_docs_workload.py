@@ -109,6 +109,24 @@ class DocsWorkloadTests(unittest.TestCase):
                 self.assertEqual((fallback[0]["start"], fallback[0]["end"], fallback[0]["text"]),
                                  (0, 2200, text[:2200]))
 
+    def test_peer_distinct_folded_starts_in_one_ligature_merge_to_original_slice(self):
+        prefix = "ßİﬃ " * 700
+        heading, marker = "ﬃ — UNIQUE_RULE.", "ADJACENT_BODY"
+        text = prefix + heading + "\n" + marker + "\n" + "tail\n" * 600
+        source = {"id": "yellowpaper", "url": SOURCES["yellowpaper"], "text": text,
+                  "text_sha256": hashlib.sha256(text.encode()).hexdigest()}
+        anchors = ["i — UNIQUE_RULE.", "FI — UNIQUE_RULE.", "fi — UNIQUE_RULE."]
+        # Distinct folded starts inside one original character must not create
+        # shifted or duplicate source windows. The third anchor repeats case.
+        folded_starts = [text.casefold().find(anchor.casefold()) for anchor in anchors]
+        self.assertEqual(len(set(folded_starts)), 2)
+        snippets = excerpt(source, anchors)
+        self.assertEqual(len(snippets), 1)
+        snippet = snippets[0]
+        self.assertEqual((snippet["start"], snippet["end"]), (2350, 4550))
+        self.assertEqual(snippet["text"], text[2350:4550])
+        self.assertIn(heading + "\n" + marker, snippet["text"])
+
     def test_unicode_prefix_through_real_prepare_cli_keeps_all_configured_anchors(self):
         tasks = load_file(Path(__file__).resolve().parents[1] / "workload/tasks.json")
         selected = select_tasks(tasks, ["testnet-demand", "implementation-gap", "money-path-scope"])

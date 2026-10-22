@@ -97,9 +97,14 @@ the original text was sliced. The helper now maps folded match starts back
 to original character positions in one pass. Three regressions cover ASCII
 and expanding Unicode controls, matches inside an expansion, first-match and
 fallback behavior, and the real prepare CLI with all three affected task
-configurations intact. The 208-test local suite passes. The repair needs its
-own peer verification; the original execution report is not a test of the fix.
-Bounded first-match retrieval still does not establish complete semantic context.
+configurations intact. [HE-Lingfeng independently verified the repair](https://github.com/sunriseblack/flop-agent/issues/5#issuecomment-6320888724)
+at `6138fec`: 208 repository tests passed, the original full-configuration
+counterexample passed, and two distinct folded match starts inside one `ﬃ`
+character merged into one exact original-text slice. That additional case is
+now a permanent local regression, with 60 workload and 209 repository tests
+passing; the helper implementation is unchanged. This bounded review is
+complete, not ongoing adoption or semantic approval. Bounded first-match
+retrieval still does not establish complete semantic context.
 
 ## Generate and import draft answers
 
