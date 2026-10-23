@@ -139,6 +139,17 @@ verified public network/client values. Treat the documentation assistant and
 operator manuals as documentation surfaces, not settled inference or live
 onboarding. Do not bypass a human-check gate to manufacture assistant usage.
 
+October 23 readiness delta: [TCLK's native FlopRail](https://github.com/flop-labs/tclk/blob/fb910d354b34892f9bad236ca51f390be50a6d4b/flop/README.md)
+now contains a devnet HTLC adapter. Its same-Ed25519-key `AccountId32`
+mapping is specific to that adapter; [issue 123's new peer reply](https://github.com/flop-labs/yellowpaper/issues/123#issuecomment-6359370004)
+does not ratify inference-credit or genesis-allocation binding. The documented
+read-only faucet `/chain` endpoint reports devnet, not testnet. Keep that
+metadata and the author's devnet receipts separate from our own execution and
+from independently verified finality. Do not run the funded example as a
+readiness smoke test: it creates fresh identities and submits escrows. No seed
+export, funding request, wallet connection or transaction is authorized here.
+These readiness reads do not expand the workload's model-input allowlist.
+
 Keep creator/builder programme announcements separate from the compute route.
 The October 15 KOL leaderboard preview is a trigger to inspect official terms
 when they appear, not proof of enrolment, payout or testnet launch. Do not

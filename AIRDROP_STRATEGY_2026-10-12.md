@@ -52,6 +52,16 @@ identified in the checked catalog or announcements. Keep the launch gate and
 useful-output requirement; the new issue 32 peer discussion does not ratify
 the unresolved reservation-versus-work scoring choice.
 
+October 23 follow-up: the official [native TCLK FlopRail](https://github.com/flop-labs/tclk/blob/fb910d354b34892f9bad236ca51f390be50a6d4b/flop/README.md)
+merged on October 22 and adds a devnet HTLC adapter, not the inference-task
+HTLC API. Its read-only faucet chain-info endpoint responds with devnet metadata;
+its documentation and author receipts are infrastructure evidence, not our own
+verified settlement or an allocation. The same-key account mapping is specific
+to that adapter, with inference/genesis binding still awaiting confirmation on
+[issue 123](https://github.com/flop-labs/yellowpaper/issues/123#issuecomment-6359370004).
+Testnet remains planned. Do not run the fresh-key funded example, connect a
+wallet or treat a devnet escrow as creditable testnet inference.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

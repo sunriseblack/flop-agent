@@ -318,6 +318,15 @@ adoption, authenticated human permission or FLOP credit.
 
 ## Testnet launch gate
 
+The October 22 [native TCLK HTLC adapter](https://github.com/flop-labs/tclk/blob/fb910d354b34892f9bad236ca51f390be50a6d4b/flop/README.md)
+is a separate devnet settlement transport, explicitly not the inference-task
+HTLC API. It documents same-key Ed25519 account binding within that adapter;
+this does not establish R8.4 attribution or an owner's allocation. A read-only
+devnet chain-info response and another author's published escrow receipts are
+not a finalized inference session by this workload. The eight-source model-input
+allowlist is unchanged. Do not run its fresh-key/funding example or copy signing
+material into it to manufacture readiness.
+
 Before enabling a FLOP transport, identify the official client, chain and
 genesis identity, faucet, supported model, DID/account/delegate mapping,
 independent miner and finalized allocation rules. Use a bounded approved
