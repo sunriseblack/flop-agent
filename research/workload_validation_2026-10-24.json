@@ -1,0 +1,91 @@
+{
+  "schema": "flop-workload-validation-v1",
+  "date": "2026-10-24",
+  "source_retrieval_range_utc": [
+    "2026-10-24T13:08:19.356234+00:00",
+    "2026-10-24T13:08:19.941774+00:00"
+  ],
+  "sources": [
+    {
+      "id": "auth",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218"
+    },
+    {
+      "id": "airdrop",
+      "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0"
+    },
+    {
+      "id": "agent",
+      "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"
+    },
+    {
+      "id": "yellowpaper",
+      "text_sha256": "4424d504c4b93957fde9cc691a50834d0ae8004466c99536169fad75c803abc2"
+    },
+    {
+      "id": "store",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "changed_source_text_ids": [
+    "yellowpaper"
+  ],
+  "raw_hashes_and_exact_retrievals_retained_privately": true,
+  "corpus_file_sha256": "ece26670a1683187916f2521cf89fcd31db8c5e8c8e98bb48303e5e55a2db5fc",
+  "tasks": 10,
+  "jobs_sha256": "d53f75bf2aea4ef19924cc5a92a2640bd2b41dd34b9c100304e1342fb0649749",
+  "bundle_file_sha256": "c45f61ddac41bfa674d3776d2311f88b1c553fceb6cbd8c393c97607fa3dbf51",
+  "changed_request_ids": [
+    "testnet-demand",
+    "implementation-gap",
+    "money-path-scope",
+    "operator-delegation-conflict"
+  ],
+  "unchanged_requests": 6,
+  "changed_evaluation_rules": 0,
+  "initial_untouched_cached_response_passes": 6,
+  "initial_stale_binding_failures": 4,
+  "initial_failed_report_sha256": "c6cc254ddc466a38abad9ad372049220b9091530c044ea58bedc860431e95e47",
+  "rebinding_scope": "Only job hashes and citation snippet IDs changed after exact source ID, URL, excerpt text, question, system and evaluation equality checks. Answer wording unchanged. This is not human approval.",
+  "rebound_response_file_sha256": "0debca85a5bb5fe1c6142a655cf83c96234213ea94d2a2e2a9a028e55d88a92b",
+  "mechanical_passes": 10,
+  "review_file_sha256": "e6613b9dc66112c28dec28a185bc065672228de53008a57e8ee00cebdfc6a241",
+  "matching_supplied_approval_records": 0,
+  "historical_approval_binding_mismatches": 6,
+  "current_tasks_without_supplied_decision": 4,
+  "review_status_file_sha256": "9a17631f48e8cbc00d5ec0864a6e608c45f7367e395d573474e507d551f09e16",
+  "comparison_file_sha256": "f7eb97d983f9d617513f91eb24992b443fa3e1c125f29dae4fd80f27336240c8",
+  "semantic_review": "required",
+  "publication_authorized_by_checker": false,
+  "private_packets": 10,
+  "private_packet_modes": "0600",
+  "historical_decisions_packets_and_failed_reports_preserved": true,
+  "new_model_generation_calls": 0,
+  "paid_api_calls": 0,
+  "flop_inference_sessions": 0,
+  "actual_model_usage_cost_latency": null,
+  "new_readiness_sources_added_to_model_allowlist": false,
+  "production_code_changed": false,
+  "local_repository_tests": 211,
+  "local_tests_passed": true,
+  "official_github_yellowpaper_commit": "70e691c758e53eed17a016a02b0a2ae1200d3744",
+  "policy_issue_updates": {
+    "31": "2026-10-12T09:21:24Z",
+    "32": "2026-10-17T08:49:28Z",
+    "123": "2026-10-23T06:58:55Z",
+    "127": "2026-10-13T13:17:10Z",
+    "133": "2026-10-15T00:16:49Z"
+  }
+}

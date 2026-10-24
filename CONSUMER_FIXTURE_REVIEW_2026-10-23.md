@@ -101,8 +101,8 @@ code changed and no new defect was demonstrated within this scope.
 ## Independent follow up and expanded controls
 
 On October 23, [the PR author independently cross-checked the same fixture](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6365870749)
-using Node v22.22.0 native `crypto.verify`, without executing either verifier's
-code. They report all nine classifications and 25 controls passing. This
+using Node v22.22.0 native `crypto.verify`, without executing our verifier or
+the PR's Python code. They report all nine classifications and 25 controls passing. This
 corroborates signature interoperability for the pinned bytes, not adoption of
 our kit or validation of a consumer authorization policy.
 
