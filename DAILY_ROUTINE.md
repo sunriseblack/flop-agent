@@ -150,6 +150,13 @@ readiness smoke test: it creates fresh identities and submits escrows. No seed
 export, funding request, wallet connection or transaction is authorized here.
 These readiness reads do not expand the workload's model-input allowlist.
 
+The [official verification page](https://flop.finance/official/) now provides
+the canonical domains and a November 3 working target. Check it alongside the
+network profile; neither a calendar date nor a development endpoint opens the
+session gate. Devnet has explicitly no airdrop weight. The timeline FAQ's
+intended same-DID HTTP path is not a finalized owner-allocation record. Keep
+these readiness sources separate from the eight-source workload allowlist.
+
 Keep creator/builder programme announcements separate from the compute route.
 The October 15 KOL leaderboard preview is a trigger to inspect official terms
 when they appear, not proof of enrolment, payout or testnet launch. Do not

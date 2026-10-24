@@ -97,3 +97,48 @@ Actual exit: 0. Output: nine matched cases, five verified, three unverifiable,
 one invalid and fifteen passed controls. This is our independent use of the
 peer's fixture, not the peer's adoption or review of our kit. No production
 code changed and no new defect was demonstrated within this scope.
+
+## Independent follow up and expanded controls
+
+On October 23, [the PR author independently cross-checked the same fixture](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6365870749)
+using Node v22.22.0 native `crypto.verify`, without executing either verifier's
+code. They report all nine classifications and 25 controls passing. This
+corroborates signature interoperability for the pinned bytes, not adoption of
+our kit or validation of a consumer authorization policy.
+
+On October 24, our original recipe above again passed its 15 controls. The
+additional command below passed ten more controls, using the same `cases` and
+verifier imports inside that recipe's Python process. Insert it immediately
+before the final `print` when reproducing the expanded run:
+
+```python
+from verify_tape import assess_snapshot
+
+extra_controls = 0
+for case in cases:
+    room, record = case['room'], case['record']
+    if verify_record(room, record)[0] != 'verified':
+        continue
+    changed_nonce = copy.deepcopy(record)
+    changed_nonce['nonce'] += 1
+    assert verify_record(room, changed_nonce)[0] == 'invalid'
+    relabelled = {'room': room, 'generation': case['generation'] + 1,
+                  'messages': [record]}
+    assert assess_snapshot(room, relabelled)['counts']['verified'] == 1
+    extra_controls += 2
+assert extra_controls == 10
+print({'additional_controls_passed': extra_controls})
+```
+
+Generation is envelope metadata, outside the signed `room|nonce|text` tuple.
+Even a prior-generation record can be relabelled without breaking its signature.
+A consumer needs an independently trusted source for its current room generation
+and durable prior-observation state for replay decisions. Comparing two supplied
+generation numbers is not authenticated freshness. Our snapshot result reports
+the supplied generation; it does not authenticate it or suppress replay.
+
+Two permanent offline regressions preserve the signed-nonce and unsigned-envelope
+boundaries, including a changed-nonce negative under the relabelled envelope.
+The signature verifier implementation remains unchanged. Future fixture edits,
+including the already-discussed benign-invalid and lossless large-nonce cases,
+require a new hash and new runs; this result does not cover them.

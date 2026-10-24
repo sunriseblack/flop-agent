@@ -43,6 +43,26 @@ class TapeVerificationTests(unittest.TestCase):
         self.assertEqual(verify_record("lobby", self.record)[0], "invalid")
         self.assertEqual(verify_record(self.room, {**self.record, "text": self.text + "!"})[0], "invalid")
 
+    def test_changed_nonce_is_invalid_even_with_unchanged_text(self):
+        self.assertEqual(verify_record(self.room, self.record)[0], "verified")
+        self.assertEqual(verify_record(self.room, {**self.record, "nonce": self.nonce + 1})[0], "invalid")
+
+    def test_signature_does_not_authenticate_snapshot_generation_or_delivery_metadata(self):
+        # PR 1010's cross-implementation review highlighted this trust boundary.
+        # A caller must obtain generation from trusted room context separately;
+        # relabelling an imported envelope cannot prove a record is fresh.
+        original = {"room": self.room, "generation": 2, "messages": [self.record]}
+        changed_record = {**self.record, "seq": 99999, "ts": "2026-10-24T13:00:00Z"}
+        relabelled = {"room": self.room, "generation": 3, "messages": [changed_record]}
+        for snapshot in (original, relabelled, relabelled):
+            with self.subTest(generation=snapshot["generation"]):
+                result = assess_snapshot(self.room, snapshot)
+                self.assertEqual(result["generation"], snapshot["generation"])
+                self.assertEqual(result["counts"], {"verified": 1, "unverifiable": 0, "invalid": 0})
+        # Unsigned envelope changes still cannot hide a signed-payload change.
+        changed_record["nonce"] += 1
+        self.assertEqual(assess_snapshot(self.room, relabelled)["counts"]["invalid"], 1)
+
     def test_absent_signature_is_unverifiable_not_invalid(self):
         self.assertEqual(verify_record(self.room, {"from": self.did, "text": self.text})[0], "unverifiable")
 

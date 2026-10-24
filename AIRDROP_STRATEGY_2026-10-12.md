@@ -62,6 +62,16 @@ to that adapter, with inference/genesis binding still awaiting confirmation on
 Testnet remains planned. Do not run the fresh-key funded example, connect a
 wallet or treat a devnet escrow as creditable testnet inference.
 
+October 24 readiness update: the [official verification page](https://flop.finance/official/),
+dated October 23, gives Tuesday November 3 as the working testnet target and
+explicitly assigns devnet no rewards or airdrop weight. It also identifies the
+official technical domains. The [timeline FAQ](https://ask.flop.finance/docs/testnet-and-timeline)
+describes the intended agent path as signed HTTP inference using the existing
+DID key, but does not provide a verified live testnet session or settle the
+owner-allocation binding question. The network profile still marks testnet
+planned and its release unreleased. Prepare against that target, not by buying
+hardware, exporting the key or treating a development escrow as qualifying work.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |
