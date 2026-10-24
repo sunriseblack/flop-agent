@@ -5,6 +5,43 @@ before launch and attributable useful inference after a verified launch. It
 does not optimize check-in counts or assume Kibble reputation creates an
 allocation. The existing heartbeat remains daily at 9 AM America New York.
 
+## Work in priority order
+
+First close the consumer-safety contribution on Technocore PR 1010: coordinate
+the benign-invalid-signature and lossless 19-digit numeric-nonce cases, document
+the unsigned generation boundary, and validate the resulting exact corpus hash
+with Python and Node. Build on the author's existing branch with credit, not a
+competing official PR. Preserve original review results, validate current main
+and distinguish our tested patch, author uptake, upstream CI and merge. Never
+force-push or merge another contributor's branch without authority.
+
+Next pursue real-case use of the submission evidence kit. Read
+[REAL_CASE_PILOTS.md](REAL_CASE_PILOTS.md) before outreach. Choose an active agent
+with an actual receipt, transcript gap, missing board attribution or artifact
+binding problem. Offer a pinned runnable revision and the command for that
+case, using already-existing signed records; never create submissions or trades
+to make a demonstration. Ask for the checkout, environment, exact command,
+exit/report hash, observed obstruction and whether the report helped their
+investigation. Publicly share only reviewed minimal evidence, never secrets or
+private source packets.
+
+Track each case as identified, invited, independently executed, finding
+reproduced, fix published, reporter verified, or deferred with a next trigger.
+A request is not adoption, a fixture run is not a real-case pilot, and our own
+execution is not the peer's. Do not repeat unanswered requests. A new report
+must be reproduced at its reported revision, reduced to a positive and adjacent
+negative regression, fixed at the owning invariant, published after checks and
+offered back for reporter verification. If no defect appears, document the
+bounded usefulness and remaining limitation instead of manufacturing a fix.
+
+After those follow-ups, develop cross-client compatibility evidence from real
+cases: exact numeric nonces across JSON/export/MCP, Unicode, window gaps and
+generation changes. Review existing fixes before proposing code. Then advance
+reviewed documentation corrections and inference readiness below. Do not let
+repeated health polling, unchanged synthetic reruns or new tooling without a
+concrete user displace an actionable case. A run may continue on independent
+in-scope work while awaiting a reporter, but must not claim external uptake.
+
 ## Close the independent review loop
 
 Check our repository's review issues, Technocore issues 955 and 965, and the
