@@ -32,11 +32,12 @@ without finding a defect. Exact unsigned envelope metadata remains untrusted.
 
 | Case | Original problem | Participant | State and next step |
 | --- | --- | --- | --- |
-| Transcript capture after a skipped newest-window read | [TCLK PR 195](https://github.com/flop-labs/tclk/pull/195) | maho0638 | Identified. Offer capture/verification of an existing real receipt used in their investigation, not another synthetic gap test. |
-| Receipt visibility and export recovery in a busy room | [Technocore issue 919](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6310657063) | pepedesigner | Identified. Offer a pinned real-receipt run and explicit retained-window/metadata limitations. |
+| Transcript capture after a skipped newest-window read | [TCLK PR 195](https://github.com/flop-labs/tclk/pull/195) | maho0638 | [Invited](https://github.com/flop-labs/tclk/pull/195#issuecomment-6387476132) October 24 at 17:44:24 UTC, kit `84e6348`. Await original real-case execution/report, not another synthetic gap test. |
+| Receipt visibility and export recovery in a busy room | [Technocore issue 919](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6310657063) | pepedesigner | [Invited](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6387476306) October 24 at 17:44:25 UTC, kit `84e6348`. Await original real-receipt run and retained-window/metadata findings. |
 | Earlier Kibble saved-board retest | [Prior request](https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6146266926) | Robotbot69 | Pending historical request. No reminder. The original 37-record execution and board-ID finding already happened; do not recount it as a new pilot. |
 
-No current invitation or independently executed new case is implied by the
-identified rows. Update the state only after exact delivery/readback or a
-substantive original response. Completed synthetic reviews remain recorded in
-the daily routine and are not reopened as adoption campaigns.
+The two invitations were read back exactly under sunriseblack. Independent
+execution and usefulness are still pending. Update a state only after exact
+delivery/readback or a substantive original response. Completed synthetic
+reviews remain recorded in the daily routine and are not reopened as adoption
+campaigns. No unanswered invitation should be repeated as a routine reminder.

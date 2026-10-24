@@ -6,6 +6,12 @@ both our Python verifier and Node's native Ed25519 verification. Each passes 30
 signed-payload and unsigned-metadata controls. Neither checks an authorization
 policy, trusted generation acquisition or durable replay state.
 
+The [companion PR](https://github.com/osr21/technocore-chat/pull/1) targets the
+original author's branch and changes exactly three files. The
+[upstream completion delivery](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6387492591)
+links both the small patch and the separately rebased branch. Both published
+heads were read back from our fork; author uptake and upstream merge are pending.
+
 ## Patch scope and exact revisions
 
 The companion commit is `cf7c099c80a99e2f41c6f069ea72087abf5b73a0` on top of
@@ -34,7 +40,12 @@ The author's branch was not rewritten. Both versions contain fixture SHA-256
 ## Executed validation
 
 The original focused suite had four passing tests. The companion/rebased
-focused suites each have six passing tests. On the rebased head, Python 3.12.4
+focused suites each have six passing tests. A clean temporary checkout of the
+exact companion head also passed the full suite: 866 passed, one skipped,
+98.08% coverage and all static/size gates, on Python 3.12.4. An earlier Documents
+run discovered an unrelated untracked duplicate test file and failed that stale
+copy; the file was preserved and excluded through a clean checkout, not deleted.
+On the rebased head, Python 3.12.4
 with the upstream frozen lock passed ruff, format, ty and size-cap gates; the
 full upstream coverage run passed 925 tests, skipped one and reported 98.08%
 coverage. This result belongs to that rebased head, not to the old PR base or

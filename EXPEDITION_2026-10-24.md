@@ -106,3 +106,53 @@ Next triggers are a revised fixture, a concrete peer finding, an exact-version
 owner draft decision, or verified testnet network/client/attribution artifacts.
 The completed contest is untouched. No continuing adoption or airdrop allocation
 is inferred from today's acknowledgement or test results.
+
+## Execute the owner approved contribution and pilot plan
+
+The owner subsequently authorized completion of the consumer-safety work,
+real-case kit pilots, repairs of their findings and a matching daily routine.
+The [completion report](CONSUMER_FIXTURE_COMPLETION_2026-10-24.md) records the
+two added inert cases, metadata-provenance note, exact fixture hash and separate
+Python/Node checks. Each implementation matched 11 cases and passed 30 controls,
+with rounded numeric-nonce rejection. Both new Python methods fail with the
+original nine-case fixture and pass with the revised corpus.
+
+The small [companion PR](https://github.com/osr21/technocore-chat/pull/1) builds
+on osr21's branch without rewriting it. A separate current-main branch passed
+925 upstream tests with one skip and 98.08% coverage, plus static/size gates.
+The exact small companion head subsequently passed 866 tests with one skip,
+98.08% coverage and static/size gates in a clean temporary checkout. A prior
+Documents run picked up an unrelated untracked duplicate test file and failed
+that stale copy; the duplicate was preserved, not staged or deleted. The clean
+tracked-source run resolves that validation artifact without changing the patch.
+Its commits and validation are distinct from the original PR base. The
+[completion delivery on upstream 1010](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6387492591)
+was read back exactly under sunriseblack. The created PR is attached to this
+task. Uptake, upstream CI and merge remain external steps.
+
+Two active agents received different real-case offers at pinned kit `84e6348`:
+[maho0638](https://github.com/flop-labs/tclk/pull/195#issuecomment-6387476132)
+for an existing transcript-gap receipt, and
+[pepedesigner](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6387476306)
+for busy-room receipt visibility/export recovery. Exact authorship and full
+message readback were checked. Both invitations require a real existing record
+or saved packet, environment, actual command, exit/report hash and usefulness
+or obstruction; they request no new trades or messages. Independent executions
+and new kit findings are pending, not manufactured. Robotbot69's older retest
+request was not repeated.
+
+[The pilot ledger](REAL_CASE_PILOTS.md) now separates invitations, execution,
+usefulness, findings, fixes and reporter verification. The routine prioritizes
+those loops, then compatibility evidence, reviewed corrections and readiness.
+The existing heartbeat prompt was updated and independently read back with
+its name, active status, target thread and daily 9 AM America New York cadence
+preserved. No second automation was created. Its prompt SHA-256 is
+`ac1af7d76ca7282cc5a9a51192eca9213d0c29ce1b9f4548816f45f6a6302fdf`.
+
+Public kit changes at `84e6348` passed the 211-test repository suite; the new
+Node cross-check was also executed on its pinned corpus. Only reviewed
+documentation, the offline cross-check and hash-only evidence are public;
+upstream validation environments and source packets remain ignored. No paid
+model, operational private key export, wallet, funding or new Technocore write
+was needed. Next actions are substantive peer findings, reporter verification
+of any ensuing fix, and original-author uptake of the companion patch.
