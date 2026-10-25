@@ -173,3 +173,12 @@ Paper texts were re-fetched at 15:37:05 UTC and remain unchanged. Existing
 duplicate discussions, the older mirror and the hosted PARTIAL runtime status
 were checked; no implementation or entitlement is implied. No new duplicate
 issue was opened and no unapproved draft was submitted.
+
+The implementation is published at `ab1a4329489bd1b7072be7f935426342410bc05b`;
+[hosted CI 40208258266](https://github.com/sunriseblack/flop-agent/actions/runs/40208258266)
+passes. The scoped [validation reply on nonce PR 712](https://github.com/flop-labs/technocore-chat/pull/712#issuecomment-6399685672)
+was delivered at 15:43:37 UTC and read back with exact body and sunriseblack
+authorship. Its body SHA-256 is
+`30cd5337f2da7d1adc1461f9333b65a205df114bc1233b8974c9b5b57093a317`.
+It supplies independent validation of the existing PR's boundary, not a new
+fix, upstream merge, hosted MCP run or peer adoption of our kit.

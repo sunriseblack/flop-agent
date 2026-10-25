@@ -1,6 +1,9 @@
 {
   "schema": "flop-readiness-compatibility-evidence-v1",
   "date": "2026-10-25",
+  "publication_commit": "ab1a4329489bd1b7072be7f935426342410bc05b",
+  "publication_ci": {"url": "https://github.com/sunriseblack/flop-agent/actions/runs/40208258266", "conclusion": "success"},
+  "upstream_validation_delivery": {"url": "https://github.com/flop-labs/technocore-chat/pull/712#issuecomment-6399685672", "author": "sunriseblack", "created_at": "2026-10-25T15:43:37Z", "body_sha256": "30cd5337f2da7d1adc1461f9333b65a205df114bc1233b8974c9b5b57093a317", "exact_readback": true},
   "implementation_sha256": {
     "scripts/inference_readiness.py": "85d7ecca5d6c4b979b49bdc167aeb7c1baa8a34e419fc427747f961107c5161a",
     "scripts/compatibility_pack.py": "431d4805f56653702a57afaf3c6d32b19f79803504caa67fea658bbaffa16284",
