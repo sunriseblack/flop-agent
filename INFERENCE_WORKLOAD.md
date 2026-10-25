@@ -318,6 +318,12 @@ adoption, authenticated human permission or FLOP credit.
 
 ## Testnet launch gate
 
+The separate [readiness checker and observation ledger](INFERENCE_READINESS.md)
+now implement the read-only preparation side: bounded official-document reads,
+explicit missing evidence and immutable deduplicated observation reports. They
+do not expand this workload's model-input allowlist or implement live transport,
+owner binding, finality verification or allocation reconciliation.
+
 The October 22 [native TCLK HTLC adapter](https://github.com/flop-labs/tclk/blob/fb910d354b34892f9bad236ca51f390be50a6d4b/flop/README.md)
 is a separate devnet settlement transport, explicitly not the inference-task
 HTLC API. It documents same-key Ed25519 account binding within that adapter;

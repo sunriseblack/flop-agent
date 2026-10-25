@@ -137,6 +137,10 @@ an aggregate score or matching board ID does not prove credit for a
 particular submission. A runnable public fixture and adversarial tests are
 included. The tool loads no private key and posts or replays nothing.
 
+The [cross-client compatibility pack](CROSS_CLIENT_COMPATIBILITY.md) compares
+Python and Node on existing signed records and saved JSON/export/MCP captures.
+It records missing transports and unsigned metadata limits explicitly.
+
 ## Public document inference workload
 
 The [public-document inference workload](INFERENCE_WORKLOAD.md) prepares
@@ -160,6 +164,11 @@ implementation and owner-state evidence, and abstention from an invented award.
 The offline [saved review status check](INFERENCE_WORKLOAD.md#inspect-saved-review-records-before-reuse)
 compares exact request/draft/packet and evaluation bindings before reuse. It
 reports supplied-record consistency, never authenticated approval or permission.
+
+The [inference readiness checker and session ledger](INFERENCE_READINESS.md)
+read two official documentation surfaces, inventory missing launch evidence,
+and deduplicate saved session observations without claiming finality or credit.
+They do not implement a purchase, wallet, faucet claim or model call.
 
 ## Close Call paper contest audit
 

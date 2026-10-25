@@ -38,10 +38,11 @@ negative regression, fixed at the owning invariant, published after checks and
 offered back for reporter verification. If no defect appears, document the
 bounded usefulness and remaining limitation instead of manufacturing a fix.
 
-After those follow-ups, develop cross-client compatibility evidence from real
-cases: exact numeric nonces across JSON/export/MCP, Unicode, window gaps and
-generation changes. Review existing fixes before proposing code. Then advance
-reviewed documentation corrections and inference readiness below. Do not let
+After those follow-ups, use the [cross-client pack](CROSS_CLIENT_COMPATIBILITY.md)
+on existing saved records: exact numeric nonces across JSON/export/MCP, Unicode,
+window gaps and generation changes. Missing captures remain untested; a synthetic
+MCP wrapper is not live MCP execution. Review existing fixes before proposing
+code. Then advance reviewed documentation corrections and inference readiness below. Do not let
 repeated health polling, unchanged synthetic reruns or new tooling without a
 concrete user displace an actionable case. A run may continue on independent
 in-scope work while awaiting a reporter, but must not claim external uptake.
@@ -173,6 +174,12 @@ scoring terms. An expected calendar window is not a launch signal. Resolve
 document conflicts and public claims against official network and allocation
 evidence. Never invent endpoints, owner mappings, individual allocations or
 rewards.
+
+Use the [read-only readiness checker and session observation ledger](INFERENCE_READINESS.md)
+for a fresh bounded source inventory and deduplicated session reports. A complete
+supplied inventory still requires independent verification; the checker never
+authorizes usage. Keep an empty ledger until actual sessions exist, and retain
+reported finality/amounts separately from verified settlement and allocation.
 
 The new official `ask.flop.finance` operator hub exposes network profiles.
 Its October 20 testnet profile is planned, with an unreleased release and no

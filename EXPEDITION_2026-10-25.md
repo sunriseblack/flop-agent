@@ -116,3 +116,60 @@ confirmation of an existing real pilot artifact, an actual independent kit
 finding, exact-version human draft review, or verified testnet launch artifacts.
 The daily automation already reads the updated routine; its schedule and prompt
 were preserved. The completed contest remains untouched.
+
+## Implement the remaining plan after the owner's follow-up
+
+The owner then asked to implement the other outstanding plan points. Two
+read-only tools and their guides now cover the work that does not depend on a
+peer reply or a live testnet. The routine and README link both entry points.
+
+The [cross-client pack](CROSS_CLIENT_COMPATIBILITY.md) runs our Python verifier
+and a separate Node native Ed25519 verifier on existing records, with explicit
+transport and metadata limits. A fresh public `flop` JSON view and raw export
+both contain the selected existing seq 433216. Five supplied signed records
+contain Unicode; two original numeric nonces exceed JavaScript's safe integer
+range. Thirty original/derived cases have matching classifications, and eight
+unsafe ordinary-parse case entries are rejected. Those eight are case entries,
+not eight distinct original records. Python's escaped-Unicode round trips also
+preserve the classifications. No new record was signed or posted for coverage.
+The export spans 409228–433385 with 24,157 verified rows and one unverifiable;
+this does not authenticate the unsigned sequence/generation envelope.
+
+The existing nonce PR 712 was inspected at exact head
+`4d3bbf170a932869f38b62208038cb7586404211`, then its nonce HTTP test and JSON
+backend suite passed: 11 tests on Python 3.12.4. The test confirms decimal text
+in posted/GET JSON and numeric raw-export bytes. No source modification,
+competing implementation, full-suite result or upstream CI is claimed.
+
+The same original source's `read_room` was executed through local FastMCP SDK
+2.2.0 dispatch with signing disabled and a guard permitting exactly one GET of
+`https://technocore.chat/r/flop?limit=5`. It returns a human-readable text
+projection without original signed fields. The pack correctly reports MCP as
+unverifiable from that capture. This is a local original-tool/SDK execution,
+not a hosted MCP handshake, a JSON capture or a signature recovery claim.
+Synthetic adapter tests remain separately identified.
+
+The [readiness checker and ledger](INFERENCE_READINESS.md) use only two fixed
+official documentation reads, block stale/tampered/failed snapshots, inventory
+nine missing requirements, and never authorize a session. The live read at
+15:34:59 UTC returned planned/unreleased testnet with unavailable network values;
+the resulting report is `blocked`. The current owner ledger is empty and reports
+zero sessions. Synthetic tests exercise exact decimal sums, repeated reads,
+normalized chain-hash notation, conflicting identities/finality, refunds,
+disputes and separate chain/asset totals. Even consistent supplied final records
+remain unverified; neither owner mapping nor allocation is inferred.
+
+All 231 repository tests pass, including 13 readiness and seven compatibility
+methods. The original ten-case kit and 13-case exporter runners also pass.
+CI now pins Node 22.23.3 for the actual cross-client execution alongside both
+Python versions. [Hash-only metadata](research/readiness_compatibility_2026-10-25.json)
+records code/input/report hashes and exact scope. Source captures, model drafts
+and operational signing material are excluded from publication.
+
+Two concrete agent-overview correction drafts are private pending exact-version
+owner approval: a stake-summary follow-up on existing issue 175 and an
+unlock-summary follow-up on existing issue 127. The agent and hosted Yellow
+Paper texts were re-fetched at 15:37:05 UTC and remain unchanged. Existing
+duplicate discussions, the older mirror and the hosted PARTIAL runtime status
+were checked; no implementation or entitlement is implied. No new duplicate
+issue was opened and no unapproved draft was submitted.

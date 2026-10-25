@@ -1,0 +1,204 @@
+{
+  "schema": "flop-readiness-compatibility-evidence-v1",
+  "date": "2026-10-25",
+  "implementation_sha256": {
+    "scripts/inference_readiness.py": "85d7ecca5d6c4b979b49bdc167aeb7c1baa8a34e419fc427747f961107c5161a",
+    "scripts/compatibility_pack.py": "431d4805f56653702a57afaf3c6d32b19f79803504caa67fea658bbaffa16284",
+    "examples/verify-records-crosscheck.mjs": "38839d98ee630e4970623bd2a1ee9bfc9584038a9fa82a0ad9756691bd922808"
+  },
+  "local_validation": {
+    "repository_tests_passed": 231,
+    "readiness_regressions": 13,
+    "compatibility_regressions": 7,
+    "kit_smoke_cases_passed": 10,
+    "review_exporter_cases_passed": 13,
+    "python": "3.14.3",
+    "node": "v25.9.0"
+  },
+  "readiness": {
+    "report_sha256": "b572d04ff186c5f54386050731bdebbeed7074b9fe5392585de66224463ee8b8",
+    "sources": [
+      {
+        "id": "verification",
+        "url": "https://flop.finance/official/",
+        "retrieved_at": "2026-10-25T15:34:59.401404+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "c2bbb6222d6b62d4af9bcac44117d1c9c21b46975b8ee9e086b6d5a929978a5b",
+        "raw_sha256": "95a0e9b37e40460624727574ed27b46d9c66da752baf7e03b46e8d9e1b4576ab",
+        "observed_text_signals": [
+          "date_is_only_target",
+          "devnet_no_weight"
+        ]
+      },
+      {
+        "id": "testnet_profile",
+        "url": "https://ask.flop.finance/networks/testnet",
+        "retrieved_at": "2026-10-25T15:34:59.509828+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "e4d7385a5b70611e4fd73d58c6c446a23456da886759da4699a2516c644c4543",
+        "raw_sha256": "56a295267c1627ff8168a20c2c0cf981fe747164fa2112e82bd0f2a0e4802e4d",
+        "observed_text_signals": [
+          "testnet_planned",
+          "release_unreleased",
+          "network_values_unverified",
+          "no_verified_release"
+        ]
+      }
+    ],
+    "readiness": "blocked",
+    "blockers": [
+      "testnet_profile:testnet_planned",
+      "testnet_profile:release_unreleased",
+      "testnet_profile:network_values_unverified",
+      "testnet_profile:no_verified_release",
+      "network_identity:missing",
+      "genesis:missing",
+      "supported_client:missing",
+      "official_faucet:missing",
+      "owner_delegate_mapping:missing",
+      "final_allocation_rules:missing",
+      "model_catalog:missing",
+      "independent_miner:missing",
+      "bounded_session_approval:missing"
+    ],
+    "launch_gate_verified": false,
+    "live_session_authorized": false
+  },
+  "session_ledger": {
+    "report_sha256": "9c7b79dc5fca52ef5def0c9a82d6209680e10b5a9b4ebb06d6190d803f0edb7e",
+    "unique_sessions": 0,
+    "input_observations": 0,
+    "empty_ledger_only": true,
+    "allocation_reconciled": false,
+    "owner_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv"
+  },
+  "compatibility": {
+    "room": "flop",
+    "source_signed_payload_sha256": "ddc490ecf0e7a4660ed44bcb9aa283ecfb9d7432a8ada403bf71f86c1ffbef31",
+    "python": "3.14.3",
+    "node": "v25.9.0",
+    "supplied_signed_records_checked": 5,
+    "unicode_signed_records": 5,
+    "unsafe_numeric_source_records": 2,
+    "derived_cases": 30,
+    "case_packet_sha256": "855bd4020b11f72ab60c2c07beb0ce41a32458b3397ddb5533aad59735c26e5b",
+    "python_node_classifications_match": true,
+    "python_escaped_utf8_roundtrip_match": true,
+    "ordinary_parse_unsafe_nonce_cases": 8,
+    "transports": [
+      {
+        "transport": "json",
+        "input_sha256": "2c1a028e50a5ffce35377baddf1fb2afcc4aae54e5a88c86883eb5e8db8ec8f7",
+        "parse_state": "parsed_json",
+        "scope": "caller-supplied capture; collection provenance is not authenticated",
+        "readback": {
+          "state": "exact_fields_match_in_supplied_snapshot",
+          "signed_content_matches": 1,
+          "signature_counts": {
+            "verified": 200
+          },
+          "records": 200,
+          "stored_sequence_contiguous": true,
+          "window_floor": 433186,
+          "window_tip": 433385,
+          "reported_head": 433385,
+          "reported_generation": 0,
+          "window_reaches_reported_head": true,
+          "metadata_binding": "sequence, timestamps, generation and head are unsigned server metadata"
+        },
+        "target_signed_content_present": true
+      },
+      {
+        "transport": "export",
+        "input_sha256": "f017ac369e240b857bfb68f0b68c9526e92f7380e65d0ec0fbd597755126d90d",
+        "parse_state": "parsed_jsonl",
+        "scope": "caller-supplied capture; collection provenance is not authenticated",
+        "readback": {
+          "state": "exact_fields_match_in_supplied_snapshot",
+          "signed_content_matches": 1,
+          "signature_counts": {
+            "verified": 24157,
+            "unverifiable": 1
+          },
+          "records": 24158,
+          "stored_sequence_contiguous": true,
+          "window_floor": 409228,
+          "window_tip": 433385,
+          "reported_head": null,
+          "reported_generation": null,
+          "window_reaches_reported_head": false,
+          "metadata_binding": "sequence, timestamps, generation and head are unsigned server metadata"
+        },
+        "target_signed_content_present": true
+      },
+      {
+        "transport": "mcp",
+        "input_sha256": "e529d9908cadd6bc1835596c84a248068cfc8bdcafcd22af679934e0d0eea7fb",
+        "parse_state": "text_projection_not_reverifiable",
+        "scope": "caller-supplied capture; collection provenance is not authenticated"
+      }
+    ],
+    "unverifiable_transports": [
+      "mcp"
+    ],
+    "live_mcp_protocol": "not_established",
+    "derived_metadata_controls": {
+      "missing_record": "not_observed_in_supplied_window",
+      "derived_internal_gap_contiguous": false,
+      "relabelled_generation_signature": "verified",
+      "generation_authenticity": "not_established_by_message_signature",
+      "edge_drop_completeness": "not_established_when_returned_bounds_move",
+      "recovery": "Expired original fields cannot be reconstructed by a signature or report"
+    },
+    "credit_for_submission": "not_determined"
+  },
+  "compatibility_report_sha256": "9dee39d16a110ba21859fcee67ba858e9be00ac68e3159dab6ac7e2baad237c6",
+  "capture_times_utc": [
+    "2026-10-25T15:35:22.195939+00:00",
+    "2026-10-25T15:35:24.242021+00:00"
+  ],
+  "selected_original_sequence": 433216,
+  "native_export_generation_header": "0; unsigned transport metadata",
+  "mcp_scope": {
+    "original_source_head": "4d3bbf170a932869f38b62208038cb7586404211",
+    "sdk": "mcp 2.2.0",
+    "execution": "Original local FastMCP read_room SDK dispatch with signing disabled and exactly one guarded public GET; no hosted MCP handshake/session",
+    "get_url": "https://technocore.chat/r/flop?limit=5",
+    "response_sha256": "e529d9908cadd6bc1835596c84a248068cfc8bdcafcd22af679934e0d0eea7fb",
+    "observation": "Plain display projection lacks original signed fields; not independently reverifiable from that result",
+    "operational_signing_key_loaded": false
+  },
+  "upstream_nonce_pr_validation": {
+    "url": "https://github.com/flop-labs/technocore-chat/pull/712",
+    "source_head": "4d3bbf170a932869f38b62208038cb7586404211",
+    "python": "3.12.4",
+    "command": "uv run pytest tests/http/test_rooms.py::test_the_json_view_returns_a_nineteen_digit_nonce_as_canonical_decimal_text tests/unit/test_json_backend.py -q",
+    "tests_passed": 11,
+    "elapsed_seconds": 1.65,
+    "full_suite_run": false,
+    "upstream_ci_or_merge_claimed": false,
+    "source_modified": false,
+    "confirmed_boundary": "Posted/GET JSON nonce is decimal text; raw byte-exact export retains the numeric nonce"
+  },
+  "draft_corrections": {
+    "state": "private_pending_exact_version_owner_approval",
+    "issue_targets": [
+      175,
+      127
+    ],
+    "stake_draft_sha256": "f0ae9d7a89658c3842e3e1c78b2547f2be846ac1dc8624a2eec19927a2b96162",
+    "unlock_draft_sha256": "7263ca04167887bc50f4a09d8d8011b1592a5a36343ce7890a6a4b05da09cb9c",
+    "re_fetched_unchanged_at_utc": [
+      "2026-10-25T15:37:05.620551+00:00",
+      "2026-10-25T15:37:05.741135+00:00"
+    ],
+    "existing_duplicate_discussions_checked": true,
+    "published": false
+  },
+  "peer_execution_or_adoption": "not_established_by_our_runs",
+  "new_technocore_messages_or_trades": 0,
+  "paid_model_calls": 0,
+  "flop_inference_sessions": 0,
+  "actual_model_usage": null,
+  "private_source_packets_or_drafts_published": false
+}
