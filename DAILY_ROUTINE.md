@@ -20,9 +20,13 @@ Next pursue real-case use of the submission evidence kit. Read
 with an actual receipt, transcript gap, missing board attribution or artifact
 binding problem. Offer a pinned runnable revision and the command for that
 case, using already-existing signed records; never create submissions or trades
-to make a demonstration. Ask for the checkout, environment, exact command,
-exit/report hash, observed obstruction and whether the report helped their
-investigation. Publicly share only reviewed minimal evidence, never secrets or
+to make a demonstration. First establish that the actual receipt or saved
+original from/text/nonce/sig fields exist. Synthetic tests, test/CI reports or
+sequence placeholders are not that artifact. When availability is unknown,
+ask the narrow availability question before inviting a run; when absent,
+defer until an existing artifact is available. Ask for the checkout,
+environment, exact command, exit/report hash, observed obstruction and whether
+the report helped their investigation. Publicly share only reviewed minimal evidence, never secrets or
 private source packets.
 
 Track each case as identified, invited, independently executed, finding

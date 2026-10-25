@@ -81,3 +81,36 @@ Author uptake, the upstream rebase/validation summary and merge remain separate
 coordination steps. The [earlier nine-case review](CONSUMER_FIXTURE_REVIEW_2026-10-23.md)
 retains its original hash and result; it is not relabelled as coverage of this
 revision.
+
+## Hosted fork evidence on October 25
+
+The original author independently fetched the revised fixture and
+[confirmed its hash and both delivery branches](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6387551997),
+but did not rerun the tests or update upstream 1010's head.
+
+[Fork Actions run 40196000959](https://github.com/sunriseblack/technocore-chat/actions/runs/40196000959)
+now passes in two fresh Linux jobs, each checking out its exact source pin:
+
+| Source | Focused tests | Full suite | Coverage |
+| --- | ---: | --- | ---: |
+| `cf7c099` | 6 passed | 866 passed, 1 skipped | 98.15% |
+| `8fc51a2` | 6 passed | 925 passed, 1 skipped | 98.08% |
+
+Both pass the required `just check` quality gate. Python is 3.12.3 and Node is
+v22.23.3. Each job checks the revised fixture hash, passes the pinned Node
+runner's 11 classifications/30 controls/rounding negative, and passes the
+separate Python signature verifier. The job has read-only contents permission,
+no persisted checkout credentials and no signing key or value-bearing action.
+
+Workflow commit `284dda10b1351d691724c2d2ffe897631758edc0` differs from
+the rebased source only by a fork-only evidence workflow. The jobs explicitly
+check out the reviewed source commits, not an unpinned branch or PR merge.
+This adds hosted fork evidence; it does not supply the upstream worker/image
+or browser gates, attach upstream approval, change either reviewed source
+branch or authorize rewriting the original author's branch. Upstream integration
+and applicable CI remain with the original author/maintainers.
+
+The [hosted-results delivery](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6398039517)
+was read back with exact body and sunriseblack authorship. The companion PR's
+validation summary now links the same fork run. No upstream approval or merge
+is claimed.

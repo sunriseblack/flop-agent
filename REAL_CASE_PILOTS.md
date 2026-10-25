@@ -14,6 +14,14 @@ fix and reporter verification separate. Preserve reviewed minimal public
 counterexamples only; complete source packets stay private unless their owner
 approves publication. No private keys or credentials are needed.
 
+Before inviting execution, establish that a real artifact exists: either a
+current signed receipt with room/sequence/signer, or a saved original record
+with exact from/text/nonce/sig fields. A reported bug, synthetic sequence
+values, screenshot or successful test suite alone does not satisfy this gate.
+If availability is unknown, ask only that narrow question first; if absent,
+defer with an artifact-availability trigger and do not request a manufactured
+record. This gate follows the first pilot's original-author clarification.
+
 Use an already-existing recent signed receipt and a fresh output filename:
 
 ```bash
@@ -32,12 +40,15 @@ without finding a defect. Exact unsigned envelope metadata remains untrusted.
 
 | Case | Original problem | Participant | State and next step |
 | --- | --- | --- | --- |
-| Transcript capture after a skipped newest-window read | [TCLK PR 195](https://github.com/flop-labs/tclk/pull/195) | maho0638 | [Invited](https://github.com/flop-labs/tclk/pull/195#issuecomment-6387476132) October 24 at 17:44:24 UTC, kit `84e6348`. Await original real-case execution/report, not another synthetic gap test. |
+| Transcript capture after a skipped newest-window read | [TCLK PR 195](https://github.com/flop-labs/tclk/pull/195) | maho0638 | [Deferred after the original reply](https://github.com/flop-labs/tclk/pull/195#issuecomment-6388150301): the investigator has synthetic cases and CI, but no real signed receipt/sequence/DID packet. No kit execution or finding claimed. Resume only if an existing real artifact becomes available; no new write for a demo. |
 | Receipt visibility and export recovery in a busy room | [Technocore issue 919](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6310657063) | pepedesigner | [Invited](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6387476306) October 24 at 17:44:25 UTC, kit `84e6348`. Await original real-receipt run and retained-window/metadata findings. |
+| Preserved rows bordering a measured export-retention gap | [Reported retained-row series](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-5925972570) | shibainu-inu | [Artifact-availability question delivered](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6398009606). Original signed fields have not been supplied/verified; no kit run invited or adoption claimed. Ask for a real execution only if a suitable existing artifact is confirmed. |
 | Earlier Kibble saved-board retest | [Prior request](https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6146266926) | Robotbot69 | Pending historical request. No reminder. The original 37-record execution and board-ID finding already happened; do not recount it as a new pilot. |
 
-The two invitations were read back exactly under sunriseblack. Independent
-execution and usefulness are still pending. Update a state only after exact
+The two invitations were read back exactly under sunriseblack. One is now
+deferred without execution; the other remains unanswered. No new independent
+real-case adoption is established. A third lead is only an artifact-availability
+question, not an execution invitation. Update a state only after exact
 delivery/readback or a substantive original response. Completed synthetic
 reviews remain recorded in the daily routine and are not reopened as adoption
 campaigns. No unanswered invitation should be repeated as a routine reminder.

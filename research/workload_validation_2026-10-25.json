@@ -1,0 +1,80 @@
+{
+  "schema": "flop-workload-validation-v1",
+  "date": "2026-10-25",
+  "source_retrieval_range_utc": [
+    "2026-10-25T13:00:09.902060+00:00",
+    "2026-10-25T13:00:10.551994+00:00"
+  ],
+  "sources": [
+    {
+      "id": "auth",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218"
+    },
+    {
+      "id": "airdrop",
+      "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0"
+    },
+    {
+      "id": "agent",
+      "text_sha256": "bcabaf0aacb4ce5cf6d32f105bbf84d50e884e6f56da5c19b92eee7bffa31c19"
+    },
+    {
+      "id": "yellowpaper",
+      "text_sha256": "4424d504c4b93957fde9cc691a50834d0ae8004466c99536169fad75c803abc2"
+    },
+    {
+      "id": "store",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "changed_source_text_ids": [],
+  "raw_hashes_and_exact_retrievals_retained_privately": true,
+  "corpus_file_sha256": "8c7e6ff1cc3286d45813f51c3b98d43b3bd9082b89b68cad72c25ffa9822cf4c",
+  "tasks": 10,
+  "jobs_sha256": "d53f75bf2aea4ef19924cc5a92a2640bd2b41dd34b9c100304e1342fb0649749",
+  "bundle_file_sha256": "486fae144e4beca978a1b52d79856a1dbedbbe0a1e50b307536b6d0f85d6ab1d",
+  "changed_request_ids": [],
+  "unchanged_requests": 10,
+  "changed_evaluation_rules": 0,
+  "response_reused_from": "2026-10-24 separate rebound response file",
+  "response_file_sha256": "0debca85a5bb5fe1c6142a655cf83c96234213ea94d2a2e2a9a028e55d88a92b",
+  "mechanical_passes": 10,
+  "review_file_sha256": "518d6fabe381d1c791f3d6a21566b26bd20f06481d116877f06895551227ccbf",
+  "matching_supplied_approval_records": 0,
+  "historical_approval_binding_mismatches": 6,
+  "current_tasks_without_supplied_decision": 4,
+  "review_status_file_sha256": "9a17631f48e8cbc00d5ec0864a6e608c45f7367e395d573474e507d551f09e16",
+  "comparison_file_sha256": "78aae44006dbf02f82c47fc2b5407f0aab64221011511a802c82fb755811e9ef",
+  "semantic_review": "required",
+  "decision_authenticity": "not_verified",
+  "publication_authorized_by_checker": false,
+  "new_packets_exported": 0,
+  "previous_private_packets_remain_current": true,
+  "historical_decisions_packets_and_failed_reports_preserved": true,
+  "new_model_generation_calls": 0,
+  "paid_api_calls": 0,
+  "flop_inference_sessions": 0,
+  "actual_model_usage_cost_latency": null,
+  "new_readiness_sources_added_to_model_allowlist": false,
+  "production_code_changed": false,
+  "official_github_yellowpaper_commit": "70e691c758e53eed17a016a02b0a2ae1200d3744",
+  "policy_issue_updates": {
+    "31": "2026-10-12T09:21:24Z",
+    "32": "2026-10-17T08:49:28Z",
+    "123": "2026-10-23T06:58:55Z",
+    "127": "2026-10-13T13:17:10Z",
+    "133": "2026-10-15T00:16:49Z"
+  }
+}
