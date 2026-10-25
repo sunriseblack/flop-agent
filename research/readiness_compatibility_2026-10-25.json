@@ -184,7 +184,7 @@
     "confirmed_boundary": "Posted/GET JSON nonce is decimal text; raw byte-exact export retains the numeric nonce"
   },
   "draft_corrections": {
-    "state": "private_pending_exact_version_owner_approval",
+    "state": "exact_v1_owner_approved_and_published",
     "issue_targets": [
       175,
       127
@@ -196,12 +196,21 @@
       "2026-10-25T15:37:05.741135+00:00"
     ],
     "existing_duplicate_discussions_checked": true,
-    "published": false
+    "published": true,
+    "approval_scope": "Direct owner approval of these two exact v1 comment bodies only; separate workload review records and live session authorization unchanged",
+    "approved_files_and_bodies_verified": true,
+    "original_private_drafts_preserved": true,
+    "source_recheck_unchanged_at_utc": ["2026-10-25T16:21:37.228591+00:00", "2026-10-25T16:21:37.321149+00:00"],
+    "deliveries": [
+      {"issue": 175, "url": "https://github.com/flop-labs/yellowpaper/issues/175#issuecomment-6400100310", "author": "sunriseblack", "created_at": "2026-10-25T16:22:02Z", "body_sha256": "cac9605a0e4f3475e1d0d7e5a3a149a2fe03b730ab909d1febc87d9675a685d5", "exact_readback": true},
+      {"issue": 127, "url": "https://github.com/flop-labs/yellowpaper/issues/127#issuecomment-6400101532", "author": "sunriseblack", "created_at": "2026-10-25T16:22:08Z", "body_sha256": "4d2f7e9f70b7546655404ad24efa18616afa39351f71244b3bb3eb57ee845b74", "exact_readback": true}
+    ],
+    "upstream_acceptance": "pending"
   },
   "peer_execution_or_adoption": "not_established_by_our_runs",
   "new_technocore_messages_or_trades": 0,
   "paid_model_calls": 0,
   "flop_inference_sessions": 0,
   "actual_model_usage": null,
-  "private_source_packets_or_drafts_published": false
+  "private_source_packets_or_unapproved_drafts_published": false
 }

@@ -182,3 +182,26 @@ authorship. Its body SHA-256 is
 `30cd5337f2da7d1adc1461f9333b65a205df114bc1233b8974c9b5b57093a317`.
 It supplies independent validation of the existing PR's boundary, not a new
 fix, upstream merge, hosted MCP run or peer adoption of our kit.
+
+## Publish the two owner-approved correction comments
+
+The owner directly approved both exact v1 drafts. Their original private file
+hashes were checked, both official source texts were re-fetched at 16:21:37 UTC
+and remained unchanged, and the existing issue threads were checked before
+posting. Local target/status packaging was excluded; the approved publication
+wording was unchanged.
+
+The [stake-summary correction](https://github.com/flop-labs/yellowpaper/issues/175#issuecomment-6400100310)
+was published at 16:22:02 UTC, body SHA-256
+`cac9605a0e4f3475e1d0d7e5a3a149a2fe03b730ab909d1febc87d9675a685d5`.
+The [unlock-summary correction](https://github.com/flop-labs/yellowpaper/issues/127#issuecomment-6400101532)
+was published at 16:22:08 UTC, body SHA-256
+`4d2f7e9f70b7546655404ad24efa18616afa39351f71244b3bb3eb57ee845b74`.
+Both exact bodies and sunriseblack authorship were read back successfully.
+The original drafts and direct approval record remain private and intact.
+
+These are proposals on existing issues, not accepted upstream edits or proof
+of implementation. Follow substantive maintainer replies without reposting.
+This approval applies only to these two v1 comments, not the separate saved
+workload response packets, live inference or an allocation. No new issue/PR,
+Technocore message, paid call, key operation or transaction was needed.
