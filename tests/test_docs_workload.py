@@ -73,6 +73,42 @@ class DocsWorkloadTests(unittest.TestCase):
                     context = "\n".join(s["text"] for s in bundle["jobs"][0]["request"]["snippets"])
                     self.assertIn(body, context)
 
+    def test_current_summary_selectors_survive_removed_policy_sentences(self):
+        # October 26 removed the old invitation/unspecified-release wording.
+        # Stable section selectors must cover both old and corrected editions,
+        # even if an earlier historical reference retains the removed sentence.
+        tasks = load_file(Path(__file__).resolve().parents[1] / "workload/tasks.json")
+        cases = [("operator-delegation-conflict", "Account features and spend control",
+                  "Delegate stake to miners or validators", "CURRENT: stake cannot be delegated."),
+                 ("document-conflict", "Swaps and the airdrop",
+                  "not yet set", "CURRENT: three-for-one release.")]
+        for task_id, heading, old_policy, new_policy in cases:
+            task = copy.deepcopy(next(t for t in tasks["tasks"] if t["id"] == task_id))
+            task["sources"] = {"agent": task["sources"]["agent"]}
+            for policy in (old_policy, new_policy):
+                with self.subTest(task=task_id, policy=policy):
+                    text = "Historical reference: " + old_policy + "\n" + "unrelated context\n" * 500
+                    text += heading + "\n" + policy + "\n" + "tail\n" * 500
+                    source = {"id": "agent", "url": SOURCES["agent"], "text": text,
+                              "retrieved_at": self.now.isoformat(),
+                              "text_sha256": hashlib.sha256(text.encode()).hexdigest()}
+                    bundle = prepare({"schema": "flop-docs-corpus-v1", "sources": [source]},
+                                     {"schema": "flop-docs-tasks-v1", "tasks": [task]}, now=self.now)
+                    context = "\n".join(s["text"] for s in bundle["jobs"][0]["request"]["snippets"])
+                    self.assertIn(heading + "\n" + policy, context)
+                    self.assertNotIn("Historical reference:", context)
+                    if policy == new_policy:
+                        request = bundle["jobs"][0]["request"]
+                        response = {"task_id": task_id, "job_sha256": request["job_sha256"],
+                                    "answer": "The current edition changed.", "abstain": False,
+                                    "limitations": ["Human semantic review remains required."],
+                                    "claims": [{"text": "The supplied text now uses the current summary.",
+                                                "evidence": [{"snippet_id": request["snippets"][0]["snippet_id"],
+                                                              "quote": new_policy}]}]}
+                        self.assertEqual(grade(bundle, [response])["mechanical_passes"], 1)
+                        response["claims"][0]["evidence"][0]["quote"] = old_policy
+                        self.assertIn("citation_not_in_pinned_excerpt", grade(bundle, [response])["results"][0]["errors"])
+
     def test_casefold_expansion_preserves_original_excerpt_coordinates(self):
         heading = "R8.4 — Conversion eligibility."
         cases = [("Strasse " * 700, heading, heading.lower()),

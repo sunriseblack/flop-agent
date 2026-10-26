@@ -1,0 +1,269 @@
+{
+  "schema": "flop-community-followup-v1",
+  "date": "2026-10-26",
+  "documentation_outcome": {
+    "issue_127": {
+      "url": "https://github.com/flop-labs/yellowpaper/issues/127",
+      "original_author": "gnoesy",
+      "state": "closed",
+      "closed_by": "sv",
+      "closed_at": "2026-10-26T03:47:21Z",
+      "reply": {
+        "url": "https://github.com/flop-labs/yellowpaper/issues/127#issuecomment-6407770577",
+        "author": "sv",
+        "created_at": "2026-10-26T03:47:20Z",
+        "body_sha256": "546347e9212b09078d7f29afc355938c8d753d3f86f51ebcee775a8db3208ec5"
+      },
+      "scope": "Maintainer says the Agent intro, teaser and docs hub were corrected. Live Agent and teaser pages independently read; not sole attribution, implementation proof or a reward."
+    },
+    "live_agent": {
+      "url": "https://flop.finance/intro/agent/",
+      "unlock_summary_updated": true,
+      "operator_stake_delegation_invitation_removed": true
+    },
+    "live_teaser": {
+      "url": "https://flop.finance/teaser/",
+      "header_updated": "2026-10-26",
+      "unlock_summary_verified_by_web_read": true
+    },
+    "docs_hub": {
+      "url": "https://ask.flop.finance/docs/airdrop-and-testnet-conversion",
+      "updated": "2026-10-26",
+      "unlock_summary_read": true
+    },
+    "issue_175": {
+      "state": "open",
+      "new_direct_reply": false,
+      "scope": "Broader glossary issue still open; current Agent bullet changed but this is not whole-issue closure."
+    },
+    "reward_or_airdrop_credit": "not_established"
+  },
+  "consumer_completion": {
+    "upstream_pr": "https://github.com/flop-labs/technocore-chat/pull/1010",
+    "original_author": "osr21",
+    "current_upstream_head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63",
+    "upstream_main": "73a732497a19cac11aff4dcb527bae3c52b02f73",
+    "upstream_original_corpus_sha256": "337392ea540f2614551c7b3e919494549ed4d3a2e866bee05c1a66cdfd5d6f67",
+    "upstream_cases": 9,
+    "upstream_focused_methods": 4,
+    "our_two_cases_integrated_upstream": false,
+    "upstream_ci": [
+      {
+        "run": 40239244903,
+        "conclusion": "action_required"
+      },
+      {
+        "run": 40239244816,
+        "conclusion": "action_required"
+      }
+    ],
+    "upstream_completed_guards": {
+      "protected_files": "success",
+      "overlap": "skipped"
+    },
+    "author_reply": {
+      "url": "https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6404161391",
+      "body_sha256": "db3873083ae59fa4ba6b8590868d7beec1ee4107f88d9077e82920a1f47404cb",
+      "reported_scope": "Author requests authorized maintainer approval to run workflows; not a merge or integration."
+    },
+    "companion_pr": "https://github.com/osr21/technocore-chat/pull/1",
+    "previous_head": "cf7c099c80a99e2f41c6f069ea72087abf5b73a0",
+    "new_head": "da153335bb636c865ef3aec9ce2d039fdccd0318",
+    "base": "8aadb4f52527e9ef656c69b838bf6a14aef33d63",
+    "update": "Fast-forward push of a merge commit on our branch; original author branch untouched",
+    "changed_files": 3,
+    "source_tree_equals_previously_validated": "8fc51a2c05a397b778d0f2ab7557fcb91ba3c04d",
+    "fixture_sha256": "08f8fe1d5613d6071e9d97b0145f0c653353bf0458763af65b332e1d96729f81",
+    "numeric_export_wire_shape_preserved": true,
+    "local_source_checks": {
+      "python": "3.12.4",
+      "passed": 925,
+      "skipped": 1,
+      "coverage_percent": 98.08,
+      "just_check": "passed",
+      "clean_temporary_checkout": true
+    },
+    "independent_implementation_checks": {
+      "executed_by_us": true,
+      "cases": 11,
+      "controls_each": 30,
+      "rounded_nonce_rejected": true,
+      "node": "v25.9.0",
+      "python": "3.14.3",
+      "scope": "Separate signature implementations, not independent agent adoption"
+    },
+    "fork_ci": {
+      "url": "https://github.com/sunriseblack/technocore-chat/actions/runs/40328404325",
+      "conclusion": "success",
+      "workflow_commit": "655904d5a2357206eadf99692ba0011bb7b50d91",
+      "exact_source": "da153335bb636c865ef3aec9ce2d039fdccd0318",
+      "python": "3.12.3",
+      "node": "v22.23.3",
+      "focused_passed": 6,
+      "suite_passed": 925,
+      "suite_skipped": 1,
+      "coverage_percent": 98.08,
+      "just_check": "passed",
+      "node_controls": 30,
+      "separate_python_verifier_passed": true,
+      "upstream_approval_or_worker_image_browser_gates": false
+    },
+    "workflow_branch_local_checks": {
+      "python": "3.12.4",
+      "passed": 925,
+      "skipped": 1,
+      "coverage_percent": 98.15,
+      "just_check": "passed"
+    },
+    "ordinary_fork_workflow_dispatch": "404: ci.yml not registered on default branch; no settings changed, existing read-only evidence workflow used",
+    "companion_body_sha256": "2eb00a49eadb8da34dfa64835b9c915946094d3429b7be6136c165e1ac383cb1",
+    "delivery": {
+      "url": "https://github.com/osr21/technocore-chat/pull/1#issuecomment-6416922413",
+      "author": "sunriseblack",
+      "created_at": "2026-10-26T13:15:36Z",
+      "body_sha256": "3f85b43b74798d1ab4c1f641c385700a38b057380d13ca1ff188bc18b770b035",
+      "exact_readback": true
+    },
+    "existing_pr_attached": true,
+    "force_push_or_author_branch_mutation": false,
+    "competing_pr_created": false,
+    "integration_and_merge": "pending"
+  },
+  "real_case_pilots": {
+    "maho0638": {
+      "state": "deferred_no_real_packet",
+      "new_contract_fix_report": "https://github.com/flop-labs/tclk/pull/195#issuecomment-6399324578",
+      "reviewer_verification": "https://github.com/flop-labs/tclk/pull/195#issuecomment-6400481860",
+      "scope": "Reported synthetic empty-window contract correction, corroborated by boomelant; not a real packet or kit execution",
+      "our_new_execution": false
+    },
+    "pepedesigner": {
+      "state": "invited_pending",
+      "new_reply": false,
+      "reminder": false
+    },
+    "shibainu-inu": {
+      "state": "artifact_availability_pending",
+      "new_reply": false,
+      "reminder": false
+    },
+    "new_independent_real_case_adoption": false
+  },
+  "readiness": {
+    "verification_page": "https://flop.finance/official/",
+    "testnet_profile": "https://ask.flop.finance/networks/testnet",
+    "source_label": "dfd98a59d860",
+    "state": "planned; next unreleased; no verified public network/client values",
+    "launch_gate_verified": false,
+    "our_sessions": 0,
+    "new_official_post": "https://x.com/flop_labs/status/2114628648615772410",
+    "announcement_scope": "Public devnet intended soon; not testnet launch. Official verification page independently states devnet has no allocation weight.",
+    "x_read_scope": "Visible public profile only, no login or complete announcement-history claim.",
+    "current_mirror_commit": "56410c67b11292e707d32ef32e9c4ff9c02e28c7",
+    "mirror_source_label": "flop-core@dfd98a59",
+    "mirror_raw_sha256": "4c56f939454b0e68f8fb1cdacfc960c8fc76acc8e463126121a4d94e5fcd0ba8",
+    "mirror_retrieved_at": "2026-10-26T13:12:50.382834+00:00",
+    "mirror_model_input": false,
+    "technocore_main": "73a732497a19cac11aff4dcb527bae3c52b02f73",
+    "tclk_main": "fb910d354b34892f9bad236ca51f390be50a6d4b"
+  },
+  "kibble": {
+    "doctor_reachable": 4,
+    "doctor_endpoints": 6,
+    "board": "read timed out",
+    "score": "read timed out",
+    "did_found": null,
+    "score_value": null,
+    "healthy": false,
+    "native_head": 21397969,
+    "native_floor": 21383821,
+    "native_floor_ts": "2026-10-26T11:49:43.837711Z",
+    "generation": 0,
+    "stats_engine_warm": true,
+    "stats_engine_tape_census_cursors": 9997001,
+    "status_hello_cursor": 21281238,
+    "cursor_domains_bound": false,
+    "cursor_inventory_truncated": false,
+    "audit": {
+      "floor": 21383821,
+      "tip": 21398289,
+      "sampled_head": 21398288,
+      "records": 14469,
+      "jobs": 3820,
+      "claims": 4619,
+      "noncanonical_jobs": 3247,
+      "noncanonical_claims": 20,
+      "duplicate_ids": [
+        "ke43d684650",
+        "k8b6cbacf13",
+        "k6e6a47e6cd"
+      ],
+      "unverifiable_seq": [
+        21394238,
+        21394337
+      ],
+      "malformed_prefixes": 94,
+      "coverage_verified": false,
+      "unclaimed_candidates": []
+    },
+    "claim_result_attest_posts": 0,
+    "per_submission_credit": "not_determined"
+  },
+  "signed_room_windows": [
+    {
+      "room": "p-flop-research-c0e0b421",
+      "generation": 2,
+      "head": 0,
+      "verified": 0
+    },
+    {
+      "room": "technocore",
+      "generation": 0,
+      "floor": 20280681,
+      "tip": 20280880,
+      "verified": 200
+    },
+    {
+      "room": "lobby",
+      "generation": 0,
+      "floor": 129721929,
+      "tip": 129722128,
+      "verified": 200
+    },
+    {
+      "room": "kibble",
+      "generation": 0,
+      "floor": 21398286,
+      "tip": 21398485,
+      "verified": 200
+    },
+    {
+      "room": "flop",
+      "generation": 0,
+      "floor": 439122,
+      "tip": 439321,
+      "verified": 200
+    },
+    {
+      "room": "flop-network",
+      "generation": 0,
+      "floor": 680509,
+      "tip": 680708,
+      "verified": 200
+    },
+    {
+      "room": "inference-agents",
+      "generation": 0,
+      "floor": 548137,
+      "tip": 548336,
+      "verified": 200
+    }
+  ],
+  "room_scope": "Latest 200-record windows only; no direct tracked-DID reply observed there. Older requests are outside these windows, so no historical reply absence is established.",
+  "own_review_issues_new_reply": false,
+  "tracking_1002_new_reply": false,
+  "new_technocore_posts": 0,
+  "paid_model_calls": 0,
+  "actual_model_usage": null,
+  "funding_wallet_key_export_import_or_contest_action": false
+}

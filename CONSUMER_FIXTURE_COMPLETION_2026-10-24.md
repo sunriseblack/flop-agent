@@ -114,3 +114,38 @@ The [hosted-results delivery](https://github.com/flop-labs/technocore-chat/pull/
 was read back with exact body and sunriseblack authorship. The companion PR's
 validation summary now links the same fork run. No upstream approval or merge
 is claimed.
+
+## Current-base companion refresh on October 26
+
+The original author merged current main into upstream 1010 at
+`8aadb4f52527e9ef656c69b838bf6a14aef33d63`. Its corpus still has the original
+nine cases and SHA `337392ea540f2614551c7b3e919494549ed4d3a2e866bee05c1a66cdfd5d6f67`;
+the two completion cases and provenance note are not yet integrated.
+
+We merged that new base into our existing companion without force-pushing,
+producing `da153335bb636c865ef3aec9ce2d039fdccd0318`. The diff against the new
+author base is still exactly the same three fixture/doc/test files. The
+complete source tree equals the previously validated `8fc51a2` tree; author
+history and the numeric export nonce shape are preserved.
+
+Clean local Python 3.12.4 validation passes 925 tests with one skip, 98.08%
+coverage and all `just check` gates. Node and the separate Python verifier
+match 11 cases and 30 controls, including rounded-nonce rejection. The new
+[fork run 40328404325](https://github.com/sunriseblack/technocore-chat/actions/runs/40328404325)
+checks out the exact `da15333` source and passes six focused tests, 925 tests
+with one skip, 98.08% coverage and the separate signature checks on hosted
+Python 3.12.3 / Node v22.23.3.
+
+The fork-only workflow update `655904d` changes only its tested source matrix.
+Its required local pre-push gates separately pass 925 tests, one skip and
+98.15% coverage; that is workflow-branch validation, not a different result
+for the companion source. Attempting to dispatch the ordinary fork CI returned
+404 because that workflow is not registered on the fork's default branch;
+the existing read-only evidence workflow was used without changing settings
+or weakening an approval gate.
+
+The original upstream CI and pr-guards runs remain `action_required`, with
+only protected-files success and overlap skipped attached as completed checks.
+Fork results do not approve those runs or merge 1010. The existing companion's
+body is updated; no competing official PR or original-author branch mutation
+occurred.

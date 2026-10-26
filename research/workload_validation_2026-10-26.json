@@ -1,0 +1,140 @@
+{
+  "schema": "flop-workload-validation-v1",
+  "date": "2026-10-26",
+  "source_retrieval_range_utc": [
+    "2026-10-26T13:01:48.850222+00:00",
+    "2026-10-26T13:01:49.590574+00:00"
+  ],
+  "sources": [
+    {
+      "id": "auth",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218"
+    },
+    {
+      "id": "airdrop",
+      "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0"
+    },
+    {
+      "id": "agent",
+      "text_sha256": "7e17bfdbe88cc6672d91e1aa321904f4e8d9578a696bd4b6cecc50719c0c8761"
+    },
+    {
+      "id": "yellowpaper",
+      "text_sha256": "d6dd26cb3ff30586e263baae3c1943478793609bea929e1c8ff0513302f0a742"
+    },
+    {
+      "id": "store",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "changed_source_text_ids": [
+    "agent",
+    "yellowpaper"
+  ],
+  "raw_hashes_and_exact_retrievals_retained_privately": true,
+  "corpus_file_sha256": "3b4983b9bc6a76714a4753648d69048a60cd1bc305ebaecb27c89f802cb91466",
+  "tasks": 10,
+  "jobs_sha256": "0907945ab6547d26655f5068b8516ed979fad3da0b767a9f83f5f57e37fc707b",
+  "bundle_file_sha256": "09106812fbaa30db191a363cc9122da8275c5e60edb8f1718f9ba7fca2028937",
+  "changed_request_ids": [
+    "testnet-demand",
+    "document-conflict",
+    "implementation-gap",
+    "identity-binding",
+    "money-path-scope",
+    "operator-delegation-conflict"
+  ],
+  "unchanged_requests": 4,
+  "changed_task_question_selector_and_rubric_ids": [
+    "document-conflict",
+    "operator-delegation-conflict"
+  ],
+  "selector_regression": "Stable section headings cover old and corrected summaries while excluding earlier historical references; removed-policy citations fail on a new request binding",
+  "workload_test_methods": 61,
+  "root_repository_tests_passed": 232,
+  "implementation_engine_changed": false,
+  "untouched_cached_response_passes": 4,
+  "untouched_cached_response_failures": 6,
+  "untouched_failed_report_sha256": "9080b7dec331f0b47645cd4600dd1a54baa63c8fcee2d0aef328e77cd56f082c",
+  "intermediate_response_assembly_passes": 8,
+  "intermediate_failed_report_sha256": "6b7459541e84f08984b19f8b3d08269f44107411cae879230476356fd5188c7a",
+  "intermediate_failure_scope": "Two obsolete response objects were retained by artifact assembly; failed file/report preserved and corrected in a separate v2 file. Not a validator defect.",
+  "exact_excerpt_rebinding_ids": [
+    "testnet-demand",
+    "implementation-gap",
+    "money-path-scope"
+  ],
+  "manual_context_revalidation_with_abstention_retained": [
+    "identity-binding"
+  ],
+  "new_manual_semantic_draft_ids": [
+    "document-conflict",
+    "operator-delegation-conflict"
+  ],
+  "response_file_sha256": "ab2a8d2de1a1c2f2e0c753889135924ff2c34794463dd0181448bdc5485f07ee",
+  "mechanical_passes": 10,
+  "review_file_sha256": "762f64aa72bec6a79c05eebfd6aff3ee9dfb162ae67f9e065b3e40334aa3cf90",
+  "matching_supplied_approval_records": 0,
+  "historical_approval_binding_mismatches": 6,
+  "current_tasks_without_supplied_decision": 4,
+  "review_status_file_sha256": "ccf70ec4ebf25ad928af0f20c068f6f43687c857cd4affce5e642ced2edcd094",
+  "comparison_file_sha256": "639764d1572aee1028acf3a1c619bb9ec0e00632be8880281bfbbcc078431f04",
+  "new_private_packets": [
+    {
+      "task_id": "document-conflict",
+      "sha256": "000ac2498e8282da67dcd92b9cabadb4cba534b2b8f8f76281b433795e793601",
+      "mode": "0o600"
+    },
+    {
+      "task_id": "identity-binding",
+      "sha256": "c7a6afa51e1bfc27ac585b0f8631fac9a5ea4017ab623fd2790b27c11087a11c",
+      "mode": "0o600"
+    },
+    {
+      "task_id": "implementation-gap",
+      "sha256": "104fb28e1524b21dc5650d656e31cac3b13cee0be1e997779db253e9cf25273d",
+      "mode": "0o600"
+    },
+    {
+      "task_id": "money-path-scope",
+      "sha256": "e0b71052a34fdd764925811889724feda07e7a0c6595cd242688df302176d9fd",
+      "mode": "0o600"
+    },
+    {
+      "task_id": "operator-delegation-conflict",
+      "sha256": "637274477ef497007580ab518a8a00da8cbcfdc079c693ea0b5dec78f1d99ee0",
+      "mode": "0o600"
+    },
+    {
+      "task_id": "testnet-demand",
+      "sha256": "33aa818e2f90c0dd9ce9c9063b98578c11e3b7779700635cf9877b11bd4df5bd",
+      "mode": "0o600"
+    }
+  ],
+  "unchanged_tasks_prior_packets_preserved_with_original_bundle_bindings": true,
+  "old_decisions_drafts_and_failed_reports_preserved": true,
+  "semantic_review": "required",
+  "publication_authorized_by_checker": false,
+  "decision_authenticity": "not_verified",
+  "owner_approved_comment_versions_are_separate_from_workload_response_decisions": true,
+  "paid_api_calls": 0,
+  "new_external_model_generation_calls": 0,
+  "manual_preparation_model": "current-chat-unspecified",
+  "flop_inference_sessions": 0,
+  "actual_model_usage_cost_latency": null,
+  "model_allowlist_changed": false,
+  "current_official_mirror_commit": "56410c67b11292e707d32ef32e9c4ff9c02e28c7",
+  "money_path_input_stays_explicitly_pinned_to_historical_commit": "70e691c758e53eed17a016a02b0a2ae1200d3744"
+}

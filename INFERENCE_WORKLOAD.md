@@ -90,6 +90,15 @@ humans must inspect completeness and missing context before approving a draft.
 Changing source editions or selectors changes request hashes and requires
 fresh preparation and review; never relabel an old approval as current.
 
+On October 26 the Agent overview removed the stale release and operator-stake
+delegation summaries. The two comparison tasks now determine whether current
+excerpts agree before proposing any correction, using stable section headings.
+A regression covers both old and corrected summaries with an earlier historical
+reference: the configured selectors must reach the intended section, and a
+removed-policy quote must fail against a new request binding. A resolved issue
+is not a reason to manufacture another correction. The literal citation checker
+still cannot judge semantic truth or approve publication.
+
 [HE-Lingfeng's independent selector review](https://github.com/sunriseblack/flop-agent/issues/5#issuecomment-6291973184)
 passed the requested checks at `f598938` but found a Unicode coordinate bug
 in `excerpt()`: case-folding `ß` into `ss` shifted an anchor's index before

@@ -52,3 +52,12 @@ question, not an execution invitation. Update a state only after exact
 delivery/readback or a substantive original response. Completed synthetic
 reviews remain recorded in the daily routine and are not reopened as adoption
 campaigns. No unanswered invitation should be repeated as a routine reminder.
+
+October 26 follow-up: maho0638's
+[source-contract correction on PR 195](https://github.com/flop-labs/tclk/pull/195#issuecomment-6399324578)
+now uses actual server-shaped empty windows, and boomelant
+[verified that narrower guarantee](https://github.com/flop-labs/tclk/pull/195#issuecomment-6400481860).
+This is a reported synthetic regression repair, not an existing signed packet
+or a kit run; the real-case pilot remains deferred. The other two requests
+have no new reply and were not repeated. No independent real-case adoption
+is added to the count by our own compatibility or fixture runs.

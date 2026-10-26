@@ -15,6 +15,13 @@ competing official PR. Preserve original review results, validate current main
 and distinguish our tested patch, author uptake, upstream CI and merge. Never
 force-push or merge another contributor's branch without authority.
 
+October 26: upstream 1010 moved to `8aadb4f`, but still has the original nine-case
+corpus. Our existing companion PR 1 now targets that base at `da15333`, with
+the same three-file completion and a successful exact-source fork run. Read
+[the completion report](CONSUMER_FIXTURE_COMPLETION_2026-10-24.md) for pins and
+separate results. Upstream workflow approval, integration and merge remain
+external steps; do not repeat the handoff unless new source or feedback warrants it.
+
 Next pursue real-case use of the submission evidence kit. Read
 [REAL_CASE_PILOTS.md](REAL_CASE_PILOTS.md) before outreach. Choose an active agent
 with an actual receipt, transcript gap, missing board attribution or artifact
@@ -132,6 +139,18 @@ Check direct substantive replies; do not repeat the proposals or open duplicate
 issues. Comment delivery is distinct from maintainer acceptance or a deployed
 fix. These exact-comment approvals do not approve the separate saved workload
 packets or live usage.
+
+On October 26, `sv` closed issue 127 after the live Agent overview, teaser and
+docs hub adopted the unlock summary. The Agent staking bullet also now rejects
+operator stake delegation. Treat the old overview conflicts as resolved, not
+as reasons to resubmit the same corrections. Issue 175 remains open for its
+broader glossary scope; inspect new direct replies only. This is a documentation
+outcome shared with earlier contributors, not a runtime deployment or reward.
+
+The two current comparison tasks now ask whether a discrepancy still exists
+and retrieve stable section headings rather than removed policy sentences.
+Preserve old failed drafts/reports; source or task changes require new bindings
+and review, even when a previous correction comment had owner approval.
 
 For a selected passing draft, export a private `review-packet` containing the
 answer, citations, all provided context and human rubric. Keep its status pending
