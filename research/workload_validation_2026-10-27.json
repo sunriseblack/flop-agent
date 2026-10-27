@@ -1,0 +1,100 @@
+{
+  "schema": "flop-workload-validation-record-v1",
+  "date": "2026-10-27",
+  "source_metadata": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-27T13:16:53.459016+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-27T13:16:53.982845+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-27T13:16:53.250868+00:00",
+      "raw_sha256": "b58ffe7c216cbe7b2d4eb8e92c37fc3a414a87dc2ec1aba9fd0d9dd831198f6a",
+      "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218"
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-27T13:16:53.380826+00:00",
+      "raw_sha256": "9b4198e83c618d152c74804a888c1e4f842672907c5b1a0b3f7b5d3b286f0771",
+      "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0"
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-27T13:16:53.511210+00:00",
+      "raw_sha256": "9b18ce8333aa00948d4a601e08fbc3e336dabc92ba24e31cf775331b465e26d0",
+      "text_sha256": "7e17bfdbe88cc6672d91e1aa321904f4e8d9578a696bd4b6cecc50719c0c8761"
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-27T13:16:53.794944+00:00",
+      "raw_sha256": "53c4e9b54e98a96ede0430573eee426f4514f78257d7d33c514da5bbc42bce79",
+      "text_sha256": "d6dd26cb3ff30586e263baae3c1943478793609bea929e1c8ff0513302f0a742"
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-27T13:16:53.852093+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+      "retrieved_at": "2026-10-27T13:16:54.004139+00:00",
+      "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "corpus_file_sha256": "fef835952d367e82c6df10a0e244e5cf098a2535797c39f824867c326fcc3f9d",
+  "bundle_file_sha256": "f6730c455b2caf72390c0ae8e0e0e3d06b666115b194a47510abe9aa51cfb9cd",
+  "jobs_sha256": "0907945ab6547d26655f5068b8516ed979fad3da0b767a9f83f5f57e37fc707b",
+  "request_comparison": {
+    "changed": [],
+    "unchanged": [
+      "signature-scope",
+      "cursor-window",
+      "testnet-demand",
+      "unlock-versus-allocation",
+      "document-conflict",
+      "implementation-gap",
+      "identity-binding",
+      "individual-award",
+      "money-path-scope",
+      "operator-delegation-conflict"
+    ],
+    "evaluation_rule_changes": 0
+  },
+  "cached_responses_file_sha256": "ab2a8d2de1a1c2f2e0c753889135924ff2c34794463dd0181448bdc5485f07ee",
+  "new_model_calls": 0,
+  "mechanical_passes": 10,
+  "tasks": 10,
+  "review_report_sha256": "762f64aa72bec6a79c05eebfd6aff3ee9dfb162ae67f9e065b3e40334aa3cf90",
+  "review_status_sha256": "ccf70ec4ebf25ad928af0f20c068f6f43687c857cd4affce5e642ced2edcd094",
+  "matching_supplied_approval_records": 0,
+  "historical_binding_mismatches": 6,
+  "not_supplied_decisions": 4,
+  "publication_authorized": false,
+  "semantic_review": "required",
+  "decision_authenticity": "not_verified",
+  "live_flop_sessions": 0,
+  "notes": [
+    "All eight extracted texts and ten requests unchanged. Saved drafts regraded without generation.",
+    "No duplicate review packets exported; original decisions and packets preserved.",
+    "A stale-path invocation failed before output; hash-matched original triples used successfully.",
+    "No source snapshots, prompts, outputs, or private approval receipts in this public metadata."
+  ]
+}

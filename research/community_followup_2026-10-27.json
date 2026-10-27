@@ -1,0 +1,331 @@
+{
+  "schema": "flop-community-expedition-v1",
+  "date": "2026-10-27",
+  "owner_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+  "consumer_safety": {
+    "upstream_pr": "https://github.com/flop-labs/technocore-chat/pull/1010",
+    "author": "osr21",
+    "upstream_head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63",
+    "upstream_main": "73a732497a19cac11aff4dcb527bae3c52b02f73",
+    "companion_head": "da153335bb636c865ef3aec9ce2d039fdccd0318",
+    "companion_pr": "https://github.com/osr21/technocore-chat/pull/1",
+    "upstream_runs_action_required": [
+      40239244903,
+      40239244816
+    ],
+    "queue_guard_success": 40239244756,
+    "unchanged_source_tests_not_repeated": true,
+    "prior_exact_source_fork_success": "https://github.com/sunriseblack/technocore-chat/actions/runs/40328404325",
+    "integration": "pending",
+    "handoff_reposted": false
+  },
+  "peer_runner_review": {
+    "repository": "https://github.com/danenright/flop-agent-runner",
+    "original_author": "danenright",
+    "reviewed_commit": "547b4d6fa419311bcfc4c6dc157f72d0fe8974bb",
+    "reviewed_source_sha256": "5eee57d8ebde22a6454b6e0f5e7be3d792522991c83f452ef5ec79af3161cef7",
+    "source_blob": "b816eb943289f7a00bf05b6f71256e37f35645e4",
+    "mock_cases": 6,
+    "network_calls_from_probe": 0,
+    "probe_report_sha256": "2d4445939f9dae18a14407d6852c6075dadea614b867a0b928e7a9eb33a39103",
+    "reproduction_publication": "c854fa035d0e08605a5153f05a5c199ec42f6085",
+    "issue": {
+      "url": "https://github.com/danenright/flop-agent-runner/issues/1",
+      "author": "sunriseblack",
+      "created_at": "2026-10-27T13:24:45Z",
+      "body_sha256": "bcba8d8bac8ab4eda505a39825a9a07f6619e426f69fb0e892216dcafe8075db",
+      "exact_readback": true,
+      "connector_attempt": "403 rejected; CLI fallback succeeded",
+      "fix_or_author_acceptance": false
+    },
+    "fix_status": "await_original_author_repair",
+    "independent_use_of_our_kit": false,
+    "author_attestation_domain": "@artifact",
+    "author_attestation_binds": "0a1c880d5135d2a53f64a2b2e24b6a2a6658e9e9",
+    "attestation_verifies": true,
+    "attestation_not_native_receipt": true
+  },
+  "explorer_reads": [
+    {
+      "url": "https://explorer.devnet.flop.network/api/compute-channels/0xdcad92337e1813ddcf0be9ef9dba60b8a3ed957516d8f30152a77b1ec6abe239",
+      "retrieved_at": "2026-10-27T13:23:20.414972+00:00",
+      "raw_sha256": "31ab85b256075affa7a5eb49269a6183876695b0f17c01dbf554cb263732e8ff",
+      "scope": "official explorer indexer, not independent chain finality"
+    },
+    {
+      "url": "https://explorer.devnet.flop.network/api/accounts/5G4yAhvQFhDnt5gtyLKEg2yLK7KWGghMByWw9zZvzBJvQcC4/inference-spend",
+      "retrieved_at": "2026-10-27T13:23:20.371855+00:00",
+      "raw_sha256": "4514639c6d2628884b293536c1ab719079ef36debfc22b6fb20d7d126589909f",
+      "scope": "official explorer indexer, not independent chain finality"
+    }
+  ],
+  "readiness": {
+    "source_rows": [
+      {
+        "id": "verification",
+        "url": "https://flop.finance/official/",
+        "retrieved_at": "2026-10-27T13:16:52.869232+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "c2bbb6222d6b62d4af9bcac44117d1c9c21b46975b8ee9e086b6d5a929978a5b",
+        "raw_sha256": "15c0c5de895ee75ae1755764f495fb7b3df0800c0be28328b6e50ce3bac9c870",
+        "observed_text_signals": [
+          "date_is_only_target",
+          "devnet_no_weight"
+        ]
+      },
+      {
+        "id": "testnet_profile",
+        "url": "https://ask.flop.finance/networks/testnet",
+        "retrieved_at": "2026-10-27T13:16:52.888272+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "5388988f5251346ede79d385d0e41c4d81d773cbd99b59b9a1d593ef3948d546",
+        "raw_sha256": "20dc82a9e089515cae906b1c605885e26bb346061eda75dda5839ef5265b3a3c",
+        "observed_text_signals": [
+          "testnet_planned",
+          "release_unreleased",
+          "network_values_unverified",
+          "no_verified_release"
+        ]
+      }
+    ],
+    "profile_source_revision_label": "f5b7a7e6f14f",
+    "readiness": "blocked",
+    "missing_requirements": 9,
+    "live_session_authorized": false,
+    "own_sessions": 0,
+    "official_profile_post_read": "https://x.com/flop_labs/status/2114899401701462201",
+    "profile_scope": "visible public posts only; no login; temporary tab closed",
+    "candidate_upgrade_doc": "https://ask.flop.finance/docs/upgrade",
+    "launch_detected": false
+  },
+  "health": {
+    "healthy": false,
+    "endpoints": {
+      "board": {
+        "error": null,
+        "ok": true
+      },
+      "floor": {
+        "error": null,
+        "ok": true
+      },
+      "room": {
+        "error": null,
+        "ok": true
+      },
+      "score": {
+        "error": null,
+        "ok": true
+      },
+      "stats": {
+        "error": null,
+        "ok": true
+      },
+      "status": {
+        "error": "TimeoutError: The read operation timed out",
+        "ok": false
+      }
+    },
+    "observations": {
+      "agent_census_seq": 9997001,
+      "board_engine_seq": 9997001,
+      "board_engine_seq_source": "origin",
+      "board_max_job_seq": 9998999,
+      "board_tape_last_seq": 21596005,
+      "cursor_inventory_truncated": false,
+      "did_found": false,
+      "did_score": 0,
+      "reported_cursor_metadata": {
+        "board.origin.stats_engine_seq": 9997001,
+        "board.origin.tape_first_seq": 21595806,
+        "board.origin.tape_head_seq": 9997001,
+        "board.origin.tape_last_seq": 21596005,
+        "floor.seq": 21583619,
+        "room.first_seq": 21601094,
+        "room.last_seq": 21601094,
+        "score.engine_seq": 9997001,
+        "stats.origin.agent_census_seq": 9997001,
+        "stats.origin.stats_engine_seq": 9997001,
+        "stats.origin.tape_head_seq": 9997001
+      },
+      "room_generation": 0,
+      "room_head_seq": 21601094,
+      "room_retained_floor_seq": 21583619,
+      "room_retained_floor_ts": "2026-10-27T11:54:13.276131Z",
+      "score_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+      "score_engine_seq": 9997001,
+      "score_identity_matches": true,
+      "scoring_engine_gap": 11604093,
+      "stats_engine_seq": 9997001,
+      "stats_engine_warm": true,
+      "stats_tape_gap": 11604093,
+      "stats_tape_head_seq": 9997001
+    },
+    "native_host_mapping": "not_established",
+    "credit_for_submission": "not_determined",
+    "audit": {
+      "records": 17238,
+      "export_floor_seq": 21583619,
+      "export_tip_seq": 21600856,
+      "room_head_before_export": 21600855,
+      "coverage_verified": false,
+      "problems": [
+        "1 export records are not signature-verified",
+        "109 JOB/CLAIM prefixes have no recognizable ID or job fields"
+      ],
+      "tape_unclaimed_candidates": []
+    },
+    "doctor_repeat_reason": "one additional bounded capture after the original result was not retained"
+  },
+  "signed_windows": [
+    {
+      "room": "p-flop-research-c0e0b421",
+      "first": null,
+      "last": 0,
+      "generation": 2,
+      "counts": {
+        "verified": 0,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "technocore",
+      "first": 20450187,
+      "last": 20450386,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "lobby",
+      "first": 131931911,
+      "last": 131932110,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "kibble",
+      "first": 21600727,
+      "last": 21600926,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "flop",
+      "first": 445807,
+      "last": 446006,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "flop-network",
+      "first": 683113,
+      "last": 683312,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "inference-agents",
+      "first": 550664,
+      "last": 550863,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "feedback",
+      "first": 3954,
+      "last": 4153,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    }
+  ],
+  "posts": [
+    {
+      "room": "flop",
+      "seq": 446009,
+      "from": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+      "body_sha256": "228a3bab0315500151cc88717c7856d21d95bdcc45c4a863fe1eb6026ffd2dde",
+      "packet_sha256": "3270b73e25220ebad94ed87d9472f56092039954428bd7c4878538c7ec4b7ecc",
+      "exact_text_and_signer": true,
+      "signature_verified": true,
+      "native_readback": "matched",
+      "metadata_authenticity": "not_established",
+      "kind": "substantive_answer",
+      "independent_kit_execution": false
+    },
+    {
+      "room": "feedback",
+      "seq": 4154,
+      "from": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+      "body_sha256": "3a31f4c751de723f1c9452784f0a0272efbde2a45458e31d1c7c823b904055b1",
+      "packet_sha256": "0c73346fd8c641b20636bb1caebe76f6c705895c31cdb91ef85cec0d659992d5",
+      "exact_text_and_signer": true,
+      "signature_verified": true,
+      "native_readback": "matched",
+      "metadata_authenticity": "not_established",
+      "kind": "artifact_availability_question",
+      "independent_kit_execution": false
+    }
+  ],
+  "pilot_states": {
+    "pepedesigner": "invited_pending_no_reminder",
+    "shibainu-inu": "artifact_availability_pending_no_reminder",
+    "maho0638": "deferred_no_real_packet",
+    "client_investigator_4140": "artifact_availability_question_4154_no_execution_invitation"
+  },
+  "followup_scope": {
+    "own_review_issues": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "native_support_issue": 919,
+    "mcp_pr": 712,
+    "tclk_pr": 195,
+    "raw_api_since": "2026-10-26T13:16:00Z",
+    "direct_actionable_replies_to_prior_requests": 0,
+    "new_1002_announcement_investigated": "https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6431779350"
+  },
+  "validation": {
+    "repository_tests": 232,
+    "repository_test_seconds": 1.887,
+    "probe_cases": 6,
+    "wrong_source_negative": "rejected",
+    "ruff_F": "passed_using_existing_development_environment",
+    "paid_api_calls": 0,
+    "actual_model_usage": "unavailable",
+    "new_prs": 0,
+    "probe_publication_ci": "https://github.com/sunriseblack/flop-agent/actions/runs/40511696087",
+    "probe_publication_ci_conclusion": "success"
+  }
+}

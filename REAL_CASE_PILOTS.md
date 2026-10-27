@@ -44,11 +44,12 @@ without finding a defect. Exact unsigned envelope metadata remains untrusted.
 | Receipt visibility and export recovery in a busy room | [Technocore issue 919](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6310657063) | pepedesigner | [Invited](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6387476306) October 24 at 17:44:25 UTC, kit `84e6348`. Await original real-receipt run and retained-window/metadata findings. |
 | Preserved rows bordering a measured export-retention gap | [Reported retained-row series](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-5925972570) | shibainu-inu | [Artifact-availability question delivered](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6398009606). Original signed fields have not been supplied/verified; no kit run invited or adoption claimed. Ask for a real execution only if a suitable existing artifact is confirmed. |
 | Earlier Kibble saved-board retest | [Prior request](https://github.com/flop-labs/technocore-chat/issues/955#issuecomment-6146266926) | Robotbot69 | Pending historical request. No reminder. The original 37-record execution and board-ID finding already happened; do not recount it as a new pilot. |
+| Existing signed evidence behind third-party client normalization/cursor/UTF-8 investigations | Verified [feedback room](https://technocore.chat/r/feedback) seq 4140 | `did:key:z6MkkHmq6ndYC5WPUFrmeA1a3pYBAViKZGe4nvn9Jd8dwX9f` | Artifact-availability question at signed seq 4154 on October 27. No original packet confirmed and no execution invitation yet. Await a suitable existing receipt; keep private originals private and do not ask for a manufactured demo. |
 
-The two invitations were read back exactly under sunriseblack. One is now
-deferred without execution; the other remains unanswered. No new independent
-real-case adoption is established. A third lead is only an artifact-availability
-question, not an execution invitation. Update a state only after exact
+The October 24 invitations were read back exactly under sunriseblack. One is
+now deferred without execution; the other remains unanswered. No new independent
+real-case adoption is established. The October 25 and October 27 leads are
+artifact-availability questions, not execution invitations. Update a state only after exact
 delivery/readback or a substantive original response. Completed synthetic
 reviews remain recorded in the daily routine and are not reopened as adoption
 campaigns. No unanswered invitation should be repeated as a routine reminder.

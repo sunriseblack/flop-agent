@@ -62,3 +62,8 @@ an explorer observation, published policy and a future allocation file.
 The reproduction is offered to the original author for repair and verification.
 No author-branch mutation, fix acceptance, merged change, independent use of
 our evidence kit or FLOP session is claimed.
+
+[Issue 1](https://github.com/danenright/flop-agent-runner/issues/1) was delivered
+under `sunriseblack` at 13:24:45 UTC and read back exactly. The GitHub connector
+rejected creation with 403; the existing CLI connection then succeeded after
+checking that no issue had been created. Await the author's repaired revision.

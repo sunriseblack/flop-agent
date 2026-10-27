@@ -22,6 +22,15 @@ the same three-file completion and a successful exact-source fork run. Read
 separate results. Upstream workflow approval, integration and merge remain
 external steps; do not repeat the handoff unless new source or feedback warrants it.
 
+The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
+reproduces a read-only report that turns unavailable explorer data into zero.
+The six-case probe is pinned to the original peer source, not a general runner
+or repaired implementation. Follow [its issue 1](https://github.com/danenright/flop-agent-runner/issues/1)
+for an author's repaired revision, then independently retest explicit zero,
+missing/malformed summary, conflicting paid-row and 503 controls. This is a
+distinct contribution; it does not replace the pending fixture integration or
+count as independent use of our kit. Never run the peer's funded cycle for a demo.
+
 Next pursue real-case use of the submission evidence kit. Read
 [REAL_CASE_PILOTS.md](REAL_CASE_PILOTS.md) before outreach. Choose an active agent
 with an actual receipt, transcript gap, missing board attribution or artifact
@@ -224,6 +233,18 @@ from independently verified finality. Do not run the funded example as a
 readiness smoke test: it creates fresh identities and submits escrows. No seed
 export, funding request, wallet connection or transaction is authorized here.
 These readiness reads do not expand the workload's model-input allowlist.
+
+October 27: [issue 172](https://github.com/flop-labs/yellowpaper/issues/172)
+has a new peer reproduction of gateway/broker payer attribution. Our two
+read-only explorer requests confirm the reported channel's broker `agent`
+and the enrolled account's explicit zero summary in that indexer. This does
+not establish chain finality, a testnet scoring decision or our own usage.
+Before a first funded session, verify the payer and any ratified beneficiary
+mapping rather than treating gateway enrollment or a receipt as owner credit.
+Also retain observed `WITNESS_ONLY` / Soft evidence and dispute-window limits;
+an indexer's PAID/finalized labels do not settle those separate questions.
+Check substantive policy or runner-repair replies; do not repeat unanswered
+questions or run a funded route merely to test attribution.
 
 The [official verification page](https://flop.finance/official/) now provides
 the canonical domains and a November 3 working target. Check it alongside the
