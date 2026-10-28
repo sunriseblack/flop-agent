@@ -103,3 +103,7 @@ The runnable evidence is offered for the original author's execution and
 possible permanent caller regressions. Author execution, uptake, merge and
 real-case independent kit use remain separate pending outcomes. Raw generated
 views and exports remain private; this report publishes minimal controls and hashes.
+
+The [validation and author execution request](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6469989680)
+was posted as `sunriseblack` at 13:16:23 UTC and read back exactly. This is
+delivery evidence; the author's execution and response remain pending.

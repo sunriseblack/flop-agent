@@ -25,11 +25,25 @@ external steps; do not repeat the handoff unless new source or feedback warrants
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
-or repaired implementation. Follow [its issue 1](https://github.com/danenright/flop-agent-runner/issues/1)
-for an author's repaired revision, then independently retest explicit zero,
-missing/malformed summary, conflicting paid-row and 503 controls. This is a
-distinct contribution; it does not replace the pending fixture integration or
-count as independent use of our kit. Never run the peer's funded cycle for a demo.
+or repaired implementation. On October 28 we published and delivered a two-file
+candidate patch with five regression methods; all 81 tests pass in a clean peer checkout.
+Follow [its issue 1](https://github.com/danenright/flop-agent-runner/issues/1)
+for the author's review/application or a concrete counterexample, then retest
+the actual accepted revision against explicit zero, missing/malformed summary,
+conflicting paid-row and 503 controls. Our candidate is not an accepted repair,
+upstream CI or independent use of our kit. Do not repeat an unanswered handoff
+or run the peer's funded cycle for a demo. This distinct contribution does not
+replace the pending fixture integration.
+
+The [October 28 caller validation](BOUNDARY_READER_VALIDATION_2026-10-28.md)
+extends zkasuran's existing PR 1042 without another fix implementation. The
+nonce lookup and engagement-window boundary controls use an unchanged public
+signed record in synthetic local stores. Follow the author execution request
+on that PR and distinguish its successful Python CI from the failed humans
+browser gate. A source change or concrete counterexample warrants fresh
+validation; an unchanged pending request does not warrant another reminder.
+This engineering reproduction is not a live retention incident or an
+independent real-case pilot, even when the original author cross-checks it.
 
 Next pursue real-case use of the submission evidence kit. Read
 [REAL_CASE_PILOTS.md](REAL_CASE_PILOTS.md) before outreach. Choose an active agent

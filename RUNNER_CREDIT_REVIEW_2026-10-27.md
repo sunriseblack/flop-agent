@@ -132,3 +132,10 @@ upstream CI and accepted repair remain pending. They are not evidence-kit
 adoption or a FLOP inference session. The next useful action is the author's
 review/application or a concrete counterexample, followed by validation of
 the actual accepted source.
+
+The [candidate handoff](https://github.com/danenright/flop-agent-runner/issues/1#issuecomment-6470448984)
+was delivered as `sunriseblack` at 13:35:50 UTC and read back exactly, binding
+publication `ba095e811c9b355a6d80396300da36de087f57eb` and the patch hash above.
+Our own repository's [hosted checks](https://github.com/sunriseblack/flop-agent/actions/runs/40697802588)
+pass for that publication; these run our evidence-kit suite, not the peer's
+81-test suite. Author review/application remains pending.

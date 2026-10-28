@@ -1,0 +1,571 @@
+{
+  "schema": "flop-community-expedition-v1",
+  "date": "2026-10-28",
+  "owner_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+  "consumer_safety": {
+    "original_author": "osr21",
+    "upstream_pr": "https://github.com/flop-labs/technocore-chat/pull/1010",
+    "upstream_head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63",
+    "companion_pr": "https://github.com/osr21/technocore-chat/pull/1",
+    "companion_head": "da153335bb636c865ef3aec9ce2d039fdccd0318",
+    "new_replies": 0,
+    "integration": "pending",
+    "unchanged_tests_or_handoff_repeated": false,
+    "upstream_action_required_runs": [
+      40239244903,
+      40239244816
+    ],
+    "queue_guard_success": 40239244756
+  },
+  "runner_review": {
+    "issue": "https://github.com/danenright/flop-agent-runner/issues/1",
+    "head": "547b4d6fa419311bcfc4c6dc157f72d0fe8974bb",
+    "state": "open",
+    "new_replies": 0,
+    "reminder_posted": false,
+    "candidate_patch": "research/runner_credit_unknown_fix_2026_10_28.patch",
+    "candidate_patch_sha256": "463403e256535d190fd68a1bee5738f4a5aef783c07c73cfd4122a46f6440e86",
+    "candidate_source_sha256": "1a43da469737073c424b2d7ea7f034ad96efbb8caa156837de51bea6a5fbee0f",
+    "candidate_test_sha256": "f9d16e651f2f5ddcdcad0b3e885df506e3a90a021fe16eb40cf940800593524a",
+    "publication_commit": "ba095e811c9b355a6d80396300da36de087f57eb",
+    "delivery": {
+      "url": "https://github.com/danenright/flop-agent-runner/issues/1#issuecomment-6470448984",
+      "id": 6470448984,
+      "author": "sunriseblack",
+      "created_at": "2026-10-28T13:35:50Z",
+      "body_sha256": "9d69b4d1e4dba3ad24b3d49d35d991ea573a4e1566dffe9c3f6a155a4336f661",
+      "exact_readback": true,
+      "publication_commit": "ba095e811c9b355a6d80396300da36de087f57eb",
+      "author_execution": "pending"
+    },
+    "new_test_methods": 5,
+    "original_tests_passed": 76,
+    "original_source_new_tests": {
+      "failed_subcases": 20,
+      "errors": 1,
+      "controls_passed": true
+    },
+    "clean_patched_tests_passed": 81,
+    "clean_patched_seconds": 0.101,
+    "python": "3.12.4",
+    "cryptography": "50.0.0",
+    "sr25519_bindings": "0.2.4",
+    "http": "mocked_only",
+    "funded_cycle": false,
+    "participant_key_used": false,
+    "upstream_branch_mutated": false,
+    "accepted_repair": "pending",
+    "independent_real_case_kit_adoption": false,
+    "patch_context_blank_lines": "valid unified-diff spaces; applied-source whitespace check passes",
+    "source_and_test_byte_comparison": "exact_match",
+    "apply_check": "passed",
+    "ruff_F": "passed",
+    "source_diff_check": "passed",
+    "handoff_is_new_repair_material": true
+  },
+  "boundary_validation": {
+    "original_author": "zkasuran",
+    "issue": "https://github.com/flop-labs/technocore-chat/issues/1039",
+    "existing_pr": "https://github.com/flop-labs/technocore-chat/pull/1042",
+    "main": "73a732497a19cac11aff4dcb527bae3c52b02f73",
+    "author_head": "3393e7117c34fa3024232d9c61fa86473571b6bf",
+    "publication_commit": "233a53dec7589a7253573fcb90369a794f15c79a",
+    "probe_sha256": "17e717c7bb2ca221c49ed0e6decc603c463f71bce12b886540747c79631e24fe",
+    "existing_public_packet_sha256": "de2ca99a3404874ba056239db72866046e5d1bd446a6526d7a91b5b05c21402c",
+    "lab_runs": {
+      "base": {
+        "report_sha256": "3afd438e67c82ec7891c0a90739238abd1b63f4265da8dec29cdd91be9ecda3d",
+        "store_blob": "67cd17b9d0563e2224f8d3c5129d12194c37c99c",
+        "cases": [
+          {
+            "kind": "tail-and-nonce",
+            "shift_bytes": -1,
+            "file_bytes": 1048831,
+            "budget": 1048576,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "last_nonce": 1791724291556,
+            "count": 129,
+            "first_seq": 327293,
+            "target_in_json": true,
+            "export_byte_exact": true,
+            "target_in_export": true
+          },
+          {
+            "kind": "tail-and-nonce",
+            "shift_bytes": 0,
+            "file_bytes": 1048832,
+            "budget": 1048576,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "last_nonce": null,
+            "count": 128,
+            "first_seq": 327294,
+            "target_in_json": false,
+            "export_byte_exact": true,
+            "target_in_export": true,
+            "view_sha256": "cbbd218750ea298cc8b6e84ce1afeb6c053a1ad823cfbcf6ba44ea78f0451709",
+            "export_sha256": "69a3dfa9bdfc178df0d600c4f88c784e5af614d391b5d4f03f58de239b9dd5da"
+          },
+          {
+            "kind": "tail-and-nonce",
+            "shift_bytes": 1,
+            "file_bytes": 1048833,
+            "budget": 1048576,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "last_nonce": null,
+            "count": 128,
+            "first_seq": 327294,
+            "target_in_json": false,
+            "export_byte_exact": true,
+            "target_in_export": true
+          },
+          {
+            "kind": "engagement",
+            "shift_bytes": -1,
+            "file_bytes": 65791,
+            "budget": 65536,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "nicks": 9,
+            "target_in_engagement": true
+          },
+          {
+            "kind": "engagement",
+            "shift_bytes": 0,
+            "file_bytes": 65792,
+            "budget": 65536,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "nicks": 8,
+            "target_in_engagement": false
+          },
+          {
+            "kind": "engagement",
+            "shift_bytes": 1,
+            "file_bytes": 65793,
+            "budget": 65536,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "nicks": 8,
+            "target_in_engagement": false
+          }
+        ],
+        "parity_report_sha256": "035a39b4e84b746a98a509e0690d886f01cc0e38e9aee52258b814ba7c9b2060",
+        "signed_records": 1,
+        "derived_signature_cases": 6,
+        "python_node_match": true,
+        "unicode_signed_records": 0,
+        "unsafe_numeric_nonce_cases": 0,
+        "untested_transports": [
+          "mcp"
+        ],
+        "transports": [
+          {
+            "transport": "json",
+            "target_signed_content_present": false,
+            "state": "not_observed_in_supplied_window"
+          },
+          {
+            "transport": "export",
+            "target_signed_content_present": true,
+            "state": "exact_fields_match_in_supplied_snapshot"
+          }
+        ]
+      },
+      "fixed": {
+        "report_sha256": "3ae20680d7b15d9295c16a8bee5ec89965d29697ccf4b7464941b867cb969adf",
+        "store_blob": "a8960449955743bb374589dfb4066fc6f604898d",
+        "cases": [
+          {
+            "kind": "tail-and-nonce",
+            "shift_bytes": -1,
+            "file_bytes": 1048831,
+            "budget": 1048576,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "last_nonce": 1791724291556,
+            "count": 129,
+            "first_seq": 327293,
+            "target_in_json": true,
+            "export_byte_exact": true,
+            "target_in_export": true
+          },
+          {
+            "kind": "tail-and-nonce",
+            "shift_bytes": 0,
+            "file_bytes": 1048832,
+            "budget": 1048576,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "last_nonce": 1791724291556,
+            "count": 129,
+            "first_seq": 327293,
+            "target_in_json": true,
+            "export_byte_exact": true,
+            "target_in_export": true,
+            "view_sha256": "80ee83b9beaefaecda4200e1cd36ca108e722186e50fe2b101f81f28b186d2f3",
+            "export_sha256": "69a3dfa9bdfc178df0d600c4f88c784e5af614d391b5d4f03f58de239b9dd5da"
+          },
+          {
+            "kind": "tail-and-nonce",
+            "shift_bytes": 1,
+            "file_bytes": 1048833,
+            "budget": 1048576,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "last_nonce": null,
+            "count": 128,
+            "first_seq": 327294,
+            "target_in_json": false,
+            "export_byte_exact": true,
+            "target_in_export": true
+          },
+          {
+            "kind": "engagement",
+            "shift_bytes": -1,
+            "file_bytes": 65791,
+            "budget": 65536,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "nicks": 9,
+            "target_in_engagement": true
+          },
+          {
+            "kind": "engagement",
+            "shift_bytes": 0,
+            "file_bytes": 65792,
+            "budget": 65536,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "nicks": 9,
+            "target_in_engagement": true
+          },
+          {
+            "kind": "engagement",
+            "shift_bytes": 1,
+            "file_bytes": 65793,
+            "budget": 65536,
+            "target_signature": "verified",
+            "source_condition": "synthetic local alignment; existing signed record unchanged",
+            "nicks": 8,
+            "target_in_engagement": false
+          }
+        ],
+        "parity_report_sha256": "4d08d61b73519ac7ac42daff339d0bfd1730963ac0b8ff66394c8313a71464a0",
+        "signed_records": 1,
+        "derived_signature_cases": 6,
+        "python_node_match": true,
+        "unicode_signed_records": 0,
+        "unsafe_numeric_nonce_cases": 0,
+        "untested_transports": [
+          "mcp"
+        ],
+        "transports": [
+          {
+            "transport": "json",
+            "target_signed_content_present": true,
+            "state": "exact_fields_match_in_supplied_snapshot"
+          },
+          {
+            "transport": "export",
+            "target_signed_content_present": true,
+            "state": "exact_fields_match_in_supplied_snapshot"
+          }
+        ]
+      }
+    },
+    "delivery": {
+      "url": "https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6469989680",
+      "author": "sunriseblack",
+      "created_at": "2026-10-28T13:16:23Z",
+      "exact_readback": true,
+      "body_sha256": "23847f6b6eced7a57d66c6160e021f0c4e36d87c54273987cdaac039aba6019e",
+      "publication_commit": "233a53dec7589a7253573fcb90369a794f15c79a",
+      "author_execution": "pending"
+    },
+    "author_execution": "pending",
+    "independent_real_case_adoption": false,
+    "live_incident_or_replay_acceptance_tested": false,
+    "new_signatures": 0,
+    "public_native_writes": 0,
+    "new_prs": 0,
+    "upstream_local_validation": {
+      "focused_tests": 2,
+      "suite_passed": 921,
+      "suite_skipped": 1,
+      "coverage_percent": 98.15,
+      "seconds": 94.61,
+      "just_check": "passed",
+      "python": "3.12.4",
+      "orjson": "3.12.0",
+      "node": "v25.9.0"
+    },
+    "upstream_ci": {
+      "python": "https://github.com/flop-labs/technocore-chat/actions/runs/40631481493",
+      "python_conclusion": "success",
+      "humans": "https://github.com/flop-labs/technocore-chat/actions/runs/40631481598",
+      "humans_conclusion": "failure",
+      "humans_failure": "delegation-display late-error wait timeout at humans_ui_probe.mjs:1006/1029",
+      "humans_job_id": 122628626207,
+      "local_browser_reproduction": false,
+      "failure_cause": "not_established"
+    }
+  },
+  "pilot_states": {
+    "pepedesigner": "invited_pending_no_reminder",
+    "shibainu-inu": "availability_pending_no_reminder",
+    "maho0638": "deferred_no_real_packet",
+    "feedback_4154": "availability_pending_no_reply",
+    "boundary1042": "engineering_validation_and_author_execution_request_outside_adoption_count"
+  },
+  "direct_followups": {
+    "own_issues": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "tracking": 1002,
+    "receipt_issue": 919,
+    "mcp_pr": 712,
+    "tclk_pr": 195,
+    "new_policy_peer_replies": [
+      "https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6452019262",
+      "https://github.com/flop-labs/yellowpaper/issues/123#issuecomment-6452040010"
+    ],
+    "policy_ratified_by_these_replies": false,
+    "tclk_overlap_discussion": [
+      "https://github.com/flop-labs/tclk/pull/195#issuecomment-6456654530",
+      "https://github.com/flop-labs/tclk/pull/195#issuecomment-6457067019"
+    ],
+    "no_speculative_rebase_or_extra_tclk_suite": true
+  },
+  "readiness": {
+    "sources": [
+      {
+        "id": "verification",
+        "url": "https://flop.finance/official/",
+        "retrieved_at": "2026-10-28T13:01:46.495199+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "c2bbb6222d6b62d4af9bcac44117d1c9c21b46975b8ee9e086b6d5a929978a5b",
+        "raw_sha256": "05446aae4b3d8b0ae3bc88f5de5c386f0e40ca07da82c6472de3bfc22ec1e873",
+        "observed_text_signals": [
+          "date_is_only_target",
+          "devnet_no_weight"
+        ]
+      },
+      {
+        "id": "testnet_profile",
+        "url": "https://ask.flop.finance/networks/testnet",
+        "retrieved_at": "2026-10-28T13:01:46.413652+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "5388988f5251346ede79d385d0e41c4d81d773cbd99b59b9a1d593ef3948d546",
+        "raw_sha256": "20dc82a9e089515cae906b1c605885e26bb346061eda75dda5839ef5265b3a3c",
+        "observed_text_signals": [
+          "testnet_planned",
+          "release_unreleased",
+          "network_values_unverified",
+          "no_verified_release"
+        ]
+      }
+    ],
+    "readiness": "blocked",
+    "missing_requirements": 9,
+    "profile_revision_label": "f5b7a7e6f14f",
+    "live_session_authorized": false,
+    "own_sessions": 0,
+    "official_profile_scope": "same visible public posts; no login; temporary tab closed"
+  },
+  "health": {
+    "endpoints": {
+      "board": {
+        "error": "TimeoutError: The read operation timed out",
+        "ok": false
+      },
+      "floor": {
+        "error": null,
+        "ok": true
+      },
+      "room": {
+        "error": null,
+        "ok": true
+      },
+      "score": {
+        "error": null,
+        "ok": true
+      },
+      "stats": {
+        "error": null,
+        "ok": true
+      },
+      "status": {
+        "error": "TimeoutError: The read operation timed out",
+        "ok": false
+      }
+    },
+    "observations": {
+      "agent_census_seq": 9997001,
+      "cursor_inventory_truncated": false,
+      "did_found": false,
+      "did_score": 0,
+      "reported_cursor_metadata": {
+        "floor.seq": 21819929,
+        "room.first_seq": 21836357,
+        "room.last_seq": 21836357,
+        "score.engine_seq": 9997001,
+        "stats.origin.agent_census_seq": 9997001,
+        "stats.origin.stats_engine_seq": 9997001,
+        "stats.origin.tape_head_seq": 9997001
+      },
+      "room_generation": 0,
+      "room_head_seq": 21836357,
+      "room_retained_floor_seq": 21819929,
+      "room_retained_floor_ts": "2026-10-28T11:15:02.319562Z",
+      "score_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+      "score_engine_seq": 9997001,
+      "score_identity_matches": true,
+      "scoring_engine_gap": 11839356,
+      "stats_engine_seq": 9997001,
+      "stats_engine_warm": false,
+      "stats_tape_gap": 11839356,
+      "stats_tape_head_seq": 9997001
+    },
+    "healthy": false,
+    "cursor_mapping": "not_established",
+    "credit_for_submission": "not_determined",
+    "audit": {
+      "records": 16430,
+      "export_floor_seq": 21819929,
+      "export_tip_seq": 21836358,
+      "room_head_before_export": 21836357,
+      "coverage_verified": false,
+      "problems": [
+        "159 JOB/CLAIM prefixes have no recognizable ID or job fields"
+      ],
+      "tape_unclaimed_candidates": []
+    }
+  },
+  "signed_windows": [
+    {
+      "room": "p-flop-research-c0e0b421",
+      "first": null,
+      "last": 0,
+      "generation": 2,
+      "counts": {
+        "verified": 0,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "technocore",
+      "first": 20610892,
+      "last": 20611091,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "lobby",
+      "first": 133935962,
+      "last": 133936161,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "kibble",
+      "first": 21836211,
+      "last": 21836410,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "flop",
+      "first": 452701,
+      "last": 452900,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "flop-network",
+      "first": 685635,
+      "last": 685834,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "inference-agents",
+      "first": 553112,
+      "last": 553311,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "feedback",
+      "first": 3972,
+      "last": 4171,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    }
+  ],
+  "native_posts_today": 0,
+  "repository_validation": {
+    "tests_passed": 232,
+    "seconds": 2.142,
+    "ruff_F": "passed",
+    "unrecognized_source_control": "rejected_before_import_or_output",
+    "published_ci": [
+      {
+        "sha": "233a53dec7589a7253573fcb90369a794f15c79a",
+        "url": "https://github.com/sunriseblack/flop-agent/actions/runs/40694819168",
+        "conclusion": "success"
+      },
+      {
+        "sha": "ba095e811c9b355a6d80396300da36de087f57eb",
+        "url": "https://github.com/sunriseblack/flop-agent/actions/runs/40697802588",
+        "conclusion": "success"
+      }
+    ],
+    "temporary_worktrees_removed": 3,
+    "unrelated_files_preserved": true
+  },
+  "actual_model_usage": "unavailable",
+  "next_triggers": [
+    "author execution/application or concrete counterexample",
+    "browser gate resolution",
+    "fixture integration or authorized CI approval",
+    "existing pilot artifact",
+    "exact-version human review",
+    "verified launch artifacts"
+  ]
+}

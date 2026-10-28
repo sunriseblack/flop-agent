@@ -1,0 +1,92 @@
+{
+  "schema": "flop-workload-validation-record-v1",
+  "date": "2026-10-28",
+  "sources": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-28T13:01:47.043313+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-28T13:01:47.050272+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-28T13:01:46.500651+00:00",
+      "raw_sha256": "e00baaab8d1cf8e16da4a813d2d89fe334ed9fe7f81ab4165ea29d3f77ec13cc",
+      "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218"
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-28T13:01:46.637199+00:00",
+      "raw_sha256": "f0742b85ac6a24cd12579a3f72914dc2b242848dd4b2f67278bfc65943a5cef0",
+      "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0"
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-28T13:01:46.895819+00:00",
+      "raw_sha256": "88545d5e3ea97b8ddde8e3c6a7471e632bcad3782553bad1d3868f0e3c46f718",
+      "text_sha256": "7e17bfdbe88cc6672d91e1aa321904f4e8d9578a696bd4b6cecc50719c0c8761"
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-28T13:01:47.113449+00:00",
+      "raw_sha256": "16f41cfa1d0c60ccb57e891ad1c4faf8b1714763ffa1b9a9c7069f754134f4ba",
+      "text_sha256": "d6dd26cb3ff30586e263baae3c1943478793609bea929e1c8ff0513302f0a742"
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-28T13:01:47.309409+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+      "retrieved_at": "2026-10-28T13:01:47.274686+00:00",
+      "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "corpus_file_sha256": "cc8579707a4cab66f9b2355d300657626c90fce7af08712eedf16f08165a785b",
+  "bundle_file_sha256": "dd28de80627bf0b7c1197290a25c787be02d50fdf22f7092afff6d76f7241548",
+  "jobs_sha256": "0907945ab6547d26655f5068b8516ed979fad3da0b767a9f83f5f57e37fc707b",
+  "changed_tasks": [],
+  "unchanged_tasks": [
+    "signature-scope",
+    "cursor-window",
+    "testnet-demand",
+    "unlock-versus-allocation",
+    "document-conflict",
+    "implementation-gap",
+    "identity-binding",
+    "individual-award",
+    "money-path-scope",
+    "operator-delegation-conflict"
+  ],
+  "changed_evaluation_rules": 0,
+  "cached_responses_sha256": "ab2a8d2de1a1c2f2e0c753889135924ff2c34794463dd0181448bdc5485f07ee",
+  "mechanical_passes": 10,
+  "review_sha256": "762f64aa72bec6a79c05eebfd6aff3ee9dfb162ae67f9e065b3e40334aa3cf90",
+  "review_status_sha256": "ccf70ec4ebf25ad928af0f20c068f6f43687c857cd4affce5e642ced2edcd094",
+  "matching_supplied_approvals": 0,
+  "binding_mismatches": 6,
+  "decisions_not_supplied": 4,
+  "new_model_calls": 0,
+  "new_review_packet_exports": 0,
+  "publication_authorized": false,
+  "semantic_review": "required",
+  "live_flop_sessions": 0,
+  "source_snapshots_or_prompts_published": false
+}

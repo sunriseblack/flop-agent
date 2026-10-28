@@ -62,3 +62,21 @@ This is a reported synthetic regression repair, not an existing signed packet
 or a kit run; the real-case pilot remains deferred. The other two requests
 have no new reply and were not repeated. No independent real-case adoption
 is added to the count by our own compatibility or fixture runs.
+
+## Related engineering validation, outside the adoption count
+
+On October 28 we used the existing public signed flop 327293 packet to
+validate additional callers of zkasuran's
+[PR 1042](https://github.com/flop-labs/technocore-chat/pull/1042).
+The byte alignment and unsigned filler are synthetic local-store conditions;
+the signed fields remain unchanged. This is an actual source defect reproduced
+offline, not a measured live loss of that historical receipt.
+
+Our [published probe](BOUNDARY_READER_VALIDATION_2026-10-28.md) and compatibility
+pack distinguish JSON omission from an intact export before the fix and exact
+matches in both transports after it. We delivered an
+[author execution request](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6469989680)
+with source pins and commands. State: validated locally, request delivered,
+author execution pending. No new independent real-case adoption or confirmed
+usefulness report is added; do not reopen the earlier unchanged review rounds
+or repeat this request while unanswered.
