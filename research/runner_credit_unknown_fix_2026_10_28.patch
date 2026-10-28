@@ -1,0 +1,136 @@
+diff --git a/flop_agent.py b/flop_agent.py
+index b816eb9..f80acb3 100644
+--- a/flop_agent.py
++++ b/flop_agent.py
+@@ -854,10 +854,22 @@ def inference_spend_for(network: Network, address: str) -> dict | None:
+     body = explorer_fetch(network, f"accounts/{address}/inference-spend")
+     if body is None:
+         return None
++    raw = body.get("totalSpentRaw")
++    if isinstance(raw, bool) or not isinstance(raw, (str, int)) or not re.fullmatch(r"[0-9]+", str(raw)):
++        raise AgentError("malformed inference-spend summary: totalSpentRaw must be an unsigned integer")
++    if any(isinstance(body.get(field), bool) or not isinstance(body.get(field), int)
++           or body[field] < 0 for field in ("channelCount", "settledChannels")):
++        raise AgentError("malformed inference-spend summary: counts must be non-negative integers")
++    try:
++        total = raw_to_flop(raw)
++    except OverflowError as error:
++        raise AgentError("malformed inference-spend summary: amount exceeds the supported display range") from error
++    if total is None:
++        raise AgentError("malformed inference-spend summary: amount could not be read")
+     return {
+-        "total_spent_flop": raw_to_flop(body.get("totalSpentRaw")),
+-        "channel_count": body.get("channelCount"),
+-        "settled_channels": body.get("settledChannels"),
++        "total_spent_flop": total,
++        "channel_count": body["channelCount"],
++        "settled_channels": body["settledChannels"],
+     }
+ 
+ 
+@@ -875,7 +887,9 @@ def resolve_subject(subject: str) -> tuple[str | None, str]:
+ def credit_report(network: Network, subject: str, channel_limit: int = 20) -> dict:
+     """Key-free check of the settled inference spend that FLOP's chain attributes to an account."""
+     did, address = resolve_subject(subject)
+-    spend = inference_spend_for(network, address) or {"total_spent_flop": 0.0, "channel_count": 0, "settled_channels": 0}
++    spend = inference_spend_for(network, address)
++    if spend is None:
++        raise AgentError("inference-spend summary unavailable; cannot determine settled spend")
+     account = explorer_fetch(network, f"accounts/{address}") or {}
+     query = urllib.parse.urlencode({"agent": address, "limit": channel_limit, "offset": 0})
+     listing = explorer_fetch(network, f"compute-channels?{query}") or {}
+@@ -891,7 +905,10 @@ def credit_report(network: Network, subject: str, channel_limit: int = 20) -> di
+         for item in listing.get("data", [])
+         if isinstance(item, dict) and item.get("agent") == address
+     ]
+-    settled = int(spend.get("settled_channels") or 0)
++    settled = spend["settled_channels"]
++    if not settled and any(c["status"] in {"settled", "finalized"} or c["payment_status"] == "PAID"
++                           for c in channels):
++        raise AgentError("explorer summary and channel views disagree; cannot determine absent settled spend")
+     if settled:
+         verdict = (
+             f"{settled} settled compute channel(s) paid by this account, {spend['total_spent_flop']:g} FLOP in total. "
+diff --git a/tests/test_flop_agent_credit_unknown.py b/tests/test_flop_agent_credit_unknown.py
+new file mode 100644
+index 0000000..7710109
+--- /dev/null
++++ b/tests/test_flop_agent_credit_unknown.py
+@@ -0,0 +1,77 @@
++"""Issue 1: unavailable/malformed explorer views must not establish zero spend."""
++
++import contextlib
++import io
++import sys
++import unittest
++from unittest import mock
++
++from test_flop_agent import ALICE, DEVNET, agent
++
++
++ZERO = {"totalSpentRaw": "0", "channelCount": 0, "settledChannels": 0}
++PAID = {"channelId": "existing-control", "agent": ALICE, "miner": "public-miner-control",
++        "status": "settled", "paymentStatus": "PAID", "minerPaid": "1000000000000000000"}
++
++
++def fake_http(status, summary, channels=()):
++    def get(method, url, **kwargs):
++        if method != "GET":
++            raise AssertionError("read-only credit checks must use GET")
++        if url.endswith("/inference-spend"):
++            return status, summary
++        if "/compute-channels?" in url:
++            return 200, {"data": list(channels)}
++        return 200, {"balance": "0"}
++    return get
++
++
++class UnknownCreditTests(unittest.TestCase):
++    def test_missing_or_incomplete_summary_is_not_zero(self):
++        cases = [(404, {}), (200, {}), (200, {"totalSpentRaw": "0", "channelCount": 0}),
++                 (200, {"channelCount": 0, "settledChannels": 0})]
++        for status, summary in cases:
++            with self.subTest(status=status, summary=summary), mock.patch.object(
++                    agent, "http_json", fake_http(status, summary)):
++                with self.assertRaises(agent.AgentError):
++                    agent.credit_report(DEVNET, ALICE)
++
++    def test_unsigned_amounts_and_integer_counts_are_required(self):
++        cases = [{**ZERO, "totalSpentRaw": v} for v in (True, -1, "-1", "NaN", 0.5, "9" * 400, "9" * 5000)]
++        cases += [{**ZERO, field: v} for field in ("channelCount", "settledChannels")
++                  for v in (True, -1, "0", None)]
++        for summary in cases:
++            with self.subTest(summary=summary), mock.patch.object(agent, "http_json", fake_http(200, summary)):
++                with self.assertRaises(agent.AgentError):
++                    agent.credit_report(DEVNET, ALICE)
++
++    def test_zero_summary_does_not_deny_a_matching_paid_channel(self):
++        with mock.patch.object(agent, "http_json", fake_http(200, ZERO, [PAID])):
++            with self.assertRaises(agent.AgentError):
++                agent.credit_report(DEVNET, ALICE)
++
++    def test_explicit_zero_positive_and_503_controls(self):
++        for summary, channels, expected in [(ZERO, [], 0),
++                ({"totalSpentRaw": "1000000000000000000", "channelCount": 1, "settledChannels": 1}, [PAID], 1)]:
++            with self.subTest(expected=expected), mock.patch.object(agent, "http_json", fake_http(200, summary, channels)):
++                report = agent.credit_report(DEVNET, ALICE)
++                self.assertEqual(report["settled_channels"], expected)
++                self.assertEqual(report["credited_inference_spend_flop"], float(expected))
++        with mock.patch.object(agent, "http_json", fake_http(503, {"error": "unavailable"})):
++            with self.assertRaises(agent.AgentError):
++                agent.credit_report(DEVNET, ALICE)
++
++    def test_credit_cli_fails_without_successful_zero_or_key_loading(self):
++        out, err = io.StringIO(), io.StringIO()
++        with mock.patch.object(sys, "argv", ["flop_agent.py", "credit", ALICE]), mock.patch.object(
++                agent, "http_json", fake_http(404, {})), mock.patch.object(
++                agent, "load_signing_key", side_effect=AssertionError("must not load a key")), \
++                contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
++            code = agent.main()
++        self.assertEqual(code, 1)
++        self.assertEqual(out.getvalue(), "")
++        self.assertIn("summary", err.getvalue())
++
++
++if __name__ == "__main__":
++    unittest.main()

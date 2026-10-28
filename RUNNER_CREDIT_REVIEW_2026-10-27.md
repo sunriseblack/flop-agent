@@ -66,4 +66,69 @@ our evidence kit or FLOP session is claimed.
 [Issue 1](https://github.com/danenright/flop-agent-runner/issues/1) was delivered
 under `sunriseblack` at 13:24:45 UTC and read back exactly. The GitHub connector
 rejected creation with 403; the existing CLI connection then succeeded after
-checking that no issue had been created. Await the author's repaired revision.
+checking that no issue had been created.
+
+## October 28: a tested candidate for the original author
+
+The peer's main remains `547b4d6fa419311bcfc4c6dc157f72d0fe8974bb`, with no
+reply on issue 1. We prepared a [two-file candidate patch](research/runner_credit_unknown_fix_2026_10_28.patch)
+for that exact revision. This is new repair material on the existing issue,
+not a new upstream PR, author-branch mutation or claim of accepted repair.
+
+The patch removes the fabricated zero fallback and validates the amount and
+both required count fields before forming a report. Missing summaries,
+incomplete or malformed fields, unsupported amounts and an explicit zero
+settled count alongside a matching paid/settled channel produce `AgentError`.
+An explicit valid zero remains zero, a positive summary remains positive,
+and HTTP 503 remains an error. The `credit` CLI fails with exit 1 and no
+successful zero report when the summary is unavailable; its key-loader
+negative verifies that this read-only path does not load a signing key.
+
+The patch leaves the peer's existing float display, account-mapping logic,
+positive credit language and broker-policy wording unchanged. Those remain
+separate limitations: a successful explorer report is not authoritative
+future airdrop policy or finalized chain/allocation proof. Other malformed
+account/channel shapes are outside this focused summary-validation repair.
+
+### Reproduce in a clean disposable checkout
+
+Download the patch from an immutable publication revision and verify:
+
+```text
+patch SHA-256: 463403e256535d190fd68a1bee5738f4a5aef783c07c73cfd4122a46f6440e86
+patched flop_agent.py SHA-256: 1a43da469737073c424b2d7ea7f034ad96efbb8caa156837de51bea6a5fbee0f
+new test file SHA-256: f9d16e651f2f5ddcdcad0b3e885df506e3a90a021fe16eb40cf940800593524a
+```
+
+In that clean peer checkout, at the pinned commit, with its test dependencies
+installed and `candidate.patch` referring to the verified download:
+
+```bash
+git apply --check candidate.patch
+git apply candidate.patch
+python -m unittest discover -s tests -v
+```
+
+These tests use mocked GET responses and existing public test-account fixtures.
+They do not contact an explorer, execute a funded cycle, load our participant
+key, create another participant identity or prove a live account result.
+The original six-case diagnostic above intentionally asserts the old behavior
+and is source-pinned; do not run it as a fixed-source acceptance test.
+
+### Checks and acceptance boundary
+
+Python 3.12.4 on Darwin, with the peer's pinned `cryptography==50.0.0` and
+optional `py-sr25519-bindings==0.2.4`, passes the original 76 tests. Against
+unmodified source, the five new methods expose 20 failed subcases and one
+overflow error, while their explicit-zero/positive/503 control method passes.
+After applying the exact source patch in a second disposable checkout, all
+81 tests pass in 0.101 seconds. Source and test bytes match the candidate copy;
+`git apply --check`, Ruff F checks and `git diff --check` pass. The added
+amount controls include 400- and 5,000-digit strings to exercise unsupported
+conversion paths without accepting a fabricated zero.
+
+These are our offline results. Author application, independent execution,
+upstream CI and accepted repair remain pending. They are not evidence-kit
+adoption or a FLOP inference session. The next useful action is the author's
+review/application or a concrete counterexample, followed by validation of
+the actual accepted source.
