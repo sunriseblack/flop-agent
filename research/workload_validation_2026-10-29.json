@@ -1,0 +1,83 @@
+{
+  "schema": "flop-workload-validation-record-v1",
+  "date": "2026-10-29",
+  "sources": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-29T13:00:49.784465+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-29T13:00:50.042622+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-29T13:00:49.358553+00:00",
+      "raw_sha256": "7c38088c519d98b09e2fc03d0681fb9911916fa854db26063a89befc0311d956",
+      "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218"
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-29T13:00:50.166733+00:00",
+      "raw_sha256": "e2a33e72a9c0ec865784f4954f4bf063235669ccc182925ae2fba316e70fd9fe",
+      "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0"
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-29T13:00:50.767003+00:00",
+      "raw_sha256": "1fe2c345e3d7a0635f5c14f15f72490dee7dee025a3d89d5c4f7dfa8c768d096",
+      "text_sha256": "7e17bfdbe88cc6672d91e1aa321904f4e8d9578a696bd4b6cecc50719c0c8761"
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-29T13:00:51.577786+00:00",
+      "raw_sha256": "676cb15524212732ff836b58ac04a489ad1174d494e95d36705e0760b2a184fa",
+      "text_sha256": "d6dd26cb3ff30586e263baae3c1943478793609bea929e1c8ff0513302f0a742"
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-29T13:00:51.577970+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+      "retrieved_at": "2026-10-29T13:00:51.590718+00:00",
+      "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "corpus_file_sha256": "c7a0dff882ec49a9ee84918fa52a6feb400a14702473e7cca0f53369514bd147",
+  "bundle_file_sha256": "e1e8277a7a14eaadfab39ec45b29fb17fbfec100525bf176a09bd97994504dcc",
+  "jobs_sha256": "0907945ab6547d26655f5068b8516ed979fad3da0b767a9f83f5f57e37fc707b",
+  "comparison_reference": "research/workload_validation_2026-10-28.json",
+  "all_source_text_hashes_unchanged": true,
+  "aggregate_job_digest_matches_previous_manifest": true,
+  "prepared_tasks": 10,
+  "previous_private_bundle_available": false,
+  "cached_responses_available": false,
+  "original_approval_packets_available": false,
+  "historical_compare_command_rerun": false,
+  "cached_grade_rerun": false,
+  "review_status_rerun": false,
+  "approval_status": "not_reconstructed_from_public_hashes",
+  "new_model_calls": 0,
+  "new_drafts": 0,
+  "new_review_packet_exports": 0,
+  "publication_authorized": false,
+  "semantic_review": "requires_original_bound_evidence",
+  "live_flop_sessions_today": 0,
+  "source_snapshots_or_prompts_published": false
+}

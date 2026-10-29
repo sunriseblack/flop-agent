@@ -80,3 +80,11 @@ with source pins and commands. State: validated locally, request delivered,
 author execution pending. No new independent real-case adoption or confirmed
 usefulness report is added; do not reopen the earlier unchanged review rounds
 or repeat this request while unanswered.
+
+October 29: the retained feedback window still includes the original seq 4154
+request without a substantive answer. The other pending/deferred cases have
+no new execution evidence. The relocated checkout lacks its original private
+identity and review history; do not manufacture a new identity or approval
+packet to continue outreach. Read-only checks and GitHub source contributions
+can continue. Clock-PR validation is a separate engineering contribution and
+adds no independent real-case kit execution to this ledger.

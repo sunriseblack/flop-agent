@@ -79,3 +79,9 @@ approval remain separate. Current upstream CI run 40802691727 and guard run 4080
 maintainer approval; queue guard 40802781600 succeeds. No approval was bypassed,
 author branch rewritten or competing upstream PR created. Raw logs and
 disposable source copies stay private.
+
+The [validation and companion patch handoff](https://github.com/flop-labs/technocore-chat/pull/1051#issuecomment-6497610728)
+was delivered as `sunriseblack` at 13:11:33 UTC and read back exactly. It pins
+our publication `723441b6a8caadefef0b1c766d73467cbf8a2c6b` and asks the original
+author to apply/review and rerun the gates. Delivery is verified; author
+application and response remain pending.

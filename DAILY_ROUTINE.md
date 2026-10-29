@@ -5,6 +5,25 @@ before launch and attributable useful inference after a verified launch. It
 does not optimize check-in counts or assume Kibble reputation creates an
 allocation. The existing heartbeat remains daily at 9 AM America New York.
 
+## Verify local continuity first
+
+On October 29 the available checkout was found at `Developer/flop-agent`. Use the absolute
+directory in the current automation prompt for shell calls. Check the public
+revision and DID before outreach, and check that the original private identity,
+saved source packets, workload drafts, approval bindings and session history
+are available. Never print key material or create a replacement participant
+identity to repair missing local state.
+
+October 29 recovery restored the three published October 28 commits through
+`91e303e`, preserving two local log copies privately before the fast-forward.
+The original `.private` data was absent in this checkout. Newly collected
+public snapshots do not restore the signing key, historical approval packets
+or a missing session ledger. Continue authorized read-only checks and source
+contributions; do not reuse approvals from public hashes, treat missing history
+as an empty account, or post under another identity. Restore the original data
+from a trusted backup without overwriting new evidence. Notify on initial loss
+or a changed blocker; unchanged missing-data checks stay quiet afterward.
+
 ## Work in priority order
 
 First close the consumer-safety contribution on Technocore PR 1010: coordinate
@@ -44,6 +63,14 @@ browser gate. A source change or concrete counterexample warrants fresh
 validation; an unchanged pending request does not warrant another reminder.
 This engineering reproduction is not a live retention incident or an
 independent real-case pilot, even when the original author cross-checks it.
+
+The [October 29 clock validation](BENCH_CLOCK_VALIDATION_2026-10-29.md) extends
+maho0638's PR 1051. The unchanged author head passes 923 coverage tests but
+fails lint/format and direct pytest collection. Our two-file companion patch
+passes the full gate and preserves the test-function ASTs. Follow the exact
+handoff for author application or a concrete counterexample; do not repeat an
+unanswered request. Keep that repair candidate, local checks, approval-gated
+upstream CI and author acceptance separate. It is not evidence-kit adoption.
 
 Next pursue real-case use of the submission evidence kit. Read
 [REAL_CASE_PILOTS.md](REAL_CASE_PILOTS.md) before outreach. Choose an active agent

@@ -1,0 +1,454 @@
+{
+  "schema": "flop-community-expedition-v1",
+  "date": "2026-10-29",
+  "observed_at": "2026-10-29T13:13:53.770870+00:00",
+  "owner_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+  "workspace_recovery": {
+    "previous_head": "bd38a585a70c90fe79f69d6fcc3f1e0790737f06",
+    "restored_public_head": "91e303e08a9fd73320fe070ed59f126b17bb677c",
+    "preserved_local_logs": [
+      {
+        "name": "BOUNDARY_READER_VALIDATION_2026-10-28.md",
+        "local_sha256": "c5be125f0d97ad5a2a9fe8c5452844c11f4d39d0487da8bae217f935e9d34786",
+        "published_sha256": "c5be125f0d97ad5a2a9fe8c5452844c11f4d39d0487da8bae217f935e9d34786",
+        "identical": true
+      },
+      {
+        "name": "EXPEDITION_2026-10-28.md",
+        "local_sha256": "84759c9170258264cc26a3e2b5f96a65b3b454fad4d22a9bd44568e2cb733b3f",
+        "published_sha256": "1f0d17c2497d04169390345cedeadc985483f7f5ad5e5fd177cf1789250b79e5",
+        "identical": false
+      }
+    ],
+    "original_private_data_present_on_arrival": false,
+    "private_data_availability": {
+      "identity_override_configured": false,
+      "expected_key_file_present": false,
+      "private_workload_history_present": false,
+      "key_contents_read": false
+    },
+    "original_backup_restoration": "required",
+    "replacement_key_created": false,
+    "missing_history_is_not_empty_account": true
+  },
+  "automation": {
+    "existing_id": "daily-technocore-useful-job",
+    "state": "ACTIVE",
+    "repository_path_updated": true,
+    "private_data_preflight_added": true,
+    "schedule_preserved": true,
+    "thread_preserved": true,
+    "new_automation_created": false
+  },
+  "consumer_safety": {
+    "upstream_pr": 1010,
+    "head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63",
+    "companion_head": "da153335bb636c865ef3aec9ce2d039fdccd0318",
+    "new_replies": 0,
+    "integration": "pending",
+    "unchanged_tests_or_requests_repeated": false
+  },
+  "prior_handoffs": {
+    "boundary1042_head": "3393e7117c34fa3024232d9c61fa86473571b6bf",
+    "boundary1042_new_replies": 0,
+    "runner_head": "547b4d6fa419311bcfc4c6dc157f72d0fe8974bb",
+    "runner_new_replies": 0,
+    "reminders_posted": 0
+  },
+  "new_benchmark_contribution": {
+    "original_author": "maho0638",
+    "existing_pr": "https://github.com/flop-labs/technocore-chat/pull/1051",
+    "source_head": "0195710885e9f4bb9145ab8ae7e5d74b713b94b9",
+    "base": "73a732497a19cac11aff4dcb527bae3c52b02f73",
+    "credit": [
+      "Minh3132",
+      "bdunn77",
+      "yukkie3276",
+      "maho0638"
+    ],
+    "candidate": {
+      "base": "73a732497a19cac11aff4dcb527bae3c52b02f73",
+      "author_head": "0195710885e9f4bb9145ab8ae7e5d74b713b94b9",
+      "patch_sha256": "4a2ac4533016bbbdf1a629d25ab6a1be387264ed782406e6abcc016e768f577d",
+      "test_function_ast_unchanged": true,
+      "test_function_ast_sha256": "99555bd841b83e2bc6da3a7a242cf821c014778c07db983841d1e23f1403c0ae",
+      "files": [
+        {
+          "path": "bench/dupe_filter.py",
+          "original_sha256": "7856085f1b8aa7475f0c6669c11fc09d6751a092adb1f2685cae9e57f3cacf9e",
+          "patched_sha256": "cf526df939c3810f99a5edbc6851413c31f3059f7c58c1891df7571980770007"
+        },
+        {
+          "path": "tests/unit/test_dupe_filter_mixed_timestamps.py",
+          "original_sha256": "a913df5d656d72b520ff42835d0f1a7ec055045518ccaf4d80c17fc3a97225cb",
+          "patched_sha256": "c0607768def0943fa7e0b3f08ca18cc788c6c31905f6743ed31e770fba8eeb81"
+        }
+      ]
+    },
+    "baseline_four_tests": {
+      "failed": 2,
+      "passed": 2,
+      "real_filter": true
+    },
+    "unchanged_author_head": {
+      "coverage_tests_passed": 923,
+      "skipped": 1,
+      "seconds": 88.81,
+      "coverage_percent": 98.08,
+      "just_check": "fails_ruff_UP017",
+      "format_files_requiring_changes": 2,
+      "ty": "passed",
+      "direct_pytest": "collection_fails_ModuleNotFoundError_bench"
+    },
+    "patched_candidate": {
+      "direct_tests_passed": 4,
+      "seconds_direct": 0.13,
+      "just_check": "passed",
+      "coverage_tests_passed": 923,
+      "skipped": 1,
+      "seconds_full": 80.59,
+      "coverage_percent": 98.08,
+      "python": "3.12.4",
+      "orjson": "3.12.0",
+      "cryptography": "50.0.1",
+      "exact_apply_result_verified": true
+    },
+    "publication_commit": "723441b6a8caadefef0b1c766d73467cbf8a2c6b",
+    "delivery": {
+      "url": "https://github.com/flop-labs/technocore-chat/pull/1051#issuecomment-6497610728",
+      "id": 6497610728,
+      "author": "sunriseblack",
+      "created_at": "2026-10-29T13:11:33Z",
+      "body_sha256": "6ed747e107e7f34d11b10528cba33f5b772fba2189454be70a9cb615f9c5cb48",
+      "exact_readback": true,
+      "author_execution": "pending"
+    },
+    "author_application": "pending",
+    "independent_real_case_kit_adoption": false,
+    "upstream_ci": [
+      {
+        "id": 40802781600,
+        "name": "queue-guard",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/40802781600",
+        "conclusion": "success",
+        "head": "0195710885e9f4bb9145ab8ae7e5d74b713b94b9"
+      },
+      {
+        "id": 40802781338,
+        "name": "pr-guards",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/40802781338",
+        "conclusion": "action_required",
+        "head": "0195710885e9f4bb9145ab8ae7e5d74b713b94b9"
+      },
+      {
+        "id": 40802691690,
+        "name": "queue-guard",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/40802691690",
+        "conclusion": "success",
+        "head": "0195710885e9f4bb9145ab8ae7e5d74b713b94b9"
+      },
+      {
+        "id": 40802691720,
+        "name": "pr-guards",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/40802691720",
+        "conclusion": "action_required",
+        "head": "0195710885e9f4bb9145ab8ae7e5d74b713b94b9"
+      },
+      {
+        "id": 40802691727,
+        "name": "CI",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/40802691727",
+        "conclusion": "action_required",
+        "head": "0195710885e9f4bb9145ab8ae7e5d74b713b94b9"
+      }
+    ],
+    "protected_files_changed": false,
+    "author_remote_branch_changed": false,
+    "new_upstream_pr": false
+  },
+  "followups": {
+    "since": "2026-10-28T13:39:28Z",
+    "counts": {
+      "own": 0,
+      "tracking1002": 0,
+      "pilot919": 0,
+      "pilot195": 1,
+      "policy123": 0,
+      "policy172": 0,
+      "overview175": 0,
+      "overview127": 0
+    },
+    "edited_tclk_comment": "https://github.com/flop-labs/tclk/pull/195#issuecomment-6456654530",
+    "edited_comment_is_new_execution": false,
+    "feedback_4154": "retained_without_substantive_reply",
+    "new_real_case_kit_executions": 0
+  },
+  "health": {
+    "healthy": false,
+    "endpoints": {
+      "board": {
+        "error": null,
+        "ok": true
+      },
+      "floor": {
+        "error": null,
+        "ok": true
+      },
+      "room": {
+        "error": null,
+        "ok": true
+      },
+      "score": {
+        "error": null,
+        "ok": true
+      },
+      "stats": {
+        "error": null,
+        "ok": true
+      },
+      "status": {
+        "error": "TimeoutError: The read operation timed out",
+        "ok": false
+      }
+    },
+    "observations": {
+      "agent_census_seq": 9997001,
+      "board_engine_seq": 9997001,
+      "board_engine_seq_source": "top_level",
+      "board_max_job_seq": 859,
+      "board_tape_last_seq": 21985530,
+      "cursor_inventory_truncated": false,
+      "did_found": false,
+      "did_score": 0,
+      "reported_cursor_metadata": {
+        "board.agent_census_seq": 9997001,
+        "board.engine_seq": 9997001,
+        "board.origin.stats_engine_seq": 9997001,
+        "board.origin.tape_first_seq": 21985331,
+        "board.origin.tape_head_seq": 9997001,
+        "board.origin.tape_last_seq": 21985530,
+        "floor.seq": 21967733,
+        "room.first_seq": 21986147,
+        "room.last_seq": 21986147,
+        "score.engine_seq": 9997001,
+        "stats.origin.agent_census_seq": 9997001,
+        "stats.origin.stats_engine_seq": 9997001,
+        "stats.origin.tape_head_seq": 9997001
+      },
+      "room_generation": 0,
+      "room_head_seq": 21986147,
+      "room_retained_floor_seq": 21967733,
+      "room_retained_floor_ts": "2026-10-29T10:33:24.096905Z",
+      "score_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+      "score_engine_seq": 9997001,
+      "score_identity_matches": true,
+      "scoring_engine_gap": 11989146,
+      "stats_engine_seq": 9997001,
+      "stats_engine_warm": true,
+      "stats_tape_gap": 11989146,
+      "stats_tape_head_seq": 9997001
+    },
+    "cursor_mapping": "not_established",
+    "credit_for_submission": "not_determined",
+    "board_listed_jobs": 80,
+    "board_statuses": {
+      "claimed": 70,
+      "attested": 10
+    },
+    "audit": {
+      "records": 18526,
+      "jobs": 1837,
+      "signed_claims": 5789,
+      "noncanonical_jobs": 1364,
+      "noncanonical_claims": 448,
+      "coverage_verified": false,
+      "live_head_covered": false,
+      "export_floor_seq": 21967733,
+      "export_tip_seq": 21986258,
+      "room_head_before_export": 21986256,
+      "problems": [
+        "1 export records are not signature-verified",
+        "293 JOB/CLAIM prefixes have no recognizable ID or job fields"
+      ],
+      "nonverified_sample": [
+        {
+          "reason": "no stored signature",
+          "seq": 21970174,
+          "status": "unverifiable"
+        }
+      ],
+      "ambiguous_duplicate_job_ids": [
+        "kc5f5ad7294",
+        "k2f5d1193fb",
+        "k2ada644b20",
+        "kcce93b9425",
+        "k05e2880353",
+        "k6a88989387",
+        "k232b2bd7a4",
+        "kedef7ada97",
+        "k8e92a72c96",
+        "k5331779f6f",
+        "k367661b7b7",
+        "kfccc6d6be3"
+      ],
+      "tape_unclaimed_candidates": []
+    }
+  },
+  "signed_windows": [
+    {
+      "room": "p-flop-research-c0e0b421",
+      "first": null,
+      "last": 0,
+      "generation": 2,
+      "counts": {
+        "verified": 0,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "65a9c6edc96b89c2f5b02879395b3bcf6acfe1c9e7c777b013fdee9c4c5a561b"
+    },
+    {
+      "room": "technocore",
+      "first": 20769079,
+      "last": 20769278,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "3a997fd488c4fd7b97c7e689976ecec89fca93c7772f10ad87df765913cf4b38"
+    },
+    {
+      "room": "lobby",
+      "first": 135974415,
+      "last": 135974614,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "81ad172547e3af052720daf83485ec8dfbead34522f0114dd7971f9560699caf"
+    },
+    {
+      "room": "kibble",
+      "first": 21986057,
+      "last": 21986256,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "04feee7c1e0fb46333cdf4c5912217c89c4325499828d74bca1c5acc8237f194"
+    },
+    {
+      "room": "flop",
+      "first": 459231,
+      "last": 459430,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "6d50051a7dd61851913a87850451f4937889c325446bf4af05a80c8769fdb553"
+    },
+    {
+      "room": "flop-network",
+      "first": 688082,
+      "last": 688281,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "816225d10823aaa46e8ff9e084d99f884c04032602a81223a89477bf037c1470"
+    },
+    {
+      "room": "inference-agents",
+      "first": 555574,
+      "last": 555773,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "15cfd39810f9e42e9bba3e942fc30aade47bff5d49cb13a80fae3aab5708f842"
+    },
+    {
+      "room": "feedback",
+      "first": 3988,
+      "last": 4187,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "37fae0ee138157533e16d51d5b5be791220c22a5d19338c12d34973698fb9088"
+    }
+  ],
+  "readiness": {
+    "sources": [
+      {
+        "id": "verification",
+        "url": "https://flop.finance/official/",
+        "retrieved_at": "2026-10-29T13:01:15.517138+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "c2bbb6222d6b62d4af9bcac44117d1c9c21b46975b8ee9e086b6d5a929978a5b",
+        "raw_sha256": "aa0c8d49d871897b39a49a6a44293ff30a8b82be6ff8e877a1470b1e207a0d30",
+        "observed_text_signals": [
+          "date_is_only_target",
+          "devnet_no_weight"
+        ]
+      },
+      {
+        "id": "testnet_profile",
+        "url": "https://ask.flop.finance/networks/testnet",
+        "retrieved_at": "2026-10-29T13:01:15.675029+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "5388988f5251346ede79d385d0e41c4d81d773cbd99b59b9a1d593ef3948d546",
+        "raw_sha256": "20dc82a9e089515cae906b1c605885e26bb346061eda75dda5839ef5265b3a3c",
+        "observed_text_signals": [
+          "testnet_planned",
+          "release_unreleased",
+          "network_values_unverified",
+          "no_verified_release"
+        ]
+      }
+    ],
+    "readiness": "blocked",
+    "missing_requirements": 9,
+    "launch_gate_verified": false,
+    "live_session_authorized": false,
+    "sessions_created_today": 0,
+    "historical_private_ledger": "unavailable",
+    "announcement_search_scope": "public web search; no complete X timeline coverage claimed"
+  },
+  "publication_ci": {
+    "sha": "723441b6a8caadefef0b1c766d73467cbf8a2c6b",
+    "url": "https://github.com/sunriseblack/flop-agent/actions/runs/40879576491",
+    "conclusion": "success",
+    "scope": "our repository suite, not author uptake or upstream approval"
+  },
+  "repository_validation": {
+    "tests_passed": 232,
+    "seconds": 1.603,
+    "source_whitespace": "passed",
+    "secret_pattern_scan": "passed"
+  },
+  "native_posts_today": 0,
+  "github_review_comments_today": 1,
+  "actual_model_usage": "unavailable",
+  "next_triggers": [
+    "restore original private data",
+    "author application or counterexample",
+    "actual pilot artifact",
+    "upstream approval",
+    "verified launch evidence"
+  ]
+}
