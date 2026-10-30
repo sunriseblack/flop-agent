@@ -1,0 +1,465 @@
+{
+  "schema": "flop-community-expedition-v1",
+  "date": "2026-10-30",
+  "observed_at": "2026-10-30T13:24:00.259300+00:00",
+  "owner_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+  "workspace": {
+    "public_head_before": "b7fb2a54bccb536a6277b3b3f7589e985435f022",
+    "original_private_key_present": false,
+    "historical_review_data_present": false,
+    "missing_data_state": "unchanged_already_notified",
+    "new_identity_created": false,
+    "key_contents_loaded": false
+  },
+  "consumer_safety": {
+    "original_author": "osr21",
+    "upstream_head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63",
+    "companion_head": "da153335bb636c865ef3aec9ce2d039fdccd0318",
+    "new_replies": 0,
+    "integration": "pending",
+    "ci": [
+      {
+        "id": 40239244903,
+        "name": "CI",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/40239244903",
+        "conclusion": "action_required",
+        "head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63"
+      },
+      {
+        "id": 40239244816,
+        "name": "pr-guards",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/40239244816",
+        "conclusion": "action_required",
+        "head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63"
+      },
+      {
+        "id": 40239244756,
+        "name": "queue-guard",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/40239244756",
+        "conclusion": "success",
+        "head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63"
+      }
+    ],
+    "unchanged_suite_or_handoff_repeated": false
+  },
+  "bench1051": {
+    "original_author": "maho0638",
+    "uptake": {
+      "accepted_commit": "84d5142f27844f8e55bded837ede757dbde8eaec",
+      "new_head": "d1709fa4992cda6f8fe2bf41a8040d33f4804132",
+      "files": [
+        {
+          "path": "bench/dupe_filter.py",
+          "accepted_sha256": "cf526df939c3810f99a5edbc6851413c31f3059f7c58c1891df7571980770007",
+          "matches_published_candidate": true
+        },
+        {
+          "path": "tests/unit/test_dupe_filter_mixed_timestamps.py",
+          "accepted_sha256": "c0607768def0943fa7e0b3f08ca18cc788c6c31905f6743ed31e770fba8eeb81",
+          "matches_published_candidate": true
+        }
+      ],
+      "author_runtime_execution": "not_claimed"
+    },
+    "source": {
+      "head": "d1709fa4992cda6f8fe2bf41a8040d33f4804132",
+      "files": {
+        "bench/dupe_filter.py": "d47b9a3d6ebaccba2f854471b0884a6ceafa88393ae6d1697662dd5bbf1c020b",
+        "tests/unit/test_dupe_filter_mixed_timestamps.py": "9ed27660a83f300dfd8245203bb12b3ce49e4dbc04ec93d32cf89f72c68c50f6"
+      },
+      "source_clean": true
+    },
+    "author_runtime_execution": "not_claimed",
+    "local_current_head_validation": {
+      "direct_tests": 4,
+      "direct_seconds": 0.06,
+      "just_check": "passed",
+      "tests_passed": 923,
+      "skipped": 1,
+      "seconds": 86.46,
+      "coverage_percent": 98.08,
+      "label_negative_on_previous_source": {
+        "failed": 1,
+        "passed": 3
+      },
+      "source_modified": false
+    },
+    "delivery": {
+      "id": 6523771621,
+      "url": "https://github.com/flop-labs/technocore-chat/pull/1051#issuecomment-6523771621",
+      "author": "sunriseblack",
+      "created_at": "2026-10-30T13:17:50Z",
+      "publication_commit": "eb2f18ce0eeef9c563844fafbb1ae55c7cae66d7",
+      "body_sha256": "1109a6728601a74c0adf587cab312a83033e488bbf754fafe4a76ded634a0364",
+      "exact_readback": true
+    },
+    "upstream_ci": [
+      {
+        "id": 41050125546,
+        "name": "CI",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/41050125546",
+        "conclusion": "action_required",
+        "head": "d1709fa4992cda6f8fe2bf41a8040d33f4804132"
+      },
+      {
+        "id": 41050125541,
+        "name": "pr-guards",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/41050125541",
+        "conclusion": "action_required",
+        "head": "d1709fa4992cda6f8fe2bf41a8040d33f4804132"
+      },
+      {
+        "id": 41050121222,
+        "name": "queue-guard",
+        "url": "https://github.com/flop-labs/technocore-chat/actions/runs/41050121222",
+        "conclusion": "success",
+        "head": "d1709fa4992cda6f8fe2bf41a8040d33f4804132"
+      }
+    ],
+    "merged": false,
+    "independent_kit_adoption": false
+  },
+  "proofline_pilot": {
+    "participant": "wyc4t",
+    "original_request": "https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6497743557",
+    "source_revision": "70e160b0c19142eb4cfb4f12e93611fbd6251765",
+    "source_file": {
+      "path": "dist/examples-data/kibble-k7319be7534.jsonl",
+      "url": "https://raw.githubusercontent.com/wyc4t/proofline-technocore/70e160b0c19142eb4cfb4f12e93611fbd6251765/dist/examples-data/kibble-k7319be7534.jsonl",
+      "retrieved_at": "2026-10-30T13:10:42.663704+00:00",
+      "bytes": 3336,
+      "sha256": "47a08d488d405e29fecd041bf07b7a6289ef2b12b13c502b3e7cd5ffdf456b26"
+    },
+    "source_kind": "seven_selected_archived_public_records",
+    "manifest_hash_matches": true,
+    "full_original_transcript_authenticated": false,
+    "python_signatures_verified": 7,
+    "peer_node_signatures_verified": 7,
+    "selected_results": [
+      {
+        "seq": 21334926,
+        "did": "did:key:z6Mki4BcADgncCxpgNwMrzPcCTbqBdqu8PpU8uVZ1Qv9pe3Z",
+        "body_sha256": "4c359af368966e4f4ed4037706418373112b398cc981ec1adba0504611e0a9ff"
+      },
+      {
+        "seq": 21335283,
+        "did": "did:key:z6MkqKXRKwvMWxPphNpgEPLyakVrXH8m1g82cMpPLxmcym4g",
+        "body_sha256": "a1068e40b686169d87404e25e38545d85c9a9454d214225358188b5b60cbe680"
+      }
+    ],
+    "selected_attestations": [
+      {
+        "seq": 21334948,
+        "verdict": "not",
+        "rh": "4c359af368966e4f",
+        "matching_selected_result_seqs": [
+          21334926
+        ]
+      },
+      {
+        "seq": 21337127,
+        "verdict": "useful",
+        "rh": "4c359af368966e4f",
+        "matching_selected_result_seqs": [
+          21334926
+        ]
+      }
+    ],
+    "scope": "Hash references are checked within these selected rows, not global event uniqueness, correctness, reviewer independence or credit.",
+    "derived_packet_checks": {
+      "recipe_sha256": "026c1404db658429cd36482fcd88e156a35cbaf683f73f16e9f992f0d241c584",
+      "packet_sha256": "fe4344c7f6759d79af1331af48e85c3674808d5a76eccb3d6a754bec4b3bedfc",
+      "valid_input_exit": 0,
+      "existing_output_exit": 1,
+      "tampered_input_exit": 1,
+      "existing_packet_unchanged": true,
+      "mode": "0o600"
+    },
+    "kit_states": {
+      "evidence_verified": true,
+      "credit_for_submission": "not_determined",
+      "native_readback": {
+        "metadata_binding": "sequence, timestamps, generation and head are unsigned server metadata",
+        "records": 7,
+        "reported_generation": null,
+        "reported_head": null,
+        "signature_counts": {
+          "verified": 7
+        },
+        "signed_content_matches": 1,
+        "state": "exact_fields_match_in_supplied_snapshot",
+        "stored_sequence_contiguous": false,
+        "window_floor": 21334912,
+        "window_reaches_reported_head": false,
+        "window_tip": 21337127
+      },
+      "host_board": {
+        "state": "not_supplied"
+      },
+      "host_score": {
+        "state": "not_supplied"
+      }
+    },
+    "compatibility": {
+      "python": "3.14.3",
+      "node": "v25.9.0",
+      "supplied_signed_records_checked": 5,
+      "unicode_signed_records": 0,
+      "unsafe_numeric_source_records": 0,
+      "derived_cases": 30,
+      "python_node_classifications_match": true,
+      "untested_transports": [
+        "json",
+        "mcp"
+      ],
+      "live_mcp_protocol": "not_established",
+      "credit_for_submission": "not_determined"
+    },
+    "compatibility_report_sha256": "64f46a5944dcecc1332a045ee69ccb9addcfc4adcfa8d1b5dc3b39d0c6c6222c",
+    "initial_local_adapter_error": "incorrect JSON filename extension; failed before assessment; original bytes preserved; corrected before published recipe",
+    "visual_ux_audited": false,
+    "defect_demonstrated": false,
+    "delivery": {
+      "id": 6523772557,
+      "url": "https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6523772557",
+      "author": "sunriseblack",
+      "created_at": "2026-10-30T13:17:52Z",
+      "publication_commit": "eb2f18ce0eeef9c563844fafbb1ae55c7cae66d7",
+      "body_sha256": "d4118634e9fe7cf2e6b28e1e2a93eb4a58016ac5158ad52fdab370f3d81794b7",
+      "exact_readback": true
+    },
+    "state": "invited_pending_participant_execution",
+    "independent_real_case_execution": false,
+    "new_records_created": 0
+  },
+  "prior_followups": {
+    "reader1042_new_peer_reviews": 2,
+    "reader_caller_probe_or_kit_execution_proved_by_those_reviews": false,
+    "runner_new_replies": 0,
+    "other_review_issues_new_replies": 0,
+    "older_pilot_execution_evidence": false,
+    "feedback_4154": "retained_without_substantive_reply",
+    "reminders_posted": 0
+  },
+  "readiness": {
+    "sources": [
+      {
+        "id": "verification",
+        "url": "https://flop.finance/official/",
+        "retrieved_at": "2026-10-30T13:06:54.820713+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "c2bbb6222d6b62d4af9bcac44117d1c9c21b46975b8ee9e086b6d5a929978a5b",
+        "raw_sha256": "893ccf011461c5c95041334da32f3e047d2cbf967a61cada13949d869c5441ab",
+        "observed_text_signals": [
+          "date_is_only_target",
+          "devnet_no_weight"
+        ]
+      },
+      {
+        "id": "testnet_profile",
+        "url": "https://ask.flop.finance/networks/testnet",
+        "retrieved_at": "2026-10-30T13:06:55.075004+00:00",
+        "state": "supplied_snapshot",
+        "text_sha256": "638a9019172a8b2ebf82c697a85e3e6e7f123c10155bfe2ec2dff5d411e63c8d",
+        "raw_sha256": "30b9110bb02c16a3ca75cc4235833c1406045d05ad3e79be703d43d07ba82e59",
+        "observed_text_signals": [
+          "testnet_planned",
+          "release_unreleased",
+          "network_values_unverified",
+          "no_verified_release"
+        ]
+      }
+    ],
+    "readiness": "blocked",
+    "missing_requirements": 9,
+    "launch_gate_verified": false,
+    "sessions_created_today": 0,
+    "historical_private_ledger": "unavailable_not_assumed_empty",
+    "announcement_search": "public indexed official pages; no complete X timeline claim"
+  },
+  "health": {
+    "healthy": false,
+    "observations": {
+      "agent_census_seq": 9997001,
+      "cursor_inventory_truncated": false,
+      "did_found": false,
+      "did_score": 0,
+      "reported_cursor_metadata": {
+        "floor.seq": 22134175,
+        "room.first_seq": 22152235,
+        "room.last_seq": 22152235,
+        "score.engine_seq": 9997001,
+        "stats.origin.agent_census_seq": 9997001,
+        "stats.origin.stats_engine_seq": 9997001,
+        "stats.origin.tape_head_seq": 9997001,
+        "status.flybrain_hello.last_seq": 22141925
+      },
+      "room_generation": 0,
+      "room_head_seq": 22152235,
+      "room_retained_floor_seq": 22134175,
+      "room_retained_floor_ts": "2026-10-30T10:58:03.319092Z",
+      "score_did": "did:key:z6Mkv8fkEKT98a6VQKbn3C2ykMVS4pjrFGvHA5X3q1WmLMCv",
+      "score_engine_seq": 9997001,
+      "score_identity_matches": true,
+      "scoring_engine_gap": 12155234,
+      "stats_engine_seq": 9997001,
+      "stats_engine_warm": true,
+      "stats_tape_gap": 12155234,
+      "stats_tape_head_seq": 9997001
+    },
+    "endpoints": {
+      "board": {
+        "error": "TimeoutError: The read operation timed out",
+        "ok": false
+      },
+      "floor": {
+        "error": null,
+        "ok": true
+      },
+      "room": {
+        "error": null,
+        "ok": true
+      },
+      "score": {
+        "error": null,
+        "ok": true
+      },
+      "stats": {
+        "error": null,
+        "ok": true
+      },
+      "status": {
+        "error": null,
+        "ok": true
+      }
+    },
+    "separate_full_board_error": null,
+    "separate_full_board_jobs": 80,
+    "separate_full_board_statuses": {
+      "delivered": 1,
+      "claimed": 41,
+      "attested": 37,
+      "rejected": 1
+    },
+    "cursor_mapping": "not_established",
+    "credit_for_submission": "not_determined",
+    "whole_tape_reaudited": false,
+    "job_admitted": false
+  },
+  "signed_windows": [
+    {
+      "room": "p-flop-research-c0e0b421",
+      "first": null,
+      "last": 0,
+      "generation": 2,
+      "counts": {
+        "verified": 0,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "65a9c6edc96b89c2f5b02879395b3bcf6acfe1c9e7c777b013fdee9c4c5a561b"
+    },
+    {
+      "room": "technocore",
+      "first": 20924226,
+      "last": 20924425,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "fab11abc48e73b6e0bb282ff98a6549756879f071407ca1bd529b763db073ddd"
+    },
+    {
+      "room": "lobby",
+      "first": 137987600,
+      "last": 137987799,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "04c9dd73c517e066009afb44e3ad17371f13dd818b1667ee29fa84754ab8e442"
+    },
+    {
+      "room": "kibble",
+      "first": 22152908,
+      "last": 22153107,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "548e3ae1722fa14c8a955e0eb87b2b7f227365c9eefabf1fb95494fde49d8b0a"
+    },
+    {
+      "room": "flop",
+      "first": 465920,
+      "last": 466119,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "5ef36c62c15b78ea9b47a7b0ed6838116d49cd26a5067debddb84e2a9cbb08fb"
+    },
+    {
+      "room": "flop-network",
+      "first": 690675,
+      "last": 690874,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "cc8f46d1392bb4450feb8c9053123d329306a665b6de5a49fe22e8490fd43b44"
+    },
+    {
+      "room": "inference-agents",
+      "first": 558025,
+      "last": 558224,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "3767e1f92ea3f5b0bba738bfe52a9acfc8f116dea76eaa249e597f76e126458a"
+    },
+    {
+      "room": "feedback",
+      "first": 3996,
+      "last": 4195,
+      "generation": 0,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      },
+      "sha256": "a68c532113c05babc2615a6085faa1220b35ebae7a20b7e5af143a6ae4be4f14"
+    }
+  ],
+  "publication": {
+    "reports_commit": "eb2f18ce0eeef9c563844fafbb1ae55c7cae66d7",
+    "own_ci_url": "https://github.com/sunriseblack/flop-agent/actions/runs/41061937921",
+    "own_ci_conclusion": "success",
+    "scope": "own repository checks, not peer execution or upstream approval"
+  },
+  "native_posts_today": 0,
+  "github_review_comments_today": 2,
+  "new_upstream_prs": 0,
+  "paid_model_calls": 0,
+  "actual_model_usage": "unavailable",
+  "next_triggers": [
+    "Proofline actual kit execution or obstruction",
+    "new upstream source or substantive finding",
+    "maintainer CI approval or merge",
+    "original private-data restoration",
+    "verified launch evidence"
+  ]
+}

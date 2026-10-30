@@ -72,6 +72,17 @@ owner-allocation binding question. The network profile still marks testnet
 planned and its release unreleased. Prepare against that target, not by buying
 hardware, exporting the key or treating a development escrow as qualifying work.
 
+October 30 contribution update: maho0638 applied our two-file companion patch
+to the existing clock-diagnostic PR. We verified the committed bytes and the
+subsequent current head's full checks. That is actual author uptake, separate
+from merge or rewards. The next [real-case kit pilot](PROOFLINE_CASE_REVIEW_2026-10-30.md)
+uses Proofline's seven already-existing signed records; its author has a
+targeted runnable invitation, with independent execution still pending.
+Keep that distinction as the success measure. Two workload source editions
+also changed and six requests now need fresh bindings. The official network
+profile remains planned/unreleased; source updates do not open the live-session
+gate or replace missing private identity and review history.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

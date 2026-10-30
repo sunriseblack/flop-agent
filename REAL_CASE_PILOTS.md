@@ -40,6 +40,7 @@ without finding a defect. Exact unsigned envelope metadata remains untrusted.
 
 | Case | Original problem | Participant | State and next step |
 | --- | --- | --- | --- |
+| Opposing verdicts naming the earlier of two result bodies | [Proofline's selected seven-record case and feedback request](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6497743557) | wyc4t | Existing original signed fields confirmed at Proofline `70e160b`; all seven signatures and the result-hash mapping cross-checked locally. [Case-specific kit recipe invited](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6523772557) October 30, pinned at `eb2f18c`. Await the participant's actual checkout/environment/command/exit/report hash and usefulness or obstruction. Our own execution is not independent adoption; no defect is invented and no reminder is due while unanswered. |
 | Transcript capture after a skipped newest-window read | [TCLK PR 195](https://github.com/flop-labs/tclk/pull/195) | maho0638 | [Deferred after the original reply](https://github.com/flop-labs/tclk/pull/195#issuecomment-6388150301): the investigator has synthetic cases and CI, but no real signed receipt/sequence/DID packet. No kit execution or finding claimed. Resume only if an existing real artifact becomes available; no new write for a demo. |
 | Receipt visibility and export recovery in a busy room | [Technocore issue 919](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6310657063) | pepedesigner | [Invited](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6387476306) October 24 at 17:44:25 UTC, kit `84e6348`. Await original real-receipt run and retained-window/metadata findings. |
 | Preserved rows bordering a measured export-retention gap | [Reported retained-row series](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-5925972570) | shibainu-inu | [Artifact-availability question delivered](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6398009606). Original signed fields have not been supplied/verified; no kit run invited or adoption claimed. Ask for a real execution only if a suitable existing artifact is confirmed. |
@@ -88,3 +89,10 @@ identity and review history; do not manufacture a new identity or approval
 packet to continue outreach. Read-only checks and GitHub source contributions
 can continue. Clock-PR validation is a separate engineering contribution and
 adds no independent real-case kit execution to this ledger.
+
+October 30: Proofline supplies an actual already-existing selected JSONL file,
+unlike the earlier synthetic-only lead. The [review and executed recipe](PROOFLINE_CASE_REVIEW_2026-10-30.md)
+preserve that selection limit: neither `native_readback` nor the JSONL
+`--export` parser authenticates a complete origin capture. No new native record
+was created for this pilot. Separately, maho0638 applied our clock-PR companion
+patch; that is verified engineering uptake, not another kit pilot execution.

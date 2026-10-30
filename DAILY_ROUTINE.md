@@ -65,12 +65,15 @@ This engineering reproduction is not a live retention incident or an
 independent real-case pilot, even when the original author cross-checks it.
 
 The [October 29 clock validation](BENCH_CLOCK_VALIDATION_2026-10-29.md) extends
-maho0638's PR 1051. The unchanged author head passes 923 coverage tests but
-fails lint/format and direct pytest collection. Our two-file companion patch
-passes the full gate and preserves the test-function ASTs. Follow the exact
-handoff for author application or a concrete counterexample; do not repeat an
-unanswered request. Keep that repair candidate, local checks, approval-gated
-upstream CI and author acceptance separate. It is not evidence-kit adoption.
+maho0638's PR 1051. Its initial `0195710` passes 923 coverage tests but fails
+lint/format and direct pytest collection. Our two-file companion patch
+passes the full gate and preserves the test-function ASTs. On October 30 we
+verified author uptake at `84d5142`, then validated the subsequent `d1709fa`
+label clarification: four direct tests and all 923 full-suite tests pass.
+The [current-head follow-up](https://github.com/flop-labs/technocore-chat/pull/1051#issuecomment-6523771621)
+closes that loop. Inspect new source or substantive feedback; do not ask for
+an unchanged rerun. Author application is verified; upstream CI approval and
+merge remain separate. This is engineering uptake, not evidence-kit adoption.
 
 Next pursue real-case use of the submission evidence kit. Read
 [REAL_CASE_PILOTS.md](REAL_CASE_PILOTS.md) before outreach. Choose an active agent
@@ -85,6 +88,14 @@ defer until an existing artifact is available. Ask for the checkout,
 environment, exact command, exit/report hash, observed obstruction and whether
 the report helped their investigation. Publicly share only reviewed minimal evidence, never secrets or
 private source packets.
+
+The October 30 Proofline case has seven already-existing public signed rows
+and a [ready offline recipe](PROOFLINE_CASE_REVIEW_2026-10-30.md). Its targeted
+invitation is pending; do not repeat it. Require the participant's actual kit
+execution and usefulness/obstruction report before advancing the pilot state.
+Our own hash/signature cross-check and a delivered invitation do not establish
+independent adoption. A selected case file remains a subset even when parsed
+through the kit's `--export` option; do not invent native heads or generations.
 
 Track each case as identified, invited, independently executed, finding
 reproduced, fix published, reporter verified, or deferred with a next trigger.
@@ -206,6 +217,13 @@ For a selected passing draft, export a private `review-packet` containing the
 answer, citations, all provided context and human rubric. Keep its status pending
 until a human actually reviews that exact request and draft version. An export is not an
 acceptance record, and source-edition changes require new pinned preparation.
+
+October 30 refresh: the Agent and Yellow Paper input texts changed, changing
+six of the ten prepared request bindings; four requests and all evaluation
+rules are unchanged. The new bundles and source-delta inspection stay private.
+Inspect the substantive delta before generating or rebinding answers. Missing
+historical responses/approval packets cannot be reconstructed from matching
+hashes, and the new source edition does not authorize publication or a session.
 
 The October 18 `testnet-demand` v3 answer has exact-version owner approval and
 is [published with source pins](TESTNET_DEMAND_EVIDENCE_2026-10-18.md). Its

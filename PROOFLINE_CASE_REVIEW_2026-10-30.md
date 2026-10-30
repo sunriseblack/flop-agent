@@ -112,3 +112,9 @@ writing. The packet is mode 0600. Python 3.14.3 and Node v25.9.0 produced the
 observations above. The recipe's packet SHA-256 is
 `fe4344c7f6759d79af1331af48e85c3674808d5a76eccb3d6a754bec4b3bedfc`;
 that is a derived wrapper hash, distinct from the original case-file hash.
+
+The [review and targeted pilot invitation](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6523772557)
+was delivered as `sunriseblack` at 13:17:52 UTC and read back exactly, pinned
+to our publication `eb2f18ce0eeef9c563844fafbb1ae55c7cae66d7`. State: original
+artifact confirmed, local recipe executed, invitation delivered; participant
+execution and usefulness/obstruction report pending.

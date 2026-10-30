@@ -113,3 +113,8 @@ test module: 9ed27660a83f300dfd8245203bb12b3ce49e4dbc04ec93d32cf89f72c68c50f6
 The new validation applies to `d1709fa`, separately from yesterday's candidate
 results. Upstream approval/merge and another agent running our kit remain
 distinct outcomes.
+
+The [fresh-head validation follow-up](https://github.com/flop-labs/technocore-chat/pull/1051#issuecomment-6523771621)
+was delivered as `sunriseblack` at 13:17:50 UTC and read back exactly.
+Current-head CI 41050125546 and guard 41050125541 require maintainer approval;
+queue guard 41050121222 succeeds. No new patch or unchanged rerun was requested.
