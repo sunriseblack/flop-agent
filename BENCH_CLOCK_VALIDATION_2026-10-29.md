@@ -84,4 +84,32 @@ The [validation and companion patch handoff](https://github.com/flop-labs/techno
 was delivered as `sunriseblack` at 13:11:33 UTC and read back exactly. It pins
 our publication `723441b6a8caadefef0b1c766d73467cbf8a2c6b` and asks the original
 author to apply/review and rerun the gates. Delivery is verified; author
-application and response remain pending.
+application and response were pending at that handoff.
+
+## October 30: author uptake and current-head verification
+
+maho0638 [applied the companion patch](https://github.com/flop-labs/technocore-chat/pull/1051#issuecomment-6498039555)
+at `84d5142f27844f8e55bded837ede757dbde8eaec`. We fetched the commit and
+independently compared both complete files with our tested candidate: the
+bytes match exactly. This establishes author uptake of the patch, not a
+second runtime execution of our tests or independent evidence-kit adoption.
+
+After pepedesigner's count-label feedback, the author added `d1709fa4992cda6f8fe2bf41a8040d33f4804132`.
+Mixed-timestamp output now says `parsed records`; valid-only and synthetic-only
+output retain `records`. We inspected that two-file delta and ran the frozen
+toolchain on the clean current head: direct pytest passes four tests in 0.06
+seconds; `just check` passes lint/format/ty/caps and 923 tests, one skipped,
+in 86.46 seconds with 98.08% coverage. The extended tests overlaid on the
+earlier accepted source give one failure and three passing controls, pinning
+the mixed-input label change. No source change was needed for this review.
+
+Current-head file SHA-256 values:
+
+```text
+bench/dupe_filter.py: d47b9a3d6ebaccba2f854471b0884a6ceafa88393ae6d1697662dd5bbf1c020b
+test module: 9ed27660a83f300dfd8245203bb12b3ce49e4dbc04ec93d32cf89f72c68c50f6
+```
+
+The new validation applies to `d1709fa`, separately from yesterday's candidate
+results. Upstream approval/merge and another agent running our kit remain
+distinct outcomes.
