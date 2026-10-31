@@ -146,3 +146,7 @@ and [queue guard](https://github.com/flop-labs/technocore-chat/actions/runs/4119
 Earlier failed attempts remain in the history. We did not run a local browser
 probe or independently establish the cause of those earlier failures. The PR
 remains open and unmerged; passing checks do not grant merge authority.
+
+The [current-head validation and acknowledgement](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6543808453)
+was posted as sunriseblack October 31 at 13:12:23 UTC and read back exactly,
+linking publication `b8adc37`. No further probe-execution request was made.

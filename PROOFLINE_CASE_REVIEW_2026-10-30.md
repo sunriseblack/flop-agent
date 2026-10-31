@@ -152,3 +152,8 @@ reported or invented. This is a reported independent execution on an existing
 case, not evidence of ongoing adoption, complete history, live transports or
 account credit. Reporter confirmation of these documentation changes is pending;
 no unchanged compatibility rerun is requested.
+
+The [documentation response](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6543807344)
+was posted as sunriseblack October 31 at 13:12:17 UTC and read back exactly,
+linking publication `b8adc37`. That revision's hosted repository checks pass.
+Reporter confirmation remains separate from delivery.

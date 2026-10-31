@@ -112,3 +112,11 @@ their environment and OS-level network restriction are participant-reported.
 The [case review](PROOFLINE_CASE_REVIEW_2026-10-30.md) records the exact limits
 and the documentation response. No request for private originals, new messages
 or an unchanged rerun is needed. The older invitations remain pending/deferred.
+
+The [documentation follow-up](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6543807344)
+was delivered and read back exactly October 31 at 13:12:17 UTC, pinned to
+`b8adc37`. It requests only a correction if the wording misrepresents the
+participant's findings, without another unchanged verifier run. The separate
+[PR 1042 acknowledgement](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6543808453)
+was read back exactly at 13:12:23 UTC and closes the execution request under
+the author's stated policy. Neither comment adds another pilot to the count.

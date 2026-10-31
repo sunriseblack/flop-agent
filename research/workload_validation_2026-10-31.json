@@ -1,0 +1,93 @@
+{
+  "schema": "flop-workload-validation-record-v1",
+  "date": "2026-10-31",
+  "sources": [
+    {
+      "id": "auth",
+      "url": "https://technocore.chat/auth.md",
+      "retrieved_at": "2026-10-31T13:04:09.634876+00:00",
+      "raw_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb",
+      "text_sha256": "ae4c61d5d6d4b13ec24467a1a66f139c132e039a7180790a914587d642534ddb"
+    },
+    {
+      "id": "manual",
+      "url": "https://technocore.chat/llms.txt",
+      "retrieved_at": "2026-10-31T13:04:09.827430+00:00",
+      "raw_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6",
+      "text_sha256": "ae3a86c884c1932a8efe181942a050fd5b5bbbc0093fcaa70a9574bed1ee21d6"
+    },
+    {
+      "id": "testnet",
+      "url": "https://flop.finance/testnet/",
+      "retrieved_at": "2026-10-31T13:04:09.392327+00:00",
+      "raw_sha256": "f106416d80f8c18a8849b2a8a77111eefa4bdf4a0b516e6b04919f2205074485",
+      "text_sha256": "160e1b236df716b12c4a8e285b067ccfdb290ba83b91fb7c23e870556c6fe218"
+    },
+    {
+      "id": "airdrop",
+      "url": "https://flop.finance/airdrop/",
+      "retrieved_at": "2026-10-31T13:04:10.172687+00:00",
+      "raw_sha256": "30568325fa4e689d620d7a8ac9aa60552bbec4028a369fb8e77ce8e3236ac702",
+      "text_sha256": "a83c034f4e94142b372073b25466625ec6ab42922bb134a135bf8cd2d105e0b0"
+    },
+    {
+      "id": "agent",
+      "url": "https://flop.finance/intro/agent/",
+      "retrieved_at": "2026-10-31T13:04:10.377715+00:00",
+      "raw_sha256": "59ac28f30a26e397a225d72fefd5d5a9fbf5b9f34a1ffdf37af55dc18645b4c0",
+      "text_sha256": "c7b86cae9cd23288ccc5e2a43d641c76fdea211e8e2317c3b2d03f369c60b4fd"
+    },
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-10-31T13:04:11.205240+00:00",
+      "raw_sha256": "a3eb5d0f49fd58943d8af63e770b9e7ad71d9c88f05bbeedc5aa4e6c5024bd2e",
+      "text_sha256": "4b32a807bdc379dea0d4a880130fc0079ade29c84961bf629e942c43358ef647"
+    },
+    {
+      "id": "store",
+      "url": "https://raw.githubusercontent.com/flop-labs/technocore-chat/main/src/store.py",
+      "retrieved_at": "2026-10-31T13:04:11.412488+00:00",
+      "raw_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249",
+      "text_sha256": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    {
+      "id": "money_path",
+      "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/70e691c758e53eed17a016a02b0a2ae1200d3744/evidence/money-path-v1.md",
+      "retrieved_at": "2026-10-31T13:04:11.064300+00:00",
+      "raw_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1",
+      "text_sha256": "3eeab513ab6353c057c5c756be003f00f858b4b4d17c8387585c10db7c1a32c1"
+    }
+  ],
+  "changed_source_ids": [],
+  "corpus_file_sha256": "efe9237788d1d3816dc875384fcca023b5f3c0d83390f4da6703ddb69728b654",
+  "bundle_file_sha256": "c4dc9c04a897015dd3f0151c6bcda6f5dd9b309305c2eba8a777a1257b90b251",
+  "jobs_sha256": "7fe6efe90255122f78fbba7e27241ca972aad6188716c43d5a128d9528b2ac87",
+  "comparison_file_sha256": "80e6de813a3b3d0a129fcc9f2aa0e0b1cbd803b299b47795b5f30d0f548878e5",
+  "comparison_actually_run": true,
+  "changed_tasks": [],
+  "unchanged_tasks": [
+    "signature-scope",
+    "cursor-window",
+    "testnet-demand",
+    "unlock-versus-allocation",
+    "document-conflict",
+    "implementation-gap",
+    "identity-binding",
+    "individual-award",
+    "money-path-scope",
+    "operator-delegation-conflict"
+  ],
+  "changed_evaluation_rules": 0,
+  "cached_responses_reused": false,
+  "historical_approval_packets_available": false,
+  "new_drafts": 0,
+  "new_review_packet_exports": 0,
+  "mechanical_grading": "not_run_without_responses",
+  "generation_deferred": "unchanged ten requests; historical answers and approvals unavailable; no new correction question established",
+  "new_model_calls": 0,
+  "publication_authorized": false,
+  "semantic_review": "required_for_any_new_answer",
+  "live_flop_sessions_today": 0,
+  "source_snapshots_or_prompts_published": false
+}
