@@ -83,6 +83,18 @@ also changed and six requests now need fresh bindings. The official network
 profile remains planned/unreleased; source updates do not open the live-session
 gate or replace missing private identity and review history.
 
+October 31 outcome update: Proofline's author now
+[reports an independent real-case kit run](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6525168434)
+at the invited pin, with environment, exits, packet/report hashes and specific
+usefulness. We reproduced and corrected the case-count wording and documented
+their shell workaround; confirmation of those documentation changes is pending.
+Separately, PR 1042's author read our analysis and added two caller regressions
+using their own fixtures, while declining third-party probe execution. Our
+fresh exact-head full gate passes. These are bounded use and engineering
+uptake, not ongoing adoption, account credit, merge or airdrop eligibility.
+Today's ten workload request bindings match yesterday's. Official testnet
+still lacks a verified public network/release; no live usage is authorized.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

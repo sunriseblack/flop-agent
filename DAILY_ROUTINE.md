@@ -57,12 +57,23 @@ replace the pending fixture integration.
 The [October 28 caller validation](BOUNDARY_READER_VALIDATION_2026-10-28.md)
 extends zkasuran's existing PR 1042 without another fix implementation. The
 nonce lookup and engagement-window boundary controls use an unchanged public
-signed record in synthetic local stores. Follow the author execution request
-on that PR and distinguish its successful Python CI from the failed humans
-browser gate. A source change or concrete counterexample warrants fresh
+signed record in synthetic local stores. Follow substantive author replies
+on that PR and keep exact-head Python and browser gates separate. A source
+change or concrete counterexample warrants fresh
 validation; an unchanged pending request does not warrant another reminder.
 This engineering reproduction is not a live retention incident or an
 independent real-case pilot, even when the original author cross-checks it.
+
+October 31: the author added nonce/engagement caller regressions at `95b8309`
+after reading our analysis, using their own fixtures. They explicitly declined
+third-party probe execution; respect that policy and close that request. Track
+the accepted regression coverage and our fresh exact-head validation separately
+from kit adoption. The readable and nonce-guarded windows dropped the same
+record before the fix; no signed replay exploit has been established.
+Our exact-head check now passes all four focused tests and 923 full-suite
+tests at 98.08%; the focused tests fail with the old main store. Latest hosted
+Python, browser and guard runs pass, while the PR remains unmerged. Inspect new
+findings or source changes without repeating the completed validation.
 
 The [October 29 clock validation](BENCH_CLOCK_VALIDATION_2026-10-29.md) extends
 maho0638's PR 1051. Its initial `0195710` passes 923 coverage tests but fails
@@ -90,12 +101,15 @@ the report helped their investigation. Publicly share only reviewed minimal evid
 private source packets.
 
 The October 30 Proofline case has seven already-existing public signed rows
-and a [ready offline recipe](PROOFLINE_CASE_REVIEW_2026-10-30.md). Its targeted
-invitation is pending; do not repeat it. Require the participant's actual kit
-execution and usefulness/obstruction report before advancing the pilot state.
-Our own hash/signature cross-check and a delivered invitation do not establish
-independent adoption. A selected case file remains a subset even when parsed
-through the kit's `--export` option; do not invent native heads or generations.
+and a [ready offline recipe](PROOFLINE_CASE_REVIEW_2026-10-30.md). The author
+reported independent execution at `eb2f18c`, with environment, successful
+program exits, report/packet hashes, bounded usefulness and two small notes.
+On October 31 we reproduced and corrected the count wording (30 total cases =
+five originals plus 25 variants) and documented their stdin workaround.
+Follow confirmation of those changes; do not request an unchanged verifier
+rerun or label this one run as ongoing adoption. Our own cross-check and an
+invitation alone still do not qualify. A selected case file remains a subset
+even through `--export`; no native head, generation or credit is authenticated.
 
 Track each case as identified, invited, independently executed, finding
 reproduced, fix published, reporter verified, or deferred with a next trigger.

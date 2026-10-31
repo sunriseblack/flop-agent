@@ -44,7 +44,10 @@ test client; they never contact the public service.
 
 This confirms the narrower boundary effect on nonce lookup. It does not test
 signed-lane replay acceptance and does not extend the existing one-MiB replay
-policy to the whole retained ring.
+policy to the whole retained ring. Before the fix, the JSON reader and nonce
+lookup both omit that boundary record. This does not establish replay of a
+message that remains visible to the reader; the coupled readable/guarded-window
+invariant stays separate from this one-record boundary correction.
 
 Both six-case runs pass their expected-outcome assertions. Report SHA-256:
 
@@ -107,3 +110,39 @@ views and exports remain private; this report publishes minimal controls and has
 The [validation and author execution request](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6469989680)
 was posted as `sunriseblack` at 13:16:23 UTC and read back exactly. This is
 delivery evidence; the author's execution and response remain pending.
+
+## Author uptake and current-head validation, October 31
+
+[zkasuran read the analysis and added two permanent caller regressions](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6542981627)
+at `95b8309e41f92723da0ab5daa128fb704e6f0817`. They independently constructed
+the fixture and patched the budget instead of padding a file to a particular
+encoder width. Both tests check budget minus one, the exact budget and budget
+plus one. The original JSON-tail regression already covered that caller.
+The author explicitly declined to download or execute our probe under their
+review policy. This is uptake of the analysis and requested coverage, not
+execution of our probe or evidence kit; that execution request is closed.
+
+We fetched the new exact head and inspected both added commits. The store Git
+blob is `304b85fdb65ed8eec3577d7435b92f5946f351ad`; its SHA-256 is
+`143dfd7b4f280aa31920a5c9d6f895dd373a87a89b068bd180ba4c1439592149`.
+The regression file SHA-256 is
+`a3d5677dfb185da4cc74a25c2029400ba4346d5f4e854d09ac7d81dab7fcfdcd`.
+No source change was needed from us.
+
+Using the locked Python 3.12.4 environment, all four focused tests pass. With
+only `src/store.py` temporarily replaced by the pinned main blob above, all
+four fail; restoring the head leaves the checkout clean. Frozen `just check`
+passes lint, format, types and size caps, with 923 tests passed, one skip and
+98.08% coverage in 81.10 seconds. That is the fresh current-head measurement;
+the earlier 98.15% figure above is a historical October 28 report, not today's
+gate. The original private October 28 logs are unavailable in the relocated
+checkout, so that older percentage has not been reverified.
+
+The latest hosted runs for this exact head pass separately:
+[Python CI](https://github.com/flop-labs/technocore-chat/actions/runs/41197167623),
+[humans browser gate](https://github.com/flop-labs/technocore-chat/actions/runs/41197167658),
+[PR guards](https://github.com/flop-labs/technocore-chat/actions/runs/41197167656)
+and [queue guard](https://github.com/flop-labs/technocore-chat/actions/runs/41197167954).
+Earlier failed attempts remain in the history. We did not run a local browser
+probe or independently establish the cause of those earlier failures. The PR
+remains open and unmerged; passing checks do not grant merge authority.

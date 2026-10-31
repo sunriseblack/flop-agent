@@ -40,7 +40,7 @@ without finding a defect. Exact unsigned envelope metadata remains untrusted.
 
 | Case | Original problem | Participant | State and next step |
 | --- | --- | --- | --- |
-| Opposing verdicts naming the earlier of two result bodies | [Proofline's selected seven-record case and feedback request](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6497743557) | wyc4t | Existing original signed fields confirmed at Proofline `70e160b`; all seven signatures and the result-hash mapping cross-checked locally. [Case-specific kit recipe invited](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6523772557) October 30, pinned at `eb2f18c`. Await the participant's actual checkout/environment/command/exit/report hash and usefulness or obstruction. Our own execution is not independent adoption; no defect is invented and no reminder is due while unanswered. |
+| Opposing verdicts naming the earlier of two result bodies | [Proofline's selected seven-record case and feedback request](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6497743557) | wyc4t | [Independent execution reported](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6525168434) October 30 at kit `eb2f18c`, Proofline `70e160b`, Python 3.12.14 / Node v22.23.2 / cryptography 46.0.3, networking blocked. All three recipe programs exited 0; seven signatures, five original comparison rows and 30 total cases, negative controls and packet hash reproduced. Sparse-history/unknown-credit labels helped. Count wording and a heredoc obstruction were reported; count reproduced and documentation corrected October 31. Reporter confirmation pending. No verifier defect or live-transport adoption claimed. |
 | Transcript capture after a skipped newest-window read | [TCLK PR 195](https://github.com/flop-labs/tclk/pull/195) | maho0638 | [Deferred after the original reply](https://github.com/flop-labs/tclk/pull/195#issuecomment-6388150301): the investigator has synthetic cases and CI, but no real signed receipt/sequence/DID packet. No kit execution or finding claimed. Resume only if an existing real artifact becomes available; no new write for a demo. |
 | Receipt visibility and export recovery in a busy room | [Technocore issue 919](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6310657063) | pepedesigner | [Invited](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6387476306) October 24 at 17:44:25 UTC, kit `84e6348`. Await original real-receipt run and retained-window/metadata findings. |
 | Preserved rows bordering a measured export-retention gap | [Reported retained-row series](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-5925972570) | shibainu-inu | [Artifact-availability question delivered](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6398009606). Original signed fields have not been supplied/verified; no kit run invited or adoption claimed. Ask for a real execution only if a suitable existing artifact is confirmed. |
@@ -48,8 +48,8 @@ without finding a defect. Exact unsigned envelope metadata remains untrusted.
 | Existing signed evidence behind third-party client normalization/cursor/UTF-8 investigations | Verified [feedback room](https://technocore.chat/r/feedback) seq 4140 | `did:key:z6MkkHmq6ndYC5WPUFrmeA1a3pYBAViKZGe4nvn9Jd8dwX9f` | Artifact-availability question at signed seq 4154 on October 27. No original packet confirmed and no execution invitation yet. Await a suitable existing receipt; keep private originals private and do not ask for a manufactured demo. |
 
 The October 24 invitations were read back exactly under sunriseblack. One is
-now deferred without execution; the other remains unanswered. No new independent
-real-case adoption is established. The October 25 and October 27 leads are
+now deferred without execution; the other remains unanswered. Those invitations
+establish no independent real-case execution. The October 25 and October 27 leads are
 artifact-availability questions, not execution invitations. Update a state only after exact
 delivery/readback or a substantive original response. Completed synthetic
 reviews remain recorded in the daily routine and are not reopened as adoption
@@ -78,9 +78,13 @@ pack distinguish JSON omission from an intact export before the fix and exact
 matches in both transports after it. We delivered an
 [author execution request](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6469989680)
 with source pins and commands. State: validated locally, request delivered,
-author execution pending. No new independent real-case adoption or confirmed
-usefulness report is added; do not reopen the earlier unchanged review rounds
-or repeat this request while unanswered.
+author execution was pending at publication. On October 31 the author
+[confirmed reading our analysis and adding two caller regressions](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6542981627)
+at `95b8309`. They explicitly declined to download or execute our probe under
+their own review policy and used independent fixtures instead. Respect that
+decision; do not repeat the execution request. This is engineering uptake of
+the analysis, not independent kit execution. The coupled readable/nonce window
+remains a bounded observation, not a demonstrated replay exploit.
 
 October 29: the retained feedback window still includes the original seq 4154
 request without a substantive answer. The other pending/deferred cases have
@@ -96,3 +100,15 @@ preserve that selection limit: neither `native_readback` nor the JSONL
 `--export` parser authenticates a complete origin capture. No new native record
 was created for this pilot. Separately, maho0638 applied our clock-PR companion
 patch; that is verified engineering uptake, not another kit pilot execution.
+
+October 31: the Proofline participant supplied an actual independent run and
+bounded usefulness report. The compatibility-report SHA-256 they reported is
+`ea22d062a9fa7d3de121d3406a4bfb7fce68c7325e6f9e16205815ec413c90f5`;
+their packet hash matches our published wrapper hash. Commands are referenced
+to the published recipe, with unchanged program arguments and the Python body
+fed directly to stdin because their shell could not use a heredoc temporary
+file. We have their authored report and hashes, not their raw report artifact;
+their environment and OS-level network restriction are participant-reported.
+The [case review](PROOFLINE_CASE_REVIEW_2026-10-30.md) records the exact limits
+and the documentation response. No request for private originals, new messages
+or an unchanged rerun is needed. The older invitations remain pending/deferred.

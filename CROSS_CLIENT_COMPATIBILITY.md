@@ -3,7 +3,7 @@
 `scripts/compatibility_pack.py` compares our Python verifier with a separate
 Node native Ed25519 verifier using existing signed records. It inspects saved
 JSON views, JSONL exports and optional saved MCP results. It performs no network
-request, signing, write, replay, model call or recovery action.
+request, signing, public submission, replay, model call or recovery action.
 
 This builds on the numeric-nonce boundary in
 [Technocore PR 712](https://github.com/flop-labs/technocore-chat/pull/712) and the
@@ -50,6 +50,11 @@ still passes). Node checks that ordinary unsafe `JSON.parse` numbers are rejecte
 while the exact source digits verify. No new record is signed or posted for
 coverage. An input without a large nonce or Unicode is not relabelled as covering
 those cases.
+
+The legacy report field `derived_cases` counts the complete comparison set,
+including one original and five mutation variants per selected source row.
+For five originals, `derived_cases: 30` means five originals plus 25 variants,
+not 30 additional mutations. Counts do not establish additional captured records.
 
 Missing records, an interior gap and generation relabelling have separately
 labelled offline controls. Message signatures do not authenticate generation,

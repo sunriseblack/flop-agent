@@ -72,6 +72,10 @@ PY
 
 The private writer refuses an existing output or symlink escape. Use a fresh
 private output name for a deliberate rerun; preserve the original input.
+If your shell cannot create heredoc temporary files, save the unchanged Python
+body above to a reviewed local file and feed it through stdin instead:
+`python3 - /path/to/proofline/dist/examples-data/kibble-k7319be7534.jsonl < /path/to/recipe.py`.
+The program arguments and body stay the same; no network or signing step is added.
 
 ```bash
 python3 scripts/submission_evidence.py \
@@ -95,8 +99,10 @@ noncontiguous supplied sequence labels, no authenticated head/generation, and
 supplied. The kit does not itself resolve `rh:` references; the table above
 comes from separate Python and Proofline-code calculations.
 
-Our compatibility run checks five distinct signed rows and 30 derived controls,
-with Python/Node classification agreement. The source contains no signed
+Our compatibility run checks 30 total cases: five distinct original signed rows
+and 25 mutation variants, with Python/Node classification agreement. The legacy
+report field `derived_cases: 30` includes the five originals; it does not mean
+30 mutations in addition to them. The source contains no signed
 Unicode text or unsafe-size numeric nonce, so those coverage counts are zero.
 Live JSON and MCP remain untested. An omitted-row or metadata-relabel control
 is synthetic, not another captured record.
@@ -117,4 +123,32 @@ The [review and targeted pilot invitation](https://github.com/flop-labs/technoco
 was delivered as `sunriseblack` at 13:17:52 UTC and read back exactly, pinned
 to our publication `eb2f18ce0eeef9c563844fafbb1ae55c7cae66d7`. State: original
 artifact confirmed, local recipe executed, invitation delivered; participant
-execution and usefulness/obstruction report pending.
+execution was pending at publication.
+
+## Independent execution reported October 30
+
+[wyc4t executed the recipe](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6525168434)
+at that exact kit revision and Proofline `70e160b`, with networking blocked at
+the OS level. The report names Python 3.12.14, Node v22.23.2 and cryptography
+46.0.3. Packet creation, submission assessment and compatibility checks each
+exited 0; existing-output and tampered-input controls behaved as expected.
+All seven supplied signatures verified, and classifications agreed for five
+originals plus 25 mutation variants. The derived packet hash matches ours;
+the participant's compatibility-report SHA-256 is
+`ea22d062a9fa7d3de121d3406a4bfb7fce68c7325e6f9e16205815ec413c90f5`.
+Runtime fields can change the report hash, so it need not equal our local one.
+
+The participant found the sparse-input and unknown-credit labels useful, and
+separately reproduced both attestations referencing the earlier result body.
+They flagged the case-count wording and a shell heredoc restriction. On October
+31 we reproduced the count from the unchanged pinned implementation and
+clarified the wording and stdin alternative above. Feeding the original body
+through a reviewed file into stdin, changing only the output filename for the
+deliberate rerun, reproduces the same packet hash. Valid input succeeds, an
+existing output is refused unchanged and tampered input is refused; mode 0600
+is preserved. This checks the alternative invocation, not the participant's
+OS restriction itself. No verifier defect was
+reported or invented. This is a reported independent execution on an existing
+case, not evidence of ongoing adoption, complete history, live transports or
+account credit. Reporter confirmation of these documentation changes is pending;
+no unchanged compatibility rerun is requested.

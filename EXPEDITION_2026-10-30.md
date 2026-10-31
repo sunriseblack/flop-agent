@@ -36,7 +36,7 @@ without changing it, and refuses locally tampered input before writing. Its
 packet is mode 0600. The kit reports seven verified supplied rows, sparse
 sequence labels, unknown head/generation, no supplied board/account and
 undetermined credit. The compatibility pack checks five distinct original
-rows and 30 derived controls, with Python/Node agreement. Signed Unicode,
+rows and 30 total cases (five originals plus 25 mutation variants), with Python/Node agreement. Signed Unicode,
 unsafe numeric nonces, live JSON and MCP are not covered by this input.
 
 An initial local download adapter saved JSON/JSONL under incorrect extensions;
