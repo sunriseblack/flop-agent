@@ -150,3 +150,21 @@ remains open and unmerged; passing checks do not grant merge authority.
 The [current-head validation and acknowledgement](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6543808453)
 was posted as sunriseblack October 31 at 13:12:23 UTC and read back exactly,
 linking publication `b8adc37`. No further probe-execution request was made.
+
+## Seekability follow-up, November 1
+
+The new [review question](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6554124815)
+asks about a non-seekable input at the boundary probe. Seekability is already
+a function-wide precondition: both main and the fixed head start with
+`f.seek(0, os.SEEK_END)`, then seek backwards during scanning. A guard solely
+at the final probe would occur after those required seeks.
+
+We compiled the exact helper AST separately from each pinned store version,
+without importing the service or changing source. Six non-seekable controls
+(three per revision, including zero budget and full window) all raise
+`io.UnsupportedOperation` on the first `(0, SEEK_END)` seek, before scanning.
+Eight BytesIO controls cover budgets 3/4/5/8; only the exact four-byte boundary
+changes from omitting to yielding `bbb`, as the existing regression requires.
+This 14-case check supports an explicit seekable-binary-input docstring; it
+does not demonstrate a new regression or justify another runtime guard.
+The existing full-suite validation is unchanged and was not repeated.

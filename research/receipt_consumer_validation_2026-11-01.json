@@ -1,0 +1,109 @@
+{
+  "schema": "flop-receipt-consumer-review-v1",
+  "date": "2026-11-01",
+  "peer_pin": "d858ec897cc10b283f8fc8fbea69fa1bd099ca25",
+  "source_mode": "reviewed source module, not installed package or MCP",
+  "network_policy": "macOS sandbox-exec deny network*",
+  "python": "3.14.3",
+  "focused_unit_tests": {
+    "count": 24,
+    "passed": 24,
+    "skipped": 0
+  },
+  "cli_controls": [
+    {
+      "case": "valid",
+      "exit": 0,
+      "status": "matches_local_expectations",
+      "report_stdout_sha256": "220744bf0f4d1172e139edc1b29174b6c85338b589f813b17a3ec7bdf00cdd87"
+    },
+    {
+      "case": "missing-stderr",
+      "exit": 1,
+      "status": "incomplete",
+      "report_stdout_sha256": "41fe564293dc86381a3039c13b9ce0de57a7ee6dfa5f9056e9e6d43371e98328"
+    },
+    {
+      "case": "tampered-receipt",
+      "exit": 1,
+      "status": "invalid_receipt",
+      "report_stdout_sha256": "6dbb6874e52d649a7aeca0a475afbc0832212403909d7048803d119048ded5c3"
+    },
+    {
+      "case": "no-newline",
+      "exit": 1,
+      "status": "does_not_match",
+      "report_stdout_sha256": "a385cbe764d84830f95018e9c1177235ee43d69793fe1ac797bcb8792e59b989"
+    },
+    {
+      "case": "same-length",
+      "exit": 1,
+      "status": "does_not_match",
+      "report_stdout_sha256": "a385cbe764d84830f95018e9c1177235ee43d69793fe1ac797bcb8792e59b989"
+    },
+    {
+      "case": "non-utf8",
+      "exit": 1,
+      "status": "does_not_match",
+      "report_stdout_sha256": "a385cbe764d84830f95018e9c1177235ee43d69793fe1ac797bcb8792e59b989"
+    },
+    {
+      "case": "changed-expectation",
+      "exit": 1,
+      "status": "does_not_match",
+      "report_stdout_sha256": "b7d16d1457323997e8eb49b42c229cdcb304b4be9a81983a2e2a7eb10505b83b"
+    },
+    {
+      "case": "directory-output",
+      "exit": 2,
+      "status": "input_error",
+      "report_stdout_sha256": "528251f7d297d3b211b83661f3a0db067aa6b27c902845a5acba6129be1bb0c4"
+    },
+    {
+      "case": "missing-receipt",
+      "exit": 1,
+      "status": "incomplete",
+      "report_stdout_sha256": "3d2d1d9f1cfab968a215ac08d0364d0fab86dadaaf0fbd6db92d8f2e8863e1f4"
+    }
+  ],
+  "fixture_files_sha256": {
+    "fixtures/work-evidence-v1/expectation.json": "b31015de8f139c8430485e8be729ae395532010777fe27052b29df67dafd50b9",
+    "fixtures/work-receipt-v1/valid.json": "c835ed35fcbaccec65629334cef3f9c39a4647f113bdf4641f3f048e923c14be",
+    "fixtures/work-evidence-v1/stdout.txt": "daedfbec6dd45d78c5723aae1796914d3171c321a96986b09804f0a513c6983d",
+    "fixtures/work-evidence-v1/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifact_checks": [
+    {
+      "case": "valid",
+      "sha256": "daedfbec6dd45d78c5723aae1796914d3171c321a96986b09804f0a513c6983d",
+      "expected_hash_matches": true,
+      "hash_mentioned_in_signed_text": false,
+      "caution": "A matching hash identifies bytes, not artifact safety, quality, or scorer acceptance."
+    },
+    {
+      "case": "no-newline",
+      "sha256": "d209df264119a0b9aebbea1faa8cd7a881f95f17e4b02d68297e0ce0cec6de71",
+      "expected_hash_matches": false,
+      "hash_mentioned_in_signed_text": false,
+      "caution": "A matching hash identifies bytes, not artifact safety, quality, or scorer acceptance."
+    },
+    {
+      "case": "same-length",
+      "sha256": "bf277de192c7e8d4109ba2e8d82ac660e6549c06b9dff854e45c070ab7aa0b1a",
+      "expected_hash_matches": false,
+      "hash_mentioned_in_signed_text": false,
+      "caution": "A matching hash identifies bytes, not artifact safety, quality, or scorer acceptance."
+    },
+    {
+      "case": "non-utf8",
+      "sha256": "9176512d9735641d91c6984266e969678baf9bd2622b982e62c9ee4587951677",
+      "expected_hash_matches": false,
+      "hash_mentioned_in_signed_text": false,
+      "caution": "A matching hash identifies bytes, not artifact safety, quality, or scorer acceptance."
+    }
+  ],
+  "private_record_sha256": "37c86c3ad15f3a0c7173f78e8cbdd527d60fef4135b69ace34299e7b2783f996",
+  "scope": "Peer synthetic fixtures and local mutations; no real work receipt, authenticated job, native transport, agreement, payment, or independent adoption of our kit established.",
+  "peer_reporter_verification": "not_requested_for_an_unchanged_synthetic_rerun",
+  "real_signed_offer_artifact_available": false
+}

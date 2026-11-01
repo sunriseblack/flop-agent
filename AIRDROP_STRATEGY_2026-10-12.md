@@ -95,6 +95,14 @@ uptake, not ongoing adoption, account credit, merge or airdrop eligibility.
 Today's ten workload request bindings match yesterday's. Official testnet
 still lacks a verified public network/release; no live usage is authorized.
 
+November 1: Proofline's author confirmed the corrected wording, workaround and
+evidence limits, closing the bounded real-case feedback loop. We also supplied
+independent source/CLI validation for a complementary receipt consumer's
+existing synthetic cases. That comparison does not authenticate a work agreement
+or add another real-case kit adoption. Keep the [pilot ledger](REAL_CASE_PILOTS.md)
+as the current state; unchanged requests and incomplete launch evidence remain
+separate from these completed contributions.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

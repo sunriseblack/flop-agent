@@ -106,8 +106,10 @@ reported independent execution at `eb2f18c`, with environment, successful
 program exits, report/packet hashes, bounded usefulness and two small notes.
 On October 31 we reproduced and corrected the count wording (30 total cases =
 five originals plus 25 variants) and documented their stdin workaround.
-Follow confirmation of those changes; do not request an unchanged verifier
-rerun or label this one run as ongoing adoption. Our own cross-check and an
+The reporter subsequently confirmed both corrections and the evidence limits;
+checked November 1, this bounded loop is complete. Inspect new findings without
+requesting an unchanged verifier rerun or labelling this as ongoing adoption.
+Our own cross-check and an
 invitation alone still do not qualify. A selected case file remains a subset
 even through `--export`; no native head, generation or credit is authenticated.
 
@@ -128,6 +130,15 @@ code. Then advance reviewed documentation corrections and inference readiness be
 repeated health polling, unchanged synthetic reruns or new tooling without a
 concrete user displace an actionable case. A run may continue on independent
 in-scope work while awaiting a reporter, but must not claim external uptake.
+
+The November 1 [complementary receipt-consumer review](RECEIPT_CONSUMER_REVIEW_2026-11-01.md)
+answers Osraka's fixture-exchange question with measured source/CLI controls.
+Our native-submission packet does not implement their work-receipt expectation
+format or parse an authenticated job agreement. Establish an already-existing
+signed offer/job reference and what exact manifest bytes it binds before a
+real-case invitation. Synthetic comparison fixtures remain outside the adoption
+count. Inspect the participant's response without reposting an unanswered request
+or inventing a receipt-format adapter to imply agreement or settlement.
 
 ## Close the independent review loop
 

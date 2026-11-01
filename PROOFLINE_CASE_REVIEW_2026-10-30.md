@@ -157,3 +157,11 @@ The [documentation response](https://github.com/flop-labs/technocore-chat/issues
 was posted as sunriseblack October 31 at 13:12:17 UTC and read back exactly,
 linking publication `b8adc37`. That revision's hosted repository checks pass.
 Reporter confirmation remains separate from delivery.
+
+## Reporter confirmation checked November 1
+
+[wyc4t confirmed the corrections](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6544614041)
+on October 31 at 14:21:38 UTC: the count, stdin description, OS-reproduction
+distinction and selected-archive limits match the reported run. No correction
+was requested. This bounded feedback loop is complete; it adds neither another
+execution nor evidence of ongoing adoption, live transport coverage or credit.

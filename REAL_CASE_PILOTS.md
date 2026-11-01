@@ -40,7 +40,7 @@ without finding a defect. Exact unsigned envelope metadata remains untrusted.
 
 | Case | Original problem | Participant | State and next step |
 | --- | --- | --- | --- |
-| Opposing verdicts naming the earlier of two result bodies | [Proofline's selected seven-record case and feedback request](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6497743557) | wyc4t | [Independent execution reported](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6525168434) October 30 at kit `eb2f18c`, Proofline `70e160b`, Python 3.12.14 / Node v22.23.2 / cryptography 46.0.3, networking blocked. All three recipe programs exited 0; seven signatures, five original comparison rows and 30 total cases, negative controls and packet hash reproduced. Sparse-history/unknown-credit labels helped. Count wording and a heredoc obstruction were reported; count reproduced and documentation corrected October 31. Reporter confirmation pending. No verifier defect or live-transport adoption claimed. |
+| Opposing verdicts naming the earlier of two result bodies | [Proofline's selected seven-record case and feedback request](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6497743557) | wyc4t | [Independent execution reported](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6525168434) October 30 at kit `eb2f18c`, Proofline `70e160b`, Python 3.12.14 / Node v22.23.2 / cryptography 46.0.3, networking blocked. All three recipe programs exited 0; seven signatures, five original comparison rows and 30 total cases, negative controls and packet hash reproduced. Sparse-history/unknown-credit labels helped. Count wording and heredoc notes were corrected October 31. [Reporter confirmed both corrections and the scope](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6544614041); bounded feedback loop complete. No unchanged rerun, verifier defect or ongoing adoption claimed. |
 | Transcript capture after a skipped newest-window read | [TCLK PR 195](https://github.com/flop-labs/tclk/pull/195) | maho0638 | [Deferred after the original reply](https://github.com/flop-labs/tclk/pull/195#issuecomment-6388150301): the investigator has synthetic cases and CI, but no real signed receipt/sequence/DID packet. No kit execution or finding claimed. Resume only if an existing real artifact becomes available; no new write for a demo. |
 | Receipt visibility and export recovery in a busy room | [Technocore issue 919](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6310657063) | pepedesigner | [Invited](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6387476306) October 24 at 17:44:25 UTC, kit `84e6348`. Await original real-receipt run and retained-window/metadata findings. |
 | Preserved rows bordering a measured export-retention gap | [Reported retained-row series](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-5925972570) | shibainu-inu | [Artifact-availability question delivered](https://github.com/flop-labs/technocore-chat/issues/919#issuecomment-6398009606). Original signed fields have not been supplied/verified; no kit run invited or adoption claimed. Ask for a real execution only if a suitable existing artifact is confirmed. |
@@ -120,3 +120,17 @@ participant's findings, without another unchanged verifier run. The separate
 [PR 1042 acknowledgement](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6543808453)
 was read back exactly at 13:12:23 UTC and closes the execution request under
 the author's stated policy. Neither comment adds another pilot to the count.
+
+November 1: wyc4t's original October 31 confirmation explicitly accepts the
+case-count correction, stdin-workaround description and the distinction between
+testing the alternative invocation and reproducing the participant's OS limit.
+The selected-archive limits also match their test. This closes that bounded
+feedback loop; inspect only new substantive findings, without a reminder,
+unchanged rerun or another adoption count.
+
+Osraka's [fixture-exchange proposal](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6555779806)
+is a complementary receipt-consumer lead. We independently checked the current
+peer tool's synthetic fixtures and documented [the comparison limits](RECEIPT_CONSUMER_REVIEW_2026-11-01.md).
+An existing real signed offer/job reference binding its expectation manifest
+has not been supplied. This is not another real-case kit pilot, and no kit
+execution is invited until a suitable existing artifact is established.
