@@ -1,0 +1,56 @@
+{
+  "schema": "flop-independent-installed-mcp-review-v1",
+  "date": "2026-11-01",
+  "peer_pin": "ac839d30aaef3c98b68bab321c7f89069c561ecf",
+  "environment": {
+    "python": "3.14.3",
+    "os": "Darwin",
+    "os_release": "25.6.0",
+    "pip": "26.0",
+    "mcp": "2.3.0",
+    "package": "0.3.2",
+    "loaded_from_site_packages": true
+  },
+  "network_denied_during_build_and_tests": true,
+  "dependency_installation": "hashed binary wheels from public PyPI",
+  "local_build": "no-index no-deps no-build-isolation",
+  "test_groups": [
+    {
+      "group": "mcp",
+      "exit": 0,
+      "count": 28,
+      "expected_count": 28,
+      "skips": 0,
+      "seconds": 4.51,
+      "stdio_cases": 3
+    },
+    {
+      "group": "import",
+      "exit": 0,
+      "count": 3,
+      "expected_count": 3,
+      "skips": 0,
+      "seconds": 0.18,
+      "stdio_cases": null
+    },
+    {
+      "group": "work-evidence",
+      "exit": 0,
+      "count": 24,
+      "expected_count": 24,
+      "skips": 0,
+      "seconds": 0.28,
+      "stdio_cases": null
+    }
+  ],
+  "extra_stdio_controls": {
+    "installed_stdio_positive": "matches_local_expectations",
+    "model_selected_extra_path_argument": "rejected_without_echo",
+    "same_session_rechecks_changed_output": "does_not_match",
+    "source_mutated": false
+  },
+  "dependency_lock_sha256": "dfa8efeb708c4200eae6db08b4d294dce943cbc0190358a14a31d12a8b334673",
+  "metadata_correction": "Initial ad-hoc collector expected test-name and ok on one line; SDK logs interleave. All three named tests execute within the successful 28-test group. Original log and initial result preserved.",
+  "setup_obstruction": "none",
+  "scope": "Independent installed synthetic MCP pilot; not real job acceptance, payment or use of our kit."
+}

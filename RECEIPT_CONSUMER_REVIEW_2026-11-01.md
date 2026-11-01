@@ -114,3 +114,11 @@ The [independent results and existing-artifact question](https://github.com/flop
 were posted as sunriseblack at 14:42:34 UTC and read back exactly. The response
 links publication `ffe4eef`, whose hosted checks pass. Participant response is
 pending; this delivery does not add a real-case execution or kit adoption.
+
+Later November 1, [Osraka confirmed the pins and repeated the controls](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6560360414).
+They have no existing public signed offer binding that exact expectation
+manifest, so that comparison is deferred rather than another unanswered request.
+The separately invited [installed MCP pilot](OSRAKA_MCP_PILOT_2026-11-01.md)
+now has our actual clean-environment results; it remains distinct from the
+[native signed JOB case](EXISTING_JOB_PILOT_2026-11-01.md) proposed for their use
+of our kit. No receipt-format mapping or authenticated work agreement is inferred.

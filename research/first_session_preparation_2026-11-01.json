@@ -1,0 +1,55 @@
+{
+  "schema": "flop-first-useful-session-preparation-v1",
+  "state": "preparation_only_not_authorized",
+  "task_id": "implementation-gap",
+  "job_sha256": "ba12c9b415f175bc686fb0db6f8b9ea29e28631d5a4fac280b7f6f3347d77d8d",
+  "request_file_sha256": "85f4ea494955490a9da2ab61517463d761dddc32f06da9fbba750d63137da243",
+  "request_utf8_bytes": 6602,
+  "context_chars": 4954,
+  "sources": [
+    {
+      "id": "yellowpaper",
+      "url": "https://flop.finance/intro/yellowpaper/",
+      "retrieved_at": "2026-11-01T17:33:45.623926+00:00",
+      "raw_sha256": "98599ffa351e8cd2cf2821c0f0d580edfc44d6c367ce5c19eae9697c8e12fc37",
+      "text_sha256": "4b32a807bdc379dea0d4a880130fc0079ade29c84961bf629e942c43358ef647"
+    }
+  ],
+  "proposed_limits": {
+    "maximum_sessions": 1,
+    "automatic_retries": 0,
+    "maximum_request_utf8_bytes": 16384,
+    "maximum_input_tokens": 4096,
+    "maximum_output_tokens": 768,
+    "maximum_output_utf8_bytes": 8192,
+    "observation_timeout_seconds": 120,
+    "maximum_spend": null,
+    "spend_asset": null
+  },
+  "spend_limit_state": "Must be a concrete approved test-token amount and unit from a verified quote before submission.",
+  "provider_model_client_network_genesis_miner": "unselected and unverified",
+  "private_identity_available": false,
+  "historical_session_ledger_available": false,
+  "future_session_id": null,
+  "response_available": false,
+  "required_review": [
+    "Separate proposed rules, implementation status and authoritative owner allocation evidence.",
+    "Require pinned finalized state and allocation parameters; do not infer an individual award."
+  ],
+  "consumption": "Owner reviews and incorporates the result into the launch evidence checklist; no automatic publication or transaction.",
+  "history_boundary": "This preparation is not a replacement ledger, an empty lifetime history or a FLOP wire request.",
+  "controls": {
+    "valid_structural_control": [],
+    "changed_version": [
+      "task_or_version_mismatch"
+    ],
+    "fabricated_citation": [
+      "citation_not_in_pinned_excerpt"
+    ],
+    "false_claim_with_real_quote": [],
+    "false_claim_requires_human_rejection": true,
+    "output_budget_control": true,
+    "actual_model_calls": 0
+  },
+  "live_transport_enforcement": "not_implemented_or_verified; precondition for any future submission"
+}

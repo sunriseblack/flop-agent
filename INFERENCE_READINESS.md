@@ -55,6 +55,13 @@ Even a complete inventory yields `requires_independent_verification`, with
 the report was written; exit 2 means invalid input or an unavailable operation.
 The checker deliberately cannot ratify final rules, approval or live artifacts.
 
+The [first useful session plan](FIRST_TESTNET_SESSION.md) selects one existing
+public-document task with a private request, exact hash/byte bindings and
+proposed input/output/time limits. The exact test-token quote and spend ceiling
+must be approved after a supported launch route and owner attribution are
+verified. The plan is not a FLOP wire request, transport implementation, purchase
+authorization or replacement for unavailable historical ledger data.
+
 ## Reconcile a session ledger without double counting
 
 Use a private input with schema `flop-session-observations-v1`, the existing

@@ -140,6 +140,28 @@ real-case invitation. Synthetic comparison fixtures remain outside the adoption
 count. Inspect the participant's response without reposting an unanswered request
 or inventing a receipt-format adapter to imply agreement or settlement.
 
+November 1 continuation: Osraka confirmed that the exact signed expectation
+artifact is unavailable; that case is deferred and its availability question
+is answered. The separately requested [clean-install MCP pilot](OSRAKA_MCP_PILOT_2026-11-01.md)
+passes 28 MCP, three import-boundary and 24 work-evidence tests, including the
+three installed stdio cases. Return that scoped result without claiming a
+production agreement or another use of our kit.
+
+For the user's next real native-record test, follow the separate
+[existing signed JOB recipe](EXISTING_JOB_PILOT_2026-11-01.md) offered to Osraka.
+It uses the already-archived Kibble job, with all original signatures retained,
+not a manufactured message or substitute executable-work manifest. Record the
+actual participant checkout/command/exit/hash and usefulness or obstruction.
+Do not count our own recipe tests or the earlier Proofline participant again.
+
+The [first useful testnet session](FIRST_TESTNET_SESSION.md) now has a selected
+workload request, byte/hash bindings, proposed one-session limits and semantic
+acceptance criteria. Refresh its source/request binding before use. Its spend
+ceiling, model/client/miner, network and owner attribution remain unverified;
+the original key is still unavailable. Do not promote preparation or a budget
+proposal into live-session authority, implemented transport enforcement or an
+empty historical account ledger.
+
 ## Close the independent review loop
 
 Check our repository's review issues, Technocore issues 955 and 965, and the

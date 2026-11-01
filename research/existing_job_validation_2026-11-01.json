@@ -1,0 +1,43 @@
+{
+  "schema": "flop-existing-signed-job-pilot-v1",
+  "date": "2026-11-01",
+  "source_pin": "70e160b0c19142eb4cfb4f12e93611fbd6251765",
+  "source_sha256": "47a08d488d405e29fecd041bf07b7a6289ef2b12b13c502b3e7cd5ffdf456b26",
+  "recipe_sha256": "4ae42f0d6925dae35e29c0aaca06eabf362febb8928e5833d926d191b64482ee",
+  "packet_sha256": "a49c72cded61ec25778dd2c4d93edece8bb838e40d94f38342262c8e80bc8d49",
+  "mode": "0o600",
+  "recipe_controls": [
+    {
+      "case": "valid",
+      "exit": 0,
+      "packet_sha256_unchanged": true
+    },
+    {
+      "case": "existing-output",
+      "exit": 1,
+      "packet_sha256_unchanged": true
+    },
+    {
+      "case": "tampered-input",
+      "exit": 1,
+      "packet_sha256_unchanged": true
+    }
+  ],
+  "job_cli_exit": 0,
+  "wrong_owner_cli_exit": 1,
+  "packet_controls": [
+    {
+      "case": "tampered-text",
+      "exit": 1,
+      "signature_status": "invalid",
+      "native_readback": null
+    },
+    {
+      "case": "unsigned-sequence",
+      "exit": 0,
+      "signature_status": "verified",
+      "native_readback": "signed_content_at_different_or_missing_sequence"
+    }
+  ],
+  "peer_execution": "pending; local run only"
+}
