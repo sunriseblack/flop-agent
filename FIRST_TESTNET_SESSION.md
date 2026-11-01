@@ -89,3 +89,29 @@ session ledger or assert an empty lifetime account. Future observations need
 real protocol identifiers and evidence; no placeholder finalized row is created.
 The existing [readiness checker](INFERENCE_READINESS.md) remains an evidence
 inventory and cannot authorize or certify a session.
+
+## Separately inspected gateway contract
+
+The canonical verification page lists `api.flop.network` as an official technical
+surface. Its root advertises [the OpenAPI document](https://api.flop.network/openapi.json).
+We fetched that document read-only at 17:46:32 UTC: OpenAPI 3.1.0, API version
+2.0.0, response SHA-256
+`2876108b38b998e27a34cd7d625b861bc31f12a6b1c59bc75c4212fde805a2da`.
+The gateway describes `/api/v1` and `/v1` facades. Its chat schema requires
+`model`/`messages` and requires `max_cost_flop` whenever `max_wait_ms` is set.
+Wallet enrollment is explicitly devnet; authentication and gateway-reported
+receipts do not establish the missing testnet or beneficiary binding.
+
+A private offline body template now holds the prepared messages, `max_tokens`
+768, `max_wait_ms` 120000 and nonstreaming mode. It deliberately omits model and
+cost cap. Validation against the inspected schema rejects both omissions;
+additional action fields and a null cost cap are also rejected. No endpoint
+was called with that template, and it must not be dispatched. Its 6,689-byte
+candidate body remains below the proposed byte bound, without establishing a
+model token count or live enforcement.
+
+Template-file SHA-256:
+`854e92c598d6d9067d2eeb81767c28dc4ae3b3b076d44235a0a73a96c007b9e6`.
+The final body will need a new binding and approval after verified model, quote,
+spend, identity and network values are supplied. Public contract inspection is
+separate from the eight-source model-input allowlist, which remains unchanged.

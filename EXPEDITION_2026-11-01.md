@@ -130,3 +130,88 @@ Reports, updated routine/pilot states and metadata are published through
 passes, and [hosted repository checks](https://github.com/sunriseblack/flop-agent/actions/runs/41317469299)
 pass. Original-author uptake, independent review, public delivery, pending
 artifact availability, hosted CI, merge and allocation remain distinct.
+
+## 17:32 UTC continuation at the owner's request
+
+Osraka's [response](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6560360414)
+confirms the seven hashes and reproduces the earlier 24 tests/nine CLI controls,
+while explicitly stating that the exact signed offer/expectation artifact is
+unavailable. That original interoperability case is deferred. We did not repeat
+the answered availability question or manufacture a binding.
+
+Osraka separately [invited a clean-install MCP pilot](https://github.com/Osraka/technocore-safe-agent/issues/24#issuecomment-6560452367).
+We reviewed and checked out the agreed `ac839d3`, created a fresh Python 3.14.3
+environment and installed hashed binary-wheel dependencies. The local package
+build/install used no index/dependency resolution/build isolation, under a
+network-denied sandbox. `pip check` passes; imports resolve to installed
+site-packages with PYTHONPATH unset. MCP is 2.3.0 and the package is 0.3.2.
+The fresh checkout used our previously fetched public source cache without
+hardlinks; this provenance is disclosed, without claiming a pristine machine.
+
+All requested installed groups pass with no skips: 28 MCP tests, three verifier
+import-boundary tests and 24 work-evidence tests. The MCP group includes all
+three installed stdio acceptance cases. Two extra actual-stdio controls also
+reject model-selected extra path arguments and detect changed output on the
+next call. No runtime defect emerged in this scope. Our first ad-hoc result
+extractor missed stdio successes because SDK logs interleave the test name and
+`ok`; corrected metadata and the original logs/summary are preserved privately.
+This was a local collection issue, not a failed peer test.
+
+The [installed result](https://github.com/Osraka/technocore-safe-agent/issues/24#issuecomment-6561545871)
+was delivered at 17:43:03 UTC and read back exactly. Author acknowledgement or
+issue closure remains separate. The installed 24-test group overlaps the earlier
+source review; do not sum them as new unique cases or kit adoption.
+
+For a distinct native-record test, we prepared an [existing signed JOB recipe](EXISTING_JOB_PILOT_2026-11-01.md)
+from Proofline's unchanged seven-record archive. It targets JOB seq 21334912,
+not the earlier RESULT. Valid input/packet succeeds, existing-output and
+tampered-input controls refuse, wrong expected author and changed signed text
+fail, and unsigned seq relabelling preserves the signature while exposing the
+readback mismatch. The wrapper hash is `a49c72cd…bc8d49`, mode 0600. No signing,
+new native message or synthetic job was needed. The prose job contains no
+repo/argv/timeout manifest; checking those terms is outside the kit.
+
+The [pinned execution invitation](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6561551007)
+was delivered/read back at 17:43:32 UTC, kit publication `c8e6548`. Osraka's
+actual execution and any finding are pending. Our local pass and the earlier
+Proofline participant's RESULT run do not count as Osraka running this JOB case.
+
+The [first useful session plan](FIRST_TESTNET_SESSION.md) now selects the existing
+`implementation-gap` task. Fresh allowlisted sources were retrieved at 17:33 UTC;
+the private request is 6,602 bytes, two Yellow Paper excerpts/4,954 characters,
+with an exact job and file hash. The answer will be reviewed for the evidence
+needed to distinguish draft rules, implemented grant behavior and an official
+owner allocation, then consumed in our launch checklist. The separate
+identity-binding abstention task is prepared as a safety case, not another paid
+session. No model request was made.
+
+Proposed bounds are one session, zero retries, 4,096 input/768 output tokens,
+16,384 input/8,192 output bytes and 120 seconds of observation. Exact model,
+tokenizer, test-token quote/unit/spend cap, independent miner, client/network and
+owner attribution remain unset/unverified. These are proposals, not implemented
+transport enforcement or approval. Synthetic structural/citation controls reject
+wrong hashes and fabricated quotes; a false entitlement claim with a real quote
+still needs human rejection. No prior approval or historical ledger was recreated.
+
+Read-only gateway discovery recovered the official API root and agent-integration
+page through urllib after the web reader could not open them; that failure was
+not a demonstrated service outage. The root advertised its OpenAPI URL. The
+37,021-byte OpenAPI 3.1.0/API 2.0.0 response was inspected at 17:46 UTC. The
+chat schema's deadline requires an explicit positive `max_cost_flop` cap. Its
+enrollment is devnet and receipt evidence is gateway-reported, with no verified
+testnet/beneficiary mapping inferred.
+
+The private offline gateway body template is intentionally incomplete: it has
+prepared messages and token/deadline bounds, but omits model and cost cap.
+JSON Schema rejects those omissions, a null cap and extra action fields.
+No credential, challenge, enrollment, estimate or inference endpoint was called.
+The eight-source workload allowlist is unchanged; discovery is a separate
+interface inventory. The testnet profile still says planned/unreleased, and
+the original signing key remains unavailable in this checkout.
+
+Our 232 repository tests pass in 1.851 seconds; recipe, installed-pilot and
+offline preparation controls pass. Diff/link/secret-pattern review passed.
+[Publication CI](https://github.com/sunriseblack/flop-agent/actions/runs/41332776769)
+passes at `c8e6548`. The daily routine/pilot ledger now distinguish the deferred
+manifest case, completed peer MCP execution, pending native JOB run and prepared
+but unauthorized first inference. Actual model-token usage is unavailable.

@@ -1,0 +1,41 @@
+{
+  "schema": "flop-readonly-gateway-contract-preparation-v1",
+  "source_url": "https://api.flop.network/openapi.json",
+  "retrieved_at": "2026-11-01T17:46:32.347809+00:00",
+  "source_raw_sha256": "2876108b38b998e27a34cd7d625b861bc31f12a6b1c59bc75c4212fde805a2da",
+  "openapi": "3.1.0",
+  "api_version": "2.0.0",
+  "candidate_server": "https://api.flop.network/api/v1",
+  "candidate_path": "/chat/completions",
+  "candidate_method": "POST",
+  "candidate_body_utf8_bytes": 6689,
+  "template_file_sha256": "854e92c598d6d9067d2eeb81767c28dc4ae3b3b076d44235a0a73a96c007b9e6",
+  "template_state": "incomplete_preparation_do_not_dispatch",
+  "missing_required_values": [
+    "model",
+    "max_cost_flop"
+  ],
+  "controls": {
+    "template_state": "intentionally_incomplete",
+    "missing_model_required": true,
+    "missing_cost_cap_with_deadline_rejected": true,
+    "extra_action_field_rejected": true,
+    "null_cost_cap_rejected": true,
+    "errors": [
+      {
+        "validator": "dependentRequired",
+        "message": "'max_cost_flop' is a dependency of 'max_wait_ms'"
+      },
+      {
+        "validator": "required",
+        "message": "'model' is a required property"
+      }
+    ],
+    "live_dispatches": 0,
+    "scope": "Offline schema checks only; no client, authorization, spend enforcement or settlement verification."
+  },
+  "dispatches": 0,
+  "launch_verified": false,
+  "owner_attribution_verified": false,
+  "model_input_allowlist_changed": false
+}

@@ -12,6 +12,9 @@ pilot pin, not a moving branch.
 Environment: macOS (Darwin 25.6.0), Python 3.14.3, pip 26.0. A fresh virtual
 environment installed MCP 2.3.0 and package 0.3.2. The package import resolved
 from that environment's `site-packages`, with `PYTHONPATH` unset.
+The fresh checkout was cloned without hardlinks from our previously fetched
+public repository cache and detached at the agreed pin. No prior environment
+was reused; this is not a claim of a pristine machine or empty download cache.
 
 Dependency installation used the pinned wheel hashes and public PyPI. The local
 package build/install and every test process ran with macOS `sandbox-exec`
@@ -75,3 +78,8 @@ contents or raw logs are published here.
 This is independent execution of the requested installed synthetic MCP pilot.
 It is separate from the earlier source-module review, actual independent use
 of our kit, authenticated work agreements, production execution and payment.
+
+The [independent installed result](https://github.com/Osraka/technocore-safe-agent/issues/24#issuecomment-6561545871)
+was delivered as sunriseblack at 17:43:03 UTC and read back exactly, with source
+provenance disclosed and commands linked at publication `c8e6548`. The original
+author's acknowledgement/issue closure is separate from our completed execution.

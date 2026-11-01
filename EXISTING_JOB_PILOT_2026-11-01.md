@@ -99,3 +99,8 @@ Our own recipe/control run is local evidence only. Participant execution is
 pending; the previous Proofline author's RESULT run does not count as Osraka
 executing this JOB case. This archive cannot supply a signed repo/argv manifest
 that was never present in the job.
+
+The [case-specific execution invitation](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6561551007)
+was posted as sunriseblack at 17:43:32 UTC and read back exactly, pinned to
+kit publication `c8e6548`. Participant execution and any finding remain pending;
+our own passing recipe is not independent adoption.
