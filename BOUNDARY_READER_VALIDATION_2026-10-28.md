@@ -168,3 +168,8 @@ changes from omitting to yielding `bbb`, as the existing regression requires.
 This 14-case check supports an explicit seekable-binary-input docstring; it
 does not demonstrate a new regression or justify another runtime guard.
 The existing full-suite validation is unchanged and was not repeated.
+
+The [seekability clarification](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6559449008)
+was posted as sunriseblack at 14:42:27 UTC and read back exactly. It proposes
+describing the existing input contract, without another runtime patch or
+unchanged full-suite request.

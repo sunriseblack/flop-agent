@@ -134,3 +134,8 @@ peer tool's synthetic fixtures and documented [the comparison limits](RECEIPT_CO
 An existing real signed offer/job reference binding its expectation manifest
 has not been supplied. This is not another real-case kit pilot, and no kit
 execution is invited until a suitable existing artifact is established.
+
+The [existing-artifact question and independent peer-tool results](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6559450133)
+were delivered and read back exactly at 14:42:34 UTC, pinned to `ffe4eef`.
+State: complementary synthetic comparison completed, real artifact availability
+question pending. No reminder is due while unanswered.

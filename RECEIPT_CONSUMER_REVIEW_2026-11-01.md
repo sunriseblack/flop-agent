@@ -109,3 +109,8 @@ It contains local invocation paths, so only reviewed metadata is published.
 Next trigger: the original author's substantive response or an already-existing
 real signed offer/job artifact. That artifact has not been supplied; no real-case
 kit execution is invited or counted on these synthetic fixtures.
+
+The [independent results and existing-artifact question](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6559450133)
+were posted as sunriseblack at 14:42:34 UTC and read back exactly. The response
+links publication `ffe4eef`, whose hosted checks pass. Participant response is
+pending; this delivery does not add a real-case execution or kit adoption.
