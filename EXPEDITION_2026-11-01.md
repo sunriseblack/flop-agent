@@ -275,3 +275,11 @@ Validation before publication: 244 repository tests pass (2.009 seconds), both
 offline kit/exporter review commands exit 0, staged diff checks pass, and a
 scoped 12-file secret scan finds no secret-like content or private paths.
 Hosted CI and the public follow-up receipt are subsequent evidence.
+
+Publication `8754c36be29098704c0a611528c15074b3bc30c1` is pushed. Its
+[hosted offline checks](https://github.com/sunriseblack/flop-agent/actions/runs/41362816237)
+passed. The [scoped acknowledgement](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6565573315)
+was posted as sunriseblack at 23:35:21 UTC and read back with exact body and
+author. It records the matching report hash and added regression, requests no
+unchanged rerun, and leaves Osraka's external note proposal awaiting project
+direction. No new independent run is inferred from our acknowledgement.

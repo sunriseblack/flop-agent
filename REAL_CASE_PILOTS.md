@@ -164,3 +164,8 @@ and their execution of our kit on an existing signed JOB. Neither is an
 authenticated executable-work agreement, a complete transcript or ongoing
 adoption. Their proposed external consumer note awaits project direction;
 do not open a duplicate protocol proposal or manufacture a signed manifest.
+
+November 1, 23:35 UTC: the [closure acknowledgement](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6565573315)
+was delivered and read back exactly, linking publication `8754c36` and our
+matching stdout hash/new regression. This bounded native-JOB loop is complete;
+inspect a new concrete finding or project response, not an unchanged rerun.
