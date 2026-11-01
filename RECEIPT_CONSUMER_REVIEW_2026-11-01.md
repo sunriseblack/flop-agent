@@ -33,8 +33,8 @@ or job should be manufactured for a fixture demonstration.
 Environment: macOS, Python 3.14.3, cryptography 46.0.7, certifi 2026.2.25.
 We used the reviewed source module through `PYTHONPATH`, not a package install.
 `sandbox-exec` denied `network*` for the peer tests and each CLI invocation.
-No package dependency, paid API, live pilot script, production identity or
-Keychain operation was needed.
+Dependencies were already installed. No dependency installation, paid API call,
+live pilot script, production identity or Keychain operation was needed.
 
 The peer's 24 focused `test_work_evidence.py` tests pass with no skips.
 They include existing valid non-UTF-8 output and same-length-byte negatives;
