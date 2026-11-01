@@ -1,5 +1,11 @@
 # Confirmed review closure and an independent receipt-consumer comparison
 
+Latest continuation, checked at 23:26–23:34 UTC: Osraka's actual signed-JOB
+execution is now received and reproduced; the separate installed MCP request
+is author-closed. The first-session launch/identity/attribution/quote blockers
+remain external or require trusted original-data restoration. Details follow
+at the end of this dated record; earlier pending statements are historical.
+
 wyc4t's [original confirmation](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6544614041)
 accepts the October 31 case-count correction, stdin workaround, distinction
 between testing the invocation and reproducing their OS restriction, and the
@@ -215,3 +221,57 @@ offline preparation controls pass. Diff/link/secret-pattern review passed.
 passes at `c8e6548`. The daily routine/pilot ledger now distinguish the deferred
 manifest case, completed peer MCP execution, pending native JOB run and prepared
 but unauthorized first inference. Actual model-token usage is unavailable.
+
+
+## 23:26 UTC continuation: actual signed-JOB execution and remaining session gates
+
+Osraka supplied the original five-case run on issue 1002 comment 6563331738
+(created 20:17:42 UTC, updated 20:31:34 UTC), at our requested `c8e6548`
+and Proofline archive `70e160b`. We verified the original GitHub author/content,
+exact pinned command, environment, input/packet hashes and reported exits.
+The original stdout SHA-256 `56a38f9ba713777f5274c808b49b6e52e25ae3a05b024e84abad267a881d525d`
+matches a fresh local CLI reproduction exactly. Their added consistent-label
+mutation reproduces locally: seven signatures verify, local fields match,
+head/generation stay unknown, and credit stays `not_determined`. A regression
+beside the existing submission-only mutation now protects this boundary.
+No kit-specific obstruction, runtime defect or misleading executable-agreement
+claim was reported or found. There is no corrective runtime patch or unchanged
+rerun to request. This is one independent participant execution on a selected
+existing signed JOB, not a complete transcript or ongoing adoption.
+
+Osraka also accepted our clean-install report and closed their issue 24 at
+20:00 UTC, with 55 tests/three actual stdio cases and the two extra controls
+kept distinct. Their external reference-consumer proposal asks project direction
+on the same existing issue; no new protocol or competing proposal was opened.
+The unavailable exact signed executable-manifest case remains deferred.
+
+Refreshed canonical launch sources still report planned/unreleased testnet,
+unverified public network/genesis/client/model values and no verified release.
+The advertised gateway contract hash remains
+`2876108b38b998e27a34cd7d625b861bc31f12a6b1c59bc75c4212fde805a2da`
+at 23:28:32 UTC. Issues 123/172 remain open; new comments and the linked issue
+208 discussion are peer proposals/measurements, not ratified beneficiary or
+allocation rules. No quote, supported testnet miner/client or final mapping is
+established. The original private identity/history are still unavailable at
+the configured locations; no search for other identities or key action was made.
+
+The new offline `first_session_output.py` bounds saved answer bytes to 8,192
+before parsing, binds one selected workload job and reuses schema/citation/
+abstention checks. Eleven tests cover exact/oversized UTF-8, hashes, bad JSON,
+fabricated citations, action/envelope fields, abstention, private paths and
+exclusive output. A real quote paired with a false entitlement intentionally
+still needs human semantic rejection. A handwritten abstention control for the
+actual selected task passes under denied networking. This is neither a model
+result nor live transport/token/spend enforcement. The first session plan now
+separates resolvable local preparation, external launch/policy gates, original
+data restoration and later output/proof/finality acceptance checks.
+
+Public source/metadata, pilot and routine changes exclude raw packets, prompts,
+source caches and outputs. No native post, enrollment, wallet challenge, key
+creation, estimate, model request, purchase or transaction occurred. Actual
+model token usage is unavailable. The published plan remains preparation only.
+
+Validation before publication: 244 repository tests pass (2.009 seconds), both
+offline kit/exporter review commands exit 0, staged diff checks pass, and a
+scoped 12-file secret scan finds no secret-like content or private paths.
+Hosted CI and the public follow-up receipt are subsequent evidence.

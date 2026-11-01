@@ -83,3 +83,10 @@ The [independent installed result](https://github.com/Osraka/technocore-safe-age
 was delivered as sunriseblack at 17:43:03 UTC and read back exactly, with source
 provenance disclosed and commands linked at publication `c8e6548`. The original
 author's acknowledgement/issue closure is separate from our completed execution.
+
+At 20:00:50 UTC, [Osraka accepted this report and closed issue 24](https://github.com/Osraka/technocore-safe-agent/issues/24#issuecomment-6563134569)
+for the agreed independent installed synthetic pilot. They confirmed the tree
+equivalence, requested counts and three actual stdio cases, with the two extra
+controls kept separate. No runtime defect or setup obstruction requires a fix.
+This closes that feedback loop without expanding it to a release, production
+agreement, full-suite or cross-platform validation.

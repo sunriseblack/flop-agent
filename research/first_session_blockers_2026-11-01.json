@@ -1,0 +1,54 @@
+{
+  "schema": "flop-first-session-blocker-inventory-v1",
+  "launch_sources": [
+    {
+      "id": "verification",
+      "url": "https://flop.finance/official/",
+      "retrieved_at": "2026-11-01T23:27:22.862045+00:00",
+      "raw_sha256": "e870a4ed77aef6184c8396501f48c29e3414fba93b8e9fe49a5d8128d7662daa",
+      "observed_text_signals": [
+        "date_is_only_target",
+        "devnet_no_weight"
+      ]
+    },
+    {
+      "id": "testnet_profile",
+      "url": "https://ask.flop.finance/networks/testnet",
+      "retrieved_at": "2026-11-01T23:27:22.958968+00:00",
+      "raw_sha256": "30b9110bb02c16a3ca75cc4235833c1406045d05ad3e79be703d43d07ba82e59",
+      "observed_text_signals": [
+        "testnet_planned",
+        "release_unreleased",
+        "network_values_unverified",
+        "no_verified_release"
+      ]
+    }
+  ],
+  "readiness": "blocked",
+  "missing_requirements": [
+    "network_identity",
+    "genesis",
+    "supported_client",
+    "official_faucet",
+    "owner_delegate_mapping",
+    "final_allocation_rules",
+    "model_catalog",
+    "independent_miner",
+    "bounded_session_approval"
+  ],
+  "gateway_contract_sha256": "2876108b38b998e27a34cd7d625b861bc31f12a6b1c59bc75c4212fde805a2da",
+  "gateway_contract_retrieved_at": "2026-11-01T23:28:32.370959+00:00",
+  "private_identity_available": false,
+  "historical_workload_available": false,
+  "saved_output_checker": "scripts/first_session_output.py",
+  "saved_answer_limit_bytes": 8192,
+  "live_token_spend_transport_enforcement": "not_implemented_or_verified",
+  "live_session_authorized": false,
+  "dispatches": 0,
+  "blocking_policy_issues": [
+    123,
+    172
+  ],
+  "peer_policy_discussion": 208,
+  "scope": "Local preparation and refreshed public evidence only; no launch, owner mapping, quote, approval or settlement established."
+}

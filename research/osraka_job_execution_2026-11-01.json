@@ -1,0 +1,43 @@
+{
+  "schema": "flop-peer-job-execution-v1",
+  "participant": "Osraka",
+  "report_url": "https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6563331738",
+  "report_created_at": "2026-11-01T20:17:42Z",
+  "report_updated_at": "2026-11-01T20:31:34Z",
+  "kit_revision": "c8e6548e6212edf94e1b6a2c8e54573e8d291a9e",
+  "archive_revision": "70e160b0c19142eb4cfb4f12e93611fbd6251765",
+  "environment_reported": {
+    "os": "macOS 15.6.1",
+    "python": "3.14.0",
+    "cryptography": "48.0.0"
+  },
+  "cases_reported": 5,
+  "original_exit": 0,
+  "peer_stdout_sha256": "56a38f9ba713777f5274c808b49b6e52e25ae3a05b024e84abad267a881d525d",
+  "local_stdout_sha256": "56a38f9ba713777f5274c808b49b6e52e25ae3a05b024e84abad267a881d525d",
+  "original_hash_reproduced": true,
+  "consistent_relabelling_reproduced": {
+    "evidence_verified": true,
+    "native_readback": {
+      "state": "exact_fields_match_in_supplied_snapshot",
+      "signed_content_matches": 1,
+      "signature_counts": {
+        "verified": 7
+      },
+      "records": 7,
+      "stored_sequence_contiguous": false,
+      "window_floor": 21434912,
+      "window_tip": 21437127,
+      "reported_head": null,
+      "reported_generation": null,
+      "window_reaches_reported_head": false,
+      "metadata_binding": "sequence, timestamps, generation and head are unsigned server metadata"
+    },
+    "credit": "not_determined",
+    "signed_payload_unchanged": true
+  },
+  "finding": "no kit-specific defect or obstruction reported",
+  "regression_added": true,
+  "runtime_assessment_changed": false,
+  "scope": "Participant execution on an existing selected signed JOB archive; not authenticated sequence metadata, complete history, executable agreement, credit or ongoing adoption."
+}

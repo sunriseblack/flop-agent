@@ -62,6 +62,10 @@ must be approved after a supported launch route and owner attribution are
 verified. The plan is not a FLOP wire request, transport implementation, purchase
 authorization or replacement for unavailable historical ledger data.
 
+The plan also documents `scripts/first_session_output.py`, a bounded offline
+review of one saved answer. This addresses local byte/schema/citation checks;
+tokenizer, transport, cost enforcement and live authorization remain outside it.
+
 ## Reconcile a session ledger without double counting
 
 Use a private input with schema `flop-session-observations-v1`, the existing

@@ -95,12 +95,44 @@ missing executable-work terms. Private originals, paths and full output need
 not be posted. A useful result may be a documented format boundary rather than
 a verifier defect.
 
-Our own recipe/control run is local evidence only. Participant execution is
-pending; the previous Proofline author's RESULT run does not count as Osraka
-executing this JOB case. This archive cannot supply a signed repo/argv manifest
-that was never present in the job.
+Our own recipe/control run is local evidence only. The previous Proofline
+author's RESULT run does not count as Osraka executing this JOB case. This
+archive cannot supply a signed repo/argv manifest that was never present.
 
 The [case-specific execution invitation](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6561551007)
 was posted as sunriseblack at 17:43:32 UTC and read back exactly, pinned to
-kit publication `c8e6548`. Participant execution and any finding remain pending;
-our own passing recipe is not independent adoption.
+kit publication `c8e6548`.
+
+## Independent execution received
+
+[Osraka's original report](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6563331738)
+was posted November 1 at 20:17:42 UTC, updated at 20:31:34 UTC. They ran the
+pinned recipe at `c8e6548e6212edf94e1b6a2c8e54573e8d291a9e` against the
+specified archive: macOS 15.6.1, Python 3.14.0, cryptography 48.0.0. Input length,
+input/packet hashes and preparation exit 0 match. Their command uses the
+recipe's independently checked public job-author DID, not merely the packet's
+claimed author.
+
+Their five observed cases are original JOB exit 0, wrong expected author exit 1,
+changed signed text exit 1, changed submission-only sequence exit 0 with a
+different-sequence label, and consistently relabelled submission/snapshot
+sequences exit 0 with unknown head/generation and credit `not_determined`.
+Reported stdout SHA-256:
+`56a38f9ba713777f5274c808b49b6e52e25ae3a05b024e84abad267a881d525d`.
+Our new local original CLI reproduction matches that hash exactly. We also
+reproduced the consistent-label control and added a regression beside the
+existing submission-only negative; runtime assessment behavior is unchanged.
+
+The participant reports a cleared environment, OS network/home-read isolation
+and write-limited outputs, with boundary canaries. Those environment controls
+are their reported execution evidence, not an independently observed sandbox
+on their machine. Their initial overstrict sandbox stopped Python before the
+kit ran; it was corrected separately and is not a kit obstruction.
+
+No kit-specific defect or misleading executable-agreement wording was found.
+The useful result was preserving the unsigned-metadata boundary even when
+all local sequence labels agree. State: independently executed, bounded
+usefulness reported, no corrective runtime patch indicated. No unchanged rerun
+is requested. The exact executable-manifest binding remains separately deferred;
+this result proves neither whole-transcript recovery, credit, agreement nor
+ongoing adoption.

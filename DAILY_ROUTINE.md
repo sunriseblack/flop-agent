@@ -154,6 +154,16 @@ not a manufactured message or substitute executable-work manifest. Record the
 actual participant checkout/command/exit/hash and usefulness or obstruction.
 Do not count our own recipe tests or the earlier Proofline participant again.
 
+November 1, 20:17 UTC: [Osraka supplied the actual five-case JOB run](https://github.com/flop-labs/technocore-chat/issues/1002#issuecomment-6563331738),
+with pin, environment, invocation, exits, report hash and bounded usefulness.
+We matched the original stdout hash exactly and reproduced their consistent
+sequence-relabelling case. It now has adjacent regression coverage; no runtime
+defect was reported or found. Mark this bounded execution complete, keep the
+missing signed executable-manifest case deferred, and do not request another
+unchanged rerun. The separate installed-MCP request is author-closed. Inspect
+new substantive findings and project direction on their external consumer note
+without duplicating that proposal.
+
 The [first useful testnet session](FIRST_TESTNET_SESSION.md) now has a selected
 workload request, byte/hash bindings, proposed one-session limits and semantic
 acceptance criteria. Refresh its source/request binding before use. Its spend
@@ -161,6 +171,16 @@ ceiling, model/client/miner, network and owner attribution remain unverified;
 the original key is still unavailable. Do not promote preparation or a budget
 proposal into live-session authority, implemented transport enforcement or an
 empty historical account ledger.
+
+The offline `first_session_output.py` command now bounds saved answer bytes
+before parsing and checks the selected job, schema, citations and abstention.
+It does not implement live transport, tokenizer or spend enforcement. Follow
+the remaining-blocker table in the session plan: official launch/profile,
+trusted restoration of the original identity/history, ratified beneficiary
+mapping, verified model/miner/client limits and an exact approved quote. Current
+issues 123/172 and peer discussion 208 do not resolve that mapping. Stop
+rechecking unchanged gates within a run; act when an official release, original
+data restoration, concrete quote or substantive contribution finding arrives.
 
 ## Close the independent review loop
 
@@ -320,8 +340,9 @@ rewards.
 Use the [read-only readiness checker and session observation ledger](INFERENCE_READINESS.md)
 for a fresh bounded source inventory and deduplicated session reports. A complete
 supplied inventory still requires independent verification; the checker never
-authorizes usage. Keep an empty ledger until actual sessions exist, and retain
-reported finality/amounts separately from verified settlement and allocation.
+authorizes usage. Do not fabricate session rows or replace unavailable historical
+data with an empty lifetime ledger. Retain reported finality/amounts separately
+from verified settlement and allocation.
 
 The new official `ask.flop.finance` operator hub exposes network profiles.
 Its October 20 testnet profile is planned, with an unreleased release and no

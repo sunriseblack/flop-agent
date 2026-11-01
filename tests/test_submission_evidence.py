@@ -89,6 +89,25 @@ class SubmissionEvidenceTests(unittest.TestCase):
         self.assertEqual(result["native_readback"]["state"], "signed_content_at_different_or_missing_sequence")
         self.assertEqual(result["submission"]["signed_payload_sha256"], self.assess()["submission"]["signed_payload_sha256"])
 
+    def test_consistent_sequence_relabelling_does_not_authenticate_metadata(self):
+        # Osraka's existing-JOB pilot, issue 1002 comment 6563331738.
+        # Unlike a submission-only edit, matching unsigned labels still match
+        # locally. Neither case can authenticate delivery or award credit.
+        packet = copy.deepcopy(self.packet)
+        packet["submission"]["seq"] = 777
+        packet["native_readback"]["messages"] = [{**packet["submission"]}]
+        packet["native_readback"].pop("last_seq")
+        packet["native_readback"].pop("generation")
+        result = self.assess(packet)
+        self.assertTrue(result["evidence_verified"])
+        self.assertEqual(result["native_readback"]["state"], "exact_fields_match_in_supplied_snapshot")
+        self.assertIsNone(result["native_readback"]["reported_head"])
+        self.assertIsNone(result["native_readback"]["reported_generation"])
+        self.assertIn("unsigned", result["native_readback"]["metadata_binding"])
+        self.assertEqual(result["credit_for_submission"], "not_determined")
+        self.assertEqual(result["submission"]["signed_payload_sha256"],
+                         self.assess()["submission"]["signed_payload_sha256"])
+
     def test_decimal_string_nonce_has_same_exact_signed_bytes(self):
         packet = copy.deepcopy(self.packet)
         packet["submission"]["nonce"] = str(self.record["nonce"])
