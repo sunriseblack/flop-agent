@@ -223,3 +223,8 @@ author's decision. `docs/store.md` is generated; editing that page alone would
 create drift instead of documenting the function's real contract. This follow-up
 does not request that the author download our probe, add another runtime guard,
 or repeat the already completed kit pilot.
+
+The [targeted diagnostic follow-up](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6579341251)
+was posted as sunriseblack at 14:14:12 UTC and read back with exact author/body,
+linking publication `a096e8f`. The reporter's missing environment/diff inputs are
+pending; no repeated request or unchanged full-suite rerun is due.

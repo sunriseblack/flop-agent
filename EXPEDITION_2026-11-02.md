@@ -102,3 +102,13 @@ public launch artifacts. No bypass or unverified social mirror was used.
 
 Publication checks: all 244 repository tests pass (2.056 seconds); six scoped
 files pass diff/JSON review and the secret scan. No runtime source changed.
+
+The [targeted diagnostic follow-up](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6579341251)
+was posted as sunriseblack at 14:14:12 UTC and read back with exact author/body,
+linking publication `a096e8f`. The reporter's missing environment/diff inputs are
+pending; no repeated request or unchanged full-suite rerun is due.
+
+Publication `a096e8fa410f0e77a8473a10607bddbbf6d029ea` is pushed and
+[its hosted checks](https://github.com/sunriseblack/flop-agent/actions/runs/41459943529)
+passed. The subsequent changes record only the exact diagnostic handoff and
+pending next trigger; they do not add another test execution or finding.

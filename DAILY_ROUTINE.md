@@ -175,8 +175,10 @@ reports a documentation-test failure on both source versions. Our direct
 generation checks match the committed page on both pins under Python 3.12.4
 and 3.14.3. See the [bounded discrepancy check](BOUNDARY_READER_VALIDATION_2026-10-28.md).
 Keep that four-render result separate from the reporter's full-suite failure.
-Request the exact differing line, Python patch version and loaded-module origin
-before proposing a fix; do not request that the author run our declined probe
+The [diagnostic request](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6579341251)
+was delivered/read back exactly at 14:14:12 UTC. Await the exact differing line,
+Python patch version and loaded-module origin before proposing a fix. Do not
+repeat that pending question, request that the author run our declined probe,
 or rerun the unchanged full suite without new evidence.
 
 The [first useful testnet session](FIRST_TESTNET_SESSION.md) now has a selected
