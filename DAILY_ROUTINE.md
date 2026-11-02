@@ -164,6 +164,21 @@ unchanged rerun. The separate installed-MCP request is author-closed. Inspect
 new substantive findings and project direction on their external consumer note
 without duplicating that proposal.
 
+November 2: [Osraka merged the external consumer example](https://github.com/Osraka/technocore-safe-agent/blob/b461e7bc101e8d9101701e9b2f82147d0aff9741/docs/technocore-consumer-example.md).
+Its operator-controlled expectation, local receipt format and native author
+evidence remain separate. The new compatibility question is directed to another
+consumer, not a request to repeat our closed pilot. We reviewed the note; no
+new execution or ongoing adoption is inferred from publication.
+
+A [new PR 1042 review](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6561489095)
+reports a documentation-test failure on both source versions. Our direct
+generation checks match the committed page on both pins under Python 3.12.4
+and 3.14.3. See the [bounded discrepancy check](BOUNDARY_READER_VALIDATION_2026-10-28.md).
+Keep that four-render result separate from the reporter's full-suite failure.
+Request the exact differing line, Python patch version and loaded-module origin
+before proposing a fix; do not request that the author run our declined probe
+or rerun the unchanged full suite without new evidence.
+
 The [first useful testnet session](FIRST_TESTNET_SESSION.md) now has a selected
 workload request, byte/hash bindings, proposed one-session limits and semantic
 acceptance criteria. Refresh its source/request binding before use. Its spend

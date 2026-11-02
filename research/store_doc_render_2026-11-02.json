@@ -1,0 +1,85 @@
+{
+  "schema": "flop-store-document-render-check-v1",
+  "original_review": "https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6561489095",
+  "original_reviewer": "bdunn77",
+  "main": "73a732497a19cac11aff4dcb527bae3c52b02f73",
+  "head": "95b8309e41f92723da0ab5daa128fb704e6f0817",
+  "public_page_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+  "results": [
+    {
+      "source": "main",
+      "revision": "73a732497a19cac11aff4dcb527bae3c52b02f73",
+      "process_exit": 0,
+      "report": {
+        "python": "3.12.4",
+        "matches": true,
+        "stored_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+        "rendered_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+        "diff": []
+      }
+    },
+    {
+      "source": "head",
+      "revision": "95b8309e41f92723da0ab5daa128fb704e6f0817",
+      "process_exit": 0,
+      "report": {
+        "python": "3.12.4",
+        "matches": true,
+        "stored_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+        "rendered_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+        "diff": []
+      }
+    },
+    {
+      "source": "main",
+      "process_exit": 0,
+      "report": {
+        "python": "3.14.3",
+        "matches": true,
+        "stored_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+        "rendered_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+        "diff": []
+      },
+      "revision": "73a732497a19cac11aff4dcb527bae3c52b02f73"
+    },
+    {
+      "source": "head",
+      "process_exit": 0,
+      "report": {
+        "python": "3.14.3",
+        "matches": true,
+        "stored_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+        "rendered_sha256": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+        "diff": []
+      },
+      "revision": "95b8309e41f92723da0ab5daa128fb704e6f0817"
+    }
+  ],
+  "source_file_hashes": {
+    "main": {
+      "docs/store.md": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+      "scripts/gen_store_doc.py": "0f82314c8a09252d8d39f6e976f53358b67ead84c4471a0cfe5c1fec1084138b",
+      "src/config.py": "0927bf331b631db488a542f16542bde0195ac7fc22dca01d1ebf9f070c2181e3",
+      "src/didkey.py": "30dd6c3e7285051d578ac7f2c205e218c3d270b19e0d4dbd246e7a281e5e49d6",
+      "src/store.py": "0eee2537081c44d34d34b63feeed89a235853c82764168c364ca14655e437249"
+    },
+    "head": {
+      "docs/store.md": "e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c",
+      "scripts/gen_store_doc.py": "0f82314c8a09252d8d39f6e976f53358b67ead84c4471a0cfe5c1fec1084138b",
+      "src/config.py": "0927bf331b631db488a542f16542bde0195ac7fc22dca01d1ebf9f070c2181e3",
+      "src/didkey.py": "30dd6c3e7285051d578ac7f2c205e218c3d270b19e0d4dbd246e7a281e5e49d6",
+      "src/store.py": "143dfd7b4f280aa31920a5c9d6f895dd373a87a89b068bd180ba4c1439592149"
+    }
+  },
+  "new_python314_dependencies": {
+    "orjson": "3.12.0",
+    "pynacl": "1.6.2",
+    "cffi": "2.1.1",
+    "pycparser": "3.0"
+  },
+  "dependency_integrity": "binary wheels checked against pinned upstream uv.lock",
+  "execution_network": "denied for rendering; allowed for pinned public dependency downloads",
+  "upstream_files_changed": false,
+  "full_suite_rerun": false,
+  "scope": "Direct generation equality in two exact five-file public source snapshots. Does not reproduce full pytest/import-state failure or disprove another environment."
+}

@@ -21,6 +21,14 @@ The separate `identity-binding` abstention case is prepared as a safety check;
 it is not a second authorized paid session or a wallet-address generation task.
 No model call, provider API request, purchase or signed session has occurred.
 
+November 2 refresh at 14:05 UTC: all eight allowlisted public sources were
+retrieved again and ten tasks prepared privately. The selected
+`implementation-gap` request and evaluation are unchanged: the same job hash,
+6,602-byte request and request-file hash above match exactly. The new Yellow
+Paper HTML byte hash differs while extracted source text is unchanged; a
+request match is not fresh human approval, source authentication or a model
+result. The canonical profile still supplies no verified live testnet route.
+
 ## Proposed bounded session
 
 | Limit | Proposal |

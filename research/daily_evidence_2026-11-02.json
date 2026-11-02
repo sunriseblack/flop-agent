@@ -1,0 +1,185 @@
+{
+  "schema": "flop-daily-evidence-v1",
+  "date": "2026-11-02",
+  "starting_revision": "5b60bbb1d2e34e29e4ab4bae964d72d460441833",
+  "public_did_matches": true,
+  "original_identity_available": false,
+  "historical_workload_available": false,
+  "recent_review_packets_available": true,
+  "kibble": {
+    "endpoints": {
+      "board": {
+        "error": "TimeoutError: The read operation timed out",
+        "ok": false
+      },
+      "floor": {
+        "error": null,
+        "ok": true
+      },
+      "room": {
+        "error": null,
+        "ok": true
+      },
+      "score": {
+        "error": "TimeoutError: The read operation timed out",
+        "ok": false
+      },
+      "stats": {
+        "error": null,
+        "ok": true
+      },
+      "status": {
+        "error": null,
+        "ok": true
+      }
+    },
+    "evidence_scope": {
+      "credit_for_submission": "not_determined",
+      "healthy_means": "no diagnostic flags observed, not certified coverage or acceptance",
+      "legacy_gap_fields": "numeric differences, not verified processing lag",
+      "native_to_host_cursor_mapping": "not_established"
+    },
+    "healthy": false,
+    "observations": {
+      "agent_census_seq": 9997001,
+      "cursor_inventory_truncated": false,
+      "reported_cursor_metadata": {
+        "floor.seq": 22748379,
+        "room.first_seq": 22760204,
+        "room.last_seq": 22760204,
+        "stats.origin.agent_census_seq": 9997001,
+        "stats.origin.stats_engine_seq": 9997001,
+        "stats.origin.tape_head_seq": 9997001,
+        "status.flybrain_hello.last_seq": 22681344
+      },
+      "room_generation": 0,
+      "room_head_seq": 22760204,
+      "room_retained_floor_seq": 22748379,
+      "room_retained_floor_ts": "2026-11-02T12:11:47.106980Z",
+      "scoring_engine_gap": 12763203,
+      "stats_engine_seq": 9997001,
+      "stats_engine_warm": true,
+      "stats_tape_gap": 12763203,
+      "stats_tape_head_seq": 9997001
+    },
+    "problems": [
+      "board: TimeoutError: The read operation timed out",
+      "score: TimeoutError: The read operation timed out",
+      "scoring engine: numeric difference 12763203 exceeds limit 1000; stale or non-comparable cursor metadata",
+      "stats tape: numeric difference 12763203 exceeds limit 1000; stale or non-comparable cursor metadata",
+      "scoring engine: cursor 9997001 below retained native floor 22748379; if it is a native cursor, 12751377 intervening sequences are outside live replay; cursor domain is not bound",
+      "stats tape: cursor 9997001 below retained native floor 22748379; if it is a native cursor, 12751377 intervening sequences are outside live replay; cursor domain is not bound"
+    ]
+  },
+  "board100_readable": false,
+  "room_checks": [
+    {
+      "room": "feedback",
+      "generation": 0,
+      "first_seq": 4038,
+      "last_seq": 4237,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "flop-network",
+      "generation": 0,
+      "first_seq": 701623,
+      "last_seq": 701822,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "flop",
+      "generation": 0,
+      "first_seq": 485922,
+      "last_seq": 486121,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "inference-agents",
+      "generation": 0,
+      "first_seq": 565444,
+      "last_seq": 565643,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "kibble",
+      "generation": 0,
+      "first_seq": 22759991,
+      "last_seq": 22760190,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "lobby",
+      "generation": 0,
+      "first_seq": 143554617,
+      "last_seq": 143554816,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "p-flop-research-c0e0b421",
+      "generation": 2,
+      "first_seq": null,
+      "last_seq": 0,
+      "counts": {
+        "verified": 0,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "room": "technocore",
+      "generation": 0,
+      "first_seq": 21344965,
+      "last_seq": 21345164,
+      "counts": {
+        "verified": 200,
+        "unverifiable": 0,
+        "invalid": 0
+      }
+    }
+  ],
+  "job_lifecycle_established": false,
+  "native_posts": 0,
+  "model_calls": 0,
+  "dispatches": 0,
+  "consumer_pr": {
+    "number": 1010,
+    "author": "osr21",
+    "head": "8aadb4f52527e9ef656c69b838bf6a14aef33d63",
+    "merged": false,
+    "new_feedback": false,
+    "companion_head": "da153335bb636c865ef3aec9ce2d039fdccd0318"
+  },
+  "osraka_example_revision": "b461e7bc101e8d9101701e9b2f82147d0aff9741",
+  "osraka_existing_pilots": "closed_scopes_no_rerun",
+  "first_session_request_unchanged": true,
+  "first_session_job_sha256": "ba12c9b415f175bc686fb0db6f8b9ea29e28631d5a4fac280b7f6f3347d77d8d",
+  "first_session_request_sha256": "85f4ea494955490a9da2ab61517463d761dddc32f06da9fbba750d63137da243",
+  "launch_readiness": "blocked",
+  "policy_binding_new_replies": false,
+  "actual_model_token_usage": null
+}

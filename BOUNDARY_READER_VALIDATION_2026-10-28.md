@@ -1,5 +1,9 @@
 # Independent caller validation for the existing read-boundary fix
 
+Latest follow-up: the November 2 section below investigates a new peer-reported
+documentation-test failure without changing the boundary implementation or
+reopening the author's closed third-party probe request.
+
 This extends validation of zkasuran's
 [Technocore PR 1042](https://github.com/flop-labs/technocore-chat/pull/1042),
 which fixes their [issue 1039](https://github.com/flop-labs/technocore-chat/issues/1039).
@@ -173,3 +177,49 @@ The [seekability clarification](https://github.com/flop-labs/technocore-chat/pul
 was posted as sunriseblack at 14:42:27 UTC and read back exactly. It proposes
 describing the existing input contract, without another runtime patch or
 unchanged full-suite request.
+
+
+## Documentation-test discrepancy, November 2
+
+[bdunn77's new review](https://github.com/flop-labs/technocore-chat/pull/1042#issuecomment-6561489095)
+reports `test_store_doc` failing on both main and head, alongside four causal
+boundary regressions and the existing seekability precondition. The reported
+full-suite failure remains their observation; it is not our rerun or evidence
+that this branch caused the failure. Current main/head are still `73a7324` and
+`95b8309`. We did not repeat the unchanged full suite or edit either branch.
+
+We extracted exactly five public files from each pinned Git commit:
+`src/store.py`, `src/config.py`, `src/didkey.py`, `scripts/gen_store_doc.py` and
+`docs/store.md`. Directly calling the unchanged generator's `render()` under
+network-denied Python processes gives:
+
+| Pinned source | Python | Committed page versus direct render |
+| --- | --- | --- |
+| Main `73a7324` | 3.12.4 | Byte-identical |
+| Head `95b8309` | 3.12.4 | Byte-identical |
+| Main `73a7324` | 3.14.3 | Byte-identical |
+| Head `95b8309` | 3.14.3 | Byte-identical |
+
+Every committed/rendered page above has SHA-256
+`e72ccd786838a853e4462e02334d68e481e0ae8d2d6c20287a29b87f182d292c`.
+Python 3.12 used the existing locked review environment. Python 3.14 used a fresh
+venv with `orjson` 3.12.0, PyNaCl 1.6.2, cffi 2.1.1 and pycparser 3.0, all binary
+wheels checked against current main's `uv.lock` hashes; no unpinned package or
+source build was substituted. Dependency download used the public package host;
+the actual generator processes had networking denied. The five-file snapshots
+and complete local logs remain private.
+
+This directly checks generated page equality, not the full pytest assertion's
+module/import state, all runtime behavior, hosted CI or merge readiness. It
+cannot disprove a failure in another environment. No generator or store fix is
+indicated by these four renders. The next useful input is the reporter's exact
+Python patch version, first differing generated line and whether the loaded
+`store` module came from the expected checkout, with personal paths normalized.
+A source change or actual differing line warrants further investigation;
+repeat unchanged gate execution does not.
+
+The separate public docstring/seekability clarification remains the original
+author's decision. `docs/store.md` is generated; editing that page alone would
+create drift instead of documenting the function's real contract. This follow-up
+does not request that the author download our probe, add another runtime guard,
+or repeat the already completed kit pilot.
