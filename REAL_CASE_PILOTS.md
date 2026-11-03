@@ -67,6 +67,14 @@ is added to the count by our own compatibility or fixture runs.
 
 ## Related engineering validation, outside the adoption count
 
+November 3 compatibility used the existing signed Unicode record at
+[feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
+nonce verifies in both the saved live JSON view and retained export. The local
+MCP SDK probe at Technocore `20629ab` preserved the decimal string and refused
+the rounded integer before the recording transport. The original fields and
+test captures are private. This was our engineering run. The ledger's
+independent participant states are unchanged. [Dated evidence](EXPEDITION_2026-11-03.md)
+
 On October 28 we used the existing public signed flop 327293 packet to
 validate additional callers of zkasuran's
 [PR 1042](https://github.com/flop-labs/technocore-chat/pull/1042).

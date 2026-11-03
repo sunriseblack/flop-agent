@@ -149,3 +149,20 @@ only protected-files success and overlap skipped attached as completed checks.
 Fork results do not approve those runs or merge 1010. The existing companion's
 body is updated; no competing official PR or original-author branch mutation
 occurred.
+
+## November 3 check on current upstream
+
+Technocore main advanced to `20629ab2913f30601c4cd59b20d04031105bdc7b`
+with viwashi's MCP nonce fix. The local merge of that revision and companion
+`da153335bb636c865ef3aec9ce2d039fdccd0318` produced
+`6b01167a7a7e6ba484d5d1f8ae2a48df918e4a29`. The same three contribution files
+remain the entire delta from main. The numeric export nonce stays intact and
+Python/Node agree on the unchanged corpus hash, all 11 classifications and
+30 controls each. A separate local MCP recording probe used an existing signed
+Unicode record to check exact decimal forwarding and early numeric rejection.
+
+The candidate passed 91 focused tests and 929 full-suite tests with one skip
+and 98.15% coverage. Loopback was allowed for the full rerun after the initial
+sandbox blocked four socket tests. The new main's hosted CI and the earlier
+companion fork CI remain separately pinned. Author integration and merge of
+PR 1010 are pending. [Execution details](EXPEDITION_2026-11-03.md)

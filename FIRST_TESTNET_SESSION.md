@@ -29,6 +29,31 @@ Paper HTML byte hash differs while extracted source text is unchanged; a
 request match is not fresh human approval, source authentication or a model
 result. The canonical profile still supplies no verified live testnet route.
 
+November 3 refresh. All ten requests and their evaluations match the previous
+bundle after retrieving the eight allowlisted sources again. The public faucet
+chain metadata identifies FLOP Devnet and the gateway catalog advertises a
+development model with `devnet-nominal` prices. The testnet profile still lists
+the network as planned and the release as unreleased. Use the catalog only as
+development evidence. [Faucet chain metadata](https://faucet.flop.network/chain)
+· [Gateway catalog](https://api.flop.network/v1/models)
+· [Testnet profile](https://ask.flop.finance/networks/testnet)
+
+The November 3 gateway contract documents an exact request-ID lookup at
+`GET /keys/me/receipts/{request_id}`. Preserve the original `X-Request-ID`
+or `Idempotency-Key` before any eventual submission. The lookup requires an
+active bearer credential in scope and returns the gateway's current retained
+ledger observation. A 404 leaves an uncertain submission unresolved. Final
+chain settlement, independent miner and owner attribution still require
+separate evidence. This lookup was inspected in the public schema. Its
+authenticated behavior remains to be verified for the eventual approved
+route. [Gateway OpenAPI](https://api.flop.network/openapi.json)
+
+Verify that the eventual route preserves the selected model's chat roles and
+system policy before relying on them for the workload. A devnet report on the
+currently listed Qwen model describes continuation-like responses and token
+counts that suggest missing chat templating. Treat it as an open peer finding
+for that route. [Original report](https://github.com/flop-labs/network/issues/41)
+
 ## Proposed bounded session
 
 | Limit | Proposal |
