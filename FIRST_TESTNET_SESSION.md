@@ -9,9 +9,9 @@ The prepared existing workload task is `implementation-gap`:
 
 > What evidence would distinguish draft allocation rules from an implemented grant and a particular owner's allocation?
 
-The selected request is bound to job SHA-256
+The November 1 request was bound to job SHA-256
 `ba12c9b415f175bc686fb0db6f8b9ea29e28631d5a4fac280b7f6f3347d77d8d`.
-The fresh request file is 6,602 UTF-8 bytes and hashes to
+That request file is 6,602 UTF-8 bytes and hashes to
 `85f4ea494955490a9da2ab61517463d761dddc32f06da9fbba750d63137da243`.
 It uses two pinned Yellow Paper excerpts totaling 4,954 characters. The source
 was retrieved November 1 at 17:33:45 UTC. Source snapshots, prompts and any
@@ -53,6 +53,20 @@ system policy before relying on them for the workload. A devnet report on the
 currently listed Qwen model describes continuation-like responses and token
 counts that suggest missing chat templating. Treat it as an open peer finding
 for that route. [Original report](https://github.com/flop-labs/network/issues/41)
+
+November 4 refresh. The Yellow Paper added FCU service policy under D-0538.
+Four requests now bind to the new source edition, including
+`implementation-gap`. The selected excerpts retain their text, while their
+positions and source hashes changed. The current 6,602-byte request has
+file SHA-256 `137200831d506e28664c8576caf68181abd4b2e6d29a3093f08704484fc42405`
+and job SHA-256
+`2cf1b84d6d9e620880f688cfa3673a84d93ba27f935fe497e2d577a3b093a1b2`.
+A handcrafted offline answer with valid November 3 citations passes against its
+own request and fails against this edition. Mechanical validation checks the
+binding. Publication still requires semantic review and exact-version approval.
+The official testnet profile lists a planned network and unreleased client.
+[Yellow Paper](https://flop.finance/intro/yellowpaper/)
+· [Testnet profile](https://ask.flop.finance/networks/testnet)
 
 ## Proposed bounded session
 
@@ -109,9 +123,9 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-01-followup-01/primary-job.json \
+  --jobs .private/workload/2026-11-04-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
-  --expected-job-sha256 ba12c9b415f175bc686fb0db6f8b9ea29e28631d5a4fac280b7f6f3347d77d8d \
+  --expected-job-sha256 2cf1b84d6d9e620880f688cfa3673a84d93ba27f935fe497e2d577a3b093a1b2 \
   --output .private/readiness/first-session/output-review.json
 ```
 
@@ -174,8 +188,9 @@ model token count or live enforcement.
 
 Template-file SHA-256:
 `854e92c598d6d9067d2eeb81767c28dc4ae3b3b076d44235a0a73a96c007b9e6`.
-The final body will need a new binding and approval after verified model, quote,
-spend, identity and network values are supplied. Public contract inspection is
+The template binds the November 1 edition. Rebuild it from the selected
+request after verified model, quote, spend, identity and network values are
+supplied, then obtain approval for that exact body. Public contract inspection is
 separate from the eight-source model-input allowlist, which remains unchanged.
 
 ## Remaining blockers checked November 1 at 23:28 UTC

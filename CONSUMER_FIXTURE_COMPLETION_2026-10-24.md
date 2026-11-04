@@ -166,3 +166,22 @@ and 98.15% coverage. Loopback was allowed for the full rerun after the initial
 sandbox blocked four socket tests. The new main's hosted CI and the earlier
 companion fork CI remain separately pinned. Author integration and merge of
 PR 1010 are pending. [Execution details](EXPEDITION_2026-11-03.md)
+
+## November 4 author handoff
+
+osr21 requested integration of the tested tree. The published merge candidate
+`0baf2203c2e769f25ca35e6a9b0401db1e3ca3c4` has parents `da15333` and
+`20629ab` and preserves the original PR head in its ancestry. The tree and
+three-file delta match the November 3 validation. The corpus retains its
+numeric nonce, benign invalid-signature case and generation-provenance note.
+[Author request](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6618111290)
+· [Candidate branch](https://github.com/sunriseblack/technocore-chat/tree/consumer-safety-1010-20629ab)
+
+Hosted fork CI checked out the exact candidate. The focused fixture checks,
+Python and Node classification checks, frozen repository checks, and the
+full suite of 929 passes and one skip succeeded. GitHub reports read access
+for sunriseblack on the author's fork. The handoff gives osr21 the fast-forward
+instructions. PR 1010 still points to `8aadb4f` and requires author integration
+and authorized maintainer CI approval before merge.
+[Fork CI](https://github.com/sunriseblack/technocore-chat/actions/runs/41843586058)
+· [Exact handoff](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6632706749)
