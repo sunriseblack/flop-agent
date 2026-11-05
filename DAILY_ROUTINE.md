@@ -70,8 +70,11 @@ The [SDK candidate review](SDK_CANDIDATE_REVIEW_2026-11-05.md) now independently
 executes the issue-71/72/82 candidates. The faucet supplement fixes non-string
 error values through a parser shared by its class and functional helper.
 It passes 46 cases. The unchanged x402 candidate passes 35 cases, and the
-wallet-status candidate passes its 11-case suite. Follow the existing issue
-threads for supplement review, source porting, changed candidate bytes or a
+wallet-status candidate passes its 11-case suite. The supplement is delivered
+on [issue 71](https://github.com/flop-labs/network/issues/71#issuecomment-6664493760),
+and independent retry validation is delivered on
+[issue 72](https://github.com/flop-labs/network/issues/72#issuecomment-6664494291).
+Follow substantive feedback, source porting, changed candidate bytes or a
 released SDK. Preserve original-author credit. No unchanged review reminder
 is due, including the already independently reviewed wallet patch. Use
 loopback servers or mocked APIs for any concrete new counterexample.

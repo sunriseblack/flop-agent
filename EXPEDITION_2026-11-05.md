@@ -119,3 +119,10 @@ canary was denied before the suites ran. No live funding, wallet or chain
 operation was performed. Syntax, patch application and the repository's
 244-test suite passed. Source-build, full upstream suite, bundles and release
 remain maintainer steps.
+
+The SDK review and faucet supplement were published at `95b7b39` with successful
+repository CI. The [new faucet finding](https://github.com/flop-labs/network/issues/71#issuecomment-6664493760)
+and [independent management-client review](https://github.com/flop-labs/network/issues/72#issuecomment-6664494291)
+were delivered and read back exactly under sunriseblack. The existing wallet
+review was left complete without a duplicate comment. Supplement acceptance,
+private source porting, full upstream validation and release remain pending.

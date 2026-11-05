@@ -126,3 +126,11 @@ remain in their issue bodies.
 
 The next steps are author review of the supplement and maintainer porting
 into the SDK source, full build/test validation and a released package.
+
+The faucet finding and extension were delivered and read back exactly on
+[issue 71](https://github.com/flop-labs/network/issues/71#issuecomment-6664493760).
+The independent x402 execution report was likewise delivered on
+[issue 72](https://github.com/flop-labs/network/issues/72#issuecomment-6664494291).
+Both are pinned to repository revision `95b7b39`. Supplement acceptance,
+source porting and release remain pending. The wallet review was recorded
+without repeating the existing independent report.
