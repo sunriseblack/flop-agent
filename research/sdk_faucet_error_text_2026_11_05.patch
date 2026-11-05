@@ -1,0 +1,30 @@
+--- a/dist/faucet.js
++++ b/dist/faucet.js
+@@ -23,0 +24,13 @@
++
++function faucetErrorText(raw) {
++    try {
++        const parsed = JSON.parse(raw);
++        if (typeof parsed?.error === 'string') {
++            return parsed.error;
++        }
++    }
++    catch {
++        // Preserve non-JSON response text.
++    }
++    return raw;
++}
+@@ -96,7 +109 @@
+-                let message = errorText;
+-                try {
+-                    message = JSON.parse(errorText).error ?? errorText;
+-                }
+-                catch {
+-                    // Preserve non-JSON response text.
+-                }
++                const message = faucetErrorText(errorText);
+@@ -263,3 +270 @@
+-                        let message = errorText;
+-                        try { message = JSON.parse(errorText).error ?? errorText; }
+-                        catch { /* Preserve non-JSON response text. */ }
++                        const message = faucetErrorText(errorText);

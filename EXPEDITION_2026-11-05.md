@@ -98,3 +98,24 @@ The receipt-binding patch, report and 24-case regression were published at
 The original author's [independent replay request](https://github.com/flop-labs/network/issues/49#issuecomment-6662712942)
 was delivered and read back exactly. The daily routine now follows that
 feedback loop and queues independent review of the existing SDK candidates.
+
+## SDK review continuation
+
+The user authorized the queued SDK reviews. Fresh npm metadata still named
+0.4.0 as latest. A fresh archive matched registry SHA-1/SHA-512 and the three
+reported module hashes. All original author baseline failures reproduced,
+and the exact author candidates passed 22 faucet, 18 x402 and 11 wallet cases.
+
+Additional faucet controls exposed non-string error values shared by the
+functional helper and proposed class branch. A small shared-parser supplement
+preserves the string result contract and raw refusal text. All 22 existing
+and 24 added cases pass. The x402 candidate also passes 17 new caller/body
+controls. The wallet candidate has no new finding within the 11-case scope,
+and its pre-existing separate peer review is recorded without another request.
+[Full results and supplement](SDK_CANDIDATE_REVIEW_2026-11-05.md)
+
+Native loopback was enabled in the execution sandbox, and a non-loopback
+canary was denied before the suites ran. No live funding, wallet or chain
+operation was performed. Syntax, patch application and the repository's
+244-test suite passed. Source-build, full upstream suite, bundles and release
+remain maintainer steps.

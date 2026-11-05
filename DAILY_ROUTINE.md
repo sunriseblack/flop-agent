@@ -66,13 +66,15 @@ keys/metadata, local consistency, state inclusion, finality and inference
 correctness explicit. This is separate from the completed native kit pilot.
 Use existing public packets and read-only historical capture for this work.
 
-After actionable receipt feedback, the next devnet source contribution is
-independent regression review of the existing SDK retry patches on network
-issues 71/72 and wallet-creation outcome patch on issue 82. Credit the original
-authors and use loopback or mocked chain APIs. Keep the published SDK artifact,
-the reviewed candidate, private core-source porting, upstream tests and a later
-released package distinct. Concrete findings warrant a scoped extension to the
-existing report.
+The [SDK candidate review](SDK_CANDIDATE_REVIEW_2026-11-05.md) now independently
+executes the issue-71/72/82 candidates. The faucet supplement fixes non-string
+error values through a parser shared by its class and functional helper.
+It passes 46 cases. The unchanged x402 candidate passes 35 cases, and the
+wallet-status candidate passes its 11-case suite. Follow the existing issue
+threads for supplement review, source porting, changed candidate bytes or a
+released SDK. Preserve original-author credit. No unchanged review reminder
+is due, including the already independently reviewed wallet patch. Use
+loopback servers or mocked APIs for any concrete new counterexample.
 
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
