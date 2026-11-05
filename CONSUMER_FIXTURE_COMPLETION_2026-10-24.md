@@ -185,3 +185,11 @@ instructions. PR 1010 still points to `8aadb4f` and requires author integration
 and authorized maintainer CI approval before merge.
 [Fork CI](https://github.com/sunriseblack/technocore-chat/actions/runs/41843586058)
 · [Exact handoff](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6632706749)
+
+## November 5 follow-through
+
+osr21 independently confirmed the candidate's fast-forward ancestry and the
+exact-source fork run at 01:18:52 UTC. PR 1010 still points to `8aadb4f`.
+Current main `cd41f86` changes only the public triage workflow relative to
+`20629ab`. Integration and authorized upstream candidate checks remain pending.
+[Author confirmation](https://github.com/flop-labs/technocore-chat/pull/1010#issuecomment-6646933139)

@@ -41,6 +41,21 @@ the same three-file completion and a successful exact-source fork run. Read
 separate results. Upstream workflow approval, integration and merge remain
 external steps; do not repeat the handoff unless new source or feedback warrants it.
 
+November 5: osr21 independently confirmed candidate `0baf220`'s fast-forward
+ancestry and exact-source fork CI. PR 1010 still points to `8aadb4f`. Current
+main `cd41f86` differs from `20629ab` only in the triage workflow. Await author
+integration and maintainer-approved upstream checks without repeating the handoff.
+
+The new [browser storage contribution](BROWSER_STORAGE_FAILURES_2026-11-05.md)
+addresses zkasuran's issue 1081 through [PR 1085](https://github.com/flop-labs/technocore-chat/pull/1085).
+It proposes temporary use with persistent storage-failure feedback, including
+an earlier seed restored after reload and failed removal during sign-out or
+passkey entry. Thirty added assertions pass locally, eight fail on unchanged
+main, and the full browser and repository checks pass. Upstream checks require
+maintainer approval. Inspect policy feedback or a concrete counterexample and
+respect the reporter's earlier preference about executing third-party probes.
+This source contribution has no evidence-kit adoption status.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
