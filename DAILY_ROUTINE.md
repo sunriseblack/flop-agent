@@ -56,6 +56,16 @@ maintainer approval. Inspect policy feedback or a concrete counterexample and
 respect the reporter's earlier preference about executing third-party probes.
 This source contribution has no evidence-kit adoption status.
 
+The [devnet receipt review](DEVNET_SESSION_BINDING_REVIEW_2026-11-05.md)
+extends wyc4t's public issue-49 example with raw transaction decoding and
+receipt binding. Its original 14 checks accepted a changed raw output with
+refreshed displayed hashes. The candidate passes the original case, rejects
+that mutation and passes 24 regressions. Follow the existing issue for the
+author's independent replay or a concrete counterexample. Keep RPC-trusted
+keys/metadata, local consistency, state inclusion, finality and inference
+correctness explicit. This is separate from the completed native kit pilot.
+Use existing public packets and read-only historical capture for this work.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner

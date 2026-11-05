@@ -178,3 +178,14 @@ November 1, 23:35 UTC: the [closure acknowledgement](https://github.com/flop-lab
 was delivered and read back exactly, linking publication `8754c36` and our
 matching stdout hash/new regression. This bounded native-JOB loop is complete;
 inspect a new concrete finding or project response, not an unchanged rerun.
+
+## Devnet receipt review, separate from native kit adoption
+
+On November 5 we independently replayed wyc4t's existing public issue-49
+settlement packet and reproduced a missing raw/decoded transaction binding.
+The [candidate and 24-case review](DEVNET_SESSION_BINDING_REVIEW_2026-11-05.md)
+preserve the original receipt, add historical metadata and reject the changed
+raw-output case. Our local execution and fresh read-only capture are complete.
+Peer replay and author acceptance remain pending. This extends an actual
+third-party devnet receipt example. It is a new engineering review scope,
+separate from wyc4t's completed native submission-kit pilot.

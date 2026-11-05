@@ -1,0 +1,41 @@
+--- a/verify-session.mjs
++++ b/verify-session.mjs
+@@ -1,0 +2 @@
++import { isDeepStrictEqual } from 'node:util';
+@@ -9,0 +11 @@
++const { TypeRegistry, Metadata } = req('@polkadot/types');
+@@ -61,0 +64 @@
++    const metadataHex = (await api.rpc.state.getMetadata(BLOCK)).toHex();
+@@ -70 +73 @@
+-      rpc: { genesisHash, blockHashAtHeight, blockNumber: block.block.header.number.toString(), header: block.block.header.toJSON(),
++      rpc: { genesisHash, blockHashAtHeight, metadataHex, blockNumber: block.block.header.number.toString(), header: block.block.header.toJSON(),
+@@ -79 +82,9 @@
+-  const a = f.rpc.call.args;
++  if (!f.rpc.metadataHex) throw new Error('Historical runtime metadata is required to decode the raw extrinsic');
++  // Bind decoded receipt fields to the serialized transaction before checking signatures.
++  // Historical metadata remains part of the RPC-trusted evidence.
++  const registry = new TypeRegistry();
++  registry.setMetadata(new Metadata(registry, f.rpc.metadataHex));
++  const extrinsic = registry.createType('Extrinsic', f.rpc.extrinsicHex);
++  const rawCall = extrinsic.method.toJSON();
++  const header = registry.createType('Header', f.rpc.header);
++  const a = rawCall.args;
+@@ -82 +93,4 @@
+-  if (!a || !c || a.channel_id !== CHANNEL || f.rpc.callMethod !== 'settle' || f.rpc.callSection !== 'computeChannel') throw new Error('Unexpected fixture/call');
++  if (!a || !c || a.channel_id !== CHANNEL || f.rpc.extrinsicIndex !== EXTRINSIC_INDEX
++      || extrinsic.method.method !== 'settle' || extrinsic.method.section !== 'computeChannel') {
++    throw new Error('Unexpected fixture/call');
++  }
+@@ -90,0 +105,6 @@
++    rawExtrinsicRoundTrips: equal(extrinsic.toU8a(), bytes(f.rpc.extrinsicHex)),
++    decodedCallMatchesRaw: isDeepStrictEqual(rawCall, f.rpc.call)
++      && f.rpc.callSection === extrinsic.method.section && f.rpc.callMethod === extrinsic.method.method,
++    decodedSignerMatchesRaw: f.rpc.signer === extrinsic.signer.toString(),
++    headerHashAndNumberMatch: header.hash.toHex() === BLOCK && f.rpc.blockHashAtHeight === BLOCK
++      && integer(header.number.toString()) === integer(f.rpc.blockNumber),
+@@ -94 +114 @@
+-    signerMatchesMiner: f.rpc.signer === c.miner && c.miner === e.miner,
++    signerMatchesMiner: extrinsic.signer.toString() === c.miner && c.miner === e.miner,
+@@ -110 +130 @@
+-    limits: ['RPC block finality and state inclusion are not cryptographically authenticated by this script.', 'The signing keys are taken from RPC-reported historical storage.', 'No execution replay, TOPLOC activation verification, prompt/output preimage check, TEE hardware attestation, or task-quality evaluation is performed.', 'This public example belongs to other participants; it is not a run by wyc4t.'] };
++    limits: ['RPC block finality and state inclusion are not cryptographically authenticated by this script.', 'The signing keys and runtime metadata are taken from RPC-reported historical state.', 'The outer extrinsic signature and transaction/event inclusion are not verified.', 'No execution replay, TOPLOC activation verification, prompt/output preimage check, TEE hardware attestation, or task-quality evaluation is performed.', 'This public example belongs to other participants; it is not a run by wyc4t.'] };

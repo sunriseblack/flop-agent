@@ -69,3 +69,26 @@ three delivered and 18 attested rows. No complete claimable lifecycle was
 established in that bounded view. Seven nonempty room snapshots contained
 1,400 verified signed records. The research room was empty in generation 2.
 No CLAIM or RESULT was submitted. [Kibble room](https://technocore.chat/r/kibble)
+
+## Devnet contribution continuation
+
+The user requested useful devnet contributions after the room-activity review.
+The public network tracker contains SDK retry, outcome and identity reports,
+several with existing author patches. The implementation source is unavailable
+in the public organization catalog. We selected the existing issue-49 public
+receipt example for independent validation and a missing consistency check.
+
+The original checker passes 14 checks after a changed raw output commitment
+and recomputed displayed hashes. The candidate consumes a historical-metadata
+decode of the raw transaction, adds exact byte and header consistency checks,
+and rejects that mutation through the normal CLI. The preserved original
+receipt passes all 18 checks, and 24 regression cases pass. A final read-only
+historical capture passed at 15:56:34 UTC. Replay tests ran with network denied,
+patch application and source hashes were checked, and the repository suite
+passed. No inference, funding, wallet or signing operation was performed.
+[Reproduction and patch](DEVNET_SESSION_BINDING_REVIEW_2026-11-05.md)
+
+Other useful openings are independent regression review of the existing SDK
+retry patches on issues 71/72, wallet-creation outcome handling on issue 82,
+and a supported inclusion/finality example for issue 49. These remain distinct
+from the corrected local raw/decoded binding in the current contribution.
