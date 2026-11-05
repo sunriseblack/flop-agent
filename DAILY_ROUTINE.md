@@ -66,6 +66,14 @@ keys/metadata, local consistency, state inclusion, finality and inference
 correctness explicit. This is separate from the completed native kit pilot.
 Use existing public packets and read-only historical capture for this work.
 
+After actionable receipt feedback, the next devnet source contribution is
+independent regression review of the existing SDK retry patches on network
+issues 71/72 and wallet-creation outcome patch on issue 82. Credit the original
+authors and use loopback or mocked chain APIs. Keep the published SDK artifact,
+the reviewed candidate, private core-source porting, upstream tests and a later
+released package distinct. Concrete findings warrant a scoped extension to the
+existing report.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner

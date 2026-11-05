@@ -189,3 +189,8 @@ raw-output case. Our local execution and fresh read-only capture are complete.
 Peer replay and author acceptance remain pending. This extends an actual
 third-party devnet receipt example. It is a new engineering review scope,
 separate from wyc4t's completed native submission-kit pilot.
+
+The [case-specific replay request](https://github.com/flop-labs/network/issues/49#issuecomment-6662712942)
+was delivered and read back exactly under sunriseblack, pinned to `4173e77`.
+Await the participant's actual checkout, environment, result and counterexample.
+The prior native kit case remains closed. No unchanged reminder is due.

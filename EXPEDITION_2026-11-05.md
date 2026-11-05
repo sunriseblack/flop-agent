@@ -92,3 +92,9 @@ Other useful openings are independent regression review of the existing SDK
 retry patches on issues 71/72, wallet-creation outcome handling on issue 82,
 and a supported inclusion/finality example for issue 49. These remain distinct
 from the corrected local raw/decoded binding in the current contribution.
+
+The receipt-binding patch, report and 24-case regression were published at
+`4173e77de0e1efbd0bf82f84dfd31bd3fe26d959` with successful repository CI.
+The original author's [independent replay request](https://github.com/flop-labs/network/issues/49#issuecomment-6662712942)
+was delivered and read back exactly. The daily routine now follows that
+feedback loop and queues independent review of the existing SDK candidates.

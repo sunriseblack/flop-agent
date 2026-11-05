@@ -121,3 +121,7 @@ The patch extends the existing example with credit to wyc4t. The next step is
 independent author replay and review, followed by a supported inclusion and
 finality example from the project. Replaying this public third-party receipt
 is an engineering contribution, with no own-session or allocation claim.
+
+The pinned review was delivered and read back exactly under sunriseblack on
+November 5. Independent author execution and acceptance are pending.
+[Author follow-up](https://github.com/flop-labs/network/issues/49#issuecomment-6662712942)
