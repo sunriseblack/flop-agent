@@ -209,3 +209,14 @@ independently executed and reporter verified; versioned author integration
 remains planned. The acknowledgment was delivered/read back exactly. Inspect
 new integration evidence or a real finding, without another unchanged replay
 request or counting the native pilot again.
+
+## Gateway contract follow-up, separate engineering scope
+
+[mungmungI-1's existing direct observation](https://github.com/flop-labs/network/issues/42#issuecomment-6671583471)
+confirms public model discovery and the OpenAPI security mismatch. We turned
+their proposed two-operation check into a ten-case offline reproduction at
+`833a967`. It uses the existing public schema, no credential or paid request.
+The [case-specific execution invitation](https://github.com/flop-labs/network/issues/42#issuecomment-6687007161)
+was delivered/read back exactly. State: invited; independent program execution,
+findings and maintainer integration remain pending. Ask no unchanged reminder.
+This is not a native signed-job artifact or another evidence-kit pilot.

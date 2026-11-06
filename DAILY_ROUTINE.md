@@ -104,8 +104,9 @@ unchanged replay.
 The [gateway discovery regression](GATEWAY_DISCOVERY_CONTRACT_2026-11-06.md)
 answers mungmungI-1's direct follow-up on our network issue 42. Ten offline
 cases reproduce the served schema's missing public override and check a
-one-operation candidate while preserving protected receipt lookup. Deliver
-the pinned runnable artifact on the existing issue, then follow actual
+one-operation candidate while preserving protected receipt lookup. The
+[pinned artifact invitation](https://github.com/flop-labs/network/issues/42#issuecomment-6687007161)
+at `833a967` was delivered and read back exactly. Follow actual
 execution, a changed contract or a concrete finding. No credential or inference
 request is needed. The peer's existing direct observation is independent
 review of the issue, not execution of the new program.

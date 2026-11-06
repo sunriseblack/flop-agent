@@ -54,7 +54,11 @@ against the saved public schema. It reproduces the omission, accepts the local
 one-operation candidate and rejects adjacent access-control mistakes. All ten
 cases pass on Node 25.9.0/macOS; it makes no requests or credential reads.
 The contract and runtime have not been repaired by these local controls.
-Publication and case-specific delivery follow the repository checks.
+Published at `833a967afaf0464c5f3b1efd052cd8e8fe5a6794`, with successful
+[hosted repository checks](https://github.com/sunriseblack/flop-agent/actions/runs/42232898840).
+The [case-specific invitation to the existing reviewer](https://github.com/flop-labs/network/issues/42#issuecomment-6687007161)
+was delivered and read back exactly under sunriseblack. Independent execution
+of the new program is pending; the earlier direct review is not that execution.
 
 The ten new offline cases, Node syntax check and all 244 repository tests
 pass. Kit and exporter review commands report `all_passed=true`. The staged

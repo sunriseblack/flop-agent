@@ -48,3 +48,11 @@ different schema. The schema snapshot remains private. The next step is the
 maintainer's contract change and source-integrated regression; independently
 executing this program or a later fix remains separate from the existing
 reviewer's direct HTTP/schema observation.
+
+Published at `833a967afaf0464c5f3b1efd052cd8e8fe5a6794`; the repository's
+[hosted checks passed](https://github.com/sunriseblack/flop-agent/actions/runs/42232898840).
+The [case-specific invitation](https://github.com/flop-labs/network/issues/42#issuecomment-6687007161)
+was delivered and read back exactly under sunriseblack. It asks the existing
+reviewer for an actual pinned execution with environment, command, exit/output
+and a concrete obstruction or counterexample. State: invited, execution pending.
+This example is separate from native submission-kit adoption.
