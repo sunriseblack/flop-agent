@@ -48,6 +48,19 @@ separate evidence. This lookup was inspected in the public schema. Its
 authenticated behavior remains to be verified for the eventual approved
 route. [Gateway OpenAPI](https://api.flop.network/openapi.json)
 
+November 6 adds a separate recovery detail for an interrupted *credential
+grant creation*, which is not the inference request lookup above. wyc4t
+[reported an actual timed-out grant recovered through a query parameter](https://github.com/flop-labs/network/issues/116):
+`GET /connect/grants/recover?idempotency_key=ORIGINAL_KEY`, under authorized
+parent credentials. Supplying that key only in a header reportedly returned
+400. Our fresh public schema confirms that the operation omits this query
+parameter and a 400 response, while explicitly requiring bearer authority and
+stating that plaintext child credentials cannot be recovered. We did not
+execute the authenticated route. Preserve the original grant idempotency key
+separately from inference request IDs; do not use a timeout or a metadata
+lookup as authority to retry creation, generate a replacement credential or
+submit paid work. Resolve the supported contract before an approved live use.
+
 Verify that the eventual route preserves the selected model's chat roles and
 system policy before relying on them for the workload. A devnet report on the
 currently listed Qwen model describes continuation-like responses and token
@@ -72,6 +85,18 @@ November 5 refresh. All eight allowlisted sources were retrieved again. The
 ten request and evaluation bindings match November 4, including the selected
 request above. Its fresh preparation is in the November 5 private run directory.
 The original identity and live-network evidence gates remain pending.
+
+November 6 refresh. The Yellow Paper now includes D-0539, changing validator
+seat selection, reward bonding and unlock policy and explicitly listing runtime
+divergences. Four request bindings changed; six and all evaluation rules are
+unchanged. The selected excerpts retain their text but their source hash and
+positions changed. The fresh 6,602-byte request has file SHA-256
+`f847563438f9c7b554cdba6e91275d9dea7fed39cc67fd58d54f1f07eadbad7b`
+and job SHA-256
+`0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6`.
+Use the November 6 private preparation; previous request/draft approvals do
+not transfer to it. No model was invoked. The official profile still lists
+planned/unreleased testnet with no verified network artifacts.
 
 ## Proposed bounded session
 
@@ -128,9 +153,9 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-05-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-06-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
-  --expected-job-sha256 2cf1b84d6d9e620880f688cfa3673a84d93ba27f935fe497e2d577a3b093a1b2 \
+  --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
   --output .private/readiness/first-session/output-review.json
 ```
 

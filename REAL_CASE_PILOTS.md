@@ -186,11 +186,26 @@ settlement packet and reproduced a missing raw/decoded transaction binding.
 The [candidate and 24-case review](DEVNET_SESSION_BINDING_REVIEW_2026-11-05.md)
 preserve the original receipt, add historical metadata and reject the changed
 raw-output case. Our local execution and fresh read-only capture are complete.
-Peer replay and author acceptance remain pending. This extends an actual
+Peer replay subsequently confirmed the bounded fix. This extends an actual
 third-party devnet receipt example. It is a new engineering review scope,
 separate from wyc4t's completed native submission-kit pilot.
 
 The [case-specific replay request](https://github.com/flop-labs/network/issues/49#issuecomment-6662712942)
 was delivered and read back exactly under sunriseblack, pinned to `4173e77`.
-Await the participant's actual checkout, environment, result and counterexample.
+The participant supplied actual execution evidence on November 6; details follow.
 The prior native kit case remains closed. No unchanged reminder is due.
+
+[wyc4t's independent replay](https://github.com/flop-labs/network/issues/49#issuecomment-6682322204)
+used `4173e77`, Linux x86_64, Node 24.22.1, API/types 17.0.2 and util/crypto
+14.0.3. The original CLI positive and raw-output mutation both passed 14 checks;
+the patched positive passed 18 and the mutation exited 1 with the three
+expected failures. All 24 pinned regressions passed with sockets denied.
+The attached bundle preserves commands, exits, stdout and source artifacts.
+We verified all 45 manifest entries and exact pinned bytes; bundle SHA-256
+is `6c0592343d38ba1da553187ce3b6d208c19f1294cc2d3a72f61e1b52921a98b2`.
+No new counterexample was reported. The review confirms closure of the tested
+local binding gap, not inclusion, finality or inference correctness. State:
+independently executed and reporter verified; versioned author integration
+remains planned. The acknowledgment was delivered/read back exactly. Inspect
+new integration evidence or a real finding, without another unchanged replay
+request or counting the native pilot again.

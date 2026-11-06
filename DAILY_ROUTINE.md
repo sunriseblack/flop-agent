@@ -56,15 +56,30 @@ maintainer approval. Inspect policy feedback or a concrete counterexample and
 respect the reporter's earlier preference about executing third-party probes.
 This source contribution has no evidence-kit adoption status.
 
+November 6: zkasuran independently validated exact head `73be186`, including
+the native Chromium storage-disabled control, 330 passing browser checks and
+the full Python gate. Their browser service used `CHAT_RATE_READ=600`; retain
+that scope separately from our shipped-default run. The signed provenance
+statement verifies. Reporter validation is complete, while policy acceptance,
+upstream workflow approval and merge remain pending. No unchanged rerun is due.
+
 The [devnet receipt review](DEVNET_SESSION_BINDING_REVIEW_2026-11-05.md)
 extends wyc4t's public issue-49 example with raw transaction decoding and
 receipt binding. Its original 14 checks accepted a changed raw output with
 refreshed displayed hashes. The candidate passes the original case, rejects
 that mutation and passes 24 regressions. Follow the existing issue for the
-author's independent replay or a concrete counterexample. Keep RPC-trusted
+author's versioned extension or a concrete counterexample. Keep RPC-trusted
 keys/metadata, local consistency, state inclusion, finality and inference
 correctness explicit. This is separate from the completed native kit pilot.
 Use existing public packets and read-only historical capture for this work.
+
+November 6: wyc4t independently reproduced the gap and exact fix at `4173e77`:
+original/mutated inputs pass 14 original checks; the patched positive passes
+18 and the mutated CLI exits 1; all 24 regressions pass. We verified their
+bundle's 45 manifest entries and pinned source bytes. This bounded review is
+complete with no new defect; follow the author's proposed versioned extension
+or a concrete counterexample. The original inclusion/finality request remains
+open. This is separate from native-kit adoption and our own inference usage.
 
 The [SDK candidate review](SDK_CANDIDATE_REVIEW_2026-11-05.md) now independently
 executes the issue-71/72/82 candidates. The faucet supplement fixes non-string
@@ -78,6 +93,22 @@ Follow substantive feedback, source porting, changed candidate bytes or a
 released SDK. Preserve original-author credit. No unchanged review reminder
 is due, including the already independently reviewed wallet patch. Use
 loopback servers or mocked APIs for any concrete new counterexample.
+
+November 6: almondous independently confirmed the faucet supplement, exact
+module hash and all 22 original plus 24 added cases, and reported 32 further
+local cases. Keep those additional reported cases separate from our executed
+coverage. The replay loop is complete; source porting, full builds, bundles,
+browser behavior and release remain maintainer steps. Do not request another
+unchanged replay.
+
+The [gateway discovery regression](GATEWAY_DISCOVERY_CONTRACT_2026-11-06.md)
+answers mungmungI-1's direct follow-up on our network issue 42. Ten offline
+cases reproduce the served schema's missing public override and check a
+one-operation candidate while preserving protected receipt lookup. Deliver
+the pinned runnable artifact on the existing issue, then follow actual
+execution, a changed contract or a concrete finding. No credential or inference
+request is needed. The peer's existing direct observation is independent
+review of the issue, not execution of the new program.
 
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.

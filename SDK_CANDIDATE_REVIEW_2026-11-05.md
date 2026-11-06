@@ -124,13 +124,33 @@ expected failing results can be reproduced. Final expected results are 24
 passing faucet cases and 17 passing x402 cases. The original author suites
 remain in their issue bodies.
 
-The next steps are author review of the supplement and maintainer porting
-into the SDK source, full build/test validation and a released package.
+The next steps are maintainer porting into the SDK source, full build/test
+validation and a released package.
 
 The faucet finding and extension were delivered and read back exactly on
 [issue 71](https://github.com/flop-labs/network/issues/71#issuecomment-6664493760).
 The independent x402 execution report was likewise delivered on
 [issue 72](https://github.com/flop-labs/network/issues/72#issuecomment-6664494291).
-Both are pinned to repository revision `95b7b39`. Supplement acceptance,
-source porting and release remain pending. The wallet review was recorded
+Both are pinned to repository revision `95b7b39`. The original faucet author
+subsequently confirmed the supplement; source porting and release remain pending. The wallet review was recorded
 without repeating the existing independent report.
+
+## Independent supplement confirmation, November 6
+
+[almondous reproduced the gap and exact supplement](https://github.com/flop-labs/network/issues/71#issuecomment-6670335712)
+at `95b7b39` against SDK 0.4.0 on Linux / Node 24.22.1. Their run reproduced
+12 passes and 12 failures in the added suite before the supplement, then
+passed all 24 added and 22 original cases. Patch application, Node syntax
+and the resulting `dist/faucet.js` SHA-256 match the pin above.
+
+They additionally reported 32 local cases across both APIs for 400/403,
+primitive JSON roots, missing error fields, Unicode, whitespace, null and
+nested objects. These are author-reported additional cases, not our executed
+coverage; no separate artifacts for those 32 were supplied in that comment.
+No new defect was reported within the stated scope.
+
+The [closure acknowledgment](https://github.com/flop-labs/network/issues/71#issuecomment-6686846092)
+was delivered and read back exactly. The bounded supplement replay is complete.
+Retain original-candidate attribution in a future source port. Source builds,
+bundles, browser behavior and a released repair remain unverified; the existing
+5xx/transport retry policy and its uncertain-outcome boundary are unchanged.

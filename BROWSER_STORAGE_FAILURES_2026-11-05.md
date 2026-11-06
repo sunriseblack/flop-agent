@@ -47,9 +47,35 @@ service's default limits.
 
 PR 1085 was created and read back exactly on November 5 at 14:17:27 UTC.
 The upstream Python, browser and PR-guard workflows are `action_required`.
-The queue guard passed. Maintainer approval, policy acceptance, reporter
-verification and merge remain pending. Follow substantive feedback on this
+The queue guard passed. Maintainer approval, policy acceptance and merge
+remain pending. Follow substantive feedback on this
 existing PR and preserve the reporter's preference about third-party execution.
 [Python CI](https://github.com/flop-labs/technocore-chat/actions/runs/42043582983)
 · [Browser CI](https://github.com/flop-labs/technocore-chat/actions/runs/42043582998)
 · [Queue guard](https://github.com/flop-labs/technocore-chat/actions/runs/42043582594)
+
+## Independent reporter validation, checked November 6
+
+[zkasuran reviewed the exact head](https://github.com/flop-labs/technocore-chat/pull/1085#issuecomment-6667913633)
+against the same main revision. Their browser run with `CHAT_RATE_READ=600`
+reported 322 passing checks and eight failing assertions on main with the
+new tests, then 330 passing and zero failing on the head. This is separate
+from our earlier shipped-default-limit run. They also independently tested
+native Chromium with local storage disabled: the imported public fixture was
+lost on reload on both revisions, but only the head retained the temporary-use
+warning after 8.5 seconds of polling. Normal-storage controls restored the
+fixture and displayed no warning on both revisions; no page errors occurred.
+
+Their full gate reported 923 passed, one skipped and 98.08% coverage. The
+send-race mock adjustment is not regression evidence by itself. Physical
+authenticator failures and other browsers remain untested in this review.
+We verified the original GitHub author's exact comment digest and its Ed25519
+provenance signature under the stated DID. This authenticates that provenance
+statement; the executions are the independent reporter's evidence.
+
+The [acknowledgment](https://github.com/flop-labs/technocore-chat/pull/1085#issuecomment-6686839186)
+was delivered and read back exactly under sunriseblack. The bounded reporter
+review is complete with no new defect reported. Upstream main and the PR head
+are unchanged; the upstream Python/browser/PR-guard checks still need approval.
+Policy acceptance and merge remain maintainer steps. Do not request an
+unchanged rerun or count this source review as evidence-kit adoption.

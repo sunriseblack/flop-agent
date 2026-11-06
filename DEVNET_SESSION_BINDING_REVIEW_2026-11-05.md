@@ -117,11 +117,37 @@ and event inclusion, authenticated historical state, AlephBFT finality and
 inference correctness remain outside this example's checks. The original
 feature request still needs supported proof and trust-bootstrap tooling.
 
-The patch extends the existing example with credit to wyc4t. The next step is
-independent author replay and review, followed by a supported inclusion and
+The patch extends the existing example with credit to wyc4t. The remaining
+steps are a versioned author integration and a supported inclusion and
 finality example from the project. Replaying this public third-party receipt
 is an engineering contribution, with no own-session or allocation claim.
 
 The pinned review was delivered and read back exactly under sunriseblack on
-November 5. Independent author execution and acceptance are pending.
+November 5. Independent author execution subsequently confirmed the bounded fix.
 [Author follow-up](https://github.com/flop-labs/network/issues/49#issuecomment-6662712942)
+
+## Independent author replay, November 6
+
+[wyc4t executed revision 4173e77](https://github.com/flop-labs/network/issues/49#issuecomment-6682322204)
+on Linux x86_64, Node 24.22.1, API/types 17.0.2 and util/crypto 14.0.3.
+The original and changed-raw CLI inputs both passed the original 14 checks.
+The metadata-enriched original passed all 18 patched checks, while the same
+raw mutation exited 1 with decoded-call, root and miner-signature failures.
+The unchanged 24-case regression passed. Their socket-denied replay reused
+previously installed dependencies after an offline install cache miss; it
+does not establish a successful clean install or fresh live capture.
+
+The [supplied review bundle](https://github.com/user-attachments/files/34474591/FLOP-EXP-001-independent-binding-review-2026-11-06.zip)
+has SHA-256 `6c0592343d38ba1da553187ce3b6d208c19f1294cc2d3a72f61e1b52921a98b2`.
+We verified all 45 manifest entries and matched the original ZIP, patch,
+regression program and both checker versions to our pins. The four supplied
+CLI reports agree with their execution summary. This is our verification of
+their preserved execution evidence, not another local execution or pilot.
+The full bundle and source packets remain private in this checkout.
+
+No additional defect was reported in this bounded review. The
+[acknowledgment](https://github.com/flop-labs/network/issues/49#issuecomment-6686843209)
+was delivered and read back exactly. The author plans a separately versioned
+extension while preserving the original evidence. Integration/publication of
+that extension and the original inclusion/finality request remain open.
+RPC-trusted metadata/keys and the trust boundaries above are unchanged.
