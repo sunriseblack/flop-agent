@@ -33,6 +33,13 @@ checks pass. Source builds, rebuilt bundles, browser execution, independent
 peer replay and a released fix remain separate steps. No real payment or
 transaction was performed. Publication follows diff review and secret scan.
 
+Published at `71c66cccd2ef77a51b19b07330a20f6350754c2f` after diff review and
+a scoped secret scan with no credential findings. [Repository CI passed](https://github.com/sunriseblack/flop-agent/actions/runs/42395144794).
+The [original-author/reporter invitation](https://github.com/flop-labs/network/issues/89#issuecomment-6710499490)
+was delivered and read back exactly under sunriseblack. The 28-case SDK replay
+is local evidence; the repository's hosted CI does not run that private-packet
+suite. Independent candidate verification and integration remain pending.
+
 ## Launch date and direct SDK qualification
 
 The original official [FLOP Labs post](https://x.com/flop_labs/status/2118983608816013660)
@@ -62,6 +69,15 @@ gateway HTTP inference. Release qualification, original identity restoration,
 beneficiary mapping and exact bounded-session approval remain outstanding.
 The daily routine/session plan and scheduled prompt are being updated to
 follow the newer announcement and concrete release gate.
+
+The [runtime qualification evidence](https://github.com/flop-labs/network/issues/132#issuecomment-6710501945)
+was delivered and read back exactly under sunriseblack. The existing heartbeat
+was updated through the app, retaining its name, active state, daily schedule
+and target thread. Exact local readback confirms only the prompt and update
+timestamp changed. It now treats November 3 as historical, follows the official
+date-unannounced status and requires a qualified chosen release without
+overriding runtime guards. The same prompt follows the new x402 review through
+the routine. No additional automation was created.
 
 ## Previous contributions and new policy evidence
 

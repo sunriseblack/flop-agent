@@ -118,8 +118,9 @@ consumed-stream TypeError. The candidate reuses the first challenge and refuses
 streaming/async-iterable bodies before payment after a 402, preserving ordinary
 non-402 stream passthrough. All 28 cases pass, including the composition with
 the earlier management-retry patch; its 18 original management cases also pass.
-Deliver this distinct pinned scope on the existing issue, then track actual
-author/reporter execution and findings. Do not ask for a live paid demo or
+The [pinned scope at 71c66cc](https://github.com/flop-labs/network/issues/89#issuecomment-6710499490)
+was delivered and read back exactly. Track actual author/reporter execution
+and findings. Do not ask for a live paid demo or
 repeat the still-pending gateway invitation.
 
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)

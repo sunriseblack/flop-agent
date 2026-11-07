@@ -89,3 +89,11 @@ The current direct SDK also rejects Devnet runtime 1014014. This offline
 candidate does not override that guard or establish a working live SDK route.
 The next step is original-author/reporter execution of the pinned patch and
 then maintainer source integration. No paid third-party demonstration is needed.
+
+Published at `71c66cccd2ef77a51b19b07330a20f6350754c2f`, with successful
+[repository CI](https://github.com/sunriseblack/flop-agent/actions/runs/42395144794).
+The [pinned original-author/reporter request](https://github.com/flop-labs/network/issues/89#issuecomment-6710499490)
+was delivered and read back exactly under sunriseblack. State: candidate and
+regressions published, independent candidate execution pending. The repository
+CI covers its regular tests and review helpers; it does not independently
+execute the packet-dependent SDK replay described above.

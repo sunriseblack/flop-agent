@@ -220,3 +220,19 @@ The [case-specific execution invitation](https://github.com/flop-labs/network/is
 was delivered/read back exactly. State: invited; independent program execution,
 findings and maintainer integration remain pending. Ask no unchanged reminder.
 This is not a native signed-job artifact or another evidence-kit pilot.
+
+## x402 stream finding, separate engineering scope
+
+almondous's [issue 89](https://github.com/flop-labs/network/issues/89) supplies
+the existing handshake defect and helper design. mungmungI-1's
+[native streamed-body run](https://github.com/flop-labs/network/issues/89#issuecomment-6671523035)
+supplies the additional pre-proof delivery failure. We reproduced both using
+the published SDK and native Request objects with inert payment doubles.
+The [candidate and 28-case program](X402_HANDSHAKE_REVIEW_2026-11-07.md) at
+`71c66cc` pass locally, including composition with the prior management patch.
+The [case-specific original-author/reporter invitation](https://github.com/flop-labs/network/issues/89#issuecomment-6710499490)
+was delivered/read back exactly. State: finding reproduced, candidate published,
+independent candidate execution/reporter verification pending. The peer's
+earlier execution of the original is not execution of this candidate. Await
+new results without a reminder; no native kit adoption, real payment or
+completed live session is inferred.
