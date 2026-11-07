@@ -153,7 +153,7 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-06-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-07-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
   --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
   --output .private/readiness/first-session/output-review.json
@@ -182,6 +182,36 @@ identity or copy it into an unverified client.
 The official profile remains planned/unreleased. No live session is authorized
 by this preparation. Do not infer launch from November 3 or count devnet as
 testnet demand.
+
+November 7 launch update: [FLOP Labs' own announcement](https://x.com/flop_labs/status/2118983608816013660),
+posted at 08:27:15 UTC, says the testnet date is still to be announced. This
+supersedes reliance on the old November 3 working target. The quoted post's
+expectation of a later announcement does not supply a launch date or artifacts.
+The official network profile still lists planned/unreleased testnet.
+
+A separate read-only Devnet check at 16:59:06 UTC observed RPC-reported finalized block
+3,147,193, hash `0x3dcd0b5cc2f97cf77a8a177c2efff1511b970873a6d4510eebda88152f08652d`,
+runtime spec 1014014 and the expected development genesis. The npm registry
+still names SDK 0.4.0 as latest. Its unmodified compatibility guard throws
+`RUNTIME_INCOMPATIBLE` for that observed runtime while accepting all 12 listed
+qualified versions; an unlisted internal gap is also refused. This is a direct
+chain-client blocker, separate from an HTTP gateway model call. Do not loosen
+the allowlist to make an unqualified client connect.
+[Existing compatibility report](https://github.com/flop-labs/network/issues/132)
+
+The official release manifest still advertises container CLI 0.1.220. A peer
+reports the same incompatibility there and success with another image not in
+that manifest. We did not execute either image or verify a substitute client.
+Require the actual chosen release and current runtime to be qualified before
+use; a version tag or another user's successful model fetch is insufficient.
+[Official release manifest](https://flop.network/releases.json)
+
+November 7 workload refresh: all eight allowlisted sources, ten request
+bindings and evaluation rules match November 6. The selected 6,602-byte request
+and its hashes above are unchanged; the review command selects the fresh private
+run directory. No model call or live session occurred. A new peer phone-app report on
+issue 172 describes a model answer without visible per-wallet spend, but it
+does not resolve the still-unratified allocation beneficiary mapping.
 
 Capture actual provider/model, usage, latency, request/session identifiers,
 source/request/output hashes, proof, independent miner and owner attribution,

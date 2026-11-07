@@ -1,0 +1,34 @@
+--- a/dist/x402.js
++++ b/dist/x402.js
+@@ -40,11 +40,22 @@
+     if (!payment) {
+         throw new Error("Received 402 but no valid X-Payment-* headers found");
+     }
++    return payAndRetry(client, url, { ...fetchOpts, agent, settlementTimeoutMs, teeRequirements }, payment);
++}
++async function payAndRetry(client, url, opts, payment) {
++    const { agent = "x402-auto", settlementTimeoutMs = 30_000, teeRequirements, ...fetchOpts } = opts;
+     // Fail closed before spending: an abort that lands between the 402 and the
+     // HTLC (caller cancellation, ACP job rejection/expiry) must not fund a
+     // request whose result can no longer be delivered or paid out. Past this
+     // point the HTLC exists on-chain, so settlement must still be awaited.
+     fetchOpts.signal?.throwIfAborted();
++    // A challenge must not trigger payment when its request body cannot be
++    // replayed afterward. Non-402 streaming responses remain passthrough.
++    const body = fetchOpts.body;
++    if (body != null && (typeof body.getReader === "function"
++        || typeof body[Symbol.asyncIterator] === "function")) {
++        throw new PaymentError("UNREPLAYABLE_BODY", "Automatic x402 payment requires a replayable request body");
++    }
+     const result = await client.createHtlc({
+         agent,
+         task: { model: "x402-payment", prompt: url, tee_requirements: teeRequirements },
+@@ -105,7 +116,7 @@
+             throw new PaymentError("NO_CLIENT", "X402Client needs a FlopClient to process payments");
+         }
+         // Create HTLC, wait for settlement, retry
+-        return x402Fetch(this.flopClient, url, { ...fetchOpts, agent: "x402-gateway" });
++        return payAndRetry(this.flopClient, url, { ...fetchOpts, agent: "x402-gateway" }, payment);
+     }
+     // ── Channel Management ─────────────────────────────────────────────
+     /** Create a new micropayment channel on the gateway. */

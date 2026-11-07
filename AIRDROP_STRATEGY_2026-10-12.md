@@ -103,6 +103,16 @@ or add another real-case kit adoption. Keep the [pilot ledger](REAL_CASE_PILOTS.
 as the current state; unchanged requests and incomplete launch evidence remain
 separate from these completed contributions.
 
+November 7 launch update: [FLOP Labs says testnet's date is to be announced](https://x.com/flop_labs/status/2118983608816013660).
+Treat November 3 as a historical target. The official testnet profile remains
+planned/unreleased, and devnet still has no reward or airdrop weight. Our source
+and peer-review contributions continue; no preparation or local replay is a
+creditable inference session. SDK 0.4.0 also refuses the current observed Devnet
+runtime 1014014, so a verified compatible release is a separate operational
+requirement. Follow [the current session plan](FIRST_TESTNET_SESSION.md) and
+the [x402 body review](X402_HANDSHAKE_REVIEW_2026-11-07.md) without
+bypassing client qualification or spending to test a patch.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

@@ -111,6 +111,17 @@ execution, a changed contract or a concrete finding. No credential or inference
 request is needed. The peer's existing direct observation is independent
 review of the issue, not execution of the new program.
 
+The [November 7 x402 review](X402_HANDSHAKE_REVIEW_2026-11-07.md) extends
+almondous's issue-89 helper design and mungmungI-1's real SDK stream finding.
+The original standalone helper pays and observes mock settlement before a
+consumed-stream TypeError. The candidate reuses the first challenge and refuses
+streaming/async-iterable bodies before payment after a 402, preserving ordinary
+non-402 stream passthrough. All 28 cases pass, including the composition with
+the earlier management-retry patch; its 18 original management cases also pass.
+Deliver this distinct pinned scope on the existing issue, then track actual
+author/reporter execution and findings. Do not ask for a live paid demo or
+repeat the still-pending gateway invitation.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
@@ -460,12 +471,23 @@ an indexer's PAID/finalized labels do not settle those separate questions.
 Check substantive policy or runner-repair replies; do not repeat unanswered
 questions or run a funded route merely to test attribution.
 
-The [official verification page](https://flop.finance/official/) now provides
-the canonical domains and a November 3 working target. Check it alongside the
-network profile; neither a calendar date nor a development endpoint opens the
-session gate. Devnet has explicitly no airdrop weight. The timeline FAQ's
+The [official verification page](https://flop.finance/official/) provides the
+canonical domains but still carries the old November 3 target. The newer
+[November 7 FLOP Labs announcement](https://x.com/flop_labs/status/2118983608816013660)
+says testnet's date is to be announced. Check newer original announcements
+alongside the network profile; no calendar date or development endpoint opens
+the session gate. Devnet has explicitly no airdrop weight. The timeline FAQ's
 intended same-DID HTTP path is not a finalized owner-allocation record. Keep
 these readiness sources separate from the eight-source workload allowlist.
+
+November 7: the observed Devnet runtime is now 1014014, while npm SDK 0.4.0
+still refuses it through its unmodified compatibility guard. All 12 qualified
+versions still pass. The official container manifest advertises 0.1.220;
+another image's peer-reported success is not our verified workaround. Compare
+the actual chosen release with the current runtime before any direct session.
+Do not edit the allowlist or import a signing identity to bypass qualification.
+This blocker is separate from the HTTP gateway route and unresolved beneficiary
+mapping. Follow the existing network issue 132 for verified release evidence.
 
 Keep creator/builder programme announcements separate from the compute route.
 The October 15 KOL leaderboard preview is a trigger to inspect official terms
