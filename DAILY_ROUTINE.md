@@ -46,6 +46,14 @@ ancestry and exact-source fork CI. PR 1010 still points to `8aadb4f`. Current
 main `cd41f86` differs from `20629ab` only in the triage workflow. Await author
 integration and maintainer-approved upstream checks without repeating the handoff.
 
+November 10: current main is `3cd868e`, adding only the signed-service-bot
+pattern since `cd41f86`. The existing completion candidate still has a clean
+merge-tree result. Fresh Python/Node checks match its exact 11-case corpus
+and 30 controls, including rounded-nonce refusal. PR 1010's author head is
+still `8aadb4f`; neither branch movement nor a new upstream full-suite pass is
+inferred. Follow substantive integration/source feedback without another
+unchanged handoff.
+
 The new [browser storage contribution](BROWSER_STORAGE_FAILURES_2026-11-05.md)
 addresses zkasuran's issue 1081 through [PR 1085](https://github.com/flop-labs/technocore-chat/pull/1085).
 It proposes temporary use with persistent storage-failure feedback, including
@@ -122,6 +130,17 @@ The [pinned scope at 71c66cc](https://github.com/flop-labs/network/issues/89#iss
 was delivered and read back exactly. Track actual author/reporter execution
 and findings. Do not ask for a live paid demo or
 repeat the still-pending gateway invitation.
+
+November 10: the [SDK 0.5.2 release review](SDK_RELEASE_REVIEW_2026-11-10.md)
+verifies first-challenge reuse, native ReadableStream refusal and the faucet's
+24 string-result controls in released code, without claiming exact adoption
+or attribution of our patches. A remaining async-iterable/Node-stream path
+pays in the local double before empty-body delivery or TypeError. The current
+small guard supplement passes 34 cases. A separate one-line cleanup makes all
+17 management response controls pass. Deliver the new version-pinned scopes
+on existing issues 89/72 and follow actual independent execution/integration.
+Do not repeat the older invitation as a reminder. Historical cooldown/retry
+suite differences are explicitly deferred pending a separate contract review.
 
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
@@ -489,6 +508,22 @@ the actual chosen release with the current runtime before any direct session.
 Do not edit the allowlist or import a signing identity to bypass qualification.
 This blocker is separate from the HTTP gateway route and unresolved beneficiary
 mapping. Follow the existing network issue 132 for verified release evidence.
+
+November 10: npm now publishes SDK 0.5.2 and CLI 0.4.4. The integrity-verified
+SDK's unchanged guard admits the known spec 1014014 and all 15 listed versions,
+so the old version-list mismatch is resolved for that spec. A fresh RPC attempt
+returned HTTP 503; current network/runtime qualification is still unverified.
+The CLI was not executed. Keep those limits and the original identity, owner
+mapping and first-session gates explicit, rather than carrying the old SDK
+blocker forward as if no release existed.
+
+The new signed faucet-bot pattern binds service discovery to the official
+HTTPS `/chain` metadata. Our read-only check verifies 18 existing bot records
+and 108 derived Python/Node controls. It creates no request, wallet or identity;
+the numeric nonces in that live sample are safe integers. Keep this source
+binding and signature parity separate from large-nonce fixture coverage,
+trusted sequence/freshness, actual grants and testnet attribution. The saved
+packet remains private. Use it only for a new concrete compatibility question.
 
 Keep creator/builder programme announcements separate from the compute route.
 The October 15 KOL leaderboard preview is a trigger to inspect official terms

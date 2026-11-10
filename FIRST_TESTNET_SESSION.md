@@ -153,7 +153,7 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-07-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-10-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
   --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
   --output .private/readiness/first-session/output-review.json
@@ -212,6 +212,31 @@ and its hashes above are unchanged; the review command selects the fresh private
 run directory. No model call or live session occurred. A new peer phone-app report on
 issue 172 describes a model answer without visible per-wallet spend, but it
 does not resolve the still-unratified allocation beneficiary mapping.
+
+November 10 refresh: npm now names SDK 0.5.2 and CLI 0.4.4 as latest. The
+integrity-verified SDK admits spec 1014014 without a guard change; all 15
+listed versions and six rejection controls pass. This resolves the old
+version-list mismatch for that known spec, while today's RPC returned HTTP
+503 before a fresh runtime/anchor could be read. The CLI was not executed.
+The public SDK reference and container manifest still name older releases.
+Current network qualification, original identity, attribution and exact
+session approval remain unverified. [Release evidence](SDK_RELEASE_REVIEW_2026-11-10.md)
+
+All eight allowlisted workload sources were refreshed on November 10. All
+ten request/evaluation bindings and the selected 6,602-byte request remain
+unchanged. The review command now uses that fresh private preparation; no
+model was called. Testnet remains planned/unreleased, with no newer concrete
+date found in the inspected official account tail. The request-ID and grant
+recovery contracts remain separate from runtime qualification and allocation.
+
+The official faucet's read-only `/chain` metadata now publishes a Technocore
+bot DID and the `flop-devnet-faucet` room, as documented in current main's
+[signed-service-bot pattern](https://github.com/flop-labs/technocore-chat/blob/3cd868e9a920fe61ad318d71ced1af11501b8fae/src/patterns.md).
+We checked existing bot signatures against that HTTPS-published key and
+Python/Node parity. No faucet request was sent. This supplies a development
+service discovery anchor, not a verified testnet funding contract, an account
+statement, approval to request funds or a substitute signing identity.
+[Official metadata](https://faucet.flop.network/chain)
 
 Capture actual provider/model, usage, latency, request/session identifiers,
 source/request/output hashes, proof, independent miner and owner attribution,

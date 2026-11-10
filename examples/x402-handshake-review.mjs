@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { Readable } from 'node:stream';
 import test from 'node:test';
 
 assert.ok(process.env.SDK_REVIEW_DIR, 'Set SDK_REVIEW_DIR to a preserved package copy.');
@@ -13,6 +14,14 @@ const allowed = new Set([
   'd2c20e26c9f8e48af6af3218c810b8f06b6bff2084ededa4ef2234ad4510bd8d',
   '77f98a052ece5882bcad6198ef5356b01d2e0b3ca6950ef5ea5074fc3d59760e',
   '1879257cc8e91da0b72c518ef06547f81b5209eafbf2a5121a94b3ad7d345042',
+  '3efba4fb82b77ff207499e8ca3379b25574946ededfb0640d44f76accd4485d6',
+  'c3500d148df8d7bed7f2aa72b2888d425c66d234b8054aa4b8c69d6f228ca899',
+  'b746ff062ab1c2673f9768405ae6d9914d99a614c2300773def0e310c3542d18',
+]);
+const releasedErrorContract = new Set([
+  '3efba4fb82b77ff207499e8ca3379b25574946ededfb0640d44f76accd4485d6',
+  'c3500d148df8d7bed7f2aa72b2888d425c66d234b8054aa4b8c69d6f228ca899',
+  'b746ff062ab1c2673f9768405ae6d9914d99a614c2300773def0e310c3542d18',
 ]);
 assert.ok(allowed.has(hash), `Unexpected x402 module bytes: ${hash}`);
 for (const [name, expected] of Object.entries({
@@ -88,6 +97,18 @@ async function run(kind, config = {}) {
   }
 }
 
+function assertUnpaidRefusal(result) {
+  assert.equal(result.payments.length, 0);
+  assert.equal(result.settlements.length, 0);
+  assert.equal(result.attempts, 1);
+  assert.ok(result.error);
+  if (releasedErrorContract.has(hash)) {
+    assert.equal(result.error.message, 'Cannot pay for a request with a non-replayable streaming body');
+  } else {
+    assert.equal(result.error.code, 'UNREPLAYABLE_BODY');
+  }
+}
+
 for (const kind of ['function', 'class']) {
   test(`${kind}: non-402 response remains unpaid passthrough`, async () => {
     const r = await run(kind, { passthrough: true });
@@ -111,8 +132,7 @@ for (const kind of ['function', 'class']) {
   });
   test(`${kind}: challenged ReadableStream is refused before mock payment`, async () => {
     const r = await run(kind, { body: stream() });
-    assert.equal(r.error?.code, 'UNREPLAYABLE_BODY');
-    assert.equal(r.attempts, 1); assert.equal(r.payments.length, 0); assert.equal(r.settlements.length, 0);
+    assertUnpaidRefusal(r);
   });
   test(`${kind}: a non-402 streaming body remains ordinary passthrough`, async () => {
     const r = await run(kind, { body: stream(), passthrough: true });
@@ -122,7 +142,22 @@ for (const kind of ['function', 'class']) {
   test(`${kind}: challenged async iterable is refused before mock payment`, async () => {
     async function* body() { yield new TextEncoder().encode('fixture'); }
     const r = await run(kind, { body: body() });
-    assert.equal(r.error?.code, 'UNREPLAYABLE_BODY'); assert.equal(r.payments.length, 0);
+    assertUnpaidRefusal(r);
+  });
+  test(`${kind}: non-402 async iterable remains unpaid passthrough`, async () => {
+    async function* body() { yield new TextEncoder().encode('fixture'); }
+    const r = await run(kind, { body: body(), passthrough: true });
+    assert.equal(r.status, 200); assert.equal(r.attempts, 1);
+    assert.equal(r.requests[0].body, 'fixture'); assert.equal(r.payments.length, 0);
+  });
+  test(`${kind}: challenged Node Readable is refused before mock payment`, async () => {
+    const r = await run(kind, { body: Readable.from(['fixture']) });
+    assertUnpaidRefusal(r);
+  });
+  test(`${kind}: non-402 Node Readable remains unpaid passthrough`, async () => {
+    const r = await run(kind, { body: Readable.from(['fixture']), passthrough: true });
+    assert.equal(r.status, 200); assert.equal(r.attempts, 1);
+    assert.equal(r.requests[0].body, 'fixture'); assert.equal(r.payments.length, 0);
   });
   test(`${kind}: abort after challenge is checked before payment`, async () => {
     const r = await run(kind, { abort: true });

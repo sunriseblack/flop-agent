@@ -1,0 +1,13 @@
+--- a/dist/x402.js
++++ b/dist/x402.js
+@@ -44,7 +44,9 @@
+         throw new Error("Received 402 but no valid X-Payment-* headers found");
+     }
+     // A stream is consumed by the first fetch and cannot safely be sent again.
+-    if (typeof ReadableStream !== "undefined" && fetchOpts.body instanceof ReadableStream) {
++    const body = fetchOpts.body;
++    if (body != null && (typeof body.getReader === "function"
++        || typeof body[Symbol.asyncIterator] === "function")) {
+         throw new Error("Cannot pay for a request with a non-replayable streaming body");
+     }
+     // Fail closed before spending: an abort that lands between the 402 and the

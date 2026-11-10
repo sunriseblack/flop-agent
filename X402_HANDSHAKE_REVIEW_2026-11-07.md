@@ -97,3 +97,11 @@ was delivered and read back exactly under sunriseblack. State: candidate and
 regressions published, independent candidate execution pending. The repository
 CI covers its regular tests and review helpers; it does not independently
 execute the packet-dependent SDK replay described above.
+
+November 10 release check: SDK 0.5.2 now reuses the first challenge and refuses
+native ReadableStream bodies, with a different implementation/error contract.
+Our exact candidate's provenance is not established by those similarities.
+The [current release review](SDK_RELEASE_REVIEW_2026-11-10.md) reproduces a
+remaining async-iterable/Node-stream gap and supplies a smaller supplement to
+the release. The expanded 34-case program preserves this earlier candidate's
+checks; its original 28-case execution remains the dated scope above.

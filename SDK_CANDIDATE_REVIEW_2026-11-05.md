@@ -154,3 +154,11 @@ was delivered and read back exactly. The bounded supplement replay is complete.
 Retain original-candidate attribution in a future source port. Source builds,
 bundles, browser behavior and a released repair remain unverified; the existing
 5xx/transport retry policy and its uncertain-outcome boundary are unchanged.
+
+November 10: [fresh SDK 0.5.2 artifact checks](SDK_RELEASE_REVIEW_2026-11-10.md)
+confirm that the released shared faucet implementation passes all 24 added
+string-result cases. It is not byte-identical to our earlier supplement; no
+source-credit or exact-port claim is made. Historical cooldown/retry suites
+have remaining differences and are retained as separate non-green results.
+The new review supplies two narrowly scoped x402 body supplements to the
+release, keeping source builds, independent execution and integration separate.

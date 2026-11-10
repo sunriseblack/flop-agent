@@ -1,4 +1,4 @@
-/** Local response-contract review for SDK 0.4.0 and the issue 71/72 candidates.
+/** Local response-contract review for pinned SDK releases and issue 71/72 candidates.
  * SDK_REVIEW_TARGET selects faucet or x402. SDK_REVIEW_DIR points to a caller's
  * unpacked package. The known module hash is checked before importing its code.
  */
@@ -19,10 +19,15 @@ const expected = {
     '8819278213c1d5078bbb97ac66aa98984ba2e334b2e742f8fd25a3cda766a507',
     '586ad8a1ed22a66d39c358c8d804445ccd5436d448dc390136ba3d55a744f164',
     'e1b8098ca5d18c9b425432c69aaa1580451b2b6636ffdca3284d2fb68f70d597',
+    'f8c6992cc7a9dcf7f017bf0d9cdf5b534dd9629de0516be85b9c63e14cc66b59',
   ],
   x402: [
     'd2c20e26c9f8e48af6af3218c810b8f06b6bff2084ededa4ef2234ad4510bd8d',
     '28a836ffe1a9314c99536a56b1a289939daf8f8967230566b8c9028ef2676d04',
+    '3efba4fb82b77ff207499e8ca3379b25574946ededfb0640d44f76accd4485d6',
+    'c3500d148df8d7bed7f2aa72b2888d425c66d234b8054aa4b8c69d6f228ca899',
+    '585456ea4765b2650fb2c7d5ba55f0e0b52e3300030f4ecbf8049e7bd268080e',
+    'b746ff062ab1c2673f9768405ae6d9914d99a614c2300773def0e310c3542d18',
   ],
 };
 function readModule(file) {

@@ -1,0 +1,10 @@
+--- a/dist/x402.js
++++ b/dist/x402.js
+@@ -186,6 +186,7 @@
+             try {
+                 const res = await fetch(url, opts);
+                 if (!res.ok && method === "GET" && res.status >= 500 && attempt < this.retry.maxAttempts - 1) {
++                    await res.body?.cancel();
+                     attempt++;
+                     await new Promise((r) => setTimeout(r, delay));
+                     delay = Math.min(delay * 2, this.retry.maxBackoffMs);
