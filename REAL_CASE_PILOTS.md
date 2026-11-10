@@ -236,3 +236,15 @@ independent candidate execution/reporter verification pending. The peer's
 earlier execution of the original is not execution of this candidate. Await
 new results without a reminder; no native kit adoption, real payment or
 completed live session is inferred.
+
+November 10 current-source follow-up: SDK 0.5.2 implements first-challenge
+reuse and native ReadableStream refusal, but both APIs still pay in the
+local double before empty async-generator replay or a Node-stream TypeError.
+The [release-specific supplements](SDK_RELEASE_REVIEW_2026-11-10.md) at
+`ea06476` pass 34 handshake and 17 response-body controls. The new
+[issue-89 request](https://github.com/flop-labs/network/issues/89#issuecomment-6766201481)
+and separate [issue-72 cleanup request](https://github.com/flop-labs/network/issues/72#issuecomment-6766205577)
+were delivered/read back exactly. State: released-source findings reproduced,
+candidates published, independent supplement execution/integration pending.
+The prior invitation is not reposted as a reminder; this is a changed version
+and narrower supplement. Existing native-kit adoption counts remain unchanged.

@@ -142,6 +142,14 @@ on existing issues 89/72 and follow actual independent execution/integration.
 Do not repeat the older invitation as a reminder. Historical cooldown/retry
 suite differences are explicitly deferred pending a separate contract review.
 
+The version-pinned [stream request](https://github.com/flop-labs/network/issues/89#issuecomment-6766201481)
+and [cleanup request](https://github.com/flop-labs/network/issues/72#issuecomment-6766205577)
+at `ea06476` are delivered/read back exactly, as is the
+[released faucet result](https://github.com/flop-labs/network/issues/71#issuecomment-6766209005).
+Follow new execution, changed source or concrete findings without another
+unchanged invitation. Source integration and a released supplement remain
+separate from our passing local controls and repository CI.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner

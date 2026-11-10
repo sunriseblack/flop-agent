@@ -46,6 +46,17 @@ checks pass. Full SDK builds, bundles/browser behavior, independent execution
 and integration remain separate. Source packets/logs remain private; public
 regressions use synthetic data. Publication follows diff and secret review.
 
+Published at `ea06476c13ea18b2172b50713de20db55ff50636` after diff review and
+a secret scan with no findings. [Repository CI passed](https://github.com/sunriseblack/flop-agent/actions/runs/42808121133).
+The [stream-guard follow-up](https://github.com/flop-labs/network/issues/89#issuecomment-6766201481),
+[response cleanup follow-up](https://github.com/flop-labs/network/issues/72#issuecomment-6766205577)
+and [released faucet result](https://github.com/flop-labs/network/issues/71#issuecomment-6766209005)
+were delivered and read back exactly under sunriseblack. Actual independent
+supplement execution and integration remain pending; no CI or local run is
+counted as the peer's execution. The cleanup thread contains the earlier
+source review and server-route discussion, without a new competing patch or
+direct execution result to address.
+
 ## Existing contribution follow-ups
 
 PR 1010 remains at author head `8aadb4f`, with its candidate and cross-client

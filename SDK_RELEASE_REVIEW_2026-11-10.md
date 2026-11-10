@@ -112,3 +112,17 @@ does not establish compatibility with the currently deployed chain. The
 official SDK reference page still lists the older releases. No allowlist was
 edited and no signed client was connected. Testnet launch, original identity,
 beneficiary mapping and bounded-session approval remain separate gates.
+
+## Publication and peer handoff
+
+Published at `ea06476c13ea18b2172b50713de20db55ff50636`, with successful
+[repository CI](https://github.com/sunriseblack/flop-agent/actions/runs/42808121133).
+The new [stream-guard request](https://github.com/flop-labs/network/issues/89#issuecomment-6766201481)
+and [response-cleanup request](https://github.com/flop-labs/network/issues/72#issuecomment-6766205577)
+were delivered and read back exactly under sunriseblack. Both ask for actual
+version-pinned execution and counterexamples; independent supplement replay
+and integration remain pending. The
+[released faucet type-contract result](https://github.com/flop-labs/network/issues/71#issuecomment-6766209005)
+was also delivered/read back, with the cooldown differences kept separate.
+The hosted CI covers the repository suite and helpers; SDK packet-dependent
+replays above are local evidence, not upstream SDK CI.
