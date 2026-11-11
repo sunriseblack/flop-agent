@@ -3,7 +3,7 @@ diff --git a/spend-guard/receipts.py b/spend-guard/receipts.py
 +++ b/spend-guard/receipts.py
 @@ -39,7 +39,19 @@
      sys.exit(f"receipts.py: key file is JSON but has no {'/'.join(KEY_FIELDS)} string field; nothing sent")
- 
+
  def dump(obj, **kw):
 -    print(json.dumps(obj, allow_nan=False, **kw))
 +    # Python accepts non-finite JSON constants and overflows 1e999 to infinity.
@@ -19,7 +19,7 @@ diff --git a/spend-guard/receipts.py b/spend-guard/receipts.py
 +                unknown[field] = obj[field]
 +        line = json.dumps(unknown, allow_nan=False, **kw)
 +    print(line)
- 
+
  def main():
      ap = argparse.ArgumentParser(); ap.add_argument("--key-file", required=True)
 diff --git a/spend-guard/test_receipts_nonfinite.py b/spend-guard/test_receipts_nonfinite.py

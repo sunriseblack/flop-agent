@@ -74,7 +74,7 @@ python3 -B -m unittest discover -s spend-guard -q
 
 | Artifact | SHA-256 |
 | --- | --- |
-| Companion patch | `e37417cff7afc86ed571ae8ca5564b5a4486ef539816d95cd5e6d5a73e2be000` |
+| Companion patch | `1107f588efc402c08935df48842a91c4f0d569348ec37062eaa7f5db27c123f5` |
 | Candidate `spend-guard/receipts.py` | `b2601228936addb97f8b5e7274cb10626fa3207f53e3ccd5431bb59483235639` |
 | New test module | `e04fc1c3062abf4ddd3f4731dec6e5ce07e7ab4ef3e74c621d980be43df8cd77` |
 
