@@ -1,0 +1,123 @@
+diff --git a/spend-guard/receipts.py b/spend-guard/receipts.py
+--- a/spend-guard/receipts.py
++++ b/spend-guard/receipts.py
+@@ -39,7 +39,19 @@
+     sys.exit(f"receipts.py: key file is JSON but has no {'/'.join(KEY_FIELDS)} string field; nothing sent")
+ 
+ def dump(obj, **kw):
+-    print(json.dumps(obj, allow_nan=False, **kw))
++    # Python accepts non-finite JSON constants and overflows 1e999 to infinity.
++    # Copied receipt metadata (and last_known) must not abort the report or emit
++    # invalid JSON. Keep the outcome unknown; do not echo the malformed packet.
++    try:
++        line = json.dumps(obj, allow_nan=False, **kw)
++    except ValueError:
++        unknown = {"error": "non_finite_json", "state": None}
++        # These fields are set by main(), not copied from the receipt packet.
++        for field in ("http", "flag"):
++            if field in obj:
++                unknown[field] = obj[field]
++        line = json.dumps(unknown, allow_nan=False, **kw)
++    print(line)
+ 
+ def main():
+     ap = argparse.ArgumentParser(); ap.add_argument("--key-file", required=True)
+diff --git a/spend-guard/test_receipts_nonfinite.py b/spend-guard/test_receipts_nonfinite.py
+new file mode 100644
+--- /dev/null
++++ b/spend-guard/test_receipts_nonfinite.py
+@@ -0,0 +1,94 @@
++"""Receipt output boundary, using synthetic saved responses and no network."""
++import contextlib
++import io
++import json
++import sys
++import tempfile
++import unittest
++import urllib.request
++from pathlib import Path
++from unittest import mock
++
++import receipts
++
++
++class ReceiptOutputBoundary(unittest.TestCase):
++    def run_main(self, body, *, code=200, last_known=None):
++        with tempfile.TemporaryDirectory() as tmp:
++            key = Path(tmp, "synthetic-key")
++            key.write_text("synthetic-not-a-credential")
++            args = ["receipts.py", "--key-file", str(key)]
++            if last_known is not None:
++                saved = Path(tmp, "last-known.json")
++                saved.write_text(last_known)
++                args += ["--last-known", str(saved)]
++            out = io.StringIO()
++            # Keep the process-global opener unchanged even if the old source raises.
++            with mock.patch.object(receipts, "get", return_value=(code, body, None)) as get, \
++                    mock.patch.object(urllib.request, "install_opener"), \
++                    mock.patch.object(sys, "argv", args), contextlib.redirect_stdout(out):
++                self.assertIsNone(receipts.main())
++            self.assertEqual(get.call_count, 1)
++            self.assertNotIn("synthetic-not-a-credential", out.getvalue())
++            decoder = json.JSONDecoder(parse_constant=lambda value: self.fail(value))
++            raw = out.getvalue().strip()
++            rows = []
++            while raw:
++                row, end = decoder.raw_decode(raw)
++                rows.append(row)
++                raw = raw[end:].lstrip()
++            return rows
++
++    def test_overflow_and_constants_in_copied_metadata_stay_unknown(self):
++        for field in ("request_id", "state", "terminal_event"):
++            for value in ("1e999", "-1e999", "NaN", "Infinity"):
++                with self.subTest(field=field, value=value):
++                    body = {"request_id": "saved", "state": "estimated"}
++                    body[field] = json.loads('{"nested": [' + value + ']}')
++                    self.assertEqual(self.run_main(body),
++                                     [{"error": "non_finite_json", "state": None}])
++
++    def test_bad_row_does_not_erase_adjacent_good_rows(self):
++        rows = self.run_main(json.loads('[{"request_id":"before","state":"estimated"},'
++                            '{"terminal_event":1e999},{"request_id":"after","state":"released",'
++                            '"settled_spend":0}]'))
++        self.assertEqual(len(rows), 3)
++        self.assertEqual(rows[0]["request_id"], "before")
++        self.assertIsNone(rows[1]["state"])
++        self.assertEqual(rows[1]["error"], "non_finite_json")
++        self.assertEqual(rows[2]["request_id"], "after")
++        self.assertEqual(rows[2]["settled"], 0)
++        self.assertFalse(rows[2]["chain_final"])
++
++    def test_nonfinite_spend_keeps_existing_invalid_amount_classification(self):
++        row = self.run_main(json.loads('{"state":"estimated","settled_spend":1e999}'))[0]
++        self.assertEqual(row["state"], "estimated")
++        self.assertIsNone(row["settled"])
++        self.assertEqual(row["invalid"], ["settled_spend"])
++        self.assertNotIn("error", row)
++
++    def test_finite_metadata_and_numeric_looking_strings_are_preserved(self):
++        body = {"request_id": "saved", "state": "estimated", "settled_spend": None,
++                "terminal_event": {"large_integer": 9007199254740993,
++                                   "finite": 1e300, "text": ["NaN", "1e999", "雪"]}}
++        row = self.run_main(body)[0]
++        self.assertEqual(row["terminal_event"], body["terminal_event"])
++        self.assertIsNone(row["settled"])
++        self.assertFalse(row["chain_final"])
++
++    def test_bad_last_known_metadata_stays_unknown_without_echoing_packet(self):
++        self.assertEqual(self.run_main({"error": "api_key_expired"}, code=401,
++                         last_known='{"terminal_event":1e999}'),
++                         [{"error": "non_finite_json", "state": None,
++                           "http": 401, "flag": "key_expired"}])
++
++    def test_finite_last_known_preserves_existing_expired_key_flag(self):
++        row = self.run_main({"error": "api_key_expired"}, code=401,
++                            last_known='{"state":"estimated","settled_spend":null}')[0]
++        self.assertEqual(row["http"], 401)
++        self.assertEqual(row["flag"], "key_expired")
++        self.assertIsNone(row["last_known"]["settled_spend"])
++
++
++if __name__ == "__main__":
++    unittest.main()

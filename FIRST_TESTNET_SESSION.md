@@ -153,7 +153,7 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-10-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-11-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
   --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
   --output .private/readiness/first-session/output-review.json
@@ -228,6 +228,19 @@ unchanged. The review command now uses that fresh private preparation; no
 model was called. Testnet remains planned/unreleased, with no newer concrete
 date found in the inspected official account tail. The request-ID and grant
 recovery contracts remain separate from runtime qualification and allocation.
+
+November 11: a fresh read-only devnet RPC snapshot reports spec 1014014 at
+block 3,475,015, hash
+`0x9ec5cf9de2bc7e9612ac14e65f4ec9a7bf8578cb5c4a27101cb5f056e03f1d0e`,
+with the expected development genesis. The exact released 0.5.2 guard admits
+that spec and rejects six negative controls; registry integrity and imported
+guard bytes match the saved release archive. No allowlist was changed. This
+resolves the missing current-runtime observation for that devnet guard check,
+not full SDK/CLI qualification, independently proven finality or testnet launch.
+All eight workload sources were refreshed; the ten request/evaluation bindings
+and selected request are unchanged. Use the November 11 private preparation.
+The testnet profile still has no verified network/release/model values, and
+no ratified beneficiary rule or exact session approval has been established.
 
 The official faucet's read-only `/chain` metadata now publishes a Technocore
 bot DID and the `flop-devnet-faucet` room, as documented in current main's

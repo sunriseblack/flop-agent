@@ -193,4 +193,50 @@ if (target === 'faucet') {
       globalThis.fetch = originalFetch;
     }
   });
+  // Adjacent control reported independently by almondous on network issue 72.
+  test('rejected GET body cancellation still consumes one retry and recovers', async () => {
+    const originalFetch = globalThis.fetch;
+    let calls = 0;
+    let cancelAttempts = 0;
+    globalThis.fetch = async () => {
+      calls++;
+      if (calls === 1) {
+        return new Response(new ReadableStream({ cancel() {
+          cancelAttempts++;
+          throw new Error('synthetic cancellation rejection');
+        } }), { status: 503 });
+      }
+      assert.equal(cancelAttempts, 1);
+      return Response.json({ marker: 'recovered after rejected cancellation' });
+    };
+    try {
+      assert.deepEqual(await client('http://127.0.0.1:1').getChannel('synthetic'),
+        { marker: 'recovered after rejected cancellation' });
+      assert.equal(calls, 2);
+      assert.equal(cancelAttempts, 1);
+    } finally {
+      globalThis.fetch = originalFetch;
+    }
+  });
+  test('final GET refusal preserves the unread response without another fetch', async () => {
+    const originalFetch = globalThis.fetch;
+    let calls = 0;
+    const response = new Response('synthetic terminal refusal', { status: 503 });
+    globalThis.fetch = async () => { calls++; return response; };
+    try {
+      const value = new sdk.X402Client({ gatewayUrl: 'http://127.0.0.1:1',
+        retry: { maxAttempts: 1, backoffMs: 0, maxBackoffMs: 0 } });
+      await assert.rejects(value.getChannel('synthetic'), error => {
+        assert.ok(error instanceof sdk.PaymentError);
+        assert.equal(error.response, response);
+        assert.equal(error.status, 503);
+        assert.equal(response.bodyUsed, false);
+        return true;
+      });
+      assert.equal(await response.text(), 'synthetic terminal refusal');
+      assert.equal(calls, 1);
+    } finally {
+      globalThis.fetch = originalFetch;
+    }
+  });
 }

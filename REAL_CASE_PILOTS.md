@@ -248,3 +248,25 @@ were delivered/read back exactly. State: released-source findings reproduced,
 candidates published, independent supplement execution/integration pending.
 The prior invitation is not reposted as a reminder; this is a changed version
 and narrower supplement. Existing native-kit adoption counts remain unchanged.
+
+November 11: almondous [reported actual independent stream execution](https://github.com/flop-labs/network/issues/89#issuecomment-6767083517)
+and [cleanup execution](https://github.com/flop-labs/network/issues/72#issuecomment-6767085001)
+at `ea06476`, on Node 24.22.1/Linux x64, with commands, exits, module pins,
+reported stdout hashes and explicit isolation limits. The expected released
+failures and candidate passes match. Their extra cancellation-rejection case
+is reproduced and now paired with a final-response control in the 19-case
+response program; cleanup-only and combined variants pass all 19. No new
+implementation defect was reported. State: independently executed; bounded replay loop complete;
+maintainer source/release integration pending. Full peer logs were not supplied
+for byte verification. Do not ask for another unchanged replay or count this
+as native-kit adoption, live payment, finality or our own inference usage.
+
+## Receipt tracker output review, separate engineering scope
+
+uxp-labs' existing [issue-49 link](https://github.com/flop-labs/network/issues/49#issuecomment-6735530429)
+led to its public read-only tracker. At `3df6e337`, we reproduced a synthetic
+malformed-metadata output failure and prepared the [two-file repair and controls](RECEIPT_TRACKER_OUTPUT_REVIEW_2026-11-11.md).
+Our local execution of their tool is independent engineering review, with no
+new native signed-job packet or evidence-kit adoption. State: finding
+reproduced and scoped candidate tested; author execution/application awaits
+the pinned delivery and actual feedback. No live key or gateway call is needed.

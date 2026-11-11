@@ -150,6 +150,27 @@ Follow new execution, changed source or concrete findings without another
 unchanged invitation. Source integration and a released supplement remain
 separate from our passing local controls and repository CI.
 
+November 11: almondous independently executed both `ea06476` supplements on
+Linux/Node 24.22.1 with matching pins and the expected released failures and
+candidate passes. Their cancellation-rejection control is now reproduced and
+paired with a final-response preservation check in our 19-case response suite.
+The unchanged cleanup/combined sources pass 19; released 0.5.2 passes 17 and
+fails two cleanup controls. Close the bounded execution loop and follow source
+integration or a concrete counterexample, without another unchanged replay ask.
+The peer's reported stdout hashes are not independently checked log bytes.
+
+The [November 11 receipt-tracker review](RECEIPT_TRACKER_OUTPUT_REVIEW_2026-11-11.md)
+extends uxp-labs' existing read-only tool at `3df6e337`. A synthetic overflowing
+JSON number in copied metadata crashes its report; existing spend validation
+already handles that value correctly. Our two-file companion patch emits an
+unknown error row, preserves observed HTTP/expiry metadata and adjacent good
+rows, and leaves finite fields and invalid-spend classification unchanged.
+The original 66 tests pass; the candidate passes 72. Three added methods fail
+first and three preserve positive controls. Deliver the pinned patch to the
+existing author, then follow actual execution/application or a counterexample. This is our
+independent review of their tool, not their use of our native evidence kit.
+Do not run its estimate, enrollment, signing or funded paths for a demo.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner

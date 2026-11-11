@@ -126,3 +126,27 @@ and integration remain pending. The
 was also delivered/read back, with the cooldown differences kept separate.
 The hosted CI covers the repository suite and helpers; SDK packet-dependent
 replays above are local evidence, not upstream SDK CI.
+
+## November 11 independent execution and adjacent controls
+
+almondous independently executed the pinned `ea06476` programs on Node
+24.22.1/Linux x64. Their [issue-89 report](https://github.com/flop-labs/network/issues/89#issuecomment-6767083517)
+matches 30 passes/four failures on the release and 34/34 stream/combined passes, including
+all module and archive pins. Their [issue-72 report](https://github.com/flop-labs/network/issues/72#issuecomment-6767085001)
+matches 16/17 released and 17/17 cleanup/combined results. They describe a
+corrected loopback preload and filesystem/child-process restrictions, explicitly
+without kernel network isolation. Stdout hashes are reported in the comments;
+the underlying log bytes were not attached and have not been hash-checked here.
+This is independent reported execution, separate from our own replays, source
+integration, regenerated bundles, browser behavior or an upstream release.
+
+The second report adds a synthetic rejected-cancellation callback. We reproduced
+it and added it to the response program, together with an adjacent final-GET
+control: an exhausted retry budget must preserve the unread error response.
+The expanded suite now has 19 cases. Released 0.5.2 passes 17 and fails both
+cleanup controls; the unchanged cleanup and combined candidates each pass 19.
+The new rejection case confirms one cancellation attempt and two total fetches.
+It does not establish bounded cancellation latency or a live gateway outcome.
+Existing patch/module hashes above are unchanged; the original 17-case results
+remain dated evidence. The replay feedback loop is complete within this scope;
+no unchanged rerun is requested. Maintainer integration remains pending.
