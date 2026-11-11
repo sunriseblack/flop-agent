@@ -78,8 +78,15 @@ python3 -B -m unittest discover -s spend-guard -q
 | Candidate `spend-guard/receipts.py` | `b2601228936addb97f8b5e7274cb10626fa3207f53e3ccd5431bb59483235639` |
 | New test module | `e04fc1c3062abf4ddd3f4731dec6e5ce07e7ab4ef3e74c621d980be43df8cd77` |
 
-State: reproduced and locally tested candidate, ready for author review.
-Actual author execution, integration and release require separate evidence.
+Published at `b81b8fcff3c295c8de5be85e534b233d4d2fc3bd`; the
+[repository CI passed](https://github.com/sunriseblack/flop-agent/actions/runs/43040369023).
+That CI covers this repository's 244 tests and kit/exporter helpers, not the
+private packet-dependent peer suite. The [author invitation on issue 18](https://github.com/uxp-labs/flop-devnet-lab/issues/18)
+was delivered and read back exactly under sunriseblack. The connector returned
+an explicit permission error; delivery used the configured GitHub CLI with
+the same account and exact body. No uncertain write was retried blindly.
+State: reproduced, published and invited. Actual author execution, integration
+and release require separate evidence; no unchanged reminder is due.
 Gateway observations remain distinct from signatures, finalized settlement,
 account credit and airdrop allocation. Source snapshots and full logs remain
 private; this patch contains reviewed synthetic cases only.

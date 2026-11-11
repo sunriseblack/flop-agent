@@ -268,5 +268,7 @@ led to its public read-only tracker. At `3df6e337`, we reproduced a synthetic
 malformed-metadata output failure and prepared the [two-file repair and controls](RECEIPT_TRACKER_OUTPUT_REVIEW_2026-11-11.md).
 Our local execution of their tool is independent engineering review, with no
 new native signed-job packet or evidence-kit adoption. State: finding
-reproduced and scoped candidate tested; author execution/application awaits
-the pinned delivery and actual feedback. No live key or gateway call is needed.
+reproduced and scoped candidate tested. The [pinned issue-18 invitation](https://github.com/uxp-labs/flop-devnet-lab/issues/18)
+at `b81b8fc` was delivered/read back exactly under sunriseblack. State: invited;
+actual author execution/application remains pending. Follow a concrete result,
+without repeating the request. No live key or gateway call is needed.

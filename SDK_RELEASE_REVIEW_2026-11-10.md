@@ -150,3 +150,8 @@ It does not establish bounded cancellation latency or a live gateway outcome.
 Existing patch/module hashes above are unchanged; the original 17-case results
 remain dated evidence. The replay feedback loop is complete within this scope;
 no unchanged rerun is requested. Maintainer integration remains pending.
+
+The [issue-89 acknowledgement](https://github.com/flop-labs/network/issues/89#issuecomment-6798753778)
+and [issue-72 control follow-up](https://github.com/flop-labs/network/issues/72#issuecomment-6798758723)
+were delivered/read back exactly under sunriseblack, linking the `b81b8fc`
+publication. These close the bounded review scope without another replay ask.

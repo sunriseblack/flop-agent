@@ -166,8 +166,10 @@ already handles that value correctly. Our two-file companion patch emits an
 unknown error row, preserves observed HTTP/expiry metadata and adjacent good
 rows, and leaves finite fields and invalid-spend classification unchanged.
 The original 66 tests pass; the candidate passes 72. Three added methods fail
-first and three preserve positive controls. Deliver the pinned patch to the
-existing author, then follow actual execution/application or a counterexample. This is our
+first and three preserve positive controls. The patch at `b81b8fc` is delivered
+and read back exactly on [peer issue 18](https://github.com/uxp-labs/flop-devnet-lab/issues/18).
+Follow actual author execution/application or a counterexample without an
+unchanged reminder. This is our
 independent review of their tool, not their use of our native evidence kit.
 Do not run its estimate, enrollment, signing or funded paths for a demo.
 

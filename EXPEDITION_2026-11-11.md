@@ -49,8 +49,19 @@ Only synthetic saved responses and credentials were used. Initial boundary
 tests deny native networking; the full Python suite allows loopback for its
 existing redirect tests. No gateway, estimate, enrollment, funding or paid path
 was exercised. This is our independent engineering review of the peer's tool,
-not their use of our native kit. Publication and author delivery follow
-diff/secret review and repository checks.
+not their use of our native kit. Published source/artifacts are pinned at
+`b81b8fcff3c295c8de5be85e534b233d4d2fc3bd`, after diff/secret review and the
+passing repository checks. [Hosted CI passed](https://github.com/sunriseblack/flop-agent/actions/runs/43040369023).
+The [peer issue-18 invitation](https://github.com/uxp-labs/flop-devnet-lab/issues/18)
+was delivered/read back exactly under sunriseblack at 14:39 UTC. The connector
+returned an explicit permission error for that repository; the configured
+GitHub CLI delivered the same body. Independent author execution/application
+remains pending. No uncertain write was blindly retried.
+
+The SDK closure acknowledgements were delivered/read back exactly on
+[issue 89, comment 6798753778](https://github.com/flop-labs/network/issues/89#issuecomment-6798753778)
+and [issue 72, comment 6798758723](https://github.com/flop-labs/network/issues/72#issuecomment-6798758723),
+also at 14:39 UTC. No new unchanged review request was made.
 
 ## Previous contributions and room evidence
 
