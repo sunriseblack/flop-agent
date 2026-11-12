@@ -79,3 +79,19 @@ review is complete with no new defect reported. Upstream main and the PR head
 are unchanged; the upstream Python/browser/PR-guard checks still need approval.
 Policy acceptance and merge remain maintainer steps. Do not request an
 unchanged rerun or count this source review as evidence-kit adoption.
+
+## Additional independent report, checked November 12
+
+[ShalyX reports exact-head validation](https://github.com/flop-labs/technocore-chat/pull/1085#issuecomment-6801121355)
+at `73be186` against current main `3cd868e`, with merge base `cd41f86`.
+They report 16 focused passes, 923 full-suite passes/one skip and 98.08%
+coverage, successful lint/format/types/size checks and the complete browser
+probe, including storage failures and identity persistence. Their environment
+versions, raw output and browser assertion count were not supplied; those
+details are not inferred from the earlier reporter's separate run.
+
+The submitted head is unchanged and behind current main. This validates the
+reported exact-head scope, not current-main integration or maintainer policy
+approval. It adds an independent engineering report with no new defect or
+request to address; the earlier signed reporter-validation scope stays separate.
+Do not repeat a test request, manufacture new adoption or infer merge.

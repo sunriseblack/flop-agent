@@ -272,3 +272,23 @@ reproduced and scoped candidate tested. The [pinned issue-18 invitation](https:/
 at `b81b8fc` was delivered/read back exactly under sunriseblack. State: invited;
 actual author execution/application remains pending. Follow a concrete result,
 without repeating the request. No live key or gateway call is needed.
+
+November 12: [uxp-labs confirmed the report and explained its policy](https://github.com/uxp-labs/flop-devnet-lab/issues/18#issuecomment-6807890420).
+It does not execute or apply outside patches. Its own [PR 27](https://github.com/uxp-labs/flop-devnet-lab/pull/27)
+merged at `011fe29`, with explicit credit for our finding. Our accepted-source
+validation passes all 75 spend-guard tests; the nine accepted output methods
+give 16 failing assertion instances across six methods on the old reporter.
+The patch invitation is closed under the author's policy. State: report
+adopted, author-owned fix merged, accepted code independently validated by us.
+This is not independent execution/adoption of our patch, native-kit adoption,
+live inference or airdrop credit. No further request is due without a new case.
+
+## SDK faucet network metadata, separate release scope
+
+The [0.6.0 review](SDK_FAUCET_NETWORK_REVIEW_2026-11-12.md) reproduces the class
+reporting testnet despite a devnet/local configuration. It prepares a small
+repair and a pinned 40-case outcome/network program; released source passes
+37 and the candidate passes 40 with native sockets denied. State: reproduced
+and locally tested, pending scoped publication/delivery and actual independent
+review. This new finding is separate from the completed issue-71 retry review
+and issue-89/72 replay loops. No native signed-job artifact or adoption is added.

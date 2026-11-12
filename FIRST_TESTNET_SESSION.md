@@ -153,7 +153,7 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-11-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-12-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
   --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
   --output .private/readiness/first-session/output-review.json
@@ -241,6 +241,23 @@ All eight workload sources were refreshed; the ten request/evaluation bindings
 and selected request are unchanged. Use the November 11 private preparation.
 The testnet profile still has no verified network/release/model values, and
 no ratified beneficiary rule or exact session approval has been established.
+
+November 12: npm publishes SDK 0.6.0 and CLI 0.5.0. Devnet now reports spec
+1014020 at block 3,548,227. The exact integrity-checked 0.6.0 guard admits the
+observed spec and all 21 listed versions, rejecting six negative controls.
+The runtime guard was not edited; CLI execution, full SDK qualification and
+independently verified finality remain separate. Its new faucet contract makes
+one attempt and keeps an accepted response unconfirmed as an attributable
+grant. Our [release review](SDK_FAUCET_NETWORK_REVIEW_2026-11-12.md) reproduces
+and repairs a dropped configured-network label, with 40 offline controls.
+Static planned testnet endpoint names in the SDK are not verified services.
+
+All eight workload sources were refreshed; the ten request/evaluation bindings
+and selected request are unchanged. Use the November 12 private preparation.
+The official testnet profile remains planned/unreleased, and no new ratified
+owner/beneficiary rule or concrete session approval was established. Original
+identity/history restoration remains required. No model or live funding call
+was made to test the new client.
 
 The official faucet's read-only `/chain` metadata now publishes a Technocore
 bot DID and the `flop-devnet-faucet` room, as documented in current main's

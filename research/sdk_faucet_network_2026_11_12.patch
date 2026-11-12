@@ -1,0 +1,38 @@
+diff --git a/dist/faucet.js b/dist/faucet.js
+--- a/dist/faucet.js
++++ b/dist/faucet.js
+@@ -209,12 +209,14 @@
+  * Faucet client class for more advanced usage.
+  */
+ export class FaucetClient {
++    network;
+     endpoint;
+     timeout;
+     maxRetries;
+     retryDelay;
+     referral;
+     constructor(config = {}) {
++        this.network = config.network ?? 'testnet';
+         this.endpoint = resolveFaucetEndpoint(config);
+         this.timeout = config.timeout ?? 30000;
+         this.maxRetries = config.maxRetries ?? 3;
+@@ -226,7 +228,7 @@
+      */
+     async fund(address, amount) {
+         return requestFunding(address, {
+-            endpoint: this.endpoint, amount: amount ?? DEFAULT_FAUCET_AMOUNT,
++            network: this.network, endpoint: this.endpoint, amount: amount ?? DEFAULT_FAUCET_AMOUNT,
+             timeout: this.timeout, maxRetries: this.maxRetries, retryDelay: this.retryDelay,
+             referral: this.referral,
+         });
+diff --git a/dist/faucet.d.ts b/dist/faucet.d.ts
+--- a/dist/faucet.d.ts
++++ b/dist/faucet.d.ts
+@@ -141,6 +141,7 @@
+  * Faucet client class for more advanced usage.
+  */
+ export declare class FaucetClient {
++    private network;
+     private endpoint;
+     private timeout;
+     private maxRetries;

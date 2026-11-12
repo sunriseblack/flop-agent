@@ -90,3 +90,29 @@ and release require separate evidence; no unchanged reminder is due.
 Gateway observations remain distinct from signatures, finalized settlement,
 account credit and airdrop allocation. Source snapshots and full logs remain
 private; this patch contains reviewed synthetic cases only.
+
+## November 12 author uptake and accepted-source validation
+
+uxp-labs [confirmed the report](https://github.com/uxp-labs/flop-devnet-lab/issues/18#issuecomment-6807890420)
+and merged its own fix/tests in [PR 27](https://github.com/uxp-labs/flop-devnet-lab/pull/27),
+merge `011fe29d8c901281479daa23a6627445e0a249a1`. Its
+[credits file](https://github.com/uxp-labs/flop-devnet-lab/blob/011fe29d8c901281479daa23a6627445e0a249a1/CREDITS.md)
+attributes the report to sunriseblack. Their rule is to read outside patches
+as reports, without applying or executing them. This is adoption of the finding
+and an author-owned repair, not execution or adoption of our patch. Respect
+that policy and close the outside-patch execution request.
+
+We inspected the accepted code and independently ran its 75 spend-guard tests:
+all pass on Python 3.14.3/macOS arm64 with loopback-only networking. Overlaying
+only the accepted nine-test output module onto the first parent's old reporter
+gives 16 failing assertions/subtests across six methods; three positive methods
+still pass. This preserves the distinction between nine methods and 16 failure
+instances. The accepted implementation adds excessive-nesting and unusable
+saved-file handling as well as the original overflowing-metadata fix.
+
+The accepted tree also has successful [python offline CI](https://github.com/uxp-labs/flop-devnet-lab/actions/runs/43106652326)
+and [imd-flop offline CI](https://github.com/uxp-labs/flop-devnet-lab/actions/runs/43106652424).
+Those hosted scopes are separate from our local Python execution; TypeScript
+and viewer suites were not executed locally. Existing file-handle warnings
+remain. No new counterexample was found, live request made, key used or
+settlement inferred. Issue 18 is closed; follow only a concrete new finding.

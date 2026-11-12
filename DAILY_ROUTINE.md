@@ -173,6 +173,26 @@ unchanged reminder. This is our
 independent review of their tool, not their use of our native evidence kit.
 Do not run its estimate, enrollment, signing or funded paths for a demo.
 
+November 12: uxp-labs confirmed our report and merged its own fix/tests in
+[PR 27](https://github.com/uxp-labs/flop-devnet-lab/pull/27), exact merge
+`011fe29`. Its credits file names our report. The author does not apply or run
+outside patches; respect that rule and close the patch-execution invitation.
+Our independent accepted-source validation passes all 75 Python tests; the
+accepted nine-test output module gives 16 failing assertions/subtests on the
+old reporter, with its three positive methods still passing. State: report
+adopted, author-owned fix merged, accepted source validated. This is not use
+of our patch or evidence-kit adoption. Follow only a concrete new finding.
+
+The [SDK 0.6.0 release review](SDK_FAUCET_NETWORK_REVIEW_2026-11-12.md) adds a
+new network-metadata scope. The class drops its configured network and labels
+devnet/local results testnet; the functional API preserves it. Our two-file
+distributed-artifact repair passes 40 offline controls, versus 37 passes and
+three metadata failures on the release. Preserve its new one-attempt/unknown
+grant semantics and historical default. Publish/deliver the pinned scope after
+checks, then track actual independent execution/integration. Do not ask for an
+unchanged x402 replay: its module/import bytes are identical to 0.5.2, and the
+existing stream/response supplements remain unshipped. No paid demo is needed.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
@@ -547,6 +567,15 @@ returned HTTP 503; current network/runtime qualification is still unverified.
 The CLI was not executed. Keep those limits and the original identity, owner
 mapping and first-session gates explicit, rather than carrying the old SDK
 blocker forward as if no release existed.
+
+November 12: SDK 0.6.0 and CLI 0.5.0 are published. The fresh devnet snapshot
+is spec 1014020 at block 3,548,227. The unmodified released guard admits that
+spec and all 21 listed versions and rejects six negative controls. This clears
+the guard-admission check for the observed devnet snapshot, not full client
+qualification, independent finality or a testnet route. Planned endpoint names
+in the SDK do not establish testnet availability. Follow the current
+[session plan](FIRST_TESTNET_SESSION.md) and retain the identity/history,
+attribution, exact quote and bounded-session approval gates.
 
 The new signed faucet-bot pattern binds service discovery to the official
 HTTPS `/chain` metadata. Our read-only check verifies 18 existing bot records
