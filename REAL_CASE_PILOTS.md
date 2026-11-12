@@ -288,7 +288,9 @@ live inference or airdrop credit. No further request is due without a new case.
 The [0.6.0 review](SDK_FAUCET_NETWORK_REVIEW_2026-11-12.md) reproduces the class
 reporting testnet despite a devnet/local configuration. It prepares a small
 repair and a pinned 40-case outcome/network program; released source passes
-37 and the candidate passes 40 with native sockets denied. State: reproduced
-and locally tested, pending scoped publication/delivery and actual independent
-review. This new finding is separate from the completed issue-71 retry review
+37 and the candidate passes 40 with native sockets denied. Published at
+`1919999`; the [targeted issue-244 invitation](https://github.com/flop-labs/network/issues/244)
+was delivered/read back exactly under sunriseblack. State: published and
+invited; actual independent execution/integration remains pending. Follow a
+concrete result without repeating the invitation. This finding is separate from the completed issue-71 retry review
 and issue-89/72 replay loops. No native signed-job artifact or adoption is added.

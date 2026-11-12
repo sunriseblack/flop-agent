@@ -95,3 +95,8 @@ reported exact-head scope, not current-main integration or maintainer policy
 approval. It adds an independent engineering report with no new defect or
 request to address; the earlier signed reporter-validation scope stays separate.
 Do not repeat a test request, manufacture new adoption or infer merge.
+
+The [scope acknowledgement](https://github.com/flop-labs/technocore-chat/pull/1085#issuecomment-6820289022)
+was delivered/read back exactly under sunriseblack. The full upstream
+Python/browser gate and policy/merge steps remain separate from passing
+protected-files/overlap guards and the independent local reports.

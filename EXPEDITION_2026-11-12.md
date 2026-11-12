@@ -57,9 +57,19 @@ the distinct old issue-71 retry scope, without this metadata report.
 The x402 module and its runtime imports are byte-identical to 0.5.2. The
 already-reviewed stream/response supplements are not in this release; no
 unchanged peer replay or another implementation was requested for them.
-Publication and the new targeted network-label handoff follow repository
-checks, diff review and a secret scan. Independent execution/integration of
-this new candidate remain separate from our own 40 cases.
+Publication at `1919999a944ae13eeba7e7182c9c50bf71f536d2` followed repository
+checks, diff review and a secret scan with no findings. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43194522460).
+The [issue-244 handoff](https://github.com/flop-labs/network/issues/244) was
+delivered/read back exactly under sunriseblack, offering the pinned field-loss
+program to the prior faucet reviewer. Independent execution/integration of
+this new candidate remain pending, separate from our own 40 cases.
+
+The [receipt-scope closure](https://github.com/uxp-labs/flop-devnet-lab/issues/18#issuecomment-6820289804)
+and [browser-review acknowledgement](https://github.com/flop-labs/technocore-chat/pull/1085#issuecomment-6820289022)
+were also delivered/read back exactly under sunriseblack. The peer repository's
+known connector write restriction required GitHub CLI delivery for its closure;
+the explicit 403 was not an uncertain write. Completed scopes have no new
+unchanged execution request. No PR was created or another author's branch moved.
 
 ## Existing contribution follow-ups
 

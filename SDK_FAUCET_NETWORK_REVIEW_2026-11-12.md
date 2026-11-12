@@ -89,6 +89,15 @@ maintainer source integration and release require separate evidence. Existing
 x402 modules and their runtime imports are byte-identical to 0.5.2; its pending
 stream/response cleanup supplements are not claimed to have shipped in 0.6.0.
 
+Published at `1919999a944ae13eeba7e7182c9c50bf71f536d2`, after diff review
+and a secret scan. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43194522460)
+for the 244 repository tests and kit/exporter helpers; the private SDK replay
+is a separate local result. The [new issue-244 handoff](https://github.com/flop-labs/network/issues/244)
+was delivered/read back exactly under sunriseblack and offers the pinned
+program to the earlier faucet reviewer for this new field-loss scope. State:
+published and invited; independent execution and integration remain pending.
+Do not repeat the request without a concrete result or changed source.
+
 ## Runtime and useful-session gate
 
 The read-only devnet RPC reports runtime 1014020 at block 3,548,227, hash

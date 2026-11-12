@@ -116,3 +116,8 @@ Those hosted scopes are separate from our local Python execution; TypeScript
 and viewer suites were not executed locally. Existing file-handle warnings
 remain. No new counterexample was found, live request made, key used or
 settlement inferred. Issue 18 is closed; follow only a concrete new finding.
+
+The [accepted-source acknowledgement](https://github.com/uxp-labs/flop-devnet-lab/issues/18#issuecomment-6820289804)
+was delivered/read back exactly under sunriseblack. The connector's known
+write restriction required the configured GitHub CLI; the explicit failed
+connector request was not an uncertain write. No outside-patch rerun is requested.

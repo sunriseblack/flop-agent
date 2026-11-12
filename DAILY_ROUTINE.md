@@ -188,8 +188,9 @@ new network-metadata scope. The class drops its configured network and labels
 devnet/local results testnet; the functional API preserves it. Our two-file
 distributed-artifact repair passes 40 offline controls, versus 37 passes and
 three metadata failures on the release. Preserve its new one-attempt/unknown
-grant semantics and historical default. Publish/deliver the pinned scope after
-checks, then track actual independent execution/integration. Do not ask for an
+grant semantics and historical default. The pinned `1919999` scope is published
+with passing repository CI and delivered/read back on [network issue 244](https://github.com/flop-labs/network/issues/244).
+Track actual independent execution/integration without an unchanged reminder. Do not ask for an
 unchanged x402 replay: its module/import bytes are identical to 0.5.2, and the
 existing stream/response supplements remain unshipped. No paid demo is needed.
 
