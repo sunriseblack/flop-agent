@@ -83,6 +83,13 @@ genesis and an enrollment action/purpose. That supplies a concrete authority-
 boundary clarification to ask about any proposed reuse as a beneficiary proof;
 no challenge was requested, signature created or enrollment submitted.
 
+The [new purpose-bound clarification](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6847858451)
+was delivered/read back exactly under sunriseblack. It asks whether the proposal
+means new credit authority signed by the same wallet or reuse of its enrollment
+signature, with a proposed cross-purpose negative case. This is a design
+question, not a demonstrated exploit or a ratified binding. A substantive
+direct answer is pending; no repeat or allocation inference is warranted.
+
 ## Workload, runtime and retained-room evidence
 
 All eight allowlisted workload inputs were refreshed; all ten request and
@@ -121,5 +128,9 @@ evidence. No contest checks, offers or trades were made.
 Private evidence is in `.private/readiness/2026-11-13-run-01` and
 `.private/workload/2026-11-13-run-01`, with the preserved SDK packets from
 November 12. All 244 local repository tests, kit/exporter checks and Node
-syntax pass. Scoped publication follows diff review and a secret scan. SDK packet-dependent results
+syntax pass. Published at `fb5f5b1b3cef36bbed75709c43d7082a08b475a2` after
+diff review and a secret scan with no findings. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43392449486).
+The [SDK closure acknowledgement](https://github.com/flop-labs/network/issues/244#issuecomment-6847854804)
+was delivered/read back exactly under sunriseblack. No PR was created and
+no other author's branch was moved. SDK packet-dependent results
 remain separate from repository or upstream hosted CI.

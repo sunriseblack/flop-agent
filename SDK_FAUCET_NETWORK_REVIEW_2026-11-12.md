@@ -141,3 +141,11 @@ tracks the metadata defect and explicitly leaves source/package verification
 and release pending. The API identifies the commenter as a contributor;
 this acknowledgement is not source acceptance, a shipped fix or an allocation
 decision. Today's registry still names 0.6.0 as latest.
+
+Published the expanded controls and updated evidence at
+`fb5f5b1b3cef36bbed75709c43d7082a08b475a2` after checks, diff review and a
+secret scan. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43392449486);
+the private SDK replay is separate from that hosted suite. The
+[bounded-scope acknowledgement](https://github.com/flop-labs/network/issues/244#issuecomment-6847854804)
+was delivered/read back exactly under sunriseblack. It preserves the peer's
+credit and pending source/package/release steps without another replay ask.

@@ -308,3 +308,8 @@ complete; source/package verification and release pending. sv's separate
 acknowledgement leaves those steps open. Follow source changes or a new case
 without another replay request. This remains engineering review rather than
 native evidence-kit adoption, an attributable grant or a settled session.
+
+The [acknowledgement and expanded-control handoff](https://github.com/flop-labs/network/issues/244#issuecomment-6847854804)
+at `fb5f5b1` was delivered/read back exactly under sunriseblack. The code
+publication has passing repository CI. No new unchanged peer run is requested;
+source/package verification and release remain the next external triggers.

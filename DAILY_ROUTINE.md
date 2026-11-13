@@ -205,6 +205,11 @@ source/package verification and release still pending. Close the bounded replay
 loop; follow changed source, integration or a concrete finding, without another
 unchanged request. Native-kit adoption is unchanged.
 
+The expanded controls at `fb5f5b1` have passing repository CI, and the
+[issue-244 acknowledgement](https://github.com/flop-labs/network/issues/244#issuecomment-6847854804)
+is delivered/read back exactly. Follow source/package/release evidence or a
+concrete counterexample, rather than requesting the peer run the same scope again.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
@@ -571,6 +576,14 @@ and unreleased; this forecast opens no service, spending or claim gate. Keep
 checking newer originals and continue after the target if verified launch and
 session conditions remain unmet. The existing heartbeat prompt now reflects
 this source change; its active status, cadence and target thread are preserved.
+
+A [purpose-bound authorization clarification](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6847858451)
+was delivered/read back on infinity-nashi's new beneficiary proposal. The live
+OpenAPI describes enrollment-purpose signatures; the question asks whether
+the proposal means a new beneficiary authorization by the same wallet or reuse
+of existing enrollment bytes. This is a design question, not a demonstrated
+exploit or ratified credit rule. Follow a substantive direct answer; do not
+repost it or treat a peer answer as official attribution/session approval.
 
 November 7: the observed Devnet runtime is now 1014014, while npm SDK 0.4.0
 still refuses it through its unmodified compatibility guard. All 12 qualified
