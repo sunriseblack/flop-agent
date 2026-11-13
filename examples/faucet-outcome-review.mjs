@@ -56,17 +56,30 @@ function invoke(lane, extra = {}) {
 
 for (const lane of ['class', 'functional']) {
   for (const network of ['devnet', 'local', 'testnet']) {
-    test(`${lane}: configured ${network} survives in accepted metadata`, () =>
-      usingFetch([{ body: accepted }], async calls => {
-        const result = await invoke(lane, { network });
-        assert.equal(result.network, network);
-        assert.equal(result.endpoint, endpoint);
-        assert.equal(result.outcome, 'accepted');
-        assert.equal(result.success, true);
-        assert.equal(result.txHash, txHash);
-        assert.equal(calls.length, 1);
-        assert.equal(calls[0].method, 'POST');
-      }));
+    // Reproduce almondous's issue-244 matrix, including ambiguous outcomes.
+    for (const [name, response, outcome, success, status] of [
+      ['accepted', { body: accepted }, 'accepted', true, 200],
+      ['429 refusal', { status: 429, body: { error: 'synthetic refusal' } }, 'refused', false, 429],
+      ['503 unknown', { status: 503, body: { error: 'synthetic failure' } }, 'unknown', false, 503],
+      ['lost response', new TypeError('synthetic response loss'), 'unknown', false, undefined],
+    ]) {
+      test(`${lane}: configured ${network} survives ${name} metadata`, () =>
+        usingFetch([response], async calls => {
+          const result = await invoke(lane, { network });
+          assert.equal(result.network, network);
+          assert.equal(result.endpoint, endpoint);
+          assert.equal(result.outcome, outcome);
+          assert.equal(result.success, success);
+          assert.equal(result.status, status);
+          if (success) {
+            assert.equal(result.txHash, txHash);
+            assert.equal(result.amount, 25);
+          }
+          assert.equal(calls.length, 1);
+          assert.equal(calls[0].method, 'POST');
+          assert.deepEqual(calls[0].body, { address: 'synthetic-address', amount: 25 });
+        }));
+    }
   }
   test(`${lane}: omitted network retains the existing testnet default`, () =>
     usingFetch([{ body: accepted }], async calls => {
@@ -110,13 +123,6 @@ for (const lane of ['class', 'functional']) {
       const result = await invoke(lane);
       assert.equal(result.success, false);
       assert.equal(result.outcome, 'unknown');
-      assert.equal(calls.length, 1);
-    }));
-  test(`${lane}: configured network is retained on refusal too`, () =>
-    usingFetch([{ status: 429, body: { error: 'synthetic refusal' } }], async calls => {
-      const result = await invoke(lane, { network: 'local' });
-      assert.equal(result.network, 'local');
-      assert.equal(result.outcome, 'refused');
       assert.equal(calls.length, 1);
     }));
 }

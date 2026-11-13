@@ -3,7 +3,8 @@
 The routine follows the airdrop strategy through useful adopted contributions
 before launch and attributable useful inference after a verified launch. It
 does not optimize check-in counts or assume Kibble reputation creates an
-allocation. The existing heartbeat remains daily at 9 AM America New York.
+allocation. Preserve the existing heartbeat's saved daily cadence and target
+thread when updating its prompt.
 
 ## Verify local continuity first
 
@@ -193,6 +194,16 @@ with passing repository CI and delivered/read back on [network issue 244](https:
 Track actual independent execution/integration without an unchanged reminder. Do not ask for an
 unchanged x402 replay: its module/import bytes are identical to 0.5.2, and the
 existing stream/response supplements remain unshipped. No paid demo is needed.
+
+November 13: almondous independently executed `1919999`'s 40-case review and
+reported a separate 24-case network/outcome matrix with matching artifact pins.
+We reproduced the additional matrix and expanded the public runner to 56
+cases, replacing narrower duplicate label checks. Released bytes pass 48/fail
+eight; the unchanged candidate passes 56. The new runner is our execution,
+separate from the peer's pinned run. sv acknowledged tracking the defect, with
+source/package verification and release still pending. Close the bounded replay
+loop; follow changed source, integration or a concrete finding, without another
+unchanged request. Native-kit adoption is unchanged.
 
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
@@ -551,6 +562,15 @@ alongside the network profile; no calendar date or development endpoint opens
 the session gate. Devnet has explicitly no airdrop weight. The timeline FAQ's
 intended same-DID HTTP path is not a finalized owner-allocation record. Keep
 these readiness sources separate from the eight-source workload allowlist.
+
+November 13 superseding announcement: [FLOP Labs posts 24 November 2026 as tentative](https://x.com/flop_labs/status/2121146318135644275),
+quoting [Hayes's testnet/airdrop timing statement](https://x.com/CryptoHayes/status/2121144411484827836).
+The original post and quoted context were checked separately. The older date-
+unannounced state is historical. The official testnet profile remains planned
+and unreleased; this forecast opens no service, spending or claim gate. Keep
+checking newer originals and continue after the target if verified launch and
+session conditions remain unmet. The existing heartbeat prompt now reflects
+this source change; its active status, cadence and target thread are preserved.
 
 November 7: the observed Devnet runtime is now 1014014, while npm SDK 0.4.0
 still refuses it through its unmodified compatibility guard. All 12 qualified

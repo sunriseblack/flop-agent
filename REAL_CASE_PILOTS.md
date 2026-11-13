@@ -294,3 +294,17 @@ was delivered/read back exactly under sunriseblack. State: published and
 invited; actual independent execution/integration remains pending. Follow a
 concrete result without repeating the invitation. This finding is separate from the completed issue-71 retry review
 and issue-89/72 replay loops. No native signed-job artifact or adoption is added.
+
+November 13: [almondous reports exact pinned execution](https://github.com/flop-labs/network/issues/244#issuecomment-6827837966)
+at `1919999`, Linux x86_64/Node 24.22.1, with commands, exits and matching
+archive/module/declaration/patch/program pins. The 40-case released/candidate
+results match. Their additional 24-case matrix includes ambiguous outcomes;
+we reproduced its described inputs and eight original label mismatches, and
+the unchanged candidate passes. The public runner now has 56 cases after
+replacing narrower checks. That newer runner has only our local execution.
+No complete peer stdout/preload artifact was provided for byte verification.
+State: independently executed for the pinned review; bounded feedback loop
+complete; source/package verification and release pending. sv's separate
+acknowledgement leaves those steps open. Follow source changes or a new case
+without another replay request. This remains engineering review rather than
+native evidence-kit adoption, an attributable grant or a settled session.

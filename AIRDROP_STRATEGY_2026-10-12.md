@@ -113,6 +113,15 @@ requirement. Follow [the current session plan](FIRST_TESTNET_SESSION.md) and
 the [x402 body review](X402_HANDSHAKE_REVIEW_2026-11-07.md) without
 bypassing client qualification or spending to test a patch.
 
+November 13 launch update: [FLOP Labs names 24 November 2026 as tentative](https://x.com/flop_labs/status/2121146318135644275),
+quoting [Hayes's testnet/airdrop timing post](https://x.com/CryptoHayes/status/2121144411484827836).
+The original post and quoted context were checked independently. Treat this as
+the newer forecast; November 3 and the November 7 unannounced state are
+historical. The official network profile still lacks verified public testnet
+identity/releases. Continue useful contribution work and the bounded-session
+preparation through the target; no calendar date substitutes for verified
+network, original identity, attribution, final rules and exact approval.
+
 ## The reward paths supported by current evidence
 
 | Path | Evidence | Priority for us |

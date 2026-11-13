@@ -153,7 +153,7 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-12-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-13-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
   --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
   --output .private/readiness/first-session/output-review.json
@@ -258,6 +258,26 @@ The official testnet profile remains planned/unreleased, and no new ratified
 owner/beneficiary rule or concrete session approval was established. Original
 identity/history restoration remains required. No model or live funding call
 was made to test the new client.
+
+November 13: [FLOP Labs now gives 24 November 2026 as tentative](https://x.com/flop_labs/status/2121146318135644275),
+quoting Hayes's explicit testnet/airdrop timing post. This supersedes the
+November 7 date-unannounced observation. The profile remains planned and
+unreleased at source `894b44a3db9d`; no verified testnet identity, endpoints,
+client release or model catalog are supplied. The tentative date is not
+authorization, eligibility or a verified live launch.
+
+The fresh devnet snapshot still reports spec 1014020, now at block 3,629,026,
+hash `0x89472bb4021a9d4c6453f8b7e60395d4e3bf3bd69bfa975d0599c36fa5021c6e`.
+The exact released 0.6.0 guard admits it and all 21 listed versions, rejecting
+six negative controls unchanged. The new faucet review has independent peer
+execution at its original pin; source/package acceptance and release remain
+pending. That review does not restore our original identity or attribution.
+
+All eight workload inputs were refreshed and all ten request/evaluation
+bindings remain unchanged. Use the November 13 private selected job. The new
+social announcement is readiness evidence outside the fixed model-input
+allowlist; it was not silently inserted into the prepared request. Model
+execution, quote/miner selection and exact session approval remain pending.
 
 The official faucet's read-only `/chain` metadata now publishes a Technocore
 bot DID and the `flop-devnet-faucet` room, as documented in current main's

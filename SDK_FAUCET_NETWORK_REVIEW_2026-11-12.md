@@ -40,7 +40,7 @@ type checks, regenerated bundles/source maps and browser behavior are untested.
 
 ## Current contract controls
 
-The [40-case program](examples/faucet-outcome-review.mjs) pins both the faucet
+The [original 40-case program](https://github.com/sunriseblack/flop-agent/blob/1919999a944ae13eeba7e7182c9c50bf71f536d2/examples/faucet-outcome-review.mjs) pins both the faucet
 module and its only runtime import before loading them. It uses native
 Response objects with an in-process fetch double; no dependency install,
 identity, credential, faucet request or chain operation is needed.
@@ -89,6 +89,9 @@ maintainer source integration and release require separate evidence. Existing
 x402 modules and their runtime imports are byte-identical to 0.5.2; its pending
 stream/response cleanup supplements are not claimed to have shipped in 0.6.0.
 
+The counts above are the November 12 artifact's results. The current program
+has the expanded November 13 coverage described below.
+
 Published at `1919999a944ae13eeba7e7182c9c50bf71f536d2`, after diff review
 and a secret scan. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43194522460)
 for the 244 repository tests and kit/exporter helpers; the private SDK replay
@@ -107,3 +110,34 @@ spec and all 21 listed versions, rejecting six negative controls, without
 modification. This is guard admission for an RPC-trusted snapshot, separate
 from full client qualification, independently verified finality, attribution,
 testnet launch and approval of a concrete first session.
+
+## November 13 independent execution and ambiguous-outcome coverage
+
+[almondous executed the exact `1919999` scope](https://github.com/flop-labs/network/issues/244#issuecomment-6827837966)
+on Linux x86_64/Node 24.22.1: released 37/40 with exit 1, candidate 40/40 with
+exit 0, and candidate syntax passed. The archive, module, declaration, patch
+and original program pins match our preserved bytes. Their report describes
+in-process HTTP doubles plus a preload denying native connection paths;
+the preload and complete stdout logs were not supplied for independent byte
+verification. This is an external execution report for the pinned scope,
+separate from source integration, release, ongoing use or native-kit adoption.
+
+Their additional independently authored 24-case matrix covers class/function
+across devnet/local/testnet and accepted, 429 refusal, 503 unknown and transport
+exception outcomes. It reports eight released-class network-label mismatches
+and none on the candidate. We independently reproduced that described matrix,
+including endpoint, explicit amount and one-request preservation.
+
+The [current regression program](examples/faucet-outcome-review.mjs) replaces
+the narrower accepted/local-refusal label checks with that complete matrix.
+It now has 56 cases: released 0.6.0 passes 48 and fails eight label controls;
+the unchanged candidate passes 56. No new implementation defect was found,
+and patch/module/declaration hashes remain unchanged. These 56-case results
+are our own execution, not a claim that the peer ran this newer program.
+The bounded feedback loop is complete; no unchanged replay is requested.
+
+[sv's thread acknowledgement](https://github.com/flop-labs/network/issues/244#issuecomment-6830194457)
+tracks the metadata defect and explicitly leaves source/package verification
+and release pending. The API identifies the commenter as a contributor;
+this acknowledgement is not source acceptance, a shipped fix or an allocation
+decision. Today's registry still names 0.6.0 as latest.

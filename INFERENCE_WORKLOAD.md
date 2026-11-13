@@ -9,6 +9,16 @@ The October 20 task compares the agent overview's delegation invitation with
 the newer operator self-stake, sponsored-bond and community-pool rules.
 Outputs remain drafts until their claims are reviewed for meaning and correctness.
 
+November 13 readiness boundary: the [newer official social announcement](https://x.com/flop_labs/status/2121146318135644275)
+gives 24 November as tentative, while freshly fetched website wording still carries
+historical timing. Retrieval freshness does not make a dated claim current,
+and an exact citation does not ratify launch. The fixed eight-source input
+allowlist excludes social posts; the new announcement stays in the separate
+readiness evidence. Do not silently insert it into an unchanged request or
+treat a previously approved response as covering new evidence. A task needing
+the new announcement requires explicit reviewed source/request bindings and
+human semantic review. Existing prepared tasks retain their measured scope.
+
 This first version is transport-neutral. It prepares model requests and
 imports responses from a separately approved model client. It has no model
 API, execution tool, signing key, wallet, payment or publication path. FLOP's
