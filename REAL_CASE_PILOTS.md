@@ -68,6 +68,21 @@ is added to the count by our own compatibility or fixture runs.
 
 ## Related engineering validation, outside the adoption count
 
+November 14: infinity-nashi supplied three already-existing public devnet
+channels in [Yellow Paper issue 172](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6851354355).
+Our [read-only review](GATEWAY_CHANNEL_REVIEW_2026-11-14.md) verifies paid and
+refunded gateway transitions and native closed storage behind an explorer
+404, keeping per-request/beneficiary credit unknown. The published program is
+pinned at `84810bc`; our actual live capture, network-denied replay and ten
+negative controls pass. The [case-specific execution invitation](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6874964476)
+was delivered/read back exactly at 09:06:36 UTC. State: real public case
+identified, independently investigated by us, runnable artifact published,
+participant invited; their execution/usefulness/finding is pending. This uses
+chain receipt witnesses, not Technocore signed JOB artifacts, and adds no native
+kit adoption. Follow only an actual result or changed source, without another
+unchanged reminder or funded demo. The participant's fresh-authorization reply
+closes our interpretation question, while official attribution remains open.
+
 November 3 compatibility used the existing signed Unicode record at
 [feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
 nonce verifies in both the saved live JSON view and retained export. The local

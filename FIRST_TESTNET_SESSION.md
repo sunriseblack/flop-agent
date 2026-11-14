@@ -153,7 +153,7 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-13-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-14-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
   --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
   --output .private/readiness/first-session/output-review.json
@@ -181,6 +181,13 @@ replacement purchase. Record whether an event reference is block-wide or an
 ordinal within one extrinsic. RPC-trusted receipts/state do not resolve
 end-user allocation. The peer's fresh-beneficiary-authorization clarification
 is a proposal, not the official owner mapping required below.
+
+The November 14 refresh retrieved all eight allowlisted inputs after an initial
+collection timeout. All ten request/evaluation bindings, including the selected
+job, match November 13. The fresh prepared request remains 6,602 bytes with
+SHA-256 `f847563438f9c7b554cdba6e91275d9dea7fed39cc67fd58d54f1f07eadbad7b`.
+No prior approval or model output was reconstructed from that match. The
+official profile still says planned/unreleased; November 24 remains tentative.
 
 Before submission, verify the official testnet identity, genesis, supported
 client/model/faucet, independent miner, owner/delegate/beneficiary mapping and

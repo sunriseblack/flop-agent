@@ -33,7 +33,13 @@ networking denied. Ten adjacent negative controls reject tampering and preserve
 unknowns. This extends wyc4t's earlier raw-call binding approach with credit;
 there is no competing official PR or duplicated defect report. Independent
 execution of this new program remains pending, outside native-kit adoption.
-Publication/readback details follow below when completed.
+Published at `84810bc3c7f754aca3b5fd04b77d87463e9dec1b`, after diff review and
+a secret scan with no findings. The public program's exact bytes were read
+back and match locally. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43578881171).
+The [purpose acknowledgement, measured results and case-specific invitation](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6874964476)
+were delivered at 09:06:36 UTC and read back with exact body under sunriseblack.
+Participant execution remains pending. No PR was created or another author's
+branch modified.
 
 The original consumer-safety PR 1010 is still open at author osr21's `8aadb4f`;
 Technocore main is unchanged at `3cd868e`. No new comment calls for another

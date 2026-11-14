@@ -224,6 +224,14 @@ keeping private per-request receipts, RPC trust, cryptographic witness checks,
 beneficiary policy and independent execution separate. No new funded demo or
 unchanged reminder; this is outside native evidence-kit adoption.
 
+The program/report are pinned at `84810bc`; the [purpose acknowledgement and
+real-case invitation](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6874964476)
+were delivered/read back exactly on November 14. Repository CI passes; our
+private packet-dependent run is separate. Await the participant's checkout,
+environment, command, exit, hashes and concrete usefulness/finding. No pending
+execution should be inferred from our own fresh capture or offline replay,
+and no unanswered invitation should be repeated.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
