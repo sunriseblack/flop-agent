@@ -172,6 +172,16 @@ transport enforcement, spend, proof and settlement remain unverified.
 
 ## Live execution gates and evidence packet
 
+The [November 14 existing-channel review](GATEWAY_CHANNEL_REVIEW_2026-11-14.md)
+adds two concrete reconciliation controls: an explorer 404 can coexist with
+present closed native storage, and `lockedComputeConsumed=0` can coexist with
+a paid settlement. Preserve the original request/channel binding and compare
+terminal native events; a missing view or that zero field must not trigger a
+replacement purchase. Record whether an event reference is block-wide or an
+ordinal within one extrinsic. RPC-trusted receipts/state do not resolve
+end-user allocation. The peer's fresh-beneficiary-authorization clarification
+is a proposal, not the official owner mapping required below.
+
 Before submission, verify the official testnet identity, genesis, supported
 client/model/faucet, independent miner, owner/delegate/beneficiary mapping and
 final rules. Bind a concrete test-token quote and approved spend ceiling to

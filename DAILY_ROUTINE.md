@@ -210,6 +210,20 @@ The expanded controls at `fb5f5b1` have passing repository CI, and the
 is delivered/read back exactly. Follow source/package/release evidence or a
 concrete counterexample, rather than requesting the peer run the same scope again.
 
+November 14: infinity-nashi answered the issue-172 purpose question: their
+proposal requires fresh beneficiary authorization, not enrollment-signature
+reuse. The cross-purpose negative case is accepted as a proposed control;
+ratified allocation/owner mapping remains unresolved. Close the clarification
+without repeating it. Their new three-channel report is independently checked
+in the [gateway channel review](GATEWAY_CHANNEL_REVIEW_2026-11-14.md): a paid
+five-turn gateway settlement, a gateway timeout refund and native closed
+storage behind an explorer 404. Zero `lockedComputeConsumed` is not a generic
+zero-spend verdict. Preserve block-wide event indices versus extrinsic event
+ordinals. Follow a concrete replay or finding on the pinned read-only program,
+keeping private per-request receipts, RPC trust, cryptographic witness checks,
+beneficiary policy and independent execution separate. No new funded demo or
+unchanged reminder; this is outside native evidence-kit adoption.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
