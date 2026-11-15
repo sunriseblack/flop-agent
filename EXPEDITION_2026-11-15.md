@@ -103,7 +103,14 @@ RESULTs. No substantive direct kit reply appears in these bounded windows;
 they do not prove complete historical coverage. No native outreach, contest
 check, offer, trade, wallet connection, faucet request or fund transfer occurred.
 
-Publication/readback and hosted-check evidence will be appended after the
-scoped source report is delivered. Follow a concrete execution/finding,
+Published the scoped report at `eb11a3ab3e6c3ceba07526e15cdb2a3398b966c6`
+after source/report binding checks, diff review and a secret scan with no
+findings. The public report was read back byte-for-byte. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43692978521);
+no runtime/SDK patch or paid dispatch test is claimed by those hosted checks.
+The [existing-issue answer](https://github.com/flop-labs/network/issues/291#issuecomment-6891474918)
+was delivered at 08:07:37 UTC and read back with exact body under sunriseblack.
+It asks only for the retained original client version/recovery diagnostic if
+available, not a fresh paid attempt. No PR was created or another author's
+branch modified. Follow a concrete execution/finding,
 terminal recovery evidence, changed upstream source/release, authoritative
 launch/attribution evidence or trusted restoration of original local data.

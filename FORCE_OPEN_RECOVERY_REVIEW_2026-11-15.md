@@ -106,3 +106,10 @@ a process nor refunding escrow reverses fees or miner availability counters.
 This is a client/approval gate, not a reason to test it through a paid session.
 Testnet launch, owner mapping and the original-identity/history gates remain
 unmet. Devnet observations do not establish airdrop credit.
+
+Published at `eb11a3ab3e6c3ceba07526e15cdb2a3398b966c6` after source/binding
+checks, diff review and a secret scan. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43692978521).
+The [existing-issue answer](https://github.com/flop-labs/network/issues/291#issuecomment-6891474918)
+was delivered/read back exactly at 08:07:37 UTC. Actual recovery execution
+and the original client's diagnostic remain pending. No PR or runtime fix was
+created; current operation availability is the completed contribution.

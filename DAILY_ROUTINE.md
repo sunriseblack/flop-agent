@@ -245,6 +245,13 @@ longer recovery loop within the first-session approval/transport gates. Do
 not submit cleanup, run a funded demo or duplicate issue 282's worker timing
 investigation merely to prove the path.
 
+The recovery report is pinned at `eb11a3a`, with passing repository CI; the
+[issue-291 answer](https://github.com/flop-labs/network/issues/291#issuecomment-6891474918)
+was delivered/read back exactly November 15 at 08:07:37 UTC. The retained
+original client version/recovery diagnostic is pending, not a request for a
+new paid attempt. No runtime repair, executed refund or new kit adoption is
+claimed. Follow substantive feedback without another unchanged reminder.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
