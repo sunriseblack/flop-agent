@@ -122,3 +122,14 @@ of enrollment-signature bytes, and accepts the cross-purpose negative case.
 This closes our interpretation question. It does not ratify a binding rule,
 prove implementation or resolve policy/beneficiary change timing. These
 observations do not need a competing official issue or PR.
+
+## November 15 original-author confirmation
+
+[infinity-nashi confirms our channel readings match their records](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6875416131)
+and agrees that they do not establish enrolled-wallet allocation. They also
+retain the fresh-authorization proposal boundary. This is a substantive
+original-author acknowledgement, not execution of the checker: no checkout,
+environment, command, exit or report artifact was supplied. The execution
+invitation remains pending without a repeated request. The separate new
+[expired force-open investigation](FORCE_OPEN_RECOVERY_REVIEW_2026-11-15.md)
+answers a current recovery-path question using existing records and source.

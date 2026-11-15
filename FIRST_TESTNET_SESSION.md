@@ -172,6 +172,16 @@ transport enforcement, spend, proof and settlement remain unverified.
 
 ## Live execution gates and evidence packet
 
+The [November 15 recovery review](FORCE_OPEN_RECOVERY_REVIEW_2026-11-15.md)
+confirms a current devnet `expire_force_open` path and a still-pending real
+channel beyond its acknowledgement deadline. SDK 0.6.0 can continue its
+acknowledgement/recovery loop and submit cleanup after our proposed 120-second
+observation window. A caller timeout does not stop those writes. Before
+selecting that route, verify cancellation/late-write control, persistence of
+the original channel and an explicit approved allowance for any later
+cleanup/finalization fees and side effects. Do not treat escrow refund as fee
+rollback or a client timeout as an on-chain terminal state.
+
 The [November 14 existing-channel review](GATEWAY_CHANNEL_REVIEW_2026-11-14.md)
 adds two concrete reconciliation controls: an explorer 404 can coexist with
 present closed native storage, and `lockedComputeConsumed=0` can coexist with

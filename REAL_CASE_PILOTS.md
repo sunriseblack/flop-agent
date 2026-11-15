@@ -83,6 +83,11 @@ kit adoption. Follow only an actual result or changed source, without another
 unchanged reminder or funded demo. The participant's fresh-authorization reply
 closes our interpretation question, while official attribution remains open.
 
+November 15: the [original reporter confirms the channel observations match](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6875416131)
+and the allocation boundary is accurate. They did not report executing the
+program. Record original-author confirmation separately; independent execution
+and usefulness of that execution remain pending. No reminder or rerun is due.
+
 November 3 compatibility used the existing signed Unicode record at
 [feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
 nonce verifies in both the saved live JSON view and retained export. The local

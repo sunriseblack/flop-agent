@@ -232,6 +232,19 @@ environment, command, exit, hashes and concrete usefulness/finding. No pending
 execution should be inferred from our own fresh capture or offline replay,
 and no unanswered invitation should be repeated.
 
+November 15: the issue-172 author confirms the measured channel observations
+and attribution limits, but supplies no checker execution. Record confirmation
+without promoting it to adoption or repeating the invitation. Their separate
+network issue 291 asks about expired `pendingAck` recovery. The
+[read-only recovery review](FORCE_OPEN_RECOVERY_REVIEW_2026-11-15.md) confirms
+current metadata's `expire_force_open` and SDK 0.6.0's `expireForceOpen` path,
+while the reported channel remains pending at our anchor. Follow an actual
+terminal event/client diagnostic or maintainer answer; operation availability
+is not an executed refund. Keep possible fee/FailedAcks effects and the SDK's
+longer recovery loop within the first-session approval/transport gates. Do
+not submit cleanup, run a funded demo or duplicate issue 282's worker timing
+investigation merely to prove the path.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
