@@ -270,6 +270,16 @@ integration or release. Existing top-level messages are outside its redaction
 scope; it does not fix process-resident recovery or establish a chain outcome.
 Do not reopen completed SDK control-flow tests or ask for a funded demo.
 
+The candidate, helper and renderer replay are pinned at `228f2b2`, with passing
+repository CI including the 13 helper cases. The [case closure and new
+candidate request](https://github.com/flop-labs/network/issues/291#issuecomment-6911143113)
+were delivered/read back exactly November 16 at 08:19:18 UTC, targeting
+almondous's concrete CLI finding. Await actual checkout/environment/commands,
+exits/hashes and an adjacent case. This new invitation is pending; do not repeat
+it or count earlier peer tests as execution of the candidate. Preserve exact
+source pins, client-metadata labels and the limitation on existing top-level
+messages. Do not widen it into automatic recovery or a live paid test.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner

@@ -98,6 +98,13 @@ submission-kit adoption. Those execution states are unchanged. The new CLI
 diagnostic candidate is a separate engineering review, with its own pending
 independent-execution state; no private source packet or new paid run is needed.
 
+The [CLI candidate invitation](https://github.com/flop-labs/network/issues/291#issuecomment-6911143113)
+at `228f2b2` was delivered/read back exactly at 08:19:18 UTC. State: finding
+reproduced, candidate and scoped regressions published, independent execution
+requested from almondous; execution/reporter verification/source uptake pending.
+This is an engineering feedback loop, outside native-kit adoption. No old
+channel-checker invitation was repeated.
+
 November 3 compatibility used the existing signed Unicode record at
 [feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
 nonce verifies in both the saved live JSON view and retained export. The local

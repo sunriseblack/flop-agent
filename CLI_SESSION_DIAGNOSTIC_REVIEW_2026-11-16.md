@@ -104,3 +104,12 @@ exit/report hash and one additional privacy or outcome-boundary case. Do not
 provide credentials, real wallet files or private requests. Independent
 execution of this new candidate remains pending; the peer's earlier review
 does not establish its adoption.
+
+Published at `228f2b2e74e767758f93f24a50e73100f9335732` after diff review and
+a secret scan with no unresolved findings (the intentional invalid-domain
+credential fixture was reviewed as synthetic). Public helper bytes match.
+[Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43830149837),
+including the 13 helper tests. The [new candidate invitation](https://github.com/flop-labs/network/issues/291#issuecomment-6911143113)
+was delivered/read back exactly at 08:19:18 UTC. Participant execution, source
+integration and release remain separate pending steps; no official PR was
+created against the unavailable source repository.

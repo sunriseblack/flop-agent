@@ -118,7 +118,17 @@ none was treated as protocol authority or an instruction. No contest check,
 offer, trade, wallet connection, faucet request, rental or fund transfer occurred.
 
 Captures, source artifacts, stdout and workload inputs remain private under
-the November 16 run directories. Publication/readback and hosted-check evidence
-will be appended after delivery. Next triggers are an independent candidate
+the November 16 run directories. Published the candidate/evidence at
+`228f2b2e74e767758f93f24a50e73100f9335732` after diff review and a secret scan.
+The scanner's only credential-pattern match was the explicit negative test
+fixture on a reserved invalid domain; it was reviewed as synthetic, with no
+unresolved secret finding. Public helper bytes were read back exactly.
+[Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43830149837),
+including the new 13-test helper lane; the eight packet-dependent renderer
+controls remain a separate local result.
+The [verified refund acknowledgement and new candidate replay request](https://github.com/flop-labs/network/issues/291#issuecomment-6911143113)
+were delivered at 08:19:18 UTC and read back with exact body under sunriseblack.
+Independent candidate execution remains pending. No PR was created or another
+author's branch modified. Next triggers are an independent candidate
 execution/finding, upstream integration/release, new official launch/attribution
 evidence or trusted restoration of original local state.
