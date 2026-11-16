@@ -88,6 +88,16 @@ and the allocation boundary is accurate. They did not report executing the
 program. Record original-author confirmation separately; independent execution
 and usefulness of that execution remain pending. No reminder or rerun is due.
 
+November 16: the same participant [reports actual manual expiry after our
+operation pointer](https://github.com/flop-labs/network/issues/291#issuecomment-6905310364).
+Our read-only check confirms the transaction, refund, separate fee, closed
+storage and unchanged block-boundary counter. Their process-kill explanation
+is participant-reported. This is useful community uptake of the recovery
+answer, separate from execution of the `84810bc` channel checker and native
+submission-kit adoption. Those execution states are unchanged. The new CLI
+diagnostic candidate is a separate engineering review, with its own pending
+independent-execution state; no private source packet or new paid run is needed.
+
 November 3 compatibility used the existing signed Unicode record at
 [feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
 nonce verifies in both the saved live JSON view and retained export. The local

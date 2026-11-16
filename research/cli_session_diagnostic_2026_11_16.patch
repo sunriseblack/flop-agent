@@ -1,0 +1,88 @@
+--- a/dist/cli.js
++++ b/dist/cli.js
+@@ -5470,6 +5470,71 @@
+   }
+   return tokens;
+ }
++/** Additive client-error diagnostics, never chain-outcome or retry authority.
++ * Do not copy messages, stacks, URLs, requests or arbitrary nested objects.
++ * Existing top-level CLI fields are outside this helper's redaction scope.
++ */
++function sessionFailureDiagnostic(error, channelId) {
++  const data = (value, key) => {
++    if (!value || typeof value !== 'object') return undefined;
++    try {
++      const descriptor = Object.getOwnPropertyDescriptor(value, key);
++      return descriptor && Object.hasOwn(descriptor, 'value') ? descriptor.value : undefined;
++    } catch {
++      return undefined;
++    }
++  };
++  if (typeof channelId !== 'string' || !/^0x[0-9a-f]{64}$/.test(channelId)
++      || data(error, 'name') !== 'DirectSessionError') return undefined;
++
++  let truncated = false;
++  const classify = initial => {
++    const seen = new Set();
++    let current = initial;
++    for (let depth = 0; current && typeof current === 'object'; depth++) {
++      if (depth === 4 || seen.has(current)) { truncated = true; break; }
++      seen.add(current);
++      let kind;
++      let reportedOutcome;
++      switch (data(current, 'code')) {
++        case 'TRANSACTION_UNCONFIRMED':
++          kind = 'transaction_unconfirmed'; reportedOutcome = 'unknown'; break;
++        case 'TRANSACTION_FINALIZED_FAILED':
++          kind = 'transaction_finalized_failed'; reportedOutcome = 'finalized_failed'; break;
++        case 'RECONCILIATION_UNKNOWN':
++          kind = 'settlement_reconciliation_unknown'; reportedOutcome = 'unknown'; break;
++        case 'TERMINAL_OUTCOME':
++          kind = 'terminal_outcome_reported'; break;
++      }
++      if (kind) {
++        const tx = data(current, 'txHash');
++        return { kind, ...(reportedOutcome ? { reported_outcome: reportedOutcome } : {}),
++          ...(typeof tx === 'string' && /^0x[0-9a-fA-F]{64}$/.test(tx) ? { tx_hash: tx.toLowerCase() } : {}) };
++      }
++      if (data(current, 'message') === 'miner acknowledgement timed out') {
++        return { kind: 'miner_ack_timeout' };
++      }
++      current = data(current, 'cause');
++    }
++    return { kind: 'unclassified' };
++  };
++
++  const cause = data(error, 'cause');
++  const recoveryFailed = data(error, 'message')
++    === `direct session failed; on-chain recovery failed (channel ${channelId})`;
++  const errors = data(cause, 'errors');
++  let pair = false;
++  if (recoveryFailed) {
++    try { pair = Array.isArray(errors) && data(errors, 'length') === 2; } catch { /* unavailable metadata */ }
++  }
++  const original = classify(pair ? data(errors, '0') : cause);
++  const recovery = recoveryFailed
++    ? { state: 'failure_reported', failure: classify(pair ? data(errors, '1') : undefined) }
++    : { state: 'not_established' };
++  return { schema: 'flop-session-diagnostic-v1', evidence: 'client_error_metadata_only',
++    original_failure: original, recovery, truncated };
++}
++
+ function sessionRunCmd() {
+   return new Command10("run").description("Run verified inference directly on a named miner and settle its channel").requiredOption("--miner <ss58>", "Serving miner account").requiredOption("--model <slug>", "Model slug").requiredOption("--prompt <text>", "Prompt").requiredOption("--max-flop <N>", "Maximum escrow in FLOP").option("--max-tokens <N>", "Maximum completion tokens (SDK default: 256)").addOption(new Option("--via <path>", "Open path").choices(["auto", "offer", "force"]).default("auto")).option("--endpoint <URL>", "Reachable miner session endpoint", "http://127.0.0.1:8645").option("--auth-token-env <VAR>", "Environment variable holding the miner bearer (legacy/broker auth)").option("--new-wallet", "Save a fresh owner-only devnet wallet and fund it from the devnet faucet").option("--json", "Output as JSON").action(async (opts, command) => {
+     let client;
+@@ -5546,11 +5611,13 @@
+     } catch (error) {
+       const channelId = error && typeof error === "object" && "channelId" in error && error.channelId instanceof Uint8Array ? `0x${Buffer.from(error.channelId).toString("hex")}` : null;
+       const fundingUnknown = funding && (funding.outcome === "unknown" || funding.success);
++      const diagnostic = sessionFailureDiagnostic(error, channelId);
+       printError({
+         code: "SESSION_FAILED",
+         message: error instanceof Error ? error.message : String(error),
+         channel: channelId,
+         recovery: channelId ? "inspect finalized channel and terminal events before retrying" : fundingUnknown ? "funding is unconfirmed; reconcile the original request before requesting again" : "no channel reported",
++        ...diagnostic ? { diagnostic } : {},
+         ...funding ? { funding: {
+           outcome: fundingUnknown ? "unknown" : funding.outcome,
+           ...funding.txHash ? { txHash: funding.txHash } : {},

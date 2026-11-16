@@ -110,6 +110,50 @@ unmet. Devnet observations do not establish airdrop credit.
 Published at `eb11a3ab3e6c3ceba07526e15cdb2a3398b966c6` after source/binding
 checks, diff review and a secret scan. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43692978521).
 The [existing-issue answer](https://github.com/flop-labs/network/issues/291#issuecomment-6891474918)
-was delivered/read back exactly at 08:07:37 UTC. Actual recovery execution
-and the original client's diagnostic remain pending. No PR or runtime fix was
-created; current operation availability is the completed contribution.
+was delivered/read back exactly at 08:07:37 UTC. At publication, actual recovery
+execution and the original client's diagnostic were pending. No PR or runtime
+fix was created; operation availability was that day's completed contribution.
+
+## November 16 participant execution and independent chain check
+
+[infinity-nashi reports that our pointer answered the filed question](https://github.com/flop-labs/network/issues/291#issuecomment-6905310364)
+and supplies the actual buyer-side expiry transaction. They report npm CLI
+0.5.0 under a Linux runner, with the original process killed by a VM replacement
+before any SDK error/recovery loop completed. That host-side explanation is
+participant-reported; we did not audit their runner or host logs.
+
+Our read-only check at 08:05:38 UTC uses reported finalized block 3,876,921,
+hash `0x24fb2656c36462c4274353b57e36d1d8d895dcadfe7fc765d03871c3e5324401`.
+The reported transaction
+`0xa51b2c195c09c37353d53840f89c373b0ea33e7e65802adf661073b3e7ec9f51`
+is extrinsic 3 in block **3,808,383**, hash
+`0x0dfe130284dd0a2003889141f91b6d4ddc983d5244b19c7a0c96262815751fd8`.
+Raw-call decoding, transaction/header hashes and scoped success/transfer/fee
+events agree. The signer matches the recorded agent, and the call is
+`computeChannel.expireForceOpen` for the original channel.
+
+- `ForceOpenExpired` refunds **10000000000000000 raw units** (**0.01 FLOP**
+  using the SDK's 18 decimals); the same extrinsic transfers that amount to
+  the agent. The event is block-wide index **13**, extrinsic ordinal **2**.
+- `TransactionFeePaid` records **6608765700000000 raw units**
+  (**0.0066087657 FLOP**) from the caller. This is the cleanup fee, not a
+  complete accounting of every fee in the original attempt.
+- The channel is pending in parent-block storage, closed after this block,
+  and still closed at the sampled head. `FailedAcks` is **2** at both block
+  boundaries and in the expiry event. The threshold/branch explanation is
+  not independently established from those observations alone.
+
+The saved capture hashes to
+`b393dcb936315696894bf27efbe05fe52d7203625dd91ced531bb92a9c877bdb`.
+Metadata, state, events and canonical/finalized claims remain RPC-trusted;
+outer signature and independent consensus proofs are not checked. We did not
+submit this or any recovery transaction. This closes the bounded availability
+question with actual participant use and independently checked chain evidence.
+It is not execution of our channel checker, our inference session, Kibble
+credit or an airdrop allocation.
+
+almondous subsequently [reported SDK control-flow tests](https://github.com/flop-labs/network/issues/291#issuecomment-6895485866)
+and [a separate CLI cause-visibility finding](https://github.com/flop-labs/network/issues/291#issuecomment-6896170959).
+The [new diagnostic candidate](CLI_SESSION_DIAGNOSTIC_REVIEW_2026-11-16.md)
+addresses that adjacent finding without implying that CLI JSON could have
+recorded an error after the original process was already killed.

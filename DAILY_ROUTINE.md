@@ -252,6 +252,24 @@ original client version/recovery diagnostic is pending, not a request for a
 new paid attempt. No runtime repair, executed refund or new kit adoption is
 claimed. Follow substantive feedback without another unchanged reminder.
 
+November 16: infinity-nashi supplied the actual expiry transaction after our
+pointer. The [updated recovery review](FORCE_OPEN_RECOVERY_REVIEW_2026-11-15.md)
+independently checks the original channel's expiry/refund, separate fee and
+before/after counter observations. Their host-restart explanation is reported,
+not a host audit. Close the operation-availability question without requesting
+another expiry. This is actual use of the contribution, not execution of our
+channel checker, our own session or airdrop credit.
+
+almondous's new CLI diagnostic finding is reproduced in the
+[CLI session diagnostic review](CLI_SESSION_DIAGNOSTIC_REVIEW_2026-11-16.md).
+The candidate adds bounded allowlisted client-error metadata without copying
+nested messages/payloads or changing recovery guidance/behavior. Thirteen
+helper tests and eight exact-source rendering controls pass. Follow actual
+execution of the new candidate, a privacy/outcome counterexample, source
+integration or release. Existing top-level messages are outside its redaction
+scope; it does not fix process-resident recovery or establish a chain outcome.
+Do not reopen completed SDK control-flow tests or ask for a funded demo.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner

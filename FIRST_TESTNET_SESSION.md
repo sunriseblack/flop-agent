@@ -153,7 +153,7 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-15-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-16-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
   --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
   --output .private/readiness/first-session/output-review.json
@@ -171,6 +171,15 @@ semantic review, source freshness/authenticity, model execution, token limits,
 transport enforcement, spend, proof and settlement remain unverified.
 
 ## Live execution gates and evidence packet
+
+The November 16 [actual participant expiry](FORCE_OPEN_RECOVERY_REVIEW_2026-11-15.md)
+confirms that cleanup can refund escrow while charging a separate fee. Its
+host-restart explanation reinforces the need for durable intent/reconciliation
+outside a single client process. The [CLI diagnostic supplement](CLI_SESSION_DIAGNOSTIC_REVIEW_2026-11-16.md)
+distinguishes reported original/recovery causes, but client JSON still cannot
+prove chain success or preserve a process that died before emitting an error.
+Require actual finalized terminal evidence and the approved cleanup-fee budget;
+neither the new diagnostic nor elapsed time authorizes another purchase.
 
 The [November 15 recovery review](FORCE_OPEN_RECOVERY_REVIEW_2026-11-15.md)
 confirms a current devnet `expire_force_open` path and a still-pending real
