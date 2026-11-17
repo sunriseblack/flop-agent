@@ -280,6 +280,18 @@ it or count earlier peer tests as execution of the candidate. Preserve exact
 source pins, client-metadata labels and the limitation on existing top-level
 messages. Do not widen it into automatic recovery or a live paid test.
 
+November 17: [almondous independently executed the `228f2b2` candidate](https://github.com/flop-labs/network/issues/291#issuecomment-6914257850)
+on Linux/Node 24.22.1: 13 helper tests, eight renderer controls and three
+additional boundary cases pass with matching source/candidate pins. This was
+a four-file pinned scope, not a full checkout or release qualification. Their
+reported raw TAP hashes are not independently verified log bytes. We retained
+the three cases with positive contrasts; the current 16 helper tests and eight
+renderer controls pass with unchanged helper, patch and candidate CLI bytes.
+No defect was found. Close the bounded independent-review request without an
+unchanged rerun; follow source integration/build/release or a concrete new
+finding. Nashi also confirms the original recovery evidence chain is closed.
+Neither result establishes native-kit adoption or our own inference session.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
@@ -646,6 +658,16 @@ and unreleased; this forecast opens no service, spending or claim gate. Keep
 checking newer originals and continue after the target if verified launch and
 session conditions remain unmet. The existing heartbeat prompt now reflects
 this source change; its active status, cadence and target thread are preserved.
+
+November 17: the timeline FAQ now has a November 14 revision describing
+November 24 as readiness-dependent, November 3 as historical and no verified
+current TGE date. The canonical verification page still has the old target
+and early-February wording; the profile is still planned/unreleased. Follow
+the existing [Blackcoww timeline issue 187](https://github.com/flop-labs/network/issues/187)
+for remaining cross-page drift, crediting the original report rather than
+opening a duplicate or claiming the whole FAQ is fixed. A changed source or
+substantive maintainer reply warrants another update; unchanged pages do not.
+Keep this source review outside the fixed workload-input allowlist.
 
 A [purpose-bound authorization clarification](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6847858451)
 was delivered/read back on infinity-nashi's new beneficiary proposal. The live

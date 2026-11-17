@@ -105,6 +105,19 @@ requested from almondous; execution/reporter verification/source uptake pending.
 This is an engineering feedback loop, outside native-kit adoption. No old
 channel-checker invitation was repeated.
 
+November 17: [almondous's actual pinned candidate execution](https://github.com/flop-labs/network/issues/291#issuecomment-6914257850)
+closes the separate CLI engineering request: Linux x86_64 / Node 24.22.1,
+four files fetched at `228f2b2`, 13 helper + eight renderer + three extra cases,
+all exit 0, with matching artifact pins and apply/reverse/syntax checks.
+Reported TAP hashes lack raw logs for our independent hash check. Their
+reported sandbox denied networking via seccomp; network namespace creation
+failed, so no namespace-isolation claim is made. We reproduce and retain the
+three extra cases with positive controls, bringing our helper suite to 16;
+all eight renderer checks still pass. No defect or runtime change was needed.
+State: independently executed, additional cases reproduced and retained;
+source integration/build/release pending. No unchanged rerun is requested.
+Native-kit and `84810bc` channel-checker execution states remain separate.
+
 November 3 compatibility used the existing signed Unicode record at
 [feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
 nonce verifies in both the saved live JSON view and retained export. The local

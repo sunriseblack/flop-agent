@@ -324,6 +324,28 @@ service discovery anchor, not a verified testnet funding contract, an account
 statement, approval to request funds or a substitute signing identity.
 [Official metadata](https://faucet.flop.network/chain)
 
+November 17: the official timeline FAQ, updated November 14, now describes
+November 24 as readiness-dependent and November 3 as historical; its TGE
+paragraph no longer verifies a current date. The canonical verification page
+still gives the older November 3 / early-February wording. Record that drift
+on the existing [network issue 187](https://github.com/flop-labs/network/issues/187),
+building on Blackcoww's report. The profile remains planned/unreleased at
+`26cce9e00d7b`; neither page nor a tentative date establishes a launch.
+[Current FAQ](https://ask.flop.finance/docs/testnet-and-timeline),
+[verification page](https://flop.finance/official/).
+
+The fresh devnet RPC reports spec 1014020 at block 3,954,925, hash
+`0x020906f6607475dbfb0787bca4b4b9348fe7ec1c568a3f42b3f742eab32a8439`.
+The exact unchanged SDK 0.6.0 guard admits it and all 21 listed versions and
+rejects six negatives. This is RPC-trusted guard admission, not full client
+qualification or independent finality. The CLI diagnostic candidate has now
+been independently executed offline, without qualifying a live CLI session.
+All eight workload sources refreshed; all ten request/evaluation bindings
+remain unchanged. The selected November 17 preparation is private. Original
+identity/history, verified testnet/client/faucet, attribution rules, miner and
+exact bounded session/cleanup-fee approval remain gates. No model call,
+funding, transaction or new approval was inferred from these checks.
+
 Capture actual provider/model, usage, latency, request/session identifiers,
 source/request/output hashes, proof, independent miner and owner attribution,
 finalized settlement block/hash and exact test-token amount. Reconcile any

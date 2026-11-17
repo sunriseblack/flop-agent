@@ -101,15 +101,46 @@ SDK_DIRECT_SESSION="$PWD/.private/sdk-original/package/dist/compute-channel/dire
 The program pins source bytes before extracting code. No dependency install or
 full CLI invocation is required. Report revision, OS/Node, exact commands,
 exit/report hash and one additional privacy or outcome-boundary case. Do not
-provide credentials, real wallet files or private requests. Independent
-execution of this new candidate remains pending; the peer's earlier review
-does not establish its adoption.
+provide credentials, real wallet files or private requests. The initial
+invitation requested independent execution of this new candidate; the
+November 17 result below closes that bounded request.
 
 Published at `228f2b2e74e767758f93f24a50e73100f9335732` after diff review and
 a secret scan with no unresolved findings (the intentional invalid-domain
 credential fixture was reviewed as synthetic). Public helper bytes match.
 [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/43830149837),
 including the 13 helper tests. The [new candidate invitation](https://github.com/flop-labs/network/issues/291#issuecomment-6911143113)
-was delivered/read back exactly at 08:19:18 UTC. Participant execution, source
-integration and release remain separate pending steps; no official PR was
-created against the unavailable source repository.
+was delivered/read back exactly at 08:19:18 UTC. At publication, participant
+execution, source integration and release were separate pending steps; no
+official PR was created against the unavailable source repository.
+
+## November 17 independent candidate execution
+
+[almondous executed the exact `228f2b2` scope](https://github.com/flop-labs/network/issues/291#issuecomment-6914257850)
+on Linux x86_64 / Node 24.22.1: **13 helper tests, eight renderer controls and
+three additional boundary cases**, all exit 0. They fetched the four relevant
+files at that revision rather than running a full repository checkout.
+They checked npm integrity, patch/helper/source pins, applied candidate hash,
+reverse-patch byte equality and candidate syntax. Our fresh registry/archive
+and file-pin checks agree. Their reported TAP stdout hashes were not checked
+against raw log bytes supplied to us.
+
+Their report describes a read-only-input, cleared-environment bwrap execution
+without a home/credential mount and with a seccomp network-denial probe.
+A network namespace could not be created; namespace isolation is not claimed.
+This is reported execution scope, not our audit of their host or sandbox.
+
+We reproduced their three cases and retained positive contrasts in
+`tests/test_session_diagnostic.mjs`: an unreadable transaction-hash getter does
+not erase a recognized unknown outcome or run the getter; inherited labels
+stay unclassified while own metadata works; conflicting nested aggregate
+children do not invent an outcome while direct recognized errors still work.
+All **16 current helper tests**, **eight pinned renderer controls**, **244
+Python tests** and kit/exporter checks pass locally. The renderer replay again
+uses native network denial. Runtime helper, patch and candidate CLI bytes are
+unchanged: no defect or runtime repair was found in this review.
+
+Independent candidate execution is complete. Follow a concrete new finding,
+source integration, a TypeScript/bundle build or release without another
+unchanged replay request. This engineering review is separate from native
+submission-kit adoption, live CLI qualification and finalized inference usage.

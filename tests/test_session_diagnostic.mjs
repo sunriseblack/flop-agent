@@ -105,3 +105,33 @@ test('recognized reconciliation metadata remains unknown and is bounded', () => 
   assert.equal(value.original_failure.reported_outcome, 'unknown');
   assert.ok(Buffer.byteLength(JSON.stringify(value)) < 1024);
 });
+
+// Adjacent regressions for almondous's independent 228f2b2 review (#291).
+test('recognized uncertainty survives an unreadable hash without invoking its getter', () => {
+  let calls = 0;
+  const e = Object.assign(new Error('PRIVATE_SENTINEL'), { code: 'TRANSACTION_UNCONFIRMED' });
+  Object.defineProperty(e, 'txHash', { get() { calls++; throw Error('PRIVATE_SENTINEL'); } });
+  const value = sessionFailureDiagnostic(failure(e), cid);
+  assert.equal(value.recovery.failure.reported_outcome, 'unknown');
+  assert.equal(value.recovery.failure.tx_hash, undefined);
+  assert.equal(calls, 0); assert.ok(!JSON.stringify(value).includes('PRIVATE_SENTINEL'));
+  const readable = Object.assign(new Error('redacted'), { code: 'TRANSACTION_UNCONFIRMED', txHash: tx });
+  assert.equal(sessionFailureDiagnostic(failure(readable), cid).recovery.failure.tx_hash, tx);
+});
+test('inherited transaction labels stay unclassified while own metadata is recognized', () => {
+  const inherited = Object.create({ code: 'TRANSACTION_UNCONFIRMED', txHash: tx });
+  const value = sessionFailureDiagnostic(failure(inherited), cid);
+  assert.equal(value.recovery.failure.kind, 'unclassified');
+  assert.equal(value.recovery.failure.tx_hash, undefined);
+  const owned = { code: 'TRANSACTION_UNCONFIRMED', txHash: tx };
+  assert.equal(sessionFailureDiagnostic(failure(owned), cid).recovery.failure.reported_outcome, 'unknown');
+});
+test('conflicting aggregate children do not invent a recovery transaction outcome', () => {
+  const rejected = { code: 'TRANSACTION_FINALIZED_FAILED', txHash: tx };
+  const unknown = { code: 'TRANSACTION_UNCONFIRMED', txHash: tx };
+  const value = sessionFailureDiagnostic(failure(new AggregateError([rejected, unknown])), cid);
+  assert.equal(value.recovery.failure.kind, 'unclassified');
+  assert.equal(value.recovery.failure.reported_outcome, undefined);
+  assert.equal(sessionFailureDiagnostic(failure(rejected), cid).recovery.failure.reported_outcome, 'finalized_failed');
+  assert.equal(sessionFailureDiagnostic(failure(unknown), cid).recovery.failure.reported_outcome, 'unknown');
+});
