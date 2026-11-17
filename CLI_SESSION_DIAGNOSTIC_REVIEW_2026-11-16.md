@@ -144,3 +144,10 @@ Independent candidate execution is complete. Follow a concrete new finding,
 source integration, a TypeScript/bundle build or release without another
 unchanged replay request. This engineering review is separate from native
 submission-kit adoption, live CLI qualification and finalized inference usage.
+
+The retained regressions and evidence are published at
+`21915c1e7e81f7d7e3aaae434aa5183915ebf0b9`, with exact public test-file
+readback and [passing repository CI](https://github.com/sunriseblack/flop-agent/actions/runs/44046450197).
+The [bounded review acknowledgement](https://github.com/flop-labs/network/issues/291#issuecomment-6942762946)
+was delivered/read back exactly under `sunriseblack` on November 17 at
+08:25:21 UTC. It requests no unchanged replay.

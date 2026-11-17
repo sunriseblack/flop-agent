@@ -134,3 +134,22 @@ November 17 private run directories. Public scoped changes retain only
 reviewed tests and factual reports. Next triggers are source integration or
 release, a concrete new peer finding, changed official launch/attribution
 evidence, an actual pending pilot execution, or trusted local-state restoration.
+
+## Publication and exact readback
+
+Published the scoped coverage and routine/session/ledger updates at
+`21915c1e7e81f7d7e3aaae434aa5183915ebf0b9` after diff review and a pattern
+secret scan of all six public files. The only credential-pattern match was
+the reviewed reserved-invalid-domain sentinel fixture; no unresolved finding
+remains. The public regression file reads back byte-for-byte.
+[Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/44046450197)
+on Python 3.12/3.14 and the dependency-free 16-test Node helper lane. The
+private packet-dependent eight-case renderer replay is a separate local check.
+
+The [issue-291 review closure](https://github.com/flop-labs/network/issues/291#issuecomment-6942762946)
+was delivered at **08:25:21 UTC**, and the [issue-187 current-source update](https://github.com/flop-labs/network/issues/187#issuecomment-6942766605)
+at **08:25:33 UTC**. Both exact bodies and `sunriseblack` authorship were read
+back through their individual comment endpoints; no uncertain write was
+retried. No new PR, competing fix, altered peer branch or native post was
+created. Independent CLI candidate review is closed; maintainer integration/
+release and the remaining cross-page source drift remain open.
