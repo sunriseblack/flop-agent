@@ -6,6 +6,13 @@ head `0db1b5a3851bf262c8aab7fdfc66b66a5946a550`, merged into its
 than proposing another identity-link format. This is a peer tool, not an
 official FLOP attribution contract or a released CLI repair.
 
+Current main `307e52a6571e5132a4edbecb52422d57ef62bf99` has since integrated
+the feature. Its keylink/DID/lineage/vector blob IDs match the reviewed head;
+the changed codec was separately fetched, inspected and replayed. The same
+nine-method suite reproduces ten errors on unchanged main and passes with
+the unchanged patch. This is focused current-main validation, not the full
+peer repository suite.
+
 ## Reproduction and narrow repair
 
 The unchanged public signed lineage resolves correctly. Adding `None` to its
@@ -77,3 +84,12 @@ concrete finding or usefulness. An invitation, our own independent review of
 the peer tool and any original-author replay are distinct evidence. None
 establishes native submission-kit adoption, beneficiary policy or an airdrop
 allocation. No new signed job, wallet or paid session is needed for this case.
+
+Published at `6ea5b8c9d7fdc41e07a3546734c863840ac0ca30` after diff review and
+a seven-file secret scan with no unresolved findings. Public patch readback
+matches exactly; [our repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/44264632785).
+That hosted gate is separate from the private packet-dependent peer replay.
+The [pinned author handoff](https://github.com/xbtMelchizedek/agentwork/issues/24)
+was delivered/read back exactly under `sunriseblack` on November 18 at
+08:12:18 UTC. Author replay/application remains pending; no unchanged reminder
+is due. No PR or peer branch modification was created.

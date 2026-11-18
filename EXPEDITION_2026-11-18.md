@@ -61,6 +61,13 @@ but a direct public HTML capture succeeded without executing its scripts.
 The testnet profile is still planned/unreleased at `43a9f56f2a08`, without
 verified public network/genesis/release/model values. Devnet has no airdrop weight.
 
+Yellow Paper issue 123's latest substantive reply is
+[xbtMelchizedek's scheme/account and key-link proposal](https://github.com/flop-labs/yellowpaper/issues/123#issuecomment-6956523380).
+It requests normative binding and R8.4 beneficiary answers; it does not itself
+ratify them. No new official owner-mapping answer was established in the
+checked 123/172 discussions. The proposal is treated as peer evidence, not
+permission to migrate the key or an allocation contract.
+
 All eight workload inputs refreshed successfully. Testnet, airdrop and website
 Yellow Paper text changed, changing eight of ten request bindings; all
 evaluation rules remain unchanged. The other two tasks remain unchanged.
@@ -126,3 +133,43 @@ request and stdout records are under the November 18 run directories. Next
 triggers are author replay/application or a concrete finding, a pinned CLI
 prototype/release, substantive pending-pilot evidence, changed official launch/
 attribution evidence, or trusted restoration of the original local data.
+
+## Publication, current upstream and delivery evidence
+
+Published the scoped patch/report and routine/session/strategy/ledger updates
+at `6ea5b8c9d7fdc41e07a3546734c863840ac0ca30` after diff review and a pattern
+secret scan of all seven public files with no findings. The public patch
+reads back exactly. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/44264632785),
+separate from the nine-method packet-dependent peer replay.
+
+Before filing, current peer main `307e52a6571e5132a4edbecb52422d57ef62bf99`
+was checked: keylink/DID/lineage/vector blob IDs still match; the changed
+codec was separately retrieved and inspected. The same network-denied replay
+has ten errors on unchanged main and all nine methods pass with the unchanged
+patch. This does not claim a full peer-suite run or repair integration.
+
+The GitHub connector's peer issue creation returned a definite permissions
+403. The existing local `gh` client confirmed `sunriseblack` and successfully
+created [peer issue 24](https://github.com/xbtMelchizedek/agentwork/issues/24)
+at **08:12:18 UTC**. Exact title/body and authorship were read back. This is
+a completed handoff, with author execution/application pending. No uncertain
+accepted write was repeated or alternate identity used.
+
+The [immutable CLI prototype/runner question](https://github.com/flop-labs/network/issues/337#issuecomment-6972900657)
+was delivered at **08:12:34 UTC**; the [partial timeline-correction follow-up](https://github.com/flop-labs/network/issues/187#issuecomment-6972903907)
+at **08:12:44 UTC**. Both exact bodies and authorship were verified through
+their individual endpoints. No new PR or peer branch modification was made.
+Do not repeat these requests while unchanged.
+
+A separate new real-case lead is [Baophan00's existing receipt on network
+issue 308](https://github.com/flop-labs/network/issues/308#issuecomment-6968748859):
+an estimated receipt references channel
+`0x625606bb24f0e82fa235bce993504fde776c4879b84a37bae92decba2c71aea3`
+and a reported on-chain settlement, while its allowance remains reserved.
+This is a public reported observation, not independently checked terminal
+evidence or a private quota audit here. The existing `84810bc` capture runner
+is deliberately pinned to Nashi's three channels and is not a runnable
+adapter for this new case; no misleading execution invitation was sent.
+Defer that distinct per-request/chain reconciliation scope until a suitable
+bounded adapter and source packet are established. No synthetic request or
+new payment was created to make it testable.

@@ -305,6 +305,14 @@ fix. Network issue 337 has a separate partial typed-signer prototype; inspect
 an exact artifact before counting its execution, and never import/export the
 original identity or start the CLI merely to test it.
 
+The patch/report at `6ea5b8c` have passing repository CI and exact public patch
+readback. The [peer issue-24 handoff](https://github.com/xbtMelchizedek/agentwork/issues/24)
+is delivered/read back; current peer main `307e52a` was separately checked
+with its changed codec and has the same failure/candidate pass. Follow actual
+author execution/application. The [issue-337 artifact question](https://github.com/flop-labs/network/issues/337#issuecomment-6972900657)
+is also delivered/read back: await the immutable prototype/runner and hashes
+before independent execution. Neither unanswered request should be repeated.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
@@ -693,6 +701,10 @@ request approvals or drafts merely because the question is the same. Prepare
 from the fresh corpus and keep exact-version semantic review pending. The
 new draft season-length wording allows an earlier snapshot within the maximum;
 it neither launches the network nor certifies our allocation or usage.
+
+The [current-source follow-up on issue 187](https://github.com/flop-labs/network/issues/187#issuecomment-6972903907)
+was delivered/read back November 18. Inspect substantive replies or changed
+page content without another unchanged status post.
 
 A [purpose-bound authorization clarification](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6847858451)
 was delivered/read back on infinity-nashi's new beneficiary proposal. The live

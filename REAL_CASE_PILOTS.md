@@ -128,6 +128,26 @@ not yet established. Preserve exact handoff/pins and follow a concrete response
 without an unchanged reminder. This does not advance native signed-JOB kit
 adoption or resolve official owner attribution.
 
+Published patch/report pin `6ea5b8c` has passing own-repository CI and exact
+public patch readback. The [author execution request](https://github.com/xbtMelchizedek/agentwork/issues/24)
+was delivered/read back under `sunriseblack` at 08:12:18 UTC. Current peer main
+`307e52a` also reproduces the crash and passes with the unchanged patch using
+its separately inspected codec. State: fix published, author invited;
+execution/application pending. No third-party adoption or unchanged replay
+is inferred. The separate CLI prototype artifact request is pending on
+[network issue 337](https://github.com/flop-labs/network/issues/337#issuecomment-6972900657).
+
+Another identified/deferred real-case lead is [Baophan00's issue-308 receipt](https://github.com/flop-labs/network/issues/308#issuecomment-6968748859):
+an existing estimated gateway receipt references channel
+`0x625606bb24f0e82fa235bce993504fde776c4879b84a37bae92decba2c71aea3`
+and a reported settlement, while the allowance remains reserved. The published
+receipt is not an independently checked terminal/quota audit here. The
+`84810bc` runner is hardcoded to Nashi's three cases; do not offer it as a
+ready command for this channel. State: identified, adapter/source-packet scope
+deferred; no execution invitation or adoption. Next trigger is an appropriate
+bounded adapter and saved per-request evidence, without credentials or a new
+paid request. This is outside native signed-JOB kit adoption.
+
 November 3 compatibility used the existing signed Unicode record at
 [feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
 nonce verifies in both the saved live JSON view and retained export. The local
