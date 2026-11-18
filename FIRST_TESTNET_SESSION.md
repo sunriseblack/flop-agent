@@ -346,6 +346,35 @@ identity/history, verified testnet/client/faucet, attribution rules, miner and
 exact bounded session/cleanup-fee approval remain gates. No model call,
 funding, transaction or new approval was inferred from these checks.
 
+November 18: the verification page's current-status section now agrees with
+the readiness-dependent November 24 target and disclaims a current TGE date;
+older top-page update/Q1 wording remains. The network profile is still
+planned/unreleased at `43a9f56f2a08`. Fresh website testnet/airdrop/Yellow Paper
+text changes eight of ten prepared requests. Use the new private
+`implementation-gap` request: **6,596 bytes**, transport SHA-256
+`d2575ee3d6cfc053bd7965bd5225ff690b56b52ef47ed6d9b37166075b971a84`,
+job `ddb2a330951ebe74d1f116d8e8bcda44490c0d3ad1ffbbb22fccfd4080d8e8c2`.
+Its exact-version semantic review is pending. Changed source/request bindings
+do not inherit an old draft approval. Draft R8.5a now permits an earlier
+governance snapshot within the season maximum; this is not a live launch or
+an individual award. No workload model or paid inference was called.
+
+The SDK 0.6.0 guard still admits RPC-reported devnet spec 1014020, now at
+block 4,027,372, anchor
+`0xf0cfa7e4ba0143475432586359a2b91c63f4d91dc30a9d570a52de9037b6d9b5`.
+The unchanged guard passes 21 listed versions and rejects six negatives.
+A native WebSocket open timed out; the read-only HTTPS fallback succeeded.
+This qualifies neither the full client nor a live testnet transport.
+
+[Network issue 337](https://github.com/flop-labs/network/issues/337) now tracks
+the plain-URI sr25519 default versus an existing Ed25519 identity. Its partial
+typed-signer prototype is peer-reported and not released or independently
+executed here. Do not import/export the original key or start the CLI as a
+workaround. Mechanical public-key/AccountId32/SS58 encoding is not a signed
+owner mapping or approved funding target. Our separate
+[peer key-link resolver repair](KEYLINK_REVOCATION_REVIEW_2026-11-18.md)
+does not ratify that peer format for FLOP allocation or solve the CLI gate.
+
 Capture actual provider/model, usage, latency, request/session identifiers,
 source/request/output hashes, proof, independent miner and owner attribution,
 finalized settlement block/hash and exact test-token amount. Reconcile any

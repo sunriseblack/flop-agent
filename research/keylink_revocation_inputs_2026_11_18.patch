@@ -1,0 +1,110 @@
+--- a/agentwork/keylink.py
++++ b/agentwork/keylink.py
+@@ -351,8 +351,13 @@
+         v = verify(d, now_ms)
+         if v.ok:
+             by_cid[v.cid] = (d, v)
+-    revoked = {d["revoke"]["link"] for d in revocations
+-               if d.get("revoke", {}).get("link") in by_cid and verify_revocation(d, by_cid[d["revoke"]["link"]][0]).ok}
++    revoked = set()
++    for d in revocations:
++        if not isinstance(d, dict) or not isinstance(d.get("revoke"), dict):
++            continue
++        cid = d["revoke"].get("link")
++        if isinstance(cid, str) and cid in by_cid and verify_revocation(d, by_cid[cid][0]).ok:
++            revoked.add(cid)
+     current = None
+     for line in (l for l in lineage_lines if l.strip()):
+         env = codec.decode(line)
+--- /dev/null
++++ b/tests/test_keylink_revocation_inputs.py
+@@ -0,0 +1,89 @@
++"""Public-vector-only resolver regressions; no key generation or signing."""
++import copy
++import json
++from pathlib import Path
++import unittest
++from unittest.mock import patch
++
++from agentwork import keylink
++
++VECTORS = json.loads((Path(__file__).resolve().parents[1] / "vectors/keylink-v1.json").read_text())
++LINEAGE = VECTORS["lineage"]
++T = 1795000000000
++
++
++class RevocationInputs(unittest.TestCase):
++    def resolve(self, revocations=()):
++        return keylink.active_link(LINEAGE["lines"], LINEAGE["links"], revocations, now_ms=T + 1000)
++
++    def assert_current(self, revocations=()):
++        self.assertEqual(self.resolve(revocations), LINEAGE["active"])
++
++    def test_existing_signed_lineage_still_resolves(self):
++        self.assert_current()
++
++    def test_malformed_json_revocations_do_not_abort_resolution(self):
++        malformed = [None, False, 17, "noise", [], {}, {"revoke": None},
++                     {"revoke": []}, {"revoke": {"link": []}}, {"revoke": {"link": {}}}]
++        for value in malformed:
++            with self.subTest(value=value):
++                self.assert_current([value])
++
++    def test_nonmatching_or_incomplete_revocations_do_not_withdraw_consent(self):
++        for value in [{"revoke": {}}, {"revoke": {"link": 17}},
++                      {"revoke": {"link": False}}, {"revoke": {"link": "0x" + "00" * 32}},
++                      {"revoke": {"link": LINEAGE["active"]["active"]}}]:
++            with self.subTest(value=value):
++                self.assert_current([value])
++
++    def revocation(self):
++        link = LINEAGE["links"][-1]
++        # Reuse a public link signature as an intentionally invalid, wrong-domain revocation.
++        return {"revoke": {"v": keylink.FORMAT_REVOKE,
++                           "link": keylink.record_cid(link["record"]),
++                           "issued": T + 10, "nonce": "0123456789abcdef"},
++                "by": "did", "sig": link["sigs"]["did"]}
++
++    def test_link_signature_is_not_a_revocation_signature(self):
++        value = self.revocation()
++        self.assertFalse(keylink.verify_revocation(value, LINEAGE["links"][-1]).ok)
++        self.assert_current([value])
++
++    def test_unrequired_role_cannot_revoke_path_a(self):
++        value = self.revocation()
++        value["by"] = "flop"
++        self.assertFalse(keylink.verify_revocation(value, LINEAGE["links"][-1]).ok)
++        self.assert_current([value])
++
++    def test_existing_public_evm_revocation_still_verifies(self):
++        value = VECTORS["revocation"]["doc"]
++        link = next(v["doc"] for v in VECTORS["valid"]
++                    if keylink.record_cid(v["doc"]["record"]) == value["revoke"]["link"])
++        self.assertTrue(keylink.verify_revocation(value, link).ok)
++        invalid = copy.deepcopy(value)
++        invalid["sig"] = "0x" + "00" * 65
++        self.assertFalse(keylink.verify_revocation(invalid, link).ok)
++
++    def test_existing_link_signature_vectors(self):
++        for value in VECTORS["valid"] + VECTORS["invalid"]:
++            with self.subTest(name=value["name"]):
++                self.assertEqual(keylink.verify(value["doc"], now_ms=T + 1000).ok, value["valid"])
++
++    def test_verified_revocation_branch_is_preserved_among_malformed_rows(self):
++        # Control-flow test only: real signature verification is covered separately above.
++        value = self.revocation()
++        with patch.object(keylink, "verify_revocation", return_value=keylink.Result(ok=True)) as verify:
++            got = self.resolve([None, value, {"revoke": {"link": []}}])
++        self.assertIsNone(got["active"])
++        self.assertEqual(got["reason"], "revoked")
++        verify.assert_called_once_with(value, LINEAGE["links"][-1])
++
++    def test_public_ss58_vector_roundtrips(self):
++        vector = VECTORS["ss58_sanity"]
++        public = bytes.fromhex(vector["pub_hex"])
++        self.assertEqual(keylink.ss58_encode(public), vector["ss58"])
++        self.assertEqual(keylink.ss58_decode(vector["ss58"]), public)
++
++
++if __name__ == "__main__":
++    unittest.main()

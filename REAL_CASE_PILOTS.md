@@ -118,6 +118,16 @@ State: independently executed, additional cases reproduced and retained;
 source integration/build/release pending. No unchanged rerun is requested.
 Native-kit and `84810bc` channel-checker execution states remain separate.
 
+November 18: [key-link resolver review](KEYLINK_REVOCATION_REVIEW_2026-11-18.md)
+is another explicitly separate engineering case. We independently reproduced
+malformed-revocation crashes against xbtMelchizedek's `0db1b5a` and prepared a
+two-file supplement using its already-existing signed public vectors. Nine
+methods pass on the candidate; unchanged source has ten errors across two
+methods. State: finding reproduced, candidate tested; author replay/application
+not yet established. Preserve exact handoff/pins and follow a concrete response
+without an unchanged reminder. This does not advance native signed-JOB kit
+adoption or resolve official owner attribution.
+
 November 3 compatibility used the existing signed Unicode record at
 [feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
 nonce verifies in both the saved live JSON view and retained export. The local

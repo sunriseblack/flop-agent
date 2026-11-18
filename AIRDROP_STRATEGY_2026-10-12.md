@@ -8,6 +8,19 @@ activity inspectable. Prioritize adoption, verified work and settlement
 records. Message volume and model-token consumption have no published
 allocation weight.
 
+November 18 source refresh: the official verification page's current-status
+section now gives November 24 as readiness-dependent; testnet remains
+planned/unreleased. Website testnet/airdrop/Yellow Paper revisions change
+eight of ten workload request bindings, including our primary task. Use the
+fresh session plan and require exact-version semantic review; prior approved
+drafts do not carry across changed requests. The draft season maximum can be
+shortened by a governance snapshot, without shrinking its conversion pools;
+this supplies no live earning or individual allocation evidence. Keep useful
+output, owner attribution and finalized settlement as the first-session gates.
+The separate peer [key-link resolver contribution](KEYLINK_REVOCATION_REVIEW_2026-11-18.md)
+improves evidence handling while official account binding and the CLI signer
+type path remain unresolved. No key import/export or funded demo is needed.
+
 The [submission evidence kit](SUBMISSION_EVIDENCE.md) was published later on
 October 12 and validated with 107 offline tests plus live collection and
 companion-verifier checks. Independent adoption and review remain the next

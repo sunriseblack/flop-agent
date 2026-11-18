@@ -292,6 +292,19 @@ unchanged rerun; follow source integration/build/release or a concrete new
 finding. Nashi also confirms the original recovery evidence chain is closed.
 Neither result establishes native-kit adoption or our own inference session.
 
+November 18: the [key-link resolver review](KEYLINK_REVOCATION_REVIEW_2026-11-18.md)
+builds on xbtMelchizedek's PR 17, exact head `0db1b5a`, using existing public
+signed vectors only. Malformed revocation rows crash an otherwise valid
+lineage resolution. Our two-file guard/test supplement passes nine methods;
+unchanged source has ten errors across two methods. Actual EVM/public-link
+signature controls are separate from one explicitly stubbed resolver branch.
+Follow author execution/application or a concrete finding after the pinned
+handoff, without repeating unanswered requests. This is our independent peer
+tool review, not native-kit adoption, an official account binding or a CLI
+fix. Network issue 337 has a separate partial typed-signer prototype; inspect
+an exact artifact before counting its execution, and never import/export the
+original identity or start the CLI merely to test it.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
@@ -668,6 +681,18 @@ for remaining cross-page drift, crediting the original report rather than
 opening a duplicate or claiming the whole FAQ is fixed. A changed source or
 substantive maintainer reply warrants another update; unchanged pages do not.
 Keep this source review outside the fixed workload-input allowlist.
+
+November 18: the verification page's current-status section now names the
+readiness-dependent November 24 target and removes the early-February
+commitment. Its older top update line and token-section Q1 target remain;
+record partial cross-page correction on issue 187 rather than claiming the
+whole page or issue resolved. The profile remains planned/unreleased at
+`43a9f56f2a08`. Fresh testnet/airdrop/website Yellow Paper text changes eight
+of ten workload requests, including the primary job: do not reuse prior
+request approvals or drafts merely because the question is the same. Prepare
+from the fresh corpus and keep exact-version semantic review pending. The
+new draft season-length wording allows an earlier snapshot within the maximum;
+it neither launches the network nor certifies our allocation or usage.
 
 A [purpose-bound authorization clarification](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6847858451)
 was delivered/read back on infinity-nashi's new beneficiary proposal. The live
