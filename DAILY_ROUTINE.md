@@ -326,6 +326,12 @@ changed artifacts or a concrete finding. The separate signet PR 1 remains
 its author's work and was not independently executed here. Native-kit
 adoption and live-client/account qualification remain separate.
 
+Review/driver pin `01327b4` has passing repository CI and exact public driver
+readback. The [scoped result on issue 337](https://github.com/flop-labs/network/issues/337#issuecomment-7003652506)
+is delivered/read back, retaining recording versus real-crypto/release limits.
+The immutable-artifact request is closed; follow integration, a changed pin
+or concrete feedback without an unchanged replay request.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner

@@ -128,3 +128,20 @@ wallet connection, new participant identity, key migration or live inference
 session occurred. Next triggers are changed source/integration/release or a
 concrete finding, actual pending-pilot execution, verifiable receipt witnesses,
 new official launch/attribution evidence or trusted original-data restoration.
+
+## Publication and exact delivery
+
+Published review, driver and routine/session/ledger evidence at
+`01327b4bc3b79bc34a0e4e7f5f16329cfffe19d7` after tests, diff review and a
+six-file pattern secret scan with no findings. The public driver reads back
+exactly. [Repository CI passes](https://github.com/sunriseblack/flop-agent/actions/runs/44486232842),
+including the existing 244 Python and 16 diagnostic helper tests; the 14
+packet-dependent recording controls are a separate local result.
+
+The [scoped review reply on network issue 337](https://github.com/flop-labs/network/issues/337#issuecomment-7003652506)
+was delivered at **08:18:26 UTC** with exact body and `sunriseblack` authorship
+verified through its individual comment endpoint. It closes the bounded
+artifact question, preserves the lost-original/rebuilt distinction and
+requests no unchanged replay. No new PR, peer branch change or native message
+was created, and no uncertain write was retried. Source integration, real
+crypto/full-client qualification and release remain open.

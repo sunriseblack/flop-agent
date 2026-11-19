@@ -148,6 +148,11 @@ source integration/full qualification/release pending. No unchanged rerun is
 requested. This is our review of their prototype, not their use of our kit
 or an official owner-allocation binding. Peer issue 24 remains unanswered.
 
+The review/driver are published at `01327b4`, with passing own-repository CI
+and exact public driver readback. The [bounded result](https://github.com/flop-labs/network/issues/337#issuecomment-7003652506)
+was delivered/read back at 08:18:26 UTC. State: recording review/result delivery
+complete, integration/qualification/release pending. No unchanged rerun is due.
+
 Another identified/deferred real-case lead is [Baophan00's issue-308 receipt](https://github.com/flop-labs/network/issues/308#issuecomment-6968748859):
 an existing estimated gateway receipt references channel
 `0x625606bb24f0e82fa235bce993504fde776c4879b84a37bae92decba2c71aea3`
