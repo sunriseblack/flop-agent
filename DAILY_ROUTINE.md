@@ -313,6 +313,19 @@ author execution/application. The [issue-337 artifact question](https://github.c
 is also delivered/read back: await the immutable prototype/runner and hashes
 before independent execution. Neither unanswered request should be repeated.
 
+November 19: almondous answered with immutable reconstructed v1 `3501d2d`,
+explicitly distinguishing rebuilt files from the lost originals. The
+[independent recording-boundary review](TYPED_SIGNER_REVIEW_2026-11-19.md)
+checks all 11 public files, manifests, pinned download/rebuild and generated
+hashes; its 14 dependency-free routing controls pass. Keys, filesystem,
+crypto and SDK calls are stubs. The peer's nine real-crypto fixture groups
+remain reported, not our execution; no key import/export or participant
+identity is used. No routing defect was found in this scope. Close this
+bounded request without another unchanged replay; follow source integration,
+changed artifacts or a concrete finding. The separate signet PR 1 remains
+its author's work and was not independently executed here. Native-kit
+adoption and live-client/account qualification remain separate.
+
 The separate [community runner review](RUNNER_CREDIT_REVIEW_2026-10-27.md)
 reproduces a read-only report that turns unavailable explorer data into zero.
 The six-case probe is pinned to the original peer source, not a general runner
@@ -705,6 +718,16 @@ it neither launches the network nor certifies our allocation or usage.
 The [current-source follow-up on issue 187](https://github.com/flop-labs/network/issues/187#issuecomment-6972903907)
 was delivered/read back November 18. Inspect substantive replies or changed
 page content without another unchanged status post.
+
+November 19: a new original [FLOP Labs post](https://x.com/flop_labs/status/2122965079213953287) points to the official
+[network Releases feed](https://github.com/flop-labs/network/releases).
+Include this read-only feed in launch/client discovery. Compare the exact
+package integrity/module bytes before retesting: newly published release
+notes may describe a version already examined. The feed currently has CLI
+0.5.0/SDK 0.6.0 notes, matching the existing npm versions, plus versioned node
+and worker notes; none supplies a verified testnet network/session here.
+Release-list order, a new note timestamp or image tag is not qualification.
+Keep this inventory separate from the fixed workload-input allowlist.
 
 A [purpose-bound authorization clarification](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6847858451)
 was delivered/read back on infinity-nashi's new beneficiary proposal. The live

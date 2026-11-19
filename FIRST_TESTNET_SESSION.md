@@ -375,6 +375,28 @@ owner mapping or approved funding target. Our separate
 [peer key-link resolver repair](KEYLINK_REVOCATION_REVIEW_2026-11-18.md)
 does not ratify that peer format for FLOP allocation or solve the CLI gate.
 
+November 19: the typed-signer artifact request has a pinned rebuilt-v1 reply.
+Its manifests/rebuild match and our 14 recording-boundary controls pass;
+no real-key or SDK transaction behavior is qualified by those stubs. Its
+enrollment/probe exclusions and official attribution gate remain open.
+Use the [focused review](TYPED_SIGNER_REVIEW_2026-11-19.md), retaining the
+lost-original/reconstruction distinction.
+
+All eight workload inputs refreshed; all ten request/evaluation bindings
+match November 18. The fresh primary request remains 6,596 bytes with the
+same transport/job hashes. That does not create approval for an unreviewed
+draft. The official profile is still planned/unreleased at `43a9f56f2a08`;
+the November 24 target remains readiness-dependent. The new official network
+Releases feed is discovery evidence, not a network identity or live session.
+
+Today's read-only devnet RPC returns HTTP 503 before a finalized anchor can
+be observed. Current-runtime compatibility is therefore unverified today;
+the November 18 guard admission is historical, and no guard is loosened or
+funded attempt made to bypass this observation. Original identity/history,
+verified testnet/client/faucet, owner/delegate policy, independent miner and
+exact bounded session approval remain gates. The separate issue-308 receipt
+case stays deferred without an appropriate adapter and trustworthy capture.
+
 Capture actual provider/model, usage, latency, request/session identifiers,
 source/request/output hashes, proof, independent miner and owner attribution,
 finalized settlement block/hash and exact test-token amount. Reconcile any

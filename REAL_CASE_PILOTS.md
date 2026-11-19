@@ -137,6 +137,17 @@ execution/application pending. No third-party adoption or unchanged replay
 is inferred. The separate CLI prototype artifact request is pending on
 [network issue 337](https://github.com/flop-labs/network/issues/337#issuecomment-6972900657).
 
+November 19: that artifact request is answered by
+[almondous's reconstructed v1](https://github.com/flop-labs/network/issues/337#issuecomment-6975329122)
+at `3501d2d`, with the lost-original provenance stated explicitly. Our
+[independent review](TYPED_SIGNER_REVIEW_2026-11-19.md) verifies its pins/rebuild
+and executes 14 recording-boundary controls with key/fs/crypto/SDK stubs.
+The nine real-crypto groups remain the peer's report. No routing defect was
+found. State: artifact supplied, bounded independent recording review complete;
+source integration/full qualification/release pending. No unchanged rerun is
+requested. This is our review of their prototype, not their use of our kit
+or an official owner-allocation binding. Peer issue 24 remains unanswered.
+
 Another identified/deferred real-case lead is [Baophan00's issue-308 receipt](https://github.com/flop-labs/network/issues/308#issuecomment-6968748859):
 an existing estimated gateway receipt references channel
 `0x625606bb24f0e82fa235bce993504fde776c4879b84a37bae92decba2c71aea3`
