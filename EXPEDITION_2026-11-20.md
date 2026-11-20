@@ -76,8 +76,8 @@ All ten fresh jobs, comparison and selected request stay private. No old approva
 is rebound; semantic review remains pending. No model API was called and actual
 token usage is unavailable.
 
-The official account's bounded public profile still shows the November 19
-release-feed post and November 13 tentative November 24 announcement, without
+The official account's bounded public profile still shows the November 18
+release-feed post (collected November 19) and November 13 tentative November 24 announcement, without
 a newer launch signal in that view. Direct post fetch remains 403. Current
 verification/testnet pages were fetched; profile `43a9f56f2a08` remains
 planned/unreleased with no verified network/genesis/release/model values.
@@ -112,3 +112,27 @@ new participant identity or live inference session occurred. Next triggers are
 actual author execution/integration or a concrete defect, reliable saved-case
 witnesses, new official launch/attribution evidence or trusted original-data
 restoration. Publication/readback and independent uptake remain separate.
+
+## Verified publication and next external step
+
+Tested pin `7dd9da0dca4ec62a8bb2b49ca523037e2bd4d80e` is pushed to our main.
+[Repository CI](https://github.com/sunriseblack/flop-agent/actions/runs/44701506780)
+passes both Python 3.12/3.14 jobs. Public patch, runner and report blob IDs
+match local committed files. Diff review, local-link validation and a bounded
+credential/private-key scan found no secret candidates in the eight scoped
+files; this is not a proof that arbitrary text is secret-free.
+
+[Network issue 385](https://github.com/flop-labs/network/issues/385) was created
+at 08:19:27 UTC and read back with exact body and `sunriseblack` author. It
+offers the pinned executable scope to almondous for independent replay and
+asks maintainers to port the option preservation into source. State: finding
+reproduced, fix published, independent verification/integration pending. This
+is a new concrete engineering finding, not a reopened unchanged review or
+native signed-JOB adoption. No competing official PR was created.
+
+The [issue-244 release verification](https://github.com/flop-labs/network/issues/244#issuecomment-7034241782)
+was delivered at 08:20:02 UTC and independently read back with exact author/body.
+It closes our release-observation step for the old network label and directs
+the separate option-loss finding to 385. No unchanged replay was requested.
+The current profile extraction dates the release-feed social post November 18;
+November 19 was our collection day, not its original publication date.

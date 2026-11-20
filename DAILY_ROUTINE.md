@@ -215,10 +215,16 @@ independently verifies that the configured-network repair is now released.
 Its new documented telemetry `client` option is instead dropped by the class;
 the functional API preserves it. The two-file artifact supplement passes 66
 offline controls; released code passes 61 and fails five override controls.
-The old 0.6.0 56-case matrix retains its historical outcomes. Deliver the new
-version-pinned telemetry scope through a deduplicated official issue and follow
-actual source integration or execution. It is telemetry only, not owner/grant
-attribution. Do not ask for another unchanged network-label or x402 replay.
+The old 0.6.0 56-case matrix retains its historical outcomes. The tested scope
+is published at `7dd9da0`, with passing Python 3.12/3.14 repository CI. The
+[new issue-385 handoff](https://github.com/flop-labs/network/issues/385) was
+delivered/read back exactly under sunriseblack at 08:19:27 UTC, inviting
+almondous to test this new option-loss scope. The [released network-label
+verification](https://github.com/flop-labs/network/issues/244#issuecomment-7034241782)
+was delivered/read back at 08:20:02 UTC. Independent execution/integration of
+the new supplement is pending. Follow an actual result or changed source,
+without repeating unanswered requests. This is telemetry only, not owner/grant
+attribution, native-kit adoption or a new x402 review round.
 
 November 14: infinity-nashi answered the issue-172 purpose question: their
 proposal requires fresh beneficiary authorization, not enrollment-signature

@@ -173,8 +173,10 @@ The successful runtime snapshot does not establish reliable archive capture.
 
 The separate [SDK 0.7.2 telemetry review](SDK_CLIENT_LABEL_REVIEW_2026-11-20.md)
 reproduces a new class option-loss defect and supplies a tested scoped repair.
-State: reproduced and locally tested; publication and independent author
-execution/integration are separate steps. The old network-label repair is
+State: reproduced, tested and published at `7dd9da0` with passing own CI;
+the [issue-385 execution request](https://github.com/flop-labs/network/issues/385)
+was delivered/read back exactly at 08:19:27 UTC. Independent execution/source
+integration remain pending. Do not repeat this new request unanswered. The old network-label repair is
 verified in released behavior without claiming exact patch adoption. These
 in-process engineering controls add no native-kit adoption or live session.
 

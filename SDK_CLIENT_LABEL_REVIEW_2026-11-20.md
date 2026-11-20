@@ -117,3 +117,16 @@ remain routed through issue 132. No duplicate runtime issue is needed. Guard
 admission does not resolve the original missing identity/history, verified
 testnet launch/client, owner attribution, independent miner, exact quote or
 bounded session approval. No live inference session is authorized or claimed.
+
+## Publication and follow-through
+
+Patch, runner and report pin `7dd9da0dca4ec62a8bb2b49ca523037e2bd4d80e`
+has [passing repository CI on Python 3.12 and 3.14](https://github.com/sunriseblack/flop-agent/actions/runs/44701506780).
+Public patch, runner and report readback match their committed blob IDs.
+The [new telemetry finding and precise replay request](https://github.com/flop-labs/network/issues/385)
+was delivered/read back exactly under `sunriseblack` at 08:19:27 UTC. Almondous
+is invited to review the new option-loss scope; no independent execution or
+integration is inferred from issue creation. The [separate released network
+result](https://github.com/flop-labs/network/issues/244#issuecomment-7034241782)
+was delivered/read back at 08:20:02 UTC, without an unchanged replay request.
+Follow actual execution, source integration or a concrete counterexample.
