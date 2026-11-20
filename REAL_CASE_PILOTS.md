@@ -164,6 +164,20 @@ deferred; no execution invitation or adoption. Next trigger is an appropriate
 bounded adapter and saved per-request evidence, without credentials or a new
 paid request. This is outside native signed-JOB kit adoption.
 
+November 20: read-only RPC returned the reported historical block hash and
+raw block, but metadata capture timed out; an earlier bounded API initialization
+received 503s. No independently validated terminal witness or synchronized
+per-request/quota observation was obtained. Keep the lead deferred, with no
+execution invitation, current-stuck assertion or fabricated adapter positive.
+The successful runtime snapshot does not establish reliable archive capture.
+
+The separate [SDK 0.7.2 telemetry review](SDK_CLIENT_LABEL_REVIEW_2026-11-20.md)
+reproduces a new class option-loss defect and supplies a tested scoped repair.
+State: reproduced and locally tested; publication and independent author
+execution/integration are separate steps. The old network-label repair is
+verified in released behavior without claiming exact patch adoption. These
+in-process engineering controls add no native-kit adoption or live session.
+
 November 3 compatibility used the existing signed Unicode record at
 [feedback](https://technocore.chat/r/feedback) sequence 4260. Its exact 19-digit
 nonce verifies in both the saved live JSON view and retained export. The local

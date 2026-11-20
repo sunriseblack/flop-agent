@@ -437,6 +437,25 @@ request after verified model, quote, spend, identity and network values are
 supplied, then obtain approval for that exact body. Public contract inspection is
 separate from the eight-source model-input allowlist, which remains unchanged.
 
+November 20: devnet RPC responds with the expected development genesis,
+reported finalized block 4,175,975 and spec 1014029. The exact old SDK 0.6.0
+guard rejects it; integrity-verified SDK 0.7.2 admits it without modification,
+with 30 listed-version and eight rejection controls passing. CLI 0.7.1 depends
+on SDK `^0.7.2`; its installed resolution and full client qualification were
+not executed. The bundle still lacks the reviewed typed-signer/diagnostic
+supplements. [Exact release review](SDK_CLIENT_LABEL_REVIEW_2026-11-20.md)
+
+Eight allowlisted inputs were refreshed. The Agent overview's new devnet
+onboarding section changes three request bindings; seven, including the primary
+job and all evaluation rules, are unchanged. The fresh private primary remains
+6,596 bytes, transport SHA-256
+`d2575ee3d6cfc053bd7965bd5225ff690b56b52ef47ed6d9b37166075b971a84`,
+job `ddb2a330951ebe74d1f116d8e8bcda44490c0d3ad1ffbbb22fccfd4080d8e8c2`.
+Exact-version semantic approval is still pending. Testnet remains
+planned/unreleased at `43a9f56f2a08`; original identity/history, ratified owner
+mapping, independent miner, exact quote and bounded-session approval remain
+unresolved. No live inference, grant or key operation was performed.
+
 ## Remaining blockers checked November 1 at 23:28 UTC
 
 | Blocker | Evidence and next resolving action |

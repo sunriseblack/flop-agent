@@ -9,6 +9,14 @@ The October 20 task compares the agent overview's delegation invitation with
 the newer operator self-stake, sponsored-bond and community-pool rules.
 Outputs remain drafts until their claims are reviewed for meaning and correctness.
 
+November 20 refresh: the Agent overview adds a devnet onboarding section.
+Its new source binding changes `document-conflict`, `identity-binding` and
+`operator-delegation-conflict`; the other seven requests and all evaluation
+rules match November 19. Ten fresh jobs and the unchanged primary request
+are prepared privately. The new free-devnet instructions are source material,
+not an authorization to fund, sign or infer allocation eligibility. No saved
+approval is rebound to the three changed requests.
+
 November 13 readiness boundary: the [newer official social announcement](https://x.com/flop_labs/status/2121146318135644275)
 gives 24 November as tentative, while freshly fetched website wording still carries
 historical timing. Retrieval freshness does not make a dated claim current,

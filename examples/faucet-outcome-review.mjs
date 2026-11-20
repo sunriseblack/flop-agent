@@ -1,4 +1,4 @@
-// SDK 0.6.0: network labels and uncertain funding outcomes, with inert fetch only.
+// Inspected SDK releases: network/client labels and uncertain funding outcomes.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -14,11 +14,18 @@ const moduleHash = digest(await readFile(modulePath));
 const allowed = new Set([
   '546c798ab5772a34bd0f7dc40f8d75745c70d5f91485bb0bcfe881bbdca5ac42',
   '2cb714f9cd3fb8ae1a8a46603d560dcda8078bab62fc78177a57eb22317b2215',
+  'dd9fc3b7ad76bf2aa317c748759a23cb627ef49f2f18117ac382bdea5f6dd040',
+  'ae581cbc1bb9d5e2cf0f59528cbbf72205bb9e1b7e4e4abd1ceff55366d680db',
 ]);
 assert.ok(allowed.has(moduleHash), 'faucet module differs from reviewed bytes');
 assert.equal(digest(await readFile(resolve(root, 'chain.js'))),
   'ac6eea3a61f4caeda6b24a8cff3344de5e377a562b117ad278a15f115ada64a9');
 const sdk = await import(pathToFileURL(modulePath));
+const clientTagged = new Set([
+  'dd9fc3b7ad76bf2aa317c748759a23cb627ef49f2f18117ac382bdea5f6dd040',
+  'ae581cbc1bb9d5e2cf0f59528cbbf72205bb9e1b7e4e4abd1ceff55366d680db',
+]).has(moduleHash);
+if (clientTagged) assert.equal(sdk.FAUCET_CLIENT, 'flop-sdk-ts/0.7.2');
 console.log(JSON.stringify({ module_sha256: moduleHash, node: process.version,
   platform: process.platform, transport: 'in-process fetch double', real_requests: 0 }));
 
@@ -77,7 +84,8 @@ for (const lane of ['class', 'functional']) {
           }
           assert.equal(calls.length, 1);
           assert.equal(calls[0].method, 'POST');
-          assert.deepEqual(calls[0].body, { address: 'synthetic-address', amount: 25 });
+          assert.deepEqual(calls[0].body, { address: 'synthetic-address', amount: 25,
+            ...(clientTagged ? { client: sdk.FAUCET_CLIENT } : {}) });
         }));
     }
   }
@@ -124,6 +132,32 @@ for (const lane of ['class', 'functional']) {
       assert.equal(result.success, false);
       assert.equal(result.outcome, 'unknown');
       assert.equal(calls.length, 1);
+    }));
+}
+
+if (clientTagged) for (const lane of ['class', 'functional']) {
+  for (const [name, response, outcome] of [
+    ['accepted', { body: accepted }, 'accepted'],
+    ['429 refusal', { status: 429, body: { error: 'synthetic refusal' } }, 'refused'],
+    ['503 unknown', { status: 503, body: { error: 'synthetic failure' } }, 'unknown'],
+    ['lost response', new TypeError('synthetic response loss'), 'unknown'],
+  ]) {
+    test(`${lane}: explicit telemetry client survives ${name}`, () =>
+      usingFetch([response], async calls => {
+        const result = await invoke(lane, { client: 'review-fixture/v1' });
+        assert.equal(result.outcome, outcome);
+        assert.equal(result.network, 'devnet');
+        assert.equal(calls.length, 1);
+        assert.deepEqual(calls[0].body, { address: 'synthetic-address', amount: 25,
+          client: 'review-fixture/v1' });
+      }));
+  }
+  test(`${lane}: explicit empty telemetry client preserves nullish-default semantics`, () =>
+    usingFetch([{ body: accepted }], async calls => {
+      const result = await invoke(lane, { client: '' });
+      assert.equal(result.outcome, 'accepted');
+      assert.equal(calls.length, 1);
+      assert.deepEqual(calls[0].body, { address: 'synthetic-address', amount: 25, client: '' });
     }));
 }
 

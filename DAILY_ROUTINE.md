@@ -210,6 +210,16 @@ The expanded controls at `fb5f5b1` have passing repository CI, and the
 is delivered/read back exactly. Follow source/package/release evidence or a
 concrete counterexample, rather than requesting the peer run the same scope again.
 
+November 20: the [SDK 0.7.2 review](SDK_CLIENT_LABEL_REVIEW_2026-11-20.md)
+independently verifies that the configured-network repair is now released.
+Its new documented telemetry `client` option is instead dropped by the class;
+the functional API preserves it. The two-file artifact supplement passes 66
+offline controls; released code passes 61 and fails five override controls.
+The old 0.6.0 56-case matrix retains its historical outcomes. Deliver the new
+version-pinned telemetry scope through a deduplicated official issue and follow
+actual source integration or execution. It is telemetry only, not owner/grant
+attribution. Do not ask for another unchanged network-label or x402 replay.
+
 November 14: infinity-nashi answered the issue-172 purpose question: their
 proposal requires fresh beneficiary authorization, not enrollment-signature
 reuse. The cross-purpose negative case is accepted as a proposed control;
@@ -734,6 +744,21 @@ notes may describe a version already examined. The feed currently has CLI
 and worker notes; none supplies a verified testnet network/session here.
 Release-list order, a new note timestamp or image tag is not qualification.
 Keep this inventory separate from the fixed workload-input allowlist.
+
+November 20 superseding package inventory: verified npm archives now name
+CLI 0.7.1 / SDK 0.7.2. The RPC again responds, reporting devnet spec 1014029.
+SDK 0.6.0's exact guard rejects it; unmodified 0.7.2 admits it and passes
+30 listed-version/eight rejection controls. Existing issue 355 already records
+the mismatch/new-package answer; stale docs remain routed to issue 132. Guard
+admission is separate from a resolved CLI dependency, full client qualification
+or testnet launch. The new CLI bundle still lacks the reviewed typed-signer
+and diagnostic supplements; x402 is byte-identical to the earlier release.
+Inspect new source or concrete feedback, without reopening completed reviews.
+The official profile remains planned/unreleased at `43a9f56f2a08`. All eight
+workload sources refreshed; the new Agent overview's devnet onboarding section
+changes three requests. Prepare/review those exact bindings; the primary
+`implementation-gap` request remains unchanged. Neither free devnet access
+instructions nor a tentative date authorize our first session.
 
 A [purpose-bound authorization clarification](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6847858451)
 was delivered/read back on infinity-nashi's new beneficiary proposal. The live
