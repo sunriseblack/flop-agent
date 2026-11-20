@@ -136,3 +136,13 @@ It closes our release-observation step for the old network label and directs
 the separate option-loss finding to 385. No unchanged replay was requested.
 The current profile extraction dates the release-feed social post November 18;
 November 19 was our collection day, not its original publication date.
+
+## Feedback on the November 20 policy invitation
+
+Arthur Hayes asked for examples of unintended policy consequences ahead of the announced testnet target. We published three cases in the Yellow Paper repository and a short reply on X. [Original invitation](https://x.com/CryptoHayes/status/2123705084572008947)
+
+- **Settlement cutoff.** Infinity-nashi’s devnet channel opened at block 3,576,370 and settled five signed turns together at 3,576,952. Replaying the saved capture passed the positive check and ten negative controls. Comparing hypothetical cutoffs one block apart illustrates how a buyer’s batching choice could affect recognized spend. The report requests advance notice, worked boundary examples and a refunded-channel control. [Issue 260](https://github.com/flop-labs/yellowpaper/issues/260) · [X reply](https://x.com/sunriseblck/status/2123725365289840697)
+- **Shared gateway settlement.** The example on thangvmt’s existing issue extends infinity-nashi’s proposal with two hypothetical buyers. A 60/40 split of 100 eligible units tests duplicate receipts, conflicting totals, a missing buyer record and a full refund. Whether shared-channel attribution is supported remains a policy decision. [Comment on issue 172](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-7037241534)
+- **Late fraud-flag notice.** A worked example on littlepxyek-crypto’s issue compares two timely appeals with identical evidence and different notice dates. It asks FLOP to specify minimum notice and what happens when a timely appeal is pending at genesis lock. [Comment on issue 259](https://github.com/flop-labs/yellowpaper/issues/259#issuecomment-7037246536)
+
+All three GitHub bodies matched their readback under sunriseblack. The X reply was submitted from Hayes’s original thread, and its published text and author matched at its own permalink under @sunriseblck. Follow substantive policy decisions, counterexamples or requests for more evidence in those threads. Acceptance, a policy change and a feedback reward remain unverified.
