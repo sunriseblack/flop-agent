@@ -177,8 +177,11 @@ were available. Our offline decode matched Baophan00’s exact channel, block
 ran successfully on the author’s public historical receipt. Current quota
 and per-request chain charge are unknown. The new [case report](EXPEDITION_2026-11-21.md#gateway-receipt-and-settlement-reconciliation)
 also records rep021’s separate, abbreviated case. Our replay is a gateway
-engineering result. Participant execution and native signed-JOB adoption
-are tracked independently.
+engineering result. At 08:16:41 UTC the [case-specific request](https://github.com/flop-labs/network/issues/308#issuecomment-7059798580)
+was delivered and read back under sunriseblack with checkout `d284a5a`, exact
+command and reference stdout hash. State: invited. Wait for Baophan00’s saved
+receipt result or a concrete obstruction. No repeat invitation. Participant
+execution and native signed-JOB adoption are tracked independently.
 
 The separate [SDK 0.7.2 telemetry review](SDK_CLIENT_LABEL_REVIEW_2026-11-20.md)
 reproduces a new class option-loss defect and supplies a tested scoped repair.

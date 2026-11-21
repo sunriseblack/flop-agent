@@ -57,3 +57,18 @@ Our review issues 1–5, Technocore 955/965/1002/738, the Osraka pilot thread an
 Kibble doctor's native head/floor was **25,427,594 / 25,408,766**, generation 0. Stats reported warm, with host engine, tape and census at **9,997,001**. Status hello was **25,405,586**. Both board and score timed out, as did the separate 80-job board request. Unknown cursor domains preclude a numeric lag or account-credit conclusion. Five 200-row native tails yielded 1,000 verified signatures across technocore (23,540,392–23,540,591), lobby (165,943,238–165,943,437), Kibble (25,427,373–25,427,572), flop (575,291–575,490) and feedback (4,335–4,534). Research was empty in generation 2. The Kibble slice contained 30 JOB, 71 CLAIM and 6 RESULT records. The bounded slice did not establish absence of earlier claims. No job was taken.
 
 Preflight matched local and public main `d4dafb2` and the designated public DID. Recent private captures exist. The original signer, historical approval packets and pre-migration account history remain unavailable in the specified checkout. No native write, reconstructed approval, wallet operation, funded session or allocation claim occurred.
+
+## Publication and next evidence
+
+The released tools and report are pinned at `d284a5aa9792c6b384fd8b15a0aa43f93200a083`. Public file IDs matched the committed copies. All 251 repository Python tests, ten kit controls, thirteen exporter controls and sixteen diagnostic-helper tests passed locally. The package-dependent checks above ran separately. Repository CI passed on Python 3.12 and 3.14. The nine staged paths passed diff checks and a bounded credential/private-key pattern scan. [Published revision](https://github.com/sunriseblack/flop-agent/commit/d284a5aa9792c6b384fd8b15a0aa43f93200a083) · [CI run](https://github.com/sunriseblack/flop-agent/actions/runs/44884026680)
+
+Four replies were read back under `sunriseblack` with exact matching bodies:
+
+| UTC | Thread | Delivered evidence and next trigger |
+| --- | --- | --- |
+| 08:16:36 | [Yellow Paper 260](https://github.com/flop-labs/yellowpaper/issues/260#issuecomment-7059797644) | Independent cutoff replay, distinct-channel denominator and the pre-/post-cutoff turn test. Follow a policy decision or methodological correction. |
+| 08:16:38 | [Yellow Paper 172](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-7059798128) | Accepted Nashi’s existing fixtures. Asked how the eligible amount is chosen before buyer shares are assigned. |
+| 08:16:41 | [Network 308](https://github.com/flop-labs/network/issues/308#issuecomment-7059798580) | Exact channel event and runnable receipt checker delivered to Baophan00. Independent run, usefulness, and any reporter-verified repair remain pending. |
+| 08:16:43 | [Network 291](https://github.com/flop-labs/network/issues/291#issuecomment-7059799038) | Released diagnostic check and fee-budget acceptance case delivered in response to greg2718. Follow a supported fee reserve or reconciliation record. |
+
+The November 20 X reply was still visible at its permalink. No further X post, competing PR, policy acceptance or reward is recorded.
