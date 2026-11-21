@@ -25,6 +25,17 @@ as an empty account, or post under another identity. Restore the original data
 from a trusted backup without overwriting new evidence. Notify on initial loss
 or a changed blocker; unchanged missing-data checks stay quiet afterward.
 
+## Current policy and receipt follow-ups
+
+Follow the [November 21 cutoff replay and receipt evidence](EXPEDITION_2026-11-21.md)
+on the existing threads. On Yellow Paper 260, follow a decision on work delivered
+after the cutoff and how to prove its timing. On 172, use Nashi’s existing receipts
+to distinguish buyer charges, miner payment and eligible credit. On network 308,
+follow Baophan00’s actual saved-receipt run or a changed receipt state. Keep the
+decoded channel event separate from current buyer quota. Preserve unanswered
+requests. On 291, reconcile the released 0.8.0 diagnostic with any future fee
+budget or published final-event reference. [Pilot ledger](REAL_CASE_PILOTS.md)
+
 ## Work in priority order
 
 First close the consumer-safety contribution on Technocore PR 1010: coordinate

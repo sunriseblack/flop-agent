@@ -153,9 +153,9 @@ response/usage evidence; no envelope extraction is implemented here.
 
 ```bash
 python3 scripts/first_session_output.py \
-  --jobs .private/workload/2026-11-16-run-01/primary-job.json \
+  --jobs .private/workload/2026-11-21-run-01/primary-job.json \
   --answer .private/readiness/first-session/answer.json \
-  --expected-job-sha256 0b22a3906724a53d7d161a3981b60e1e1077f5c34961727272753e175e0fded6 \
+  --expected-job-sha256 ddb2a330951ebe74d1f116d8e8bcda44490c0d3ad1ffbbb22fccfd4080d8e8c2 \
   --output .private/readiness/first-session/output-review.json
 ```
 
@@ -455,6 +455,14 @@ Exact-version semantic approval is still pending. Testnet remains
 planned/unreleased at `43a9f56f2a08`; original identity/history, ratified owner
 mapping, independent miner, exact quote and bounded-session approval remain
 unresolved. No live inference, grant or key operation was performed.
+
+November 21: the exact SDK 0.8.0 guard admits the observed devnet spec 1014031.
+CLI 0.7.2 now projects typed recovery outcomes. The lifetime purchase budget
+covers escrow, with fees additional. A concrete approval must specify the fee
+payer and a cleanup-fee allowance. Six listed devnet offers supplied no
+verified venue. The official testnet profile remains planned at `2091ebbd9d42`.
+The saved-answer example above now uses the November 21 job and its matching
+independently selected hash. [Current evidence](EXPEDITION_2026-11-21.md#released-client-and-first-session)
 
 ## Remaining blockers checked November 1 at 23:28 UTC
 

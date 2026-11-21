@@ -11,21 +11,22 @@ const root = resolve(process.env.SDK_REVIEW_DIR, 'dist');
 const modulePath = resolve(root, 'faucet.js');
 const digest = data => createHash('sha256').update(data).digest('hex');
 const moduleHash = digest(await readFile(modulePath));
-const allowed = new Set([
-  '546c798ab5772a34bd0f7dc40f8d75745c70d5f91485bb0bcfe881bbdca5ac42',
-  '2cb714f9cd3fb8ae1a8a46603d560dcda8078bab62fc78177a57eb22317b2215',
-  'dd9fc3b7ad76bf2aa317c748759a23cb627ef49f2f18117ac382bdea5f6dd040',
-  'ae581cbc1bb9d5e2cf0f59528cbbf72205bb9e1b7e4e4abd1ceff55366d680db',
+// Key each inspected module to the telemetry label expected from that release.
+const reviewedLabels = new Map([
+  ['546c798ab5772a34bd0f7dc40f8d75745c70d5f91485bb0bcfe881bbdca5ac42', null],
+  ['2cb714f9cd3fb8ae1a8a46603d560dcda8078bab62fc78177a57eb22317b2215', null],
+  ['dd9fc3b7ad76bf2aa317c748759a23cb627ef49f2f18117ac382bdea5f6dd040', 'flop-sdk-ts/0.7.2'],
+  ['ae581cbc1bb9d5e2cf0f59528cbbf72205bb9e1b7e4e4abd1ceff55366d680db', 'flop-sdk-ts/0.7.2'],
+  ['9dee13d2240cb124d2e0905e7ec212946d315d4c091b436bbe7d80cf134abb31', 'flop-sdk-ts/0.8.0'],
+  ['9901fd4ff2fdb09852eccd8fd227d98b2a2d1cc0c4964019f4a0fde970e38a7f', 'flop-sdk-ts/0.8.0'],
 ]);
-assert.ok(allowed.has(moduleHash), 'faucet module differs from reviewed bytes');
+assert.ok(reviewedLabels.has(moduleHash), 'faucet module differs from reviewed bytes');
 assert.equal(digest(await readFile(resolve(root, 'chain.js'))),
   'ac6eea3a61f4caeda6b24a8cff3344de5e377a562b117ad278a15f115ada64a9');
 const sdk = await import(pathToFileURL(modulePath));
-const clientTagged = new Set([
-  'dd9fc3b7ad76bf2aa317c748759a23cb627ef49f2f18117ac382bdea5f6dd040',
-  'ae581cbc1bb9d5e2cf0f59528cbbf72205bb9e1b7e4e4abd1ceff55366d680db',
-]).has(moduleHash);
-if (clientTagged) assert.equal(sdk.FAUCET_CLIENT, 'flop-sdk-ts/0.7.2');
+const expectedLabel = reviewedLabels.get(moduleHash);
+const clientTagged = expectedLabel !== null;
+if (clientTagged) assert.equal(sdk.FAUCET_CLIENT, expectedLabel);
 console.log(JSON.stringify({ module_sha256: moduleHash, node: process.version,
   platform: process.platform, transport: 'in-process fetch double', real_requests: 0 }));
 

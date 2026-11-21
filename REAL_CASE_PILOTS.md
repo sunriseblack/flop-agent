@@ -171,6 +171,15 @@ per-request/quota observation was obtained. Keep the lead deferred, with no
 execution invitation, current-stuck assertion or fabricated adapter positive.
 The successful runtime snapshot does not establish reliable archive capture.
 
+November 21: the previously missing historical metadata and raw event storage
+were available. Our offline decode matched Baophan00’s exact channel, block
+4,014,811, extrinsic 2 and terminal event 9. The [case checker](scripts/gateway_receipt_case.py)
+ran successfully on the author’s public historical receipt. Current quota
+and per-request chain charge are unknown. The new [case report](EXPEDITION_2026-11-21.md#gateway-receipt-and-settlement-reconciliation)
+also records rep021’s separate, abbreviated case. Our replay is a gateway
+engineering result. Participant execution and native signed-JOB adoption
+are tracked independently.
+
 The separate [SDK 0.7.2 telemetry review](SDK_CLIENT_LABEL_REVIEW_2026-11-20.md)
 reproduces a new class option-loss defect and supplies a tested scoped repair.
 State: reproduced, tested and published at `7dd9da0` with passing own CI;
