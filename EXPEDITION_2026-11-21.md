@@ -72,3 +72,34 @@ Four replies were read back under `sunriseblack` with exact matching bodies:
 | 08:16:43 | [Network 291](https://github.com/flop-labs/network/issues/291#issuecomment-7059799038) | Released diagnostic check and fee-budget acceptance case delivered in response to greg2718. Follow a supported fee reserve or reconciliation record. |
 
 The November 20 X reply was still visible at its permalink. No further X post, competing PR, policy acceptance or reward is recorded.
+
+## Does the starting block of a scoring period change who receives the pool?
+
+maxxexee opened the FAQ question, finegel located the unresolved aggregation rule in E.38, and pvthr33 compared per-period and season-total allocation. We held the cohort, amounts and season endpoints fixed and moved only the scoring grid. The 86,400-block period used in that discussion is an illustrative choice borrowed from §9. FLOP has yet to ratify the agent conversion rule. [Original discussion](https://github.com/flop-labs/yellowpaper/issues/285) · [pvthr33's prior experiment](https://github.com/flop-labs/yellowpaper/issues/285#issuecomment-7056516092)
+
+For each window the modeled pool is one unit. A complete period gets the same budget as any other complete period. A shortened edge gets its fraction of blocks, and the budget of a period with no volume stays unallocated. Within each period, divide the budget among channel openers in proportion to their recorded escrow. Use half-open block intervals throughout, dated by the settlement event. The alternative weighting uses the recorded miner payment for the same channel. Both are observable proxies. Neither establishes an end buyer's eligible spend. The unallocated budget in this illustration has no connection to the protocol's genesis reserve.
+
+We used the same timestamp cutoff and 133 explorer pages recorded above. From 13,243 rows, one lacked the terminal event and twelve were later than the time cut. Eight more fell beyond the 49 complete periods. Two of the remaining rows had identical opener and miner addresses and were excluded. All included rows were cooperative settlements. Different addresses do not establish independent ownership. The second window covers the last 14 complete periods, with a settlement in every bucket at each tested offset.
+
+| Fixed block window, end excluded | Settlements / openers | Pool changing recipient or unallocated status at +21,600 | At +43,200 | At +64,800 | Largest single opener change at +43,200 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 0–4,233,600 | 13,220 / 128 | 2.1580% | 3.0644% | 3.8738% | 1.2689 percentage points |
+| 3,024,000–4,233,600 | 12,857 / 104 | 2.8280% | **8.2038%** | 5.6368% | **4.4413 percentage points** |
+
+Each comparison is against a grid starting at block zero. The percentage is half the sum of absolute changes across opener shares and the unallocated balance, so a transfer counts once. In the 14-period window the unallocated balance was zero throughout. Changing the weight to miner payment moved **8.2972%** at the half-period offset. As a control, assigning each period a budget proportional to its observed volume gave exactly the season-total shares at all four offsets under either weight. Every modeled pool balanced exactly. A separate Decimal implementation enumerated explicit intervals directly from the saved pages and matched all 16 combinations to six decimal places. This is an exploratory sensitivity measurement from one historical hosted devnet view.
+
+If FLOP adopts equal budgets per period, publish the first block, length, boundary and partial/empty-period rules in the conversion parameters before activity starts. A small cross-implementation test can settle spends of 1 and 1 for opener A at blocks 1 and 4, and 3 and 1 for B at blocks 5 and 8. With a five-block grid over [0,10), A gets 50% at origin 0 and 32.5% at origin 2 under the stated edge rule. Spend-weighted period budgets give A exactly one third at either origin.
+
+Run the check offline with Python 3.12+ on complete 100-row pages named by offset. The page-manifest hash and capture times are above. Report SHA-256 was `ca10464f7306b50bc0943c6b28bc37bfe2e8856cbf40a92eb5f4b3476441542b`. Replaying the earlier cutoff experiment after sharing its input reader produced its original report hash.
+
+```sh
+python3 research/period_origin_replay.py /path/to/saved/pages
+```
+
+## Follow-up on pvthr33's independent results
+
+pvthr33 reported independently matching the principal cutoff figures through November 21 at 01:48 UTC. Under their proposed grace rule, a last turn immediately before or after the snapshot counts on the same terms if the channel was already open and finalizes in time, subject to its escrow at the snapshot. The historical signed leaves at block 3,576,952 contain miner receive clocks from 18,983,379 to 19,271,216. They supply no independently attested snapshot height for each delivery. The peer supplied their figures and scope. Independent execution of our specific program was not reported. [Peer's cutoff results](https://github.com/flop-labs/yellowpaper/issues/260#issuecomment-7063120291)
+
+The saved Pair A settlement at that block gave the same five turn measurements as pvthr33, totaling 4,163 G_n. At their assumed 0.003 FLOP/G_n, usage is 12.489 FLOP against Nashi's 12.081 in reported charges. Four amounts match. The remaining 0.408 is the difference between the unmatched charge and turn estimate. The capacity-floor expression contributes 0.00644841269826 FLOP to the numerical reconciliation, with five raw units remaining. Escrow equals the observed miner payment plus the separate audit earmark. This verifies the arithmetic on Pair A. It supplies no transferable identity between requests and turns, mandatory additive price formula, or official recipient for the difference. The saved RPC evidence checker passed the positive case and ten negative controls. [Peer's accounting and channel results](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-7063129629)
+
+We also independently located the runtime transition with read-only RPC. State at block 4,051,504 (`0x21aa47e1b37ca44fefabf9e6fa602ea010b19bf26b480911df77d1914d739be0`) reported spec 1014020 and block 4,051,505 (`0xece25a7bc4cd2fc7b8a2c4943d1447c2c8784695100d9b786089bdf0be50bc65`) reported 1014027. On the event-backed 01:48 UTC cohort, filtering by opener other than the named gateway and opening block at or above 4,051,505 reproduces **902 settlements from 60 opener addresses**. Filtering on settlement height instead gives **935 from the same 60 addresses**. The extra 33 opened before the upgrade. Address counts establish historical use of the channel path. Independent buyer identity and public endpoint discovery need separate evidence.

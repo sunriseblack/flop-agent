@@ -15,7 +15,7 @@ GRACE = (0, 250, 1_000, 3_600, 14_400)
 GATEWAY = "5GsXb3TmNGixuEsbtixqHnqWr9UQJ2M8bkqBQWteNekgF98S"
 
 
-def read_settlements(folder):
+def read_settled_items(folder):
     """Require a complete offset traversal and unique terminal rows."""
     rows = []
     seen = set()
@@ -53,10 +53,16 @@ def read_settlements(folder):
                     or type(terminal["blockNumber"]) is not int
                     or settled != terminal["blockNumber"] or type(terminal["timestamp"]) is not int):
                 raise ValueError(f"inconsistent settlement event at offset {offset}")
-            rows.append((opened, settled, int(item["minerPaid"]),
-                         item["agent"] == GATEWAY, terminal["timestamp"]))
+            rows.append(item)
         offset += len(batch)
     return rows, missing_event
+
+
+def read_settlements(folder):
+    items, missing = read_settled_items(folder)
+    return [(item["openedBlock"], item["statusBlockNumber"], int(item["minerPaid"]),
+             item["agent"] == GATEWAY, item["settlement"]["timestamp"])
+            for item in items], missing
 
 
 def summarize(rows, heights=HEIGHTS, grace=GRACE):

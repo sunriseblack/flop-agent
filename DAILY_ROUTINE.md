@@ -28,9 +28,12 @@ or a changed blocker; unchanged missing-data checks stay quiet afterward.
 ## Current policy and receipt follow-ups
 
 Follow the [November 21 cutoff replay and receipt evidence](EXPEDITION_2026-11-21.md)
-on the existing threads. On Yellow Paper 260, follow a decision on work delivered
-after the cutoff and how to prove its timing. On 172, use Nashi’s existing receipts
-to distinguish buyer charges, miner payment and eligible credit. On network 308,
+on the existing threads. On Yellow Paper 260, pvthr33 reproduced the cutoff measurements
+and clarified how their proposal treats both last-turn histories. Follow a maintainer
+decision on grace and the escrow cap at the snapshot. On 172, follow an explicit
+rule for assigning the observed difference between turn usage and buyer charges.
+On 285, follow a scoring-parameter change or independent replay of the fixed-window
+period-origin test. Preserve the same settlement cohort when comparing grids. On network 308,
 follow Baophan00’s actual saved-receipt run or a changed receipt state. Keep the
 decoded channel event separate from current buyer quota. Preserve unanswered
 requests. On 291, reconcile the released 0.8.0 diagnostic with any future fee
