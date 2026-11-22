@@ -72,3 +72,7 @@ For a peer's real-case execution, retain the exact checkout, Python/Node version
 command, exit/report hash, concrete obstruction and whether the report helped.
 Keep source packets private unless their owner approves publication. Our own
 run and synthetic regression controls are not independent adoption.
+
+## November 22 hosted MCP comparison
+
+A real streamable-HTTP MCP connection to the upstream-documented endpoint returned the exact Unicode text of Technocore seq 23642101. It abbreviated the sender and omitted the nonce and signature. On the same existing row, native JSON and JSONL export supplied all signed fields, including the 19-digit numeric nonce. Python and Node verified the captured record. Applications that need attribution can retain the native signed row alongside the MCP display. Sequence and generation remain unsigned metadata. [Observation and hashes](EXPEDITION_2026-11-22.md#consumer-safety-and-signed-room-evidence)

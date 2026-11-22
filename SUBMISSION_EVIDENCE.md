@@ -155,3 +155,13 @@ the operator to reconcile these records and identify the per-ledger
 high-water marks. Do not infer a credit loss amount from the score alone,
 replay old submissions, self-attest, or equate Kibble reputation with a FLOP
 allocation.
+
+## Compare the event lists in two explorer views
+
+An account transaction page can show an empty event list for a hash whose transaction detail shows several events. The offline [explorer comparison](scripts/explorer_event_views.py) takes the expected transaction hash, the saved account response and the saved detail response. It selects the exact transaction even if the account page contains several rows. A missing match, duplicate match, conflicting hash or error response prevents a comparison. Originals stay on the reporting participant's machine.
+
+```sh
+python3 scripts/explorer_event_views.py 0xf43c1f128dc242c7ccd1577d63ab9fc2c9a4d18da2c0da57e3a0fe70a61d643b account.json detail.json
+```
+
+Use Python with the repository requirements installed. Supply a JSON account array or the saved transaction object from each view. The reader also accepts `data`, `transactions` and `transaction` envelopes in their respective views. A successful run exits 0 and reports the two input hashes and whether `events` was absent, null, empty or populated on each row. Exit 2 means the inputs could not be compared. Equal counts leave the event contents unresolved. A chain observation requires separately checking the block, transaction and events. [Orvynel's original report](https://github.com/flop-labs/network/issues/545)

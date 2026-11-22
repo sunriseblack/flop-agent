@@ -35,6 +35,19 @@ class FirstSessionOutputTests(unittest.TestCase):
         self.assertEqual(result["proof_and_settlement"], "not_verified")
         self.assertFalse(result["live_session_authorized"])
 
+    def test_failed_stream_and_released_receipt_cannot_supply_a_workload_answer(self):
+        # Reduced shapes from network issue 535. The error frame can arrive over HTTP 200.
+        error_frame = {"choices": [{"finish_reason": "error", "delta": {"content": ""}}],
+                       "usage": {"completion_tokens": 0}}
+        receipt = {"state": "released", "response_status": 503, "settled_spend": None}
+        for observation in (error_frame, receipt):
+            with self.subTest(observation=observation):
+                report = self.review(answer=observation)
+                self.assertFalse(report["mechanical_pass"])
+                self.assertEqual(report["proof_and_settlement"], "not_verified")
+        with self.assertRaises(ValueError):
+            self.review(raw=b": keepalive\n\ndata: [DONE]\n\n")
+
     def test_exact_byte_cap_and_one_byte_over_including_utf8(self):
         raw = json.dumps(self.answer, ensure_ascii=False).encode()
         exact = raw + b" " * (8192 - len(raw))
