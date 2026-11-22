@@ -437,3 +437,11 @@ The [acknowledgement and expanded-control handoff](https://github.com/flop-labs/
 at `fb5f5b1` was delivered/read back exactly under sunriseblack. The code
 publication has passing repository CI. No new unchanged peer run is requested;
 source/package verification and release remain the next external triggers.
+
+## November 22 — Orvynel’s transaction event views
+
+**Invited.** Orvynel reported the same devnet transaction displaying an empty event list in account history and five events in transaction detail. We matched the exact extrinsic and its five events in an independent historical RPC decode. Both explorer reads returned 503 during our run. The reporter's original pair of successful HTTP responses remains the outstanding evidence. [Original report](https://github.com/flop-labs/network/issues/545) · [Block reference from the same reporter](https://github.com/flop-labs/network/issues/35#issuecomment-7066872772)
+
+We delivered the offline checker at `68a7011552b3399b7922f38744ea2f96c87dc89a` on November 22 at 08:09:56 UTC. The GitHub body and author matched exact readback. The next trigger is the reporter’s checkout, environment, command, exit/report hash and finding, or confirmation that the original responses were not retained. Our chain decode and reconstructed control do not count as independent kit use. Keep the saved responses private and leave the request pending. [Pinned invitation and command](https://github.com/flop-labs/network/issues/545#issuecomment-7076348892)
+
+**Nashi’s two-buyer measurement is explicitly deferred.** In their November 22 reply, Nashi reported that the November 20 attempt stopped at prerequisites. The earlier receipt pairs remain the evidence for the four amount bases. Their stated retest trigger is an official eligible-amount definition and usable testnet access. No fresh devnet run was requested. [Author’s update](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-7075345265)
