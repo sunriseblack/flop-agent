@@ -49,3 +49,31 @@ Local and public main matched at `5963c45` on preflight. The public DID matched 
 The checker, tests and report were published at `68a7011552b3399b7922f38744ea2f96c87dc89a`. The public checker blob matched the locally tested revision. All 260 repository Python tests, ten kit controls, thirteen exporter controls and sixteen Node diagnostic tests passed locally. Repository CI passed on Python 3.12 and 3.14. The scoped staged files passed diff and credential-pattern checks. [Commit](https://github.com/sunriseblack/flop-agent/commit/68a7011552b3399b7922f38744ea2f96c87dc89a) · [CI](https://github.com/sunriseblack/flop-agent/actions/runs/45001482473)
 
 Orvynel received the exact case command and the historical event coordinates at 08:09:56 UTC. We verified the published reply body and author. Independent execution, a reporter finding and a verified repair remain pending. The issue remains open for their saved result or confirmation that the two responses were not retained. [GitHub reply](https://github.com/flop-labs/network/issues/545#issuecomment-7076348892)
+
+## Miner payer history on a fixed set of devnet settlements
+
+frederik-maker proposed weighting miner credit by the number of independent paying agents. We tested one observable part of that proposal. If the scored settlements stay fixed, how often does a miner appear to have one paying address solely because the counterparty history starts at the beginning of the scoring period? pvthr33 identified the separate question of which paid work could enter the miner pool at all. The Yellow Paper names PoI-verified effective-FLOP as the miner basis (R8.4) and limits public work credit from channel payouts (R11.2b). [Original proposal](https://github.com/flop-labs/network/issues/559) · [pvthr33’s comparison](https://github.com/flop-labs/yellowpaper/issues/276) · [Yellow Paper revision](https://github.com/flop-labs/yellowpaper/blob/a5b4326d006c471ef01d6262373150412439d33c/yellowpaper.md#L1736-L1748)
+
+**Method.** The scoring-period example uses settlement events from November 13 at 17:00 through November 21 at 02:00 UTC (end exclusive), across all models. That spans November 14 at 00:00 through November 21 at 09:00 UTC+7. We held the same 4,182 channel IDs, 143 miner addresses and 927.954514820952981548 devnet FLOP of reported miner payment fixed. For each miner, we counted distinct channel opener addresses either in this period alone or also in the available history back to October 1 at 04:07:21.001 UTC. Neither count uses events after the period. A literal opener address is observable. Its beneficial owner and the number of downstream buyers are unknown.
+
+| Distinct openers observed per miner | Miners with period history only | Miners including prior history | Period settlements with period history only | Same settlements classified with prior history |
+| --- | ---: | ---: | ---: | ---: |
+| Only the known gateway | 77 | 73 | 950 | 878 |
+| One other opener | 60 | 55 | 3,169 | 3,048 |
+| Two or more openers | 6 | 15 | 63 | 256 |
+| Total | 143 | 143 | 4,182 | 4,182 |
+
+Nine miners moved from one opener to multiple. They served **193** period settlements with **108.485367499927830890** devnet FLOP in reported miner payments. Four of the nine had only the gateway during the period. In total, 77 miners had only that gateway during the period, across 950 settlements. Nashi’s buyer receipts and channel readback directly document that the gateway can open a channel on a buyer’s behalf. How many buyers used any of these 950 settlements remains unknown. [Nashi’s original receipt and channel evidence](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-6851354355)
+
+**Policy suggestion.** If FLOP uses payer concentration when reviewing a miner, publish the start and end heights for the history used, distinguish “one observable opener” from “intermediated, buyer count unknown,” and give the operator a correction route before the snapshot locks. Two reference cases would make the decision testable. In the first, a prior-period payer changes an opener count while every scored channel remains fixed. In the second, a known gateway opens the channels and buyer-level evidence is unavailable. A longer lookback preserves previously observed counterparties, but miners with short histories have had less time to accumulate them. These records establish neither independent control nor entitlement to credit.
+
+**Reproduction.** The input was the November 21 capture of 133 official explorer pages, 13,243 unique rows. Today the first settled page returned HTTP 503. One row lacked a terminal event and was excluded. Its opener-miner combination already appeared in 116 event-backed rows before the period. Only positive paid rows with different opener and miner addresses were counted. All 4,182 period rows were cooperative, with the explorer labels `Soft` and `WITNESS_ONLY`. The explorer’s finalized view supplies these fields. We did not verify a chain storage proof. Our capture predates frederik-maker’s November 22 capture. [Input retrieval and page-manifest format](EXPEDITION_2026-11-21.md#how-long-a-settlement-grace-period-would-help)
+
+Run the following on saved 100-row settled pages named by offset. The report includes the five observed transitions, their integer miner payments, and the digest of the sorted period channel IDs.
+
+```sh
+python3 research/miner_payer_history.py /path/to/settled-pages
+python3 -m unittest discover -s tests -p test_miner_payer_history.py
+```
+
+The page-manifest SHA-256 matched `d086978bd87bb73de41fad3d2fe731e762fc53e2c20ae14fea947454053d786e`. Period channel-ID SHA-256 was `bfadd36b7ee901ffbaa5c60fa0c5dd6b84af88c8f674856ed012ddf9eee86761` and report SHA-256 was `ecbbf919ac439c75308fb541ced5f3832c03327fe8da3429b80c891d717766d6`. A separate local SQLite query over the raw JSON reproduced every transition, integer amount and the channel-ID digest. The replay and the cross-check were both ours.

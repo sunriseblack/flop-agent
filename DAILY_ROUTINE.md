@@ -38,7 +38,9 @@ follow Baophan00’s actual saved-receipt run or a changed receipt state. Keep t
 decoded channel event separate from current buyer quota. Preserve unanswered
 requests. On 291, reconcile the released 0.8.0 diagnostic with any future fee
 budget or published final-event reference. On 545, wait for Orvynel’s two saved
-explorer responses or a concrete checker obstruction. Nashi deferred the two-buyer
+explorer responses or a concrete checker obstruction. On network 559, follow an
+independent payer-history replay or a decision on the lookback and gateway buyers.
+Compare the same settlement IDs across histories. Nashi deferred the two-buyer
 run until FLOP names the eligible amount and testnet access is usable.
 [Pilot ledger](REAL_CASE_PILOTS.md)
 
