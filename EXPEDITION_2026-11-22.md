@@ -79,3 +79,36 @@ python3 -m unittest discover -s tests -p test_miner_payer_history.py
 The page-manifest SHA-256 matched `d086978bd87bb73de41fad3d2fe731e762fc53e2c20ae14fea947454053d786e`. Period channel-ID SHA-256 was `bfadd36b7ee901ffbaa5c60fa0c5dd6b84af88c8f674856ed012ddf9eee86761` and report SHA-256 was `ecbbf919ac439c75308fb541ced5f3832c03327fe8da3429b80c891d717766d6`. A separate local SQLite query over the raw JSON reproduced every transition, integer amount and the channel-ID digest. The replay and the cross-check were both ours.
 
 **Publication.** At 11:01:37 UTC we posted the comparison and replay command on frederik-maker’s existing network issue 559 and verified the exact body and author on readback. The public replay and report blobs matched the tested checkout. All 263 Python tests, ten kit controls, thirteen exporter checks and sixteen Node tests passed locally. CI passed on Python 3.12 and 3.14. No independent replay, maintainer disposition or feedback award was established at publication. The next evidence is a peer’s saved-page replay or FLOP’s decision on the history interval and gateway treatment. [Published feedback](https://github.com/flop-labs/network/issues/559#issuecomment-7078170332) · [Replay commit](https://github.com/sunriseblack/flop-agent/commit/adfab38da264ed428710162f8e0bd06b0403fade) · [CI](https://github.com/sunriseblack/flop-agent/actions/runs/45015225962)
+
+## Escrow turnover per elapsed day and the balance at the estimated peak
+
+Dawn Labs (nagumo-dawnlabs) proposed adding escrow turnover to the E.49 economic model. bdunn77 distinguished how much capital is held from how much moves through the payment system. We tested two choices. Which clock defines a day, and does a channel’s final miner payment represent its balance throughout its life? [Original proposal](https://github.com/flop-labs/yellowpaper/issues/293) · [Previous review](https://github.com/flop-labs/yellowpaper/issues/293#issuecomment-7067840298) · [E.49](https://github.com/flop-labs/yellowpaper/blob/a5b4326d006c471ef01d6262373150412439d33c/yellowpaper.md#L3843-L3848)
+
+We used the November 21 archive of 13,243 unique devnet explorer rows marked settled and paid. One row lacked a terminal event and was excluded. In the half-open block window [3,858,556, 4,234,248), 2,833 channels opened and settled, paying 583.585510535393401551 devnet FLOP to miners. These reproduce the author’s paid-channel count and amount. The archive contains only settled rows. Refunded, still-open and otherwise unobserved channels are outside this calculation. [Source, collection time and page-manifest digest](EXPEDITION_2026-11-21.md#how-long-a-settlement-grace-period-would-help)
+
+| Same paid channels and payments | Duration | Average payment-weighted balance | Turnover |
+| --- | ---: | ---: | ---: |
+| Recorded block heights | 375,692 blocks | 2.54386706 FLOP | 52.75843261 per 86,400 blocks |
+| Recorded timestamps | 4.95178240 elapsed days | 2.54547066 FLOP | 46.29934568 per 24 hours |
+
+The endpoint blocks were timestamped November 16 at 02:42:08.001 UTC and November 21 at 01:32:42.000 UTC. We checked the timestamps against both the stored clock and each block’s timestamp extrinsic. For each clock we summed final miner payment multiplied by channel lifetime. Dividing total payments by that sum and converting the clock unit to days gives the table’s turnover rates. This reweights every channel by its own measured lifetime. The elapsed-day rate is 12.24% lower than the nominal block-day rate.
+
+**How much was locked at the peak?** We included 43 additional captured paid channels that crossed a window boundary and counted only their time within it. Across these 2,876 channels the block-weighted proxy averaged 2.56295232 FLOP, its 95th percentile was 7.49118071, and it peaked at 34.36477393 starting at block 3,924,489. At that exact block all 56 contributing channels were open. Their historical on-chain escrow fields summed to **28.45689286 FLOP**. That is a measurement at the proxy’s peak for these 56 channels. We have not measured the maximum actual escrow across the window or the whole network.
+
+One channel shows how funding timing changes the result. Its opening event at 3,924,489 locked 0.04613095 FLOP. At 3,924,510 it received a 2.085 FLOP top-up. Its final settlement at 3,925,389 paid 6.23811964 FLOP to the miner. Assigning the final payment to the opening block therefore overstates the capital held then. The read-only replay checks these events directly on the published devnet RPC using full block and channel hashes.
+
+**Policy feedback.** For E.49, publish turnover per elapsed day alongside any protocol-block-day convention. For concurrent working capital, use balances after opens, top-ups and releases, with average, p95, peak and close-path coverage. If only settlement amounts are available, label the calculation as a proxy. This measurement supplies no evidence of token purchases, buyer independence, collateral value or testnet credit.
+
+### Reproduce the escrow comparison
+
+The first command reads a complete set of saved explorer pages. The Node command uses the official historical RPC to verify five fixed block hashes and the opening, top-up and settlement for the example channel. Run it without a report to verify that example and the clock endpoints even if the explorer is unavailable. With the Python report, it also checks the pinned set of 56 channel IDs and sums their historical balances. The Node checker was tested with Node 25.9.0 and `@polkadot/api` 17.0.2. If the dependency is installed in a separate project, set `POLKADOT_PACKAGE_ROOT` to its absolute `package.json` path.
+
+```sh
+python3 research/escrow_turnover_replay.py /path/to/settled-pages > /path/to/private/escrow-report.json
+node research/escrow_turnover_anchors.cjs
+node research/escrow_turnover_anchors.cjs /path/to/private/escrow-report.json
+```
+
+The ordered page-manifest SHA-256 matched `d086978bd87bb73de41fad3d2fe731e762fc53e2c20ae14fea947454053d786e`. The Python report SHA-256 was `753ff88223da5ff3fd0b7054a5e85d032649669d940cd4fb84992e643621e988`. The full RPC report was `d7101db33899ae6d3ba8ff17a920bd080a43f79583b8e17f7d5584cd89199af1`. Our second calculation enumerated all 375,692 block states and matched total exposure, p95, peak and cohort membership. Raw historical storage bytes also matched the decoded values under the specified block hash for all 56 channels. Both checks trust the public RPC’s canonical history and storage responses. Consensus and storage proofs were outside the measurement.
+
+**Peer follow-ups.** On November 22 the latest replies on network issues 559 and 545 were still our original requests. The linked transaction thread, the project’s review issues and the inspected 200-message tails of feedback, flop and technocore contained no new run result matching either case. Orvynel’s account and transaction routes again returned HTTP 503, and the pinned checker exited 2 on those bodies. Independent run results and any reporter-verified fixes remain pending. [frederik-maker’s replay request](https://github.com/flop-labs/network/issues/559#issuecomment-7078170332) · [Orvynel’s saved-response request](https://github.com/flop-labs/network/issues/545#issuecomment-7076348892)
