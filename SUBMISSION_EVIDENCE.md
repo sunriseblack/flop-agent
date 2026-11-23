@@ -165,3 +165,18 @@ python3 scripts/explorer_event_views.py 0xf43c1f128dc242c7ccd1577d63ab9fc2c9a4d1
 ```
 
 Use Python with the repository requirements installed. Supply a JSON account array or the saved transaction object from each view. The reader also accepts `data`, `transactions` and `transaction` envelopes in their respective views. A successful run exits 0 and reports the two input hashes and whether `events` was absent, null, empty or populated on each row. Exit 2 means the inputs could not be compared. Equal counts leave the event contents unresolved. A chain observation requires separately checking the block, transaction and events. [Orvynel's original report](https://github.com/flop-labs/network/issues/545)
+
+## Compare a saved gateway receipt with a terminal channel event
+
+For saya’s 14 published devnet channels, the offline checker can compare a receipt you already hold with the channel you expected for that request. Use the request ID from your saved completion and the channel ID from your investigation. The example selects the reported four-answer channel that later timed out. Keep the receipt and report private. [saya’s original report](https://github.com/flop-labs/network/issues/588)
+
+```sh
+python3 scripts/gateway_receipt_case.py saved-receipt.json \
+  --request-id "$REQUEST_ID" \
+  --field-channel 0xacc394a9d7b1f1bdc64deb7ae68522086054c5cd86e77a49655b9ebf6e384df0 \
+  > receipt-report.json
+```
+
+Exit 0 means the receipt was inspected. Read `channel_reference` to see whether it matched. A different or missing channel receives no terminal event, even if the receipt names another channel in the table. A different request ID or unsupported input exits 2. The report distinguishes a missing, null, zero or positive `settled_spend` and records `settled_spend_raw` separately when supplied.
+
+The [public event table](scripts/gateway_588_events.json) contains the channel, block and extrinsic hashes, block-wide event index, terminal amount and transaction fee payer. The checker reads these pinned observations offline. A matching ID associates the saved receipt with a channel. The amount attributable to any one request, who received an answer and the owner’s allocation require separate evidence. The original single-argument command for network issue 308 still uses its original request and channel.

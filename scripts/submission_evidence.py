@@ -30,7 +30,7 @@ MAX_EXPORT_BYTES = 32 * 1024 * 1024
 MAX_PACKET_BYTES = 8 * 1024 * 1024
 
 
-def strict_json(raw):
+def strict_json(raw, *, parse_float=float):
     # Ambiguous duplicate fields can be interpreted differently by reviewers.
     # Nonfinite numbers are not JSON and must not leak into an evidence report.
     def unique_object(pairs):
@@ -42,7 +42,7 @@ def strict_json(raw):
         return result
     def reject_constant(value):
         raise ValueError("nonfinite JSON number")
-    return json.loads(raw, object_pairs_hook=unique_object, parse_constant=reject_constant)
+    return json.loads(raw, object_pairs_hook=unique_object, parse_constant=reject_constant, parse_float=parse_float)
 
 
 def integer(value):

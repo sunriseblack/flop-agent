@@ -1,6 +1,8 @@
-"""Compare a saved gateway receipt with the public channel witness in network issue 308."""
+"""Compare a saved gateway receipt with a recorded public devnet channel event."""
 
 import argparse
+from decimal import Decimal, DecimalException
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -22,15 +24,15 @@ SETTLEMENT = {
 }
 
 
-def compare(receipt):
-    if not isinstance(receipt, dict) or receipt.get("request_id") != REQUEST:
-        raise ValueError("expected the saved receipt for the issue-308 request")
+def receipt_fields(receipt, request_id, expected_channel):
+    if not isinstance(receipt, dict) or receipt.get("request_id") != request_id:
+        raise ValueError("receipt does not match the expected request ID")
     channel = receipt.get("channel_id")
     if channel is not None and (not isinstance(channel, str) or not re.fullmatch(r"0x[0-9a-fA-F]{64}", channel)):
         raise ValueError("invalid channel_id")
     if channel is None:
         reference = "missing"
-    elif channel.lower() == CHANNEL:
+    elif channel.lower() == expected_channel:
         reference = "matches"
     else:
         reference = "different"
@@ -45,28 +47,70 @@ def compare(receipt):
     if raw is not None and not ((type(raw) is int and raw >= 0)
                                 or (isinstance(raw, str) and re.fullmatch(r"[0-9]+", raw))):
         raise ValueError("invalid settled_spend_raw")
-    return {"schema": "flop-receipt-308-v1", "request_id": REQUEST, "receipt_state": state,
+    return {"request_id": request_id, "receipt_state": state,
             "recorded_response_status": response_status, "channel_reference": reference,
             "settled_spend_raw_field_present": "settled_spend_raw" in receipt,
             "receipt_settled_spend_raw": str(raw) if raw is not None else None,
-            "referenced_channel_settlement": SETTLEMENT if reference == "matches" else None,
             "chain_source": "previously decoded public devnet RPC observation",
             "receipt_authentication": "not_checked", "observation_time": "not_supplied",
             "per_request_chain_payment": "unknown", "current_quota": "unknown",
             "beneficiary_credit": "unknown"}
 
 
+def compare(receipt):
+    report = receipt_fields(receipt, REQUEST, CHANNEL)
+    report["schema"] = "flop-receipt-308-v1"
+    report["referenced_channel_settlement"] = SETTLEMENT if report["channel_reference"] == "matches" else None
+    return report
+
+
+def field_report(receipt, request_id, channel_id):
+    if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}", request_id):
+        raise ValueError("expected a nonempty request identifier of at most 128 characters")
+    witnesses = json.loads(Path(__file__).with_name("gateway_588_events.json").read_bytes())
+    witness = witnesses.get(channel_id.lower())
+    if witness is None:
+        raise ValueError("channel is outside the pinned issue-588 observations")
+    report = receipt_fields(receipt, request_id, channel_id.lower())
+    value = receipt.get("settled_spend")
+    if value is None:
+        spend_state = "null" if "settled_spend" in receipt else "absent"
+    else:
+        if isinstance(value, str) and re.fullmatch(r"[0-9]+(?:\.[0-9]+)?", value):
+            value = Decimal(value)
+        if type(value) not in (int, Decimal) or not Decimal(value).is_finite() or value < 0:
+            raise ValueError("invalid nonnegative settled_spend")
+        spend_state = "zero" if value == 0 else "positive"
+    report.update({
+        "schema": "flop-receipt-588-v1",
+        "expected_channel": channel_id.lower(),
+        "receipt_settled_spend_state": spend_state,
+        "referenced_channel_event": witness if report["channel_reference"] == "matches" else None,
+        "answered_turn_verified": False,
+    })
+    return report
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("receipt", type=Path, help="one saved, redacted JSON receipt")
+    parser.add_argument("--field-channel", help="channel from network issue 588 to compare")
+    parser.add_argument("--request-id", help="expected identifier from your existing request record")
     args = parser.parse_args(argv)
+    if (args.field_channel is None) != (args.request_id is None):
+        parser.error("--field-channel and --request-id must be supplied together")
     try:
         with args.receipt.open("rb") as source:
             data = source.read(65537)
         if len(data) > 65536:
             raise ValueError("receipt exceeds 64 KiB")
-        report = compare(strict_json(data.decode("utf-8")))
-    except (OSError, ValueError, RecursionError) as exc:
+        if args.field_channel is None:
+            report = compare(strict_json(data.decode("utf-8")))
+        else:
+            receipt = strict_json(data.decode("utf-8"), parse_float=Decimal)
+            report = field_report(receipt, args.request_id, args.field_channel)
+            report["receipt_sha256"] = hashlib.sha256(data).hexdigest()
+    except (OSError, ValueError, DecimalException, RecursionError) as exc:
         print(f"receipt unavailable: {exc}", file=sys.stderr)
         return 2
     print(json.dumps(report, indent=2, sort_keys=True))
