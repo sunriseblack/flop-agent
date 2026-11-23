@@ -38,7 +38,7 @@ def receipt_fields(receipt, request_id, expected_channel):
         reference = "different"
 
     state = receipt.get("state")
-    if state not in ("estimated", "settled", "released"):
+    if state not in ("reserved", "estimated", "settled", "released"):
         raise ValueError("unsupported or missing receipt state")
     response_status = receipt.get("response_status")
     if response_status is not None and (type(response_status) is not int or not 100 <= response_status <= 599):
@@ -65,7 +65,7 @@ def compare(receipt):
 
 
 def field_report(receipt, request_id, channel_id):
-    if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}", request_id):
+    if request_id in (".", "..") or not re.fullmatch(r"[!-~]{1,128}", request_id):
         raise ValueError("expected a nonempty request identifier of at most 128 characters")
     witnesses = json.loads(Path(__file__).with_name("gateway_588_events.json").read_bytes())
     witness = witnesses.get(channel_id.lower())
@@ -81,7 +81,21 @@ def field_report(receipt, request_id, channel_id):
         if type(value) not in (int, Decimal) or not Decimal(value).is_finite() or value < 0:
             raise ValueError("invalid nonnegative settled_spend")
         spend_state = "zero" if value == 0 else "positive"
+    if "terminal_event" not in receipt:
+        event_reference = "absent"
+    elif receipt["terminal_event"] is None:
+        event_reference = "null"
+    elif not isinstance(receipt["terminal_event"], str):
+        raise ValueError("invalid terminal_event")
+    elif report["channel_reference"] != "matches":
+        event_reference = "unbound_channel"
+    else:
+        references = {f"{witness['block_hash']}:{witness['extrinsic_index']}"}
+        if witness["event"] == "computeChannel.TimedOutRefunded":
+            references.add("timeout:" + witness["extrinsic_hash"])
+        event_reference = "matches" if receipt["terminal_event"].lower() in references else "different"
     report.update({
+        "receipt_terminal_event_reference": event_reference,
         "schema": "flop-receipt-588-v1",
         "expected_channel": channel_id.lower(),
         "receipt_settled_spend_state": spend_state,

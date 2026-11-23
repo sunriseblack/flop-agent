@@ -97,3 +97,23 @@ class FieldReceiptTests(unittest.TestCase):
                 for bad in ['{"state":"estimated","state":"settled"}', " " * 65537]:
                     saved.write_text(bad)
                     self.assertEqual(case.main(args), 2)
+
+    def test_existing_gateway_event_formats_bind_to_the_correct_channel(self):
+        for channel in [self.paid, self.refunded]:
+            witness = self.report(channel)["referenced_channel_event"]
+            ref = f"{witness['block_hash']}:{witness['extrinsic_index']}"
+            self.assertEqual(self.report(channel, terminal_event=ref)["receipt_terminal_event_reference"], "matches")
+            self.assertEqual(self.report(channel, terminal_event=ref + "1")["receipt_terminal_event_reference"], "different")
+            timeout = "timeout:" + witness["extrinsic_hash"]
+            expected = "matches" if channel == self.refunded else "different"
+            self.assertEqual(self.report(channel, terminal_event=timeout)["receipt_terminal_event_reference"], expected)
+            self.assertEqual(self.report(channel, channel_id=None, terminal_event=ref)["receipt_terminal_event_reference"], "unbound_channel")
+
+    def test_reserved_receipt_and_printable_request_id(self):
+        request_id = "existing/receipt+1@devnet"
+        receipt = {"request_id": request_id, "state": "reserved", "channel_id": None, "terminal_event": None}
+        report = case.field_report(receipt, request_id, self.refunded)
+        self.assertEqual(report["receipt_terminal_event_reference"], "null")
+        for invalid in ["", ".", "..", "a b", "a" * 129]:
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                case.field_report(dict(receipt, request_id=invalid), invalid, self.refunded)
