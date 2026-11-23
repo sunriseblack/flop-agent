@@ -482,3 +482,9 @@ and actual owner attribution become acceptance checks; they cannot be claimed
 in advance. No enrollment, wallet challenge, estimate, credential creation or
 inference dispatch was made. Local preparation is advanced; the external gates
 and trusted identity restoration are not resolved.
+
+## November 23 readiness
+
+The chosen devnet SDK 0.9.0 guard admitted spec 1014034 at finalized height 4,425,668. The old 0.8.0 guard rejected it. The testnet profile still lists a planned network and no supported release. Repeat the exact released-client check against the published testnet identity when available. The private `implementation-gap` request and evaluation still match their prior bindings. Exact quotations passed even for a deliberately unsupported owner-award claim, so a human must review the proposed answer.
+
+The confirmed microchannel on devnet paid its miner 0.000005950000000003 FLOP. That same account incurred 1.317973193865 in observed activation and close transaction fees. For the first proposed session, identify the payer for each fee and distinguish gross channel terms, any fee credits and maximum authorized test-token spend. No live quote, approved spend or finalized testnet inference session exists in today’s evidence. [Fee replay](EXPEDITION_2026-11-23.md) · [Official testnet profile](https://ask.flop.finance/networks/testnet)

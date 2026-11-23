@@ -32,16 +32,25 @@ on the existing threads. On Yellow Paper 260, pvthr33 reproduced the cutoff meas
 and clarified how their proposal treats both last-turn histories. Follow a maintainer
 decision on grace and the escrow cap at the snapshot. On 172, follow an explicit
 rule for assigning the observed difference between turn usage and buyer charges.
-On 285, follow a scoring-parameter change or independent replay of the fixed-window
-period-origin test. Preserve the same settlement cohort when comparing grids. On network 308,
+On 285, pvthr33 independently reproduced the fixed-window period-origin result.
+Follow a scoring-parameter change or maintainer decision, keeping the settlement
+cohort fixed when comparing grids. On network 308,
 follow Baophan00’s actual saved-receipt run or a changed receipt state. Keep the
 decoded channel event separate from current buyer quota. Preserve unanswered
 requests. On 291, reconcile the released 0.8.0 diagnostic with any future fee
-budget or published final-event reference. On 545, wait for Orvynel’s two saved
-explorer responses or a concrete checker obstruction. On network 559, follow an
-independent payer-history replay or a decision on the lookback and gateway buyers.
+budget or published final-event reference. On 545, our November 23 capture reproduced the two views. Follow Orvynel’s
+original saved-response result or a checker obstruction. On network 559, follow
+frederik-maker’s independent replay or a decision on the lookback and gateway buyers.
 Compare the same settlement IDs across histories. On Yellow Paper 293, track a peer
 replay or a decision on the clock and balance changes used to measure escrow turnover.
+For 172, use the pinned fee profile and observation height for each channel.
+
+On network 588, follow saya’s saved-receipt test at `75a1ace` and any
+gateway operator trace for omerbek’s acknowledged turn. The latter channel
+subsequently paid. Compare terminal fees by signer and account for any fee
+credit before drawing conclusions about miner economics. Keep the receipt
+owner’s execution distinct from our public chain replay. [November 23 evidence](EXPEDITION_2026-11-23.md)
+
 Nashi deferred the two-buyer
 run until FLOP names the eligible amount and testnet access is usable.
 [Pilot ledger](REAL_CASE_PILOTS.md)
