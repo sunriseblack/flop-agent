@@ -47,6 +47,36 @@ class FieldReceiptTests(unittest.TestCase):
         receipt.update(fields)
         return case.field_report(receipt, "saved-request", expected)
 
+    def test_released_request_without_a_channel_witness(self):
+        receipt = {"request_id": "saved-request", "response_status": 503, "state": "released",
+                   "settled_spend": None, "terminal_event": None, "channel_id": None}
+        report = case.field_report(receipt, "saved-request")
+        self.assertEqual(report["receipt_state"], "released")
+        self.assertEqual(report["recorded_response_status"], 503)
+        self.assertEqual(report["channel_reference"], "null")
+        self.assertEqual(report["receipt_terminal_event_reference"], "null")
+        self.assertEqual(report["receipt_settled_spend_state"], "null")
+        self.assertIsNone(report["chain_source"])
+        self.assertIsNone(report["referenced_channel_event"])
+        self.assertEqual(report["beneficiary_credit"], "unknown")
+        with self.assertRaises(ValueError):
+            case.field_report(receipt, "different-request")
+        for key, field in [("channel_id", "channel_reference"), ("terminal_event", "receipt_terminal_event_reference"),
+                           ("settled_spend", "receipt_settled_spend_state")]:
+            partial = dict(receipt)
+            del partial[key]
+            self.assertEqual(case.field_report(partial, "saved-request")[field], "absent")
+
+    def test_receipt_only_cannot_supply_its_own_chain_witness(self):
+        witness = self.report(self.paid)["referenced_channel_event"]
+        receipt = {"request_id": "saved-request", "state": "settled", "channel_id": self.paid,
+                   "settled_spend": 0, "terminal_event": f"{witness['block_hash']}:{witness['extrinsic_index']}"}
+        report = case.field_report(receipt, "saved-request")
+        self.assertEqual(report["channel_reference"], "supplied_unverified")
+        self.assertEqual(report["receipt_terminal_event_reference"], "unbound_channel")
+        self.assertEqual(report["receipt_settled_spend_state"], "zero")
+        self.assertIsNone(report["referenced_channel_event"])
+
     def test_zero_receipt_and_channel_refund(self):
         report = self.report(self.refunded, settled_spend=0, response_status=200)
         self.assertEqual(report["receipt_settled_spend_state"], "zero")
@@ -92,7 +122,15 @@ class FieldReceiptTests(unittest.TestCase):
             output = StringIO()
             with redirect_stdout(output):
                 self.assertEqual(case.main(args), 0)
-            self.assertEqual(json.loads(output.getvalue())["referenced_channel_event"]["block"], 3477375)
+            pinned = json.loads(output.getvalue())
+            self.assertEqual(pinned["referenced_channel_event"]["block"], 3477375)
+            output = StringIO()
+            with redirect_stdout(output):
+                self.assertEqual(case.main([str(saved), "--request-id", "saved-request"]), 0)
+            unbound = json.loads(output.getvalue())
+            self.assertEqual(unbound["schema"], "flop-gateway-request-observation-v1")
+            self.assertIsNone(unbound["referenced_channel_event"])
+            self.assertEqual(unbound["receipt_sha256"], pinned["receipt_sha256"])
             with redirect_stderr(StringIO()):
                 for bad in ['{"state":"estimated","state":"settled"}', " " * 65537]:
                     saved.write_text(bad)

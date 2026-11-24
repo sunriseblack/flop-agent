@@ -168,6 +168,14 @@ Use Python with the repository requirements installed. Supply a JSON account arr
 
 ## Compare a saved gateway receipt with a terminal channel event
 
+If the gateway released the request and recorded a null channel, use only the request ID from the original completion or error. Inspect the saved receipt offline with the repository requirements installed.
+
+```sh
+python3 scripts/gateway_receipt_case.py saved-receipt.json --request-id "$REQUEST_ID"
+```
+
+This reports the gateway's HTTP status, receipt state, and whether its spend and references are present. Explicit null, an omitted spend field and a reported zero have different meanings. A receipt that names a channel also needs independent chain evidence to establish payment. Exit 0 means the file was inspected. A mismatched request ID exits 2. [Released request from network issue 642](https://github.com/flop-labs/network/issues/642)
+
 For saya’s 14 published devnet channels, the offline checker can compare a receipt you already hold with the channel you expected for that request. Use the request ID from your saved completion and the channel ID from your investigation. The example selects the reported four-answer channel that later timed out. Keep the receipt and report private. [saya’s original report](https://github.com/flop-labs/network/issues/588)
 
 ```sh

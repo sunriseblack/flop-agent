@@ -1,4 +1,4 @@
-"""Compare a saved gateway receipt with a recorded public devnet channel event."""
+"""Inspect a saved gateway receipt and optionally compare it with a pinned devnet event."""
 
 import argparse
 from decimal import Decimal, DecimalException
@@ -30,7 +30,11 @@ def receipt_fields(receipt, request_id, expected_channel):
     channel = receipt.get("channel_id")
     if channel is not None and (not isinstance(channel, str) or not re.fullmatch(r"0x[0-9a-fA-F]{64}", channel)):
         raise ValueError("invalid channel_id")
-    if channel is None:
+    if expected_channel is None:
+        reference = "supplied_unverified"
+        if channel is None:
+            reference = "null" if "channel_id" in receipt else "absent"
+    elif channel is None:
         reference = "missing"
     elif channel.lower() == expected_channel:
         reference = "matches"
@@ -51,7 +55,7 @@ def receipt_fields(receipt, request_id, expected_channel):
             "recorded_response_status": response_status, "channel_reference": reference,
             "settled_spend_raw_field_present": "settled_spend_raw" in receipt,
             "receipt_settled_spend_raw": str(raw) if raw is not None else None,
-            "chain_source": "previously decoded public devnet RPC observation",
+            "chain_source": "previously decoded public devnet RPC observation" if expected_channel else None,
             "receipt_authentication": "not_checked", "observation_time": "not_supplied",
             "per_request_chain_payment": "unknown", "current_quota": "unknown",
             "beneficiary_credit": "unknown"}
@@ -64,14 +68,17 @@ def compare(receipt):
     return report
 
 
-def field_report(receipt, request_id, channel_id):
+def field_report(receipt, request_id, channel_id=None):
     if request_id in (".", "..") or not re.fullmatch(r"[!-~]{1,128}", request_id):
         raise ValueError("expected a nonempty request identifier of at most 128 characters")
-    witnesses = json.loads(Path(__file__).with_name("gateway_588_events.json").read_bytes())
-    witness = witnesses.get(channel_id.lower())
-    if witness is None:
-        raise ValueError("channel is outside the pinned issue-588 observations")
-    report = receipt_fields(receipt, request_id, channel_id.lower())
+    witness = None
+    if channel_id is not None:
+        channel_id = channel_id.lower()
+        witnesses = json.loads(Path(__file__).with_name("gateway_588_events.json").read_bytes())
+        witness = witnesses.get(channel_id)
+        if witness is None:
+            raise ValueError("channel is outside the pinned issue-588 observations")
+    report = receipt_fields(receipt, request_id, channel_id)
     value = receipt.get("settled_spend")
     if value is None:
         spend_state = "null" if "settled_spend" in receipt else "absent"
@@ -96,8 +103,8 @@ def field_report(receipt, request_id, channel_id):
         event_reference = "matches" if receipt["terminal_event"].lower() in references else "different"
     report.update({
         "receipt_terminal_event_reference": event_reference,
-        "schema": "flop-receipt-588-v1",
-        "expected_channel": channel_id.lower(),
+        "schema": "flop-receipt-588-v1" if witness else "flop-gateway-request-observation-v1",
+        "expected_channel": channel_id,
         "receipt_settled_spend_state": spend_state,
         "referenced_channel_event": witness if report["channel_reference"] == "matches" else None,
         "answered_turn_verified": False,
@@ -111,14 +118,14 @@ def main(argv=None):
     parser.add_argument("--field-channel", help="channel from network issue 588 to compare")
     parser.add_argument("--request-id", help="expected identifier from your existing request record")
     args = parser.parse_args(argv)
-    if (args.field_channel is None) != (args.request_id is None):
-        parser.error("--field-channel and --request-id must be supplied together")
+    if args.field_channel is not None and args.request_id is None:
+        parser.error("--field-channel requires --request-id from the saved request record")
     try:
         with args.receipt.open("rb") as source:
             data = source.read(65537)
         if len(data) > 65536:
             raise ValueError("receipt exceeds 64 KiB")
-        if args.field_channel is None:
+        if args.request_id is None:
             report = compare(strict_json(data.decode("utf-8")))
         else:
             receipt = strict_json(data.decode("utf-8"), parse_float=Decimal)
