@@ -45,11 +45,13 @@ Compare the same settlement IDs across histories. On Yellow Paper 293, track a p
 replay or a decision on the clock and balance changes used to measure escrow turnover.
 For 172, use the pinned fee profile and observation height for each channel.
 
-On network 588, follow saya’s saved-receipt test at `75a1ace` and any
-gateway operator trace for omerbek’s acknowledged turn. The latter channel
-subsequently paid. Compare terminal fees by signer and account for any fee
-credit before drawing conclusions about miner economics. Keep the receipt
-owner’s execution distinct from our public chain replay. [November 23 evidence](EXPEDITION_2026-11-23.md)
+Saya checked 98 saved receipts and declined to run external code. Close that invitation.
+Follow a changed gateway receipt format or an operator handoff trace on network 588.
+On network 642, await bdfmnt-droid’s saved-request run at `470a104` or a maintainer
+decision on per-request attribution. On 229, follow an endpoint validation change
+in the released `session run` command. Dawn Labs accepted the block-timestamp
+correction on Yellow Paper 293. Follow E.49’s measurement definition or new replay
+evidence. [November 24 findings and pilot states](EXPEDITION_2026-11-24.md)
 
 Nashi deferred the two-buyer
 run until FLOP names the eligible amount and testnet access is usable.
@@ -684,6 +686,12 @@ for an accidentally selected legacy packet before proposing a new review, and
 never rewrite an old decision to clear an error.
 
 ## Check official readiness and enable a bounded first session
+
+FLOP Labs announced November 24 at 07:00 UTC. An hour later the operator profile
+still omitted the verified testnet genesis, RPC, gateway, catalog and supported
+release. Check for the actual agent setup and qualified release on each run.
+After any announced history reset, recheck the selected genesis and the canonical
+settlement block before reusing prior evidence. [Launch announcement](https://x.com/flop_labs/status/2124776944885743659) · [Network status](https://docs.flop.network/docs/network-testnet)
 
 Look for new official launch/client/faucet/account-binding details and final
 scoring terms. An expected calendar window is not a launch signal. Resolve
