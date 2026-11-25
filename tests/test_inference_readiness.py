@@ -63,6 +63,36 @@ class ReadinessTests(unittest.TestCase):
         self.assertTrue(all(r["state"] == "supplied_not_verified" for r in report["requirements"]))
         self.assertEqual(report["airdrop_eligibility"], "not_determined")
 
+    def test_closed_inference_blocks_even_with_a_complete_inventory(self):
+        refs = {k: {"reference": "sample", "artifact_sha256": "0" * 64} for k in ready.REQUIREMENTS}
+        evidence = {"schema": "flop-launch-evidence-v1", "requirements": refs}
+        opening = ("This opening is unscored. Voucher earning starts at the publicly announced finalized "
+                   "block of a future upgrade. Earlier activity earns no vouchers and receives no backfill.")
+        closed = "No Testnet inference gateway is published yet, so Testnet inference is not open."
+        report = ready.assess(sources(opening + " " + closed), evidence, now=NOW)
+        self.assertEqual(report["blockers"], ["testnet_profile:testnet_inference_closed"])
+        self.assertEqual(report["readiness"], "blocked")
+        self.assertEqual(report["sources"][1]["observed_voucher_terms"],
+                         ["unscored_opening", "future_activation_block", "no_pre_activation_backfill"])
+
+        report = ready.assess(sources(opening), evidence, now=NOW)
+        self.assertEqual(report["blockers"], [])
+        self.assertFalse(report["live_session_authorized"])
+        self.assertEqual(report["airdrop_eligibility"], "not_determined")
+
+    def test_voucher_terms_require_current_source_wording(self):
+        corpus = sources("The Testnet opening is unscored. Earlier activity earns no vouchers or backfill.")
+        report = ready.assess(corpus, now=NOW)
+        self.assertEqual(report["sources"][0]["observed_voucher_terms"], [])
+        self.assertEqual(report["sources"][1]["observed_voucher_terms"],
+                         ["unscored_opening", "no_pre_activation_backfill"])
+        corpus["sources"][1]["retrieved_at"] = (NOW - datetime.timedelta(days=2)).isoformat()
+        stale = ready.assess(corpus, now=NOW)
+        self.assertNotIn("observed_voucher_terms", stale["sources"][1])
+        changed = ready.assess(sources("A future upgrade might offer backfill. Devnet inference is closed."), now=NOW)
+        self.assertEqual(changed["sources"][1]["observed_voucher_terms"], [])
+        self.assertNotIn("testnet_profile:testnet_inference_closed", changed["blockers"])
+
     def test_stale_future_and_unavailable_sources_stay_blocked(self):
         for value in (NOW - datetime.timedelta(days=2), NOW + datetime.timedelta(hours=1)):
             corpus = sources()

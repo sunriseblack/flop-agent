@@ -687,11 +687,19 @@ never rewrite an old decision to clear an error.
 
 ## Check official readiness and enable a bounded first session
 
-FLOP Labs announced November 24 at 07:00 UTC. An hour later the operator profile
-still omitted the verified testnet genesis, RPC, gateway, catalog and supported
-release. Check for the actual agent setup and qualified release on each run.
-After any announced history reset, recheck the selected genesis and the canonical
-settlement block before reusing prior evidence. [Launch announcement](https://x.com/flop_labs/status/2124776944885743659) · [Network status](https://docs.flop.network/docs/network-testnet)
+The November 25 check matched the Testnet genesis across the RPC, faucet and
+released SDK. Check the official verification page for publication of the
+Testnet inference gateway. Record voucher activation separately, with the
+announced finalized block and canonical hash. The opening is unscored and
+earlier activity receives no backfill. After a reset, recheck genesis and
+the canonical settlement block before reusing prior evidence.
+[Official verification](https://flop.finance/official/) · [Network status](https://docs.flop.network/docs/network-testnet)
+
+For the faucet retry-message pilot, check the existing issue for Tuyul-Google's
+execution or a changed bot reply. Preserve request number, room sequence,
+bot DID and network. A signed failure message documents the advice sent.
+Use the recipient's finalized transfer to establish a grant.
+[Original test and invitation](https://github.com/flop-labs/network/issues/1275#issuecomment-7156770496)
 
 Look for new official launch/client/faucet/account-binding details and final
 scoring terms. An expected calendar window is not a launch signal. Resolve

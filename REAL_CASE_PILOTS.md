@@ -458,6 +458,18 @@ The November 22 follow-up found no saved-response run on the original issue, the
 
 **pvthr33 — independent policy replay received.** Their separate indexer capture matched our period-origin comparison on 12,857 channels and 104 openers, and they corrected their amount label. No pinned kit execution or source checkout was reported. We reproduced their fee-profile finding and supplied a newer gateway counterexample with its storage entries and settlement split. Follow a changed rule, discrepancy or maintainer decision. [Peer replay](https://github.com/flop-labs/yellowpaper/issues/285#issuecomment-7088756193) · [Fee-profile follow-up](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-7095548848)
 
+## November 25
+
+**Tuyul-Google, network 1275 — invited.** Their original report identifies
+bot request #6870 at room sequence 15356. Our replay verified the published
+bot DID and recovered its exact failure text from the retained Testnet faucet
+export. Across sequences 15001–15500 all 32 signed transfer-failure messages
+pointed to the retired route. We delivered the pinned kit at
+`e9f1357e32ee8f60f3841ae0993c53a454a713ec` and verified the comment body
+and author. Await their environment, checkout, commands, exit/report hash and
+whether it helped. No participant execution or upstream fix was observed.
+[Original case and request](https://github.com/flop-labs/network/issues/1275#issuecomment-7156770496)
+
 ## November 24
 
 | Reporter and case | Evidence and state | Next trigger |

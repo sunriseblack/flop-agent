@@ -27,6 +27,12 @@ embedded URL or command is executed.
 The checker requires sources less than 24 hours old, exact known URLs, unique
 source IDs and matching text hashes. It records negative text signals such as
 planned testnet, unreleased client and unavailable public network values.
+The official statement that Testnet inference is closed blocks the inventory
+even when all nine references are supplied. Each fresh snapshot also lists
+the voucher terms its text explicitly states, including an unscored opening,
+a future activation block and exclusion of earlier work from backfill. Missing
+or changed wording leaves those terms undetermined. Voucher timing alone
+does not block a separately approved, useful unscored test.
 Unknown wording cannot establish readiness. A calendar target is never a
 launch signal, and devnet activity is excluded from our allocation strategy.
 

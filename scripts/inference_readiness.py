@@ -141,18 +141,31 @@ def assess(corpus, evidence=None, now=None):
             checked_hash(source.get("raw_sha256"))
             row.update(state="supplied_snapshot", text_sha256=source["text_sha256"],
                        raw_sha256=source["raw_sha256"])
-            lower = body.casefold()
+            lower = " ".join(body.casefold().split())
             signals = []
             for phrase, label in (("testnet (planned)", "testnet_planned"),
                                   ("next (unreleased)", "release_unreleased"),
                                   ("no verified public value", "network_values_unverified"),
                                   ("none verified", "no_verified_release"),
+                                  ("no testnet inference gateway is published yet, so testnet inference is not open",
+                                   "testnet_inference_closed"),
                                   ("a target, not a fixed date", "date_is_only_target"),
                                   ("no rewards and no airdrop weight", "devnet_no_weight")):
                 if phrase in lower:
                     signals.append(label)
             row["observed_text_signals"] = signals
             blockers.extend(key + ":" + s for s in signals if s not in {"date_is_only_target", "devnet_no_weight"})
+            # Voucher timing and availability of inference are independent.
+            row["observed_voucher_terms"] = []
+            for phrases, term in (
+                (("this opening is unscored.", "the testnet opening is unscored."), "unscored_opening"),
+                (("voucher earning starts at the publicly announced finalized block of a future upgrade.",),
+                 "future_activation_block"),
+                (("earlier activity earns no vouchers and receives no backfill.",
+                  "earlier activity earns no vouchers or backfill."), "no_pre_activation_backfill"),
+            ):
+                if any(phrase in lower for phrase in phrases):
+                    row["observed_voucher_terms"].append(term)
         rows.append(row)
     supplied = {}
     if evidence is not None:

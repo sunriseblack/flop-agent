@@ -1,4 +1,19 @@
-# First useful testnet inference: prepared, awaiting verified launch and approval
+# First useful testnet inference
+
+**November 25.** The Testnet RPC finalized blocks 68,905 and 69,493 on the
+published genesis. The SDK 0.11.0 runtime guard accepts spec 1014035 and
+its Testnet profile has a null gateway. FLOP Labs says Testnet inference is
+closed. The official faucet identifies the same genesis. Its limits list a
+10 test FLOP agent grant per rolling 24 hours. No grant or session was requested.
+[Verification page](https://flop.finance/official/) · [Faucet identity](https://faucet.flop.network/chain) · [Limits](https://faucet.flop.network/limits)
+
+The primary `implementation-gap` request now hashes to
+`1bc1812b41168bd8ef07643f542018fc05b72f498a5118c250f03608fbaaeebb`.
+Use its fresh private evidence packet when an official inference route,
+independent miner, original signer, owner attribution and bounded approval
+are available. Voucher earning requires a separately announced finalized
+activation block. The opening has no retroactive vouchers.
+[Opening policy](https://docs.flop.network/docs/network-testnet) · [Evidence log](EXPEDITION_2026-11-25.md)
 
 The first proposed session has a concrete use: produce an evidence checklist
 that distinguishes draft allocation rules, implemented grant behavior and a
