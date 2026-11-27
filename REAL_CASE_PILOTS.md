@@ -458,6 +458,25 @@ The November 22 follow-up found no saved-response run on the original issue, the
 
 **pvthr33 — independent policy replay received.** Their separate indexer capture matched our period-origin comparison on 12,857 channels and 104 openers, and they corrected their amount label. No pinned kit execution or source checkout was reported. We reproduced their fee-profile finding and supplied a newer gateway counterexample with its storage entries and settlement split. Follow a changed rule, discrepancy or maintainer decision. [Peer replay](https://github.com/flop-labs/yellowpaper/issues/285#issuecomment-7088756193) · [Fee-profile follow-up](https://github.com/flop-labs/yellowpaper/issues/172#issuecomment-7095548848)
 
+## November 27
+
+**Tuyul-Google independently executed the kit on the original faucet case.**
+At `e9f1357e32ee8f60f3841ae0993c53a454a713ec` on an Ubuntu-based VM
+(Python 3.12.3, cryptography 50.0.2), the live collection failed three times
+with `IncompleteRead`. They saved the public export and assembled a packet.
+The unmodified offline command exited 0. Their report hash was
+`d15533a538503b1565a48d76cef4add8a930097965aba9d9025ff3b058cebd29`.
+It recovered the signed failure reply that they had seen for request #6870.
+[Reporter’s exact commands and result](https://github.com/flop-labs/network/issues/1275#issuecomment-7157856909)
+
+**Finding reproduced and fix published.** Our pinned regression reproduced the
+uncaught download error. On our archived export the new offline command found
+the same signed payload and the same 199 verified signatures across 200 rows.
+Tuyul-Google has the fixed revision and a command for their existing export.
+Reporter verification of the repair is pending. Resume on their result or a
+changed obstruction. The corpus and their packet stay private.
+[Fix](https://github.com/sunriseblack/flop-agent/commit/f4c7c1bc55830e2232f0be2d2582cebe1f5da844) · [Retest request](https://github.com/flop-labs/network/issues/1275#issuecomment-7213149813)
+
 ## November 25
 
 **Tuyul-Google, network 1275 — invited.** Their original report identifies

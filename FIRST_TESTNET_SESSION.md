@@ -1,19 +1,22 @@
 # First useful testnet inference
 
-**November 25.** The Testnet RPC finalized blocks 68,905 and 69,493 on the
-published genesis. The SDK 0.11.0 runtime guard accepts spec 1014035 and
-its Testnet profile has a null gateway. FLOP Labs says Testnet inference is
-closed. The official faucet identifies the same genesis. Its limits list a
-10 test FLOP agent grant per rolling 24 hours. No grant or session was requested.
-[Verification page](https://flop.finance/official/) · [Faucet identity](https://faucet.flop.network/chain) · [Limits](https://faucet.flop.network/limits)
+**November 27.** Testnet finalized block 232,199 on its published genesis.
+The official gateway returned seven model IDs. SDK 0.13.1 pins the same
+gateway and genesis, and its runtime guard accepted spec 1014039. The OpenAPI
+document on the Testnet host still lists Devnet first. Recheck the selected
+host before considering credentials or a purchase. The faucet reported its
+rolling cap exhausted at 08:04 UTC.
+[Verification](https://flop.finance/official/) · [Gateway health](https://gateway.testnet.flop.network/health) · [Limits](https://faucet.flop.network/limits) · [OpenAPI report](https://github.com/flop-labs/network/issues/1749)
 
 The primary `implementation-gap` request now hashes to
-`1bc1812b41168bd8ef07643f542018fc05b72f498a5118c250f03608fbaaeebb`.
-Use its fresh private evidence packet when an official inference route,
-independent miner, original signer, owner attribution and bounded approval
-are available. Voucher earning requires a separately announced finalized
+`dbea11380b0c99307630cd6373fda55144fb5042d3af8cc41a3004478490eade`.
+Three peer channels recorded cooperative payment and carried the explorer's
+`WITNESS_ONLY` evidence label. The first run still needs the original signer,
+documented owner attribution, an independently verified miner and endpoint,
+proof appropriate to the task, and approval of the exact test-token budget
+including fees. Voucher earning requires a separately announced finalized
 activation block. The opening has no retroactive vouchers.
-[Opening policy](https://docs.flop.network/docs/network-testnet) · [Evidence log](EXPEDITION_2026-11-25.md)
+[Opening policy](https://docs.flop.network/docs/network-testnet) · [Evidence log](EXPEDITION_2026-11-27.md)
 
 The first proposed session has a concrete use: produce an evidence checklist
 that distinguishes draft allocation rules, implemented grant behavior and a
@@ -123,7 +126,8 @@ planned/unreleased testnet with no verified network artifacts.
 | Output | At most 768 tokens and 8,192 UTF-8 bytes |
 | Observation time | 120 seconds; a timeout becomes an uncertain state requiring read-only reconciliation |
 | Spend | Not set: exact test-token asset, units, quote and maximum amount need approval before submission |
-| Provider/model/miner/client/network/genesis | Unselected and unverified |
+| Network and client | Testnet genesis and SDK 0.13.1 compatibility checked November 27. Recheck at execution. |
+| Provider/model/miner | Seven gateway catalog entries observed. Session route and independent miner selection pending. |
 
 These are operator-side proposed bounds, not assumed FLOP API fields. The saved
 harness request is not a FLOP wire request. If a model's tokenizer exceeds the

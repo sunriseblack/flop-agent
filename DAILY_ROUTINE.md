@@ -687,19 +687,25 @@ never rewrite an old decision to clear an error.
 
 ## Check official readiness and enable a bounded first session
 
-The November 25 check matched the Testnet genesis across the RPC, faucet and
-released SDK. Check the official verification page for publication of the
-Testnet inference gateway. Record voucher activation separately, with the
+The November 27 check matched the published Testnet genesis across the RPC,
+gateway health, faucet and SDK 0.13.1. Check the explicit Testnet gateway
+origin and read the released SDK's compatibility guard against the finalized
+runtime. The OpenAPI document on that gateway currently advertises Devnet
+as its first server. Track the original report for a correction. Three public
+peer channels took 158–263 seconds from indexed opening to settlement.
+When the first-session observation window expires, reconcile the original
+channel read-only. Record voucher activation separately, with the
 announced finalized block and canonical hash. The opening is unscored and
 earlier activity receives no backfill. After a reset, recheck genesis and
 the canonical settlement block before reusing prior evidence.
-[Official verification](https://flop.finance/official/) · [Network status](https://docs.flop.network/docs/network-testnet)
+[Official verification](https://flop.finance/official/) · [Network status](https://docs.flop.network/docs/network-testnet) · [OpenAPI origin report](https://github.com/flop-labs/network/issues/1749) · [Peer settlement evidence](EXPEDITION_2026-11-27.md)
 
-For the faucet retry-message pilot, check the existing issue for Tuyul-Google's
-execution or a changed bot reply. Preserve request number, room sequence,
-bot DID and network. A signed failure message documents the advice sent.
-Use the recipient's finalized transfer to establish a grant.
-[Original test and invitation](https://github.com/flop-labs/network/issues/1275#issuecomment-7156770496)
+Tuyul-Google recovered the signed reply for #6870 using the kit offline. We
+published the incomplete-download fix at `f4c7c1b`. Follow their existing
+retest request for execution on their saved JSONL. Compare the signed payload
+hash across captures. The report hash also covers collection metadata and can
+differ across exports. Use the recipient's finalized transfer to establish a grant.
+[Reporter result](https://github.com/flop-labs/network/issues/1275#issuecomment-7157856909) · [Retest request](https://github.com/flop-labs/network/issues/1275#issuecomment-7213149813)
 
 Look for new official launch/client/faucet/account-binding details and final
 scoring terms. An expected calendar window is not a launch signal. Resolve
