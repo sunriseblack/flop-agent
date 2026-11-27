@@ -4,6 +4,7 @@ import base64
 import contextlib
 import copy
 import hashlib
+import http.client
 import io
 import json
 import sys
@@ -16,7 +17,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from submission_evidence import SCHEMA, assess_packet, collect_packet, inspect_artifact, inspect_board, main, strict_json  # noqa: E402
+from submission_evidence import SCHEMA, assess_packet, collect_packet, get_json, inspect_artifact, inspect_board, main, strict_json  # noqa: E402
 from verify_tape import ALPHABET  # noqa: E402
 
 
@@ -320,6 +321,92 @@ class SubmissionEvidenceTests(unittest.TestCase):
         self.assertTrue(packet["collection"]["export_fallback_used"])
         self.assertTrue(assess_packet(packet)["evidence_verified"])
         self.assertFalse(assess_packet(packet)["native_readback"]["window_reaches_reported_head"])
+
+    def test_interrupted_get_starts_fresh_and_discards_valid_json_prefix(self):
+        url = "https://example.invalid/test"
+        for failure in ("chunked", "fixed"):
+            first = io.BytesIO(b"{}")
+            first.headers = {"Content-Length": "16"}
+            if failure == "chunked":
+                first.read = mock.Mock(side_effect=http.client.IncompleteRead(b"{}", 14))
+            complete = io.BytesIO(b'{"fresh":true}')
+            complete.headers = {"Content-Length": "14"}
+            with self.subTest(failure=failure), mock.patch("urllib.request.urlopen", side_effect=[first, complete]) as fetch:
+                self.assertEqual(get_json(url, 1), {"fresh": True})
+                self.assertEqual(fetch.call_count, 2)
+                self.assertTrue(all(call.args[0].get_method() == "GET" for call in fetch.call_args_list))
+
+    def test_repeated_short_download_exits_cleanly_without_a_packet(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "packet.json"
+            with mock.patch("urllib.request.urlopen", side_effect=http.client.IncompleteRead(b"{}", 1)) as fetch:
+                with contextlib.redirect_stderr(io.StringIO()) as err:
+                    self.assertEqual(main(["--seq", "100", "--output", str(path)]), 2)
+            self.assertEqual(fetch.call_count, 2)
+            self.assertIn("--saved-export", err.getvalue())
+            self.assertNotIn("Traceback", err.getvalue())
+            self.assertFalse(path.exists())
+
+    def test_complete_invalid_or_oversize_json_is_not_retried(self):
+        for raw, length in [(b"{", "1"), (b"", "99999999"), (b"{}", "invalid")]:
+            response = io.BytesIO(raw)
+            response.headers = {"Content-Length": length}
+            with mock.patch("urllib.request.urlopen", return_value=response) as fetch:
+                with self.assertRaises(ValueError):
+                    get_json("https://example.invalid/test", 1)
+                self.assertEqual(fetch.call_count, 1)
+
+    def test_interrupted_host_get_preserves_verified_native_receipt(self):
+        def open_url(request, timeout):
+            if request.full_url.startswith("https://kibble.world/"):
+                raise http.client.IncompleteRead(b"", 20)
+            response = io.BytesIO(json.dumps(self.packet["native_readback"]).encode())
+            response.headers = {}
+            return response
+
+        with mock.patch("urllib.request.urlopen", side_effect=open_url) as fetch:
+            result = assess_packet(collect_packet("kibble", 100, 1), self.did)
+        self.assertEqual(fetch.call_count, 5)
+        self.assertTrue(result["evidence_verified"])
+        for field in ("host_board", "host_score"):
+            self.assertEqual(result[field]["state"], "collection_failed")
+
+    def test_saved_export_replays_offline_with_only_supplied_provenance(self):
+        with tempfile.TemporaryDirectory() as temp, mock.patch("urllib.request.urlopen") as fetch:
+            source, packet = Path(temp) / "saved.jsonl", Path(temp) / "packet.json"
+            rows = [dict(self.record, seq=n) if n == 100 else {"seq": n} for n in range(1, 205)]
+            raw = b"\n".join(json.dumps(x).encode() for x in rows)
+            source.write_bytes(raw)
+            with contextlib.redirect_stdout(io.StringIO()) as stdout:
+                self.assertEqual(main(["--saved-export", str(source), "--seq", "100", "--did", self.did,
+                                       "--output", str(packet)]), 0)
+            result = json.loads(stdout.getvalue())
+            view = result["native_readback"]
+            self.assertEqual((view["signed_content_matches"], view["records"], view["window_floor"], view["window_tip"]),
+                             (1, 200, 1, 200))
+            self.assertIsNone(view["reported_generation"])
+            self.assertIsNone(view["reported_head"])
+            self.assertFalse(view["window_reaches_reported_head"])
+            self.assertEqual(result["collection"]["export_sha256"], hashlib.sha256(raw).hexdigest())
+            self.assertEqual(result["host_score"]["state"], "not_supplied")
+            with contextlib.redirect_stdout(io.StringIO()) as replay:
+                self.assertEqual(main(["--file", str(packet), "--did", self.did]), 0)
+            self.assertEqual(stdout.getvalue(), replay.getvalue())
+            fetch.assert_not_called()
+
+    def test_saved_export_refuses_ambiguous_missing_or_unverified_target(self):
+        with tempfile.TemporaryDirectory() as temp, mock.patch("urllib.request.urlopen") as fetch:
+            source, output = Path(temp) / "export", Path(temp) / "packet"
+            for rows, extra, code in [
+                ([self.record, self.record], [], 2), ([dict(self.record, seq=100.0)], [], 2),
+                ([dict(self.record, nonce=int(float(self.record["nonce"])))], [], 1),
+                ([self.record], ["--room", "flop"], 1), ([self.record], ["--did", "did:key:z123"], 1),
+            ]:
+                source.write_text("\n".join(json.dumps(row) for row in rows))
+                with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                    self.assertEqual(main(["--saved-export", str(source), "--seq", "100", "--output", str(output)] + extra), code)
+                self.assertFalse(output.exists())
+            fetch.assert_not_called()
 
     def test_collect_generation_change_or_expired_record_fails(self):
         snapshot = {"room": "kibble", "messages": [], "generation": 0}

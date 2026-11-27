@@ -59,6 +59,24 @@ Ambiguous duplicate JSON fields and nonfinite numbers are rejected. Saved
 packets are bounded to 8 MiB, native JSON responses to 4 MiB and raw exports
 to 32 MiB.
 
+If a room download ends early, the collector makes one fresh GET. If the
+connection fails again, you can use a JSONL export you already saved. Pass
+the original bytes or an excerpt of complete JSONL rows containing the target.
+For example, the reporter on [network issue 1275](https://github.com/flop-labs/network/issues/1275#issuecomment-7157856909)
+used a saved export to recover a signed faucet reply.
+
+```sh
+python3 scripts/submission_evidence.py --saved-export saved-room.jsonl \
+  --room flop-testnet-faucet --seq 15356 \
+  --did did:key:z6MktjwdcBkwC6xo9wi4KY4ckWvn1GQHdQ1qzkaZtWqHAoxs \
+  --output packet-from-export.json
+```
+
+This command runs offline. It selects a unique sequence, checks the signature
+for the requested room and DID, and records the SHA-256 of the supplied file.
+The report covers up to 200 supplied rows. The live head, generation, board
+and account score remain unknown. Keep the export and packet private.
+
 To check artifact bytes, add `--artifact path/to/file` and optionally
 `--expected-artifact-sha256` with the full lowercase SHA-256. Artifact contents
 are not included. The report distinguishes a caller-supplied expected hash

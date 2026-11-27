@@ -10,6 +10,7 @@ import collections
 import concurrent.futures
 import datetime
 import hashlib
+import http.client
 import json
 import math
 import pathlib
@@ -193,23 +194,65 @@ def inspect_artifact(path, record, expected_hash=None):
             "caution": "A matching hash identifies bytes, not artifact safety, quality, or scorer acceptance."}
 
 
+def read_response(request, timeout, limit):
+    for attempt in range(2):
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                length = response.headers.get("Content-Length")
+                expected = None
+                if length is not None and not response.headers.get("Transfer-Encoding"):
+                    if not re.fullmatch(r"[0-9]+", length):
+                        raise ValueError("invalid response length")
+                    expected = int(length)
+                    if expected > limit:
+                        raise ValueError("response exceeds byte bound")
+                raw = response.read(limit + 1)
+                if len(raw) > limit:
+                    raise ValueError("response exceeds byte bound")
+                # Sized reads can return a valid JSON prefix at premature EOF.
+                if expected is not None and len(raw) < expected:
+                    raise http.client.IncompleteRead(raw, expected - len(raw))
+                return raw, response.headers.get("X-Room-Generation")
+        except http.client.IncompleteRead:
+            if attempt:
+                raise OSError("incomplete response after two read-only requests") from None
+
+
 def get_json(url, timeout):
     request = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "flop-submission-evidence/1"})
-    with urllib.request.urlopen(request, timeout=timeout) as response:
-        raw = response.read(MAX_JSON_BYTES + 1)
-    if len(raw) > MAX_JSON_BYTES:
-        raise ValueError("JSON response exceeds byte bound")
+    raw, _ = read_response(request, timeout, MAX_JSON_BYTES)
     return strict_json(raw)
+
+
+def parse_export(raw):
+    if len(raw) > MAX_EXPORT_BYTES:
+        raise ValueError("export exceeds byte bound")
+    return [strict_json(line) for line in raw.splitlines() if line.strip()]
 
 
 def get_export(room, timeout):
     url = "https://technocore.chat/r/" + room + "/export"
-    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "flop-submission-evidence/1"}), timeout=timeout) as response:
-        raw = response.read(MAX_EXPORT_BYTES + 1)
-        generation = response.headers.get("X-Room-Generation")
-    if len(raw) > MAX_EXPORT_BYTES:
-        raise ValueError("export exceeds byte bound")
-    return [strict_json(line) for line in raw.splitlines() if line.strip()], generation
+    request = urllib.request.Request(url, headers={"User-Agent": "flop-submission-evidence/1"})
+    raw, generation = read_response(request, timeout, MAX_EXPORT_BYTES)
+    return parse_export(raw), generation
+
+
+def export_window(records, seq):
+    indices = [i for i, row in enumerate(records)
+               if isinstance(row, dict) and integer(row.get("seq")) == seq]
+    if len(indices) != 1:
+        raise ValueError("requested sequence is missing or ambiguous in the supplied export")
+    i = indices[0]
+    return records[i], records[max(0, i - 99):i + 101]
+
+
+def saved_export_packet(path, room, seq):
+    with open(path, "rb") as source:
+        raw = source.read(MAX_EXPORT_BYTES + 1)
+    record, window = export_window(parse_export(raw), seq)
+    return {"schema": SCHEMA, "room": room, "submission": record,
+            "native_readback": {"room": room, "messages": window},
+            "collection": {"source": "supplied_export", "export_sha256": hashlib.sha256(raw).hexdigest()}}
 
 
 def collect_packet(room, seq, timeout):
@@ -220,18 +263,16 @@ def collect_packet(room, seq, timeout):
     if (not isinstance(snapshot, dict) or snapshot.get("room") != room
             or not isinstance(snapshot.get("messages"), list)):
         raise ValueError("malformed native snapshot")
-    matches = [r for r in snapshot["messages"] if isinstance(r, dict) and r.get("seq") == seq]
+    matches = [r for r in snapshot["messages"] if isinstance(r, dict) and integer(r.get("seq")) == seq]
     used_export = False
     if not matches:
         records, generation = get_export(room, timeout)
         if str(snapshot.get("generation")) != generation:
             raise ValueError("native generation changed or export generation is missing")
-        indexes = [i for i, r in enumerate(records) if isinstance(r, dict) and r.get("seq") == seq]
-        if len(indexes) == 1:
-            index = indexes[0]
-            snapshot = {**snapshot, "messages": records[max(0, index - 99):index + 101]}
-            matches = [records[index]]
-            used_export = True
+        record, window = export_window(records, seq)
+        snapshot = {**snapshot, "messages": window}
+        matches = [record]
+        used_export = True
     if len(matches) != 1 or verify_record(room, matches[0])[0] != "verified":
         raise ValueError("exact signed receipt unavailable in retained native window; use a previously saved packet, never repost")
     record = matches[0]
@@ -263,6 +304,7 @@ def main(argv=None):
     source.add_argument("--file", help="inspect a saved packet entirely offline")
     source.add_argument("--seq", type=int, help="collect an existing native room record, read-only")
     parser.add_argument("--room", default="kibble")
+    parser.add_argument("--saved-export", metavar="FILE", help="select --seq from a saved room JSONL export entirely offline")
     parser.add_argument("--did", help="require this submitter DID")
     parser.add_argument("--output", help="save the collected packet exclusively; never overwrite")
     parser.add_argument("--artifact", help="hash a local artifact without including its contents")
@@ -272,7 +314,7 @@ def main(argv=None):
     if (not ROOM.fullmatch(args.room) or not math.isfinite(args.timeout) or args.timeout <= 0
             or (args.seq is not None and args.seq < 1)
             or (args.expected_artifact_sha256 and not args.artifact)
-            or (args.output and args.file)):
+            or (args.output and args.file) or (args.saved_export and args.seq is None)):
         parser.error("invalid room, sequence, timeout, artifact options or output with offline input")
     try:
         if args.output and pathlib.Path(args.output).exists():
@@ -283,6 +325,8 @@ def main(argv=None):
             if len(raw) > MAX_PACKET_BYTES:
                 raise ValueError("saved packet exceeds byte bound")
             packet = strict_json(raw)
+        elif args.saved_export:
+            packet = saved_export_packet(args.saved_export, args.room, args.seq)
         else:
             packet = collect_packet(args.room, args.seq, args.timeout)
         result = assess_packet(packet, args.did)
@@ -291,14 +335,18 @@ def main(argv=None):
                 raise ValueError("cannot associate artifact with an unverified or wrong-owner submission")
             result["artifact"] = inspect_artifact(args.artifact, packet["submission"], args.expected_artifact_sha256)
         if args.output and result["evidence_verified"]:
+            contents = json.dumps(packet, indent=2, ensure_ascii=False) + "\n"
+            if len(contents.encode("utf-8")) > MAX_PACKET_BYTES:
+                raise ValueError("packet exceeds byte bound; supply a smaller JSONL excerpt")
             with open(args.output, "x", encoding="utf-8") as output:
-                json.dump(packet, output, indent=2, ensure_ascii=False)
-                output.write("\n")
+                output.write(contents)
         print(json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False))
         artifact_bad = result.get("artifact", {}).get("expected_hash_matches") is False
         return 0 if result["evidence_verified"] and not artifact_bad else 1
     except (OSError, ValueError, RecursionError) as exc:
         print(f"Submission evidence unavailable: {exc}", file=sys.stderr)
+        if args.seq is not None and not args.saved_export and isinstance(exc, OSError):
+            print("If you have saved room JSONL, use --saved-export FILE with the same room and sequence.", file=sys.stderr)
         return 2
 
 
